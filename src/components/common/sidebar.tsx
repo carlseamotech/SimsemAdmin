@@ -4,32 +4,48 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
-const sidebarItems = [
-  { name: "Home", icon: "🏠", href: "/", active: false },
-  { name: "Experiences", icon: "✨", href: "/experiences", active: false },
-  { name: "Promotions", icon: "🎯", href: "/promotions", active: false },
-  { name: "Hosts", icon: "👥", href: "/hosts", active: false },
+import SimsemLogo from "../../../public/Simsem-Logo.svg";
+import HomeIcon from "../../../public/sidebar-icons/home-icon.svg";
+import ExperiencesIcon from "../../../public/sidebar-icons/experiences-icon.svg";
+import PromotionsIcon from "../../../public/sidebar-icons/promotions-icon.svg";
+import HostsIcon from "../../../public/sidebar-icons/hosts-icon.svg";
+import TravelersIcon from "../../../public/sidebar-icons/travelers-icon.svg";
+import PaymentsIcon from "../../../public/sidebar-icons/payments-icon.svg";
+
+import { FC, SVGProps } from "react";
+
+// ✅ Interface for each sidebar item
+interface SidebarItem {
+  name: string;
+  href: string;
+  icon: FC<SVGProps<SVGSVGElement>>;
+  badge?: string;
+}
+
+const sidebarItems: SidebarItem[] = [
+  { name: "Home", icon: HomeIcon, href: "/" },
+  { name: "Experiences", icon: ExperiencesIcon, href: "/experiences" },
+  { name: "Promotions", icon: PromotionsIcon, href: "/promotions" },
+  { name: "Hosts", icon: HostsIcon, href: "/hosts" },
   {
     name: "Travelers",
-    icon: "🧳",
+    icon: TravelersIcon,
     href: "/travelers",
-    active: false,
     badge: "COMING SOON",
   },
   {
     name: "Payments",
-    icon: "💳",
+    icon: PaymentsIcon,
     href: "/payments",
-    active: false,
     badge: "COMING SOON",
   },
 ];
 
-export function Sidebar() {
+const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 bg-slate-800 text-white flex flex-col">
+    <div className="w-64 bg-[#0D2E61] text-white flex flex-col">
       {/* Logo */}
       <div className="p-6 border-b border-slate-700">
         <h1 className="text-2xl font-bold italic">Simsom</h1>
@@ -41,24 +57,33 @@ export function Sidebar() {
         <ul className="space-y-2">
           {sidebarItems.map((item, index) => {
             const isActive = pathname === item.href;
+            const Icon = item.icon;
+
             return (
               <li key={index}>
                 <Link
                   href={item.href}
                   className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${
                     isActive
-                      ? "bg-orange-500 text-white"
+                      ? "bg-[#FEC540] text-[#000000]"
                       : "text-slate-300 hover:bg-slate-700"
                   }`}
                 >
-                  <div className="flex items-center space-x-3">
-                    <span className="text-lg">{item.icon}</span>
-                    <span className="font-medium">{item.name}</span>
+                  <div className="flex items-center shrink-0 space-x-4">
+                    <Icon
+                      style={{ fill: isActive ? "#000000" : "#94a3b8" }}
+                      className={`w-[24px] h-[24px] ${
+                        isActive ? "text-black" : "text-slate-300"
+                      }`}
+                      aria-label={`${item.name} icon`}
+                    />
+                    <span className="text-[14px]">{item.name}</span>
                   </div>
+
                   {item.badge && (
                     <Badge
                       variant="secondary"
-                      className="text-xs bg-orange-500 text-white"
+                      className="text-xs bg-[#F28E33] text-[#0D2E61]"
                     >
                       {item.badge}
                     </Badge>
@@ -79,4 +104,6 @@ export function Sidebar() {
       </div>
     </div>
   );
-}
+};
+
+export default Sidebar;
