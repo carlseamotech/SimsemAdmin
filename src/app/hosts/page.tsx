@@ -29,6 +29,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Header from "@/components/common/header";
+import { useRouter } from "next/navigation";
 
 const hosts = [
   {
@@ -125,7 +126,8 @@ const hosts = [
 
 export default function HostDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeFilter, setActiveFilter] = useState("all"); // renamed from activeTab
+  const [activeFilter, setActiveFilter] = useState("all");
+  const router = useRouter();
 
   const getFilterButtons = () => ["all", "for-approval", "approved"];
 
@@ -152,7 +154,6 @@ export default function HostDashboard() {
 
     return matchesSearch;
   });
-
   return (
     <div className="flex h-screen bg-gray-50">
       <div className="flex-1 flex flex-col">
@@ -248,7 +249,11 @@ export default function HostDashboard() {
 
               <TableBody>
                 {filteredHosts.map((host) => (
-                  <TableRow key={host.id}>
+                  <TableRow
+                    key={host.id}
+                    className="hover:bg-gray-50 cursor-pointer"
+                    onClick={() => router.push(`/hosts/${host.id}`)}
+                  >
                     <TableCell>
                       <div className="flex items-center space-x-3">
                         <Avatar className="w-8 h-8">
