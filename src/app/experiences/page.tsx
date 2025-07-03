@@ -46,8 +46,8 @@ const ExperiencesMainPage = () => {
     <>
       <Header
         title="Experiences"
-        showDishForm={showDishForm}
-        setShowDishForm={setShowDishForm}
+        showBackButton={showDishForm}
+        setShowBackButton={setShowDishForm}
       />
 
       {!showDishForm ? (

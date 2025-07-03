@@ -19,23 +19,23 @@ import { Search } from "lucide-react";
 
 interface HeaderProps {
   title: string;
-  showDishForm: boolean;
-  setShowDishForm: Dispatch<SetStateAction<boolean>>;
+  showBackButton?: boolean;
+  setShowBackButton?: Dispatch<SetStateAction<boolean>>;
 }
 
-const Header = ({ title, showDishForm, setShowDishForm }: HeaderProps) => {
+const Header = ({ title, showBackButton, setShowBackButton }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className=" px-6 py-10 bg-[#F8F8F8]">
       <div className="flex items-center justify-between">
-        {!showDishForm ? (
+        {!showBackButton ? (
           <h1 className="text-[32px] text-[#0D2E61]">{title}</h1>
         ) : (
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setShowDishForm(false)}
+            onClick={() => setShowBackButton && setShowBackButton(false)}
             className="mr-4 bg-[#F2EDED] rounded-full"
           >
             <FaChevronLeft className="w-4 h-4" />

@@ -19,7 +19,7 @@ interface ExperienceLibraryProps {
 const experienceLibraryData = [
   {
     id: 1,
-    type: "Dining",
+    type: "Local Dining",
     name: "The Ultimate Breakfast at Istanbul",
     cost: "$12.00/Person",
     country: "Turkey",
@@ -109,11 +109,16 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
               <TableCell>
                 <Badge
                   variant="secondary"
-                  className="rounded-full text-[16px] font-normal bg-[#0D2E6140] text-[#0D2E61] "
+                  className={`rounded-full text-[16px] font-normal ${
+                    experience.type === "Dining"
+                      ? "bg-[#0D2E6140] text-[#0D2E61]"
+                      : "bg-[#FBB04040] text-[#F28E33]"
+                  }`}
                 >
                   {experience.type}
                 </Badge>
               </TableCell>
+
               <TableCell className="text-gray-900">{experience.name}</TableCell>
               <TableCell className="text-gray-600">{experience.cost}</TableCell>
               <TableCell className="text-gray-600">
