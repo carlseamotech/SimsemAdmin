@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import {
   Search,
   ChevronLeft,
@@ -22,8 +22,11 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
-const DishFormPage = () => {
-  const [showDishForm, setShowDishForm] = useState(false);
+interface DishFormProps {
+  setShowDishForm: Dispatch<SetStateAction<boolean>>;
+}
+
+const DishFormPage: React.FC<DishFormProps> = ({ setShowDishForm }) => {
   const [dishFormData, setDishFormData] = useState({
     dishName: "",
     dishType: "",

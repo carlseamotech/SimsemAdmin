@@ -2,18 +2,9 @@
 import { useState } from "react";
 import { Search, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import Header from "@/components/common/header";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import DishFormPage from "@/components/experiences/dish-form";
 import DishLibraryPage from "@/components/experiences/dish-library";
 import ExperiencesPage from "@/components/experiences/experiences";
@@ -196,7 +187,7 @@ const ExperiencesMainPage = () => {
           </div>
         </div>
       ) : (
-        <DishFormPage />
+        <DishFormPage setShowDishForm={setShowDishForm} />
       )}
     </>
   );
