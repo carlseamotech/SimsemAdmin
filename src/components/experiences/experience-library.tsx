@@ -103,6 +103,7 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
             </TableHead>
           </TableRow>
         </TableHeader>
+
         <TableBody>
           {getFilteredLibrary().map((experience) => (
             <TableRow key={experience.id} className="hover:bg-gray-50">

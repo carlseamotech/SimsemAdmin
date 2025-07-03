@@ -125,7 +125,18 @@ const hosts = [
 
 export default function HostDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("all"); // renamed from activeTab
+
+  const getFilterButtons = () => ["all", "for-approval", "approved"];
+
+  const getFilterLabel = (filter: string) => {
+    const labels: { [key: string]: string } = {
+      all: "All",
+      "for-approval": "For Approval",
+      approved: "Approved",
+    };
+    return labels[filter] || filter;
+  };
 
   const filteredHosts = hosts.filter((host) => {
     const matchesSearch =
@@ -133,10 +144,10 @@ export default function HostDashboard() {
       host.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       host.country.toLowerCase().includes(searchTerm.toLowerCase());
 
-    if (activeTab === "all") return matchesSearch;
-    if (activeTab === "for-approval")
+    if (activeFilter === "all") return matchesSearch;
+    if (activeFilter === "for-approval")
       return matchesSearch && host.status === "For Approval";
-    if (activeTab === "approved")
+    if (activeFilter === "approved")
       return matchesSearch && host.status === "Approved";
 
     return matchesSearch;
@@ -144,43 +155,33 @@ export default function HostDashboard() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
         <Header title="Hosts" />
-        {/* Content */}
-        <div className="flex-1 p-6">
-          <div className="bg-white rounded-lg border border-gray-200">
-            {/* Filters and Search */}
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-center justify-between">
-                <Tabs
-                  value={activeTab}
-                  onValueChange={setActiveTab}
-                  className="w-auto"
-                >
-                  <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger
-                      value="all"
-                      className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
-                    >
-                      All
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="for-approval"
-                      className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
-                    >
-                      For Approval
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="approved"
-                      className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
-                    >
-                      Approved
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
 
+        <div className="flex-1 py-6 px-8">
+          <div className=" bg-white  drop-shadow-lg rounded-2xl px-16 py-4">
+            {/* Filter Buttons and Search */}
+            <div className="py-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  {getFilterButtons().map((filter) => (
+                    <Button
+                      key={filter}
+                      variant={activeFilter === filter ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setActiveFilter(filter)}
+                      className={`rounded-full border-none text-[16px] font-normal h-[39px] px-4 ${
+                        activeFilter === filter
+                          ? "bg-[#FBB040] hover:bg-orange-400 text-white"
+                          : "bg-[#3D3D3D1A] text-[#000000B2]"
+                      }`}
+                    >
+                      {getFilterLabel(filter)}
+                    </Button>
+                  ))}
+                </div>
+
+                {/* Search & Pagination */}
                 <div className="flex items-center space-x-4">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -193,27 +194,29 @@ export default function HostDashboard() {
                   </div>
 
                   <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <span>1 - 10 of 52</span>
+                    <span>1 - 10 of {filteredHosts.length}</span>
                     <Button
                       variant="outline"
                       size="icon"
-                      className="w-8 h-8 bg-transparent"
+                      className="w-8 h-8 bg-transparent border-none"
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </Button>
                     <Button
                       variant="outline"
                       size="icon"
-                      className="w-8 h-8 bg-transparent"
+                      className="w-8 h-8 bg-transparent border-none"
                     >
                       <ChevronRight className="w-4 h-4" />
                     </Button>
                   </div>
 
+                  <div className="border-l border-[#D9D9DC] h-10" />
+
                   <Button
                     variant="outline"
                     size="icon"
-                    className="w-8 h-8 bg-transparent"
+                    className="w-8 h-8 bg-transparent border-none"
                   >
                     <Filter className="w-4 h-4" />
                   </Button>
@@ -225,58 +228,51 @@ export default function HostDashboard() {
             <Table>
               <TableHeader>
                 <TableRow className="bg-gray-50">
-                  <TableHead className="font-semibold text-gray-700">
+                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
                     Host
                   </TableHead>
-                  <TableHead className="font-semibold text-gray-700">
+                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
                     Phone Number
                   </TableHead>
-                  <TableHead className="font-semibold text-gray-700">
+                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
                     Email Address
                   </TableHead>
-                  <TableHead className="font-semibold text-gray-700">
+                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
                     Country
                   </TableHead>
-                  <TableHead className="font-semibold text-gray-700">
+                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
                     Status
                   </TableHead>
                 </TableRow>
               </TableHeader>
+
               <TableBody>
                 {filteredHosts.map((host) => (
-                  <TableRow key={host.id} className="hover:bg-gray-50">
+                  <TableRow key={host.id}>
                     <TableCell>
                       <div className="flex items-center space-x-3">
                         <Avatar className="w-8 h-8">
-                          <AvatarImage
-                            src={host.avatar || "/placeholder.svg"}
-                          />
-                          <AvatarFallback>{host.name.charAt(0)}</AvatarFallback>
+                          <AvatarImage src={host.avatar} />
+                          <AvatarFallback>{host.name[0]}</AvatarFallback>
                         </Avatar>
                         <span className="font-medium text-gray-900">
                           {host.name}
                         </span>
                       </div>
                     </TableCell>
-                    <TableCell className="text-gray-600">
-                      {host.phone}
-                    </TableCell>
-                    <TableCell className="text-gray-600">
-                      {host.email}
-                    </TableCell>
-                    <TableCell className="text-gray-600">
-                      {host.country}
-                    </TableCell>
+                    <TableCell>{host.phone}</TableCell>
+                    <TableCell>{host.email}</TableCell>
+                    <TableCell>{host.country}</TableCell>
                     <TableCell>
                       <Badge
                         variant={
                           host.status === "Approved" ? "default" : "secondary"
                         }
-                        className={
+                        className={`rounded-full text-[16px] font-normal ${
                           host.status === "Approved"
-                            ? "bg-teal-100 text-teal-800 hover:bg-teal-100"
-                            : "bg-orange-100 text-orange-800 hover:bg-orange-100"
-                        }
+                            ? "bg-[#C9E8E8] text-[#105352] hover:bg-teal-100"
+                            : "bg-[#FFF3DD] text-[#AA8345] hover:bg-orange-100"
+                        }`}
                       >
                         {host.status}
                       </Badge>

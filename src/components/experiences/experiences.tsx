@@ -126,6 +126,7 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
             </TableHead>
           </TableRow>
         </TableHeader>
+
         <TableBody>
           {getFilteredExperiences().map((experience) => (
             <TableRow key={experience.id} className="hover:bg-gray-50">
