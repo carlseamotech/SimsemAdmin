@@ -44,9 +44,9 @@ const Header = ({ title }: HeaderProps) => {
 
           {/* Notifications */}
           <Button
-            variant="outline"
+            variant="normal"
             size="icon"
-            className="relative bg-[#0D2E61] rounded-full h-[50px] w-[50px]"
+            className="relative bg-[#0D2E61] rounded-full h-[50px] w-[50px] "
           >
             <Image
               src={NotificationIcon}
@@ -61,7 +61,7 @@ const Header = ({ title }: HeaderProps) => {
           <DropdownMenu onOpenChange={setIsOpen}>
             <DropdownMenuTrigger
               asChild
-              className=" focus:outline-none focus:ring-0"
+              className="focus:outline-none focus:ring-0"
             >
               <button className="flex items-center cursor-pointer">
                 <Avatar className="h-[50px] w-[50px]">
