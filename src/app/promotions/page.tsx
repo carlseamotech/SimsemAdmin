@@ -1,4 +1,4 @@
-import { Header } from "@/components/common/header";
+import Header from "@/components/common/header";
 import { ComingSoon } from "@/components/common/coming-soon";
 
 export default function PromotionsPage() {

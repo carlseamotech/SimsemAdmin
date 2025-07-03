@@ -1,4 +1,5 @@
-import { Header } from "@/components/common/header";
+"use client";
+import Header from "@/components/common/header";
 import { ComingSoon } from "@/components/common/coming-soon";
 
 export default function TravelersPage() {

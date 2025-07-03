@@ -1,11 +1,12 @@
-import { Header } from "@/components/common/header";
+import Header from "@/components/common/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Calendar, TrendingUp, DollarSign } from "lucide-react";
 
 export default function HomePage() {
   return (
     <>
-      <Header title="Dashboard" />
+      <Header title="Hello, Ahmed" />
+
       <div className="flex-1 p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card>
