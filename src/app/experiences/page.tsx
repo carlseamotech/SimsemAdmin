@@ -23,18 +23,11 @@ const ExperiencesMainPage = () => {
 
   const getFilterButtons = () => {
     if (activeTab === "experiences") {
-      return [
-        "all",
-        "dining",
-        "local-living",
-        "for-approval",
-        "active",
-        "inactive",
-      ];
+      return ["all", "for-approval", "active", "inactive"];
     } else if (activeTab === "experience-library") {
       return ["all", "dining", "local-living"];
     }
-    return ["all"];
+    return [];
   };
 
   const getFilterLabel = (filter: string) => {

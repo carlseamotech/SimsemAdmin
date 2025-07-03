@@ -27,7 +27,7 @@ const Header = ({ title, showDishForm, setShowDishForm }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-white border-b border-gray-200 px-6 py-10">
+    <header className=" px-6 py-10 bg-[#F8F8F8]">
       <div className="flex items-center justify-between">
         {!showDishForm ? (
           <h1 className="text-[32px] text-[#0D2E61]">{title}</h1>

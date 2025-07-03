@@ -15,47 +15,60 @@ interface ExperienceProps {
   searchTerm: string;
 }
 
-// Sample data
 const experiencesData = [
   {
     id: 1,
     type: "Dining",
-    name: "The Ultimate Breakfast at Istanbul",
-    cost: "$30.00/Person",
-    country: "Turkey",
+    tourname: "The Ultimate Breakfast at Istanbul",
+    profile: "Turkey",
+    host: "Ahmed Habib",
     status: "active",
+    approvalStatus: "For Approval",
   },
   {
     id: 2,
     type: "Local Living",
-    name: "A walk through my campus",
-    cost: "$20.00/Person",
-    country: "Turkey",
-    status: "active",
+    tourname: "A walk through my campus",
+    profile: "Turkey",
+    host: "Ahmed Habib",
+    status: "inactive",
+    approvalStatus: "Approved",
   },
   {
     id: 3,
     type: "Local Living",
-    name: "A walk through my campus",
-    cost: "$30.00/Person",
-    country: "Turkey",
+    tourname: "A walk through my campus",
+    profile: "Turkey",
+    host: "Ahmed Habib",
     status: "inactive",
+    approvalStatus: "For Approval",
   },
   {
     id: 4,
     type: "Dining",
-    name: "The Ultimate Breakfast at Istanbul",
-    cost: "$20.00/Person",
-    country: "Turkey",
-    status: "for-approval",
+    tourname: "The Ultimate Breakfast at Istanbul",
+    profile: "Turkey",
+    host: "Ahmed Habib",
+    status: "active",
+    approvalStatus: "Approved",
   },
   {
     id: 5,
     type: "Local Living",
-    name: "A walk through my campus",
-    cost: "$15.00/Person",
-    country: "Turkey",
+    tourname: "A walk through my campus",
+    profile: "Turkey",
+    host: "Ahmed Habib",
     status: "active",
+    approvalStatus: "Rejected",
+  },
+  {
+    id: 6,
+    type: "Local Living",
+    tourname: "A walk through my campus",
+    profile: "Turkey",
+    host: "Ahmed Habib",
+    status: "active",
+    approvalStatus: "Approved",
   },
 ];
 
@@ -63,49 +76,52 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
   activeFilter,
   searchTerm,
 }) => {
-  // Filter functions
   const getFilteredExperiences = () => {
     let data = experiencesData;
 
-    if (activeFilter !== "all") {
-      if (activeFilter === "dining") {
-        data = data.filter((item) => item.type === "Dining");
-      } else if (activeFilter === "local-living") {
-        data = data.filter((item) => item.type === "Local Living");
-      } else if (activeFilter === "for-approval") {
-        data = data.filter((item) => item.status === "for-approval");
-      } else if (activeFilter === "active") {
-        data = data.filter((item) => item.status === "active");
-      } else if (activeFilter === "inactive") {
-        data = data.filter((item) => item.status === "inactive");
-      }
+    if (activeFilter === "for-approval") {
+      data = data.filter((item) => item.approvalStatus === "For Approval");
+    } else if (activeFilter === "active" || activeFilter === "inactive") {
+      data = data.filter((item) => item.status === activeFilter);
     }
 
-    return data.filter(
-      (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.country.toLowerCase().includes(searchTerm.toLowerCase())
+    return data.filter((item) =>
+      item.tourname.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
+
+  const isApprovalVisible =
+    activeFilter === "all" || activeFilter === "for-approval";
+  const isStatusVisible =
+    activeFilter === "all" ||
+    activeFilter === "active" ||
+    activeFilter === "inactive";
 
   return (
     <div>
       <Table>
         <TableHeader>
           <TableRow className="bg-gray-50">
-            <TableHead className="font-semibold  text-[16px] text-[#101018]">
-              Type
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+              Tour Name
             </TableHead>
-            <TableHead className="font-semibold text-[16px] text-[#101018]">
-              Experience Name
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+              Experience Type
             </TableHead>
-            <TableHead className="font-semibold text-[16px] text-[#101018]">
-              Cost
+            {isApprovalVisible && (
+              <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+                Approval Status
+              </TableHead>
+            )}
+            {isStatusVisible && (
+              <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+                Status
+              </TableHead>
+            )}
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+              Host
             </TableHead>
-            <TableHead className="font-semibold text-[16px] text-[#101018]">
-              Country
-            </TableHead>
-            <TableHead className="font-semibold text-[16px] text-[#101018]">
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Actions
             </TableHead>
           </TableRow>
@@ -113,23 +129,48 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
         <TableBody>
           {getFilteredExperiences().map((experience) => (
             <TableRow key={experience.id} className="hover:bg-gray-50">
-              <TableCell>
-                <Badge
-                  variant="secondary"
-                  className={`rounded-full text-[16px] font-normal  ${
-                    experience.type === "Dining"
-                      ? "bg-[#0D2E6140] text-[#0D2E61] "
-                      : "bg-[#FBB04040] text-[#F28E33] "
-                  }`}
-                >
-                  {experience.type}
-                </Badge>
+              <TableCell className="text-gray-900">
+                {experience.tourname}
               </TableCell>
-              <TableCell className="text-gray-900">{experience.name}</TableCell>
-              <TableCell className="text-gray-600">{experience.cost}</TableCell>
-              <TableCell className="text-gray-600">
-                {experience.country}
-              </TableCell>
+              <TableCell className="text-gray-600">{experience.type}</TableCell>
+
+              {isApprovalVisible && (
+                <TableCell>
+                  <Badge
+                    variant="secondary"
+                    className={`rounded-full text-[16px] font-normal ${
+                      experience.approvalStatus === "Approved"
+                        ? "bg-[#C9E8E8] text-[#105352]"
+                        : experience.approvalStatus === "For Approval"
+                        ? "bg-[#FFF3DD] text-[#AA8345]"
+                        : "bg-[#3D3D3D1A] text-[#000000B2]"
+                    }`}
+                  >
+                    {experience.approvalStatus}
+                  </Badge>
+                </TableCell>
+              )}
+
+              {isStatusVisible && (
+                <TableCell>
+                  <Badge
+                    variant="secondary"
+                    className={`rounded-full text-[16px] font-normal ${
+                      experience.status === "active"
+                        ? "bg-[#C9E8E8] text-[#105352]"
+                        : experience.status === "inactive"
+                        ? "bg-[#F3F3F3] text-[#333333]"
+                        : "bg-[#E2E2E2] text-[#777777]"
+                    }`}
+                  >
+                    {experience.status.charAt(0).toUpperCase() +
+                      experience.status.slice(1)}
+                  </Badge>
+                </TableCell>
+              )}
+
+              <TableCell className="text-gray-600">{experience.host}</TableCell>
+
               <TableCell>
                 <div className="flex space-x-2">
                   <Button

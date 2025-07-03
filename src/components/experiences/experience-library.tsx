@@ -86,19 +86,19 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
       <Table>
         <TableHeader>
           <TableRow className="bg-gray-50">
-            <TableHead className="font-semibold text-[16px] text-[#101018]">
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Type
             </TableHead>
-            <TableHead className="font-semibold text-[16px] text-[#101018]">
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Experience Name
             </TableHead>
-            <TableHead className="font-semibold text-[16px] text-[#101018]">
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Cost
             </TableHead>
-            <TableHead className="font-semibold text-[16px] text-[#101018]">
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Country
             </TableHead>
-            <TableHead className="font-semibold text-[16px] text-[#101018]">
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Actions
             </TableHead>
           </TableRow>

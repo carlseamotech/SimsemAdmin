@@ -72,22 +72,22 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
       <Table>
         <TableHeader>
           <TableRow className="bg-gray-50">
-            <TableHead className="font-semibold  text-[16px] text-[#101018]">
+            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
               Dish Type
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018]">
+            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
               Dish Name
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018]">
+            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
               Ingredients
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018]">
+            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
               Course
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018]">
+            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
               Country
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018]">
+            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
               Actions
             </TableHead>
           </TableRow>
