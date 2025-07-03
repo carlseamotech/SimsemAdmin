@@ -1,19 +1,10 @@
 "use client";
-
 import { useState } from "react";
-import {
-  Search,
-  Bell,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Filter,
-} from "lucide-react";
+import { Search, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
   TableBody,
@@ -22,12 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import Header from "@/components/common/header";
 import { useRouter } from "next/navigation";
 
@@ -39,7 +25,7 @@ const hosts = [
     email: "demo@example.com",
     country: "Turkey",
     status: "For Approval",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://github.com/shadcn.png",
   },
   {
     id: 2,
@@ -48,7 +34,7 @@ const hosts = [
     email: "demo@example.com",
     country: "Jordan",
     status: "Approved",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://github.com/shadcn.png",
   },
   {
     id: 3,
@@ -257,9 +243,10 @@ export default function HostDashboard() {
                     <TableCell>
                       <div className="flex items-center space-x-3">
                         <Avatar className="w-8 h-8">
-                          <AvatarImage src={host.avatar} />
+                          <AvatarImage src={host.avatar} alt="Host Image" />
                           <AvatarFallback>{host.name[0]}</AvatarFallback>
                         </Avatar>
+
                         <span className="font-medium text-gray-900">
                           {host.name}
                         </span>

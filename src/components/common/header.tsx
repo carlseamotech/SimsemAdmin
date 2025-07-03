@@ -18,40 +18,37 @@ import { FaChevronLeft } from "react-icons/fa";
 import { Search } from "lucide-react";
 
 interface HeaderProps {
-  title: string;
+  title?: string;
   showBackButton?: boolean;
-  setShowBackButton?: Dispatch<SetStateAction<boolean>>;
+  onBack?: () => void;
 }
 
-const Header = ({ title, showBackButton, setShowBackButton }: HeaderProps) => {
+const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className=" px-6 py-10 bg-[#F8F8F8]">
+    <header className="px-6 py-12 bg-[#F8F8F8]">
       <div className="flex items-center justify-between">
-        {!showBackButton ? (
-          <h1 className="text-[32px] text-[#0D2E61]">{title}</h1>
-        ) : (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setShowBackButton && setShowBackButton(false)}
-            className="mr-4 bg-[#F2EDED] rounded-full"
-          >
-            <FaChevronLeft className="w-4 h-4" />
-          </Button>
-        )}
+        <div className="flex items-center">
+          {showBackButton ? (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onBack}
+              className="mr-4 bg-[#F2EDED] rounded-full"
+            >
+              <FaChevronLeft className="w-4 h-4" />
+            </Button>
+          ) : title ? (
+            <h1 className="text-[32px] text-[#0D2E61]">{title}</h1>
+          ) : null}
+        </div>
 
+        {/* Right Side: Search + Notification + Profile */}
         <div className="flex items-center space-x-4">
-          {/* Global Search */}
+          {/* Search */}
           <div className="relative">
-            {/* <Image
-              src={SearchIcon}
-              alt="Search Icon"
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-[24px] h-[24px]"
-            /> */}
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-
             <Input
               placeholder="Global Search"
               className="pl-10 w-80 border-gray-300 text-[14px]"
@@ -62,23 +59,19 @@ const Header = ({ title, showBackButton, setShowBackButton }: HeaderProps) => {
           <Button
             variant="normal"
             size="icon"
-            className="relative bg-[#0D2E61] rounded-full h-[50px] w-[50px] "
+            className="relative bg-[#0D2E61] rounded-full h-[50px] w-[50px]"
           >
             <Image
               src={NotificationIcon}
               alt="Notification Icon"
-              className=" w-[24px] h-[24px]"
+              className="w-[24px] h-[24px]"
             />
-
             <div className="absolute -top-[0.5px] -right-[1px] w-3 h-3 bg-[#EC502C] rounded-full"></div>
           </Button>
 
-          {/* User Profile */}
+          {/* Profile */}
           <DropdownMenu onOpenChange={setIsOpen}>
-            <DropdownMenuTrigger
-              asChild
-              className="focus:outline-none focus:ring-0"
-            >
+            <DropdownMenuTrigger asChild>
               <button className="flex items-center cursor-pointer">
                 <Avatar className="h-[50px] w-[50px]">
                   <Image
@@ -88,11 +81,10 @@ const Header = ({ title, showBackButton, setShowBackButton }: HeaderProps) => {
                     height={50}
                     className="rounded-full"
                   />
-
                   <AvatarFallback>U</AvatarFallback>
                 </Avatar>
                 <FaChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 text-[#5F647E] f ${
+                  className={`w-4 h-4 transition-transform duration-200 text-[#5F647E] ${
                     isOpen ? "rotate-180" : "rotate-0"
                   }`}
                 />

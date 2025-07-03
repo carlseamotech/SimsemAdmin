@@ -42,12 +42,35 @@ const ExperiencesMainPage = () => {
     return labels[filter] || filter;
   };
 
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "experiences":
+        return (
+          <ExperiencesPage
+            activeFilter={activeFilter}
+            searchTerm={searchTerm}
+          />
+        );
+      case "experience-library":
+        return (
+          <ExperienceLibraryPage
+            activeFilter={activeFilter}
+            searchTerm={searchTerm}
+          />
+        );
+      case "dish-library":
+        return <DishLibraryPage searchTerm={searchTerm} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <Header
-        title="Experiences"
+        title={!showDishForm ? "Experiences" : undefined}
         showBackButton={showDishForm}
-        setShowBackButton={setShowDishForm}
+        onBack={() => setShowDishForm(false)}
       />
 
       {!showDishForm ? (
@@ -128,7 +151,7 @@ const ExperiencesMainPage = () => {
               </div>
 
               {/* Table Content */}
-              {activeTab === "experiences" && (
+              {/* {activeTab === "experiences" && (
                 <>
                   <ExperiencesPage
                     activeFilter={activeFilter}
@@ -148,7 +171,9 @@ const ExperiencesMainPage = () => {
                 <>
                   <DishLibraryPage searchTerm={searchTerm} />
                 </>
-              )}
+              )} */}
+
+              {renderTabContent()}
             </div>
           </div>
         </div>

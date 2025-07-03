@@ -53,7 +53,7 @@ const TabsExperiencePage: React.FC<TabsExperienceProps> = ({
             }
           }}
         >
-          {getButtonText()}ss
+          {getButtonText()}
         </Button>
       </div>
     </>
