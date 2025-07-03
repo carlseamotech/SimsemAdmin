@@ -73,7 +73,7 @@ const Sidebar = () => {
                         src={item.icon}
                         alt={`${item.name} icon`}
                         width={24}
-                        height={24}
+                        height={28}
                         className={`transition-all  ${
                           isActive ? "invert-0 brightness-0" : ""
                         }`}

@@ -93,15 +93,19 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
       <Table>
         <TableHeader>
           <TableRow className="bg-gray-50">
-            <TableHead className="font-semibold text-gray-700">Type</TableHead>
-            <TableHead className="font-semibold text-gray-700">
+            <TableHead className="font-semibold  text-[16px] text-[#101018]">
+              Type
+            </TableHead>
+            <TableHead className="font-semibold text-[16px] text-[#101018]">
               Experience Name
             </TableHead>
-            <TableHead className="font-semibold text-gray-700">Cost</TableHead>
-            <TableHead className="font-semibold text-gray-700">
+            <TableHead className="font-semibold text-[16px] text-[#101018]">
+              Cost
+            </TableHead>
+            <TableHead className="font-semibold text-[16px] text-[#101018]">
               Country
             </TableHead>
-            <TableHead className="font-semibold text-gray-700">
+            <TableHead className="font-semibold text-[16px] text-[#101018]">
               Actions
             </TableHead>
           </TableRow>
@@ -112,11 +116,11 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
               <TableCell>
                 <Badge
                   variant="secondary"
-                  className={
+                  className={`rounded-full text-[16px] font-normal  ${
                     experience.type === "Dining"
-                      ? "bg-blue-100 text-blue-800 hover:bg-blue-100"
-                      : "bg-orange-100 text-orange-800 hover:bg-orange-100"
-                  }
+                      ? "bg-[#0D2E6140] text-[#0D2E61] "
+                      : "bg-[#FBB04040] text-[#F28E33] "
+                  }`}
                 >
                   {experience.type}
                 </Badge>
@@ -130,11 +134,15 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
                 <div className="flex space-x-2">
                   <Button
                     size="sm"
-                    className="bg-slate-800 hover:bg-slate-900 text-white"
+                    className="bg-[#0D2E61] hover:bg-blue-900 text-[#FFFFFF]"
                   >
                     Edit
                   </Button>
-                  <Button size="sm" variant="destructive">
+                  <Button
+                    size="sm"
+                    variant="destructive"
+                    className="bg-[#9A031E]"
+                  >
                     Delete
                   </Button>
                 </div>

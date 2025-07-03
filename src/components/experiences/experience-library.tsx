@@ -86,15 +86,19 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
       <Table>
         <TableHeader>
           <TableRow className="bg-gray-50">
-            <TableHead className="font-semibold text-gray-700">Type</TableHead>
-            <TableHead className="font-semibold text-gray-700">
+            <TableHead className="font-semibold text-[16px] text-[#101018]">
+              Type
+            </TableHead>
+            <TableHead className="font-semibold text-[16px] text-[#101018]">
               Experience Name
             </TableHead>
-            <TableHead className="font-semibold text-gray-700">Cost</TableHead>
-            <TableHead className="font-semibold text-gray-700">
+            <TableHead className="font-semibold text-[16px] text-[#101018]">
+              Cost
+            </TableHead>
+            <TableHead className="font-semibold text-[16px] text-[#101018]">
               Country
             </TableHead>
-            <TableHead className="font-semibold text-gray-700">
+            <TableHead className="font-semibold text-[16px] text-[#101018]">
               Actions
             </TableHead>
           </TableRow>
@@ -105,7 +109,7 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
               <TableCell>
                 <Badge
                   variant="secondary"
-                  className="bg-blue-100 text-blue-800 hover:bg-blue-100"
+                  className="rounded-full text-[16px] font-normal bg-[#0D2E6140] text-[#0D2E61] "
                 >
                   {experience.type}
                 </Badge>
@@ -119,11 +123,15 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
                 <div className="flex space-x-2">
                   <Button
                     size="sm"
-                    className="bg-slate-800 hover:bg-slate-900 text-white"
+                    className="bg-[#0D2E61] hover:bg-blue-900 text-[#FFFFFF]"
                   >
                     Edit
                   </Button>
-                  <Button size="sm" variant="destructive">
+                  <Button
+                    size="sm"
+                    variant="destructive"
+                    className="bg-[#9A031E]"
+                  >
                     Delete
                   </Button>
                 </div>

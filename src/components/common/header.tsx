@@ -13,28 +13,44 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { FaChevronLeft } from "react-icons/fa";
+import { Search } from "lucide-react";
 
 interface HeaderProps {
   title: string;
+  showDishForm: boolean;
+  setShowDishForm: Dispatch<SetStateAction<boolean>>;
 }
 
-const Header = ({ title }: HeaderProps) => {
+const Header = ({ title, showDishForm, setShowDishForm }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="bg-white border-b border-gray-200 px-6 py-10">
       <div className="flex items-center justify-between">
-        <h1 className="text-[32px] text-[#0D2E61]">{title}</h1>
+        {!showDishForm ? (
+          <h1 className="text-[32px] text-[#0D2E61]">{title}</h1>
+        ) : (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setShowDishForm(false)}
+            className="mr-4 bg-[#F2EDED] rounded-full"
+          >
+            <FaChevronLeft className="w-4 h-4" />
+          </Button>
+        )}
 
         <div className="flex items-center space-x-4">
           {/* Global Search */}
           <div className="relative">
-            <Image
+            {/* <Image
               src={SearchIcon}
               alt="Search Icon"
               className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-[24px] h-[24px]"
-            />
+            /> */}
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
 
             <Input
               placeholder="Global Search"

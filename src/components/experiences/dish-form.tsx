@@ -51,16 +51,8 @@ const DishFormPage: React.FC<DishFormProps> = ({ setShowDishForm }) => {
   return (
     <div>
       <div className="flex-1 py-6 px-8">
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="rounded-2xl px-10 py-8 bg-white  drop-shadow-lg">
           <div className="flex items-center mb-6">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setShowDishForm(false)}
-              className="mr-4"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </Button>
             <h2 className="text-2xl font-bold text-slate-800">
               Offered Dished
             </h2>
