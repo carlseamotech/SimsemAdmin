@@ -12,8 +12,8 @@ import {
 import { usePromoCodes } from "@/hooks/use-promo-codes";
 import { PromoCode } from "@/models/promo-code";
 import Image from "next/image";
-import EditIcon from "../../../public/common/edit-icon.svg";
-import TrashIcon from "../../../public/common/trash-con.svg";
+import EditIcon from "../../../../../public/common/edit-icon.svg";
+import TrashIcon from "../../../../../public/common/trash-con.svg";
 import PromotionsTableSkeleton from "./promotions-table-skeleton";
 
 interface ManagePromotionsProps {
