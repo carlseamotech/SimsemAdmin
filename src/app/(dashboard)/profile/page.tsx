@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/components/common/header";
-import ProfileForm from "@/components/profile/profile-form";
+import ProfileForm from "@/app/(dashboard)/profile/components/profile-form";
 
 const ProfilePage = () => {
   return (

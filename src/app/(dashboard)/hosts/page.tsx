@@ -17,7 +17,7 @@ import { useHosts } from "@/hooks/use-hosts";
 import { Host } from "@/models/host";
 import Header from "@/components/common/header";
 import { useRouter } from "next/navigation";
-import { HostsTableSkeleton } from "@/components/hosts/hosts-table-skeleton";
+import { HostsTableSkeleton } from "@/app/(dashboard)/hosts/components/hosts-table-skeleton";
 
 export default function HostDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -47,8 +47,7 @@ export default function HostDashboard() {
     if (activeFilter === "all") return matchesSearch;
     if (activeFilter === "for-approval")
       return matchesSearch && !host.isVerified;
-    if (activeFilter === "approved")
-      return matchesSearch && host.isVerified;
+    if (activeFilter === "approved") return matchesSearch && host.isVerified;
 
     return matchesSearch;
   });
@@ -186,10 +185,7 @@ export default function HostDashboard() {
                       <TableCell>
                         <div className="flex items-center space-x-3">
                           <Avatar className="w-8 h-8">
-                            <AvatarImage
-                              src={host.imageUrl}
-                              alt="Host Image"
-                            />
+                            <AvatarImage src={host.imageUrl} alt="Host Image" />
                             <AvatarFallback>{host.name[0]}</AvatarFallback>
                           </Avatar>
 

@@ -148,7 +148,9 @@ export default function SignInPage() {
               <p className="text-sm text-blue-800 font-medium mb-1">
                 Demo Credentials:
               </p>
-              <p className="text-sm text-blue-700">Email: superadmin@simsem.com</p>
+              <p className="text-sm text-blue-700">
+                Email: superadmin@simsem.com
+              </p>
               <p className="text-sm text-blue-700">Password: password</p>
             </div>
           </CardContent>

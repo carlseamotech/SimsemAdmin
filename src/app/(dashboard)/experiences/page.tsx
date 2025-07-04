@@ -4,12 +4,12 @@ import { Search, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import Header from "@/components/common/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import DishFormPage from "@/components/experiences/dish-form";
-import DishLibraryPage from "@/components/experiences/dish-library-table";
-import ExperiencesPage from "@/components/experiences/experiences-table";
-import ExperienceLibraryPage from "@/components/experiences/experience-library-table";
-import TabsExperiencePage from "@/components/experiences/tabs-experience";
-import {useTours} from "@/hooks/use-experiences";
+import DishFormPage from "@/app/(dashboard)/experiences/components/dish-form";
+import DishLibraryPage from "@/app/(dashboard)/experiences/components/dish-library-table";
+import ExperiencesPage from "@/app/(dashboard)/experiences/components/experiences-table";
+import ExperienceLibraryPage from "@/app/(dashboard)/experiences/components/experience-library-table";
+import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-experience";
+import { useTours } from "@/hooks/use-experiences";
 
 const ExperiencesMainPage = () => {
   const [activeTab, setActiveTab] = useState("experiences");
@@ -78,9 +78,11 @@ const ExperiencesMainPage = () => {
     }
   };
 
-
-
-  const { tours } = useTours(["custom", "getaway", "offered"], 10000, activeTab === "experiences");
+  const { tours } = useTours(
+    ["custom", "getaway", "offered"],
+    10000,
+    activeTab === "experiences"
+  );
 
   const totalItems = () => {
     if (activeTab === "experiences") {
@@ -159,13 +161,12 @@ const ExperiencesMainPage = () => {
 
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div>
-                        {`${
-                          (currentPage - 1) * itemsPerPage + 1
-                        } - ${Math.min(
+                        {`${(currentPage - 1) * itemsPerPage + 1} - ${Math.min(
                           currentPage * itemsPerPage,
                           totalItems()
                         )} of ${totalItems()}`}
                       </div>
+
                       <Button
                         variant="outline"
                         size="icon"
@@ -175,6 +176,7 @@ const ExperiencesMainPage = () => {
                       >
                         <ChevronLeft className="w-4 h-4" />
                       </Button>
+
                       <Button
                         variant="outline"
                         size="icon"

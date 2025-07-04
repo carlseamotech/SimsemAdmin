@@ -45,7 +45,10 @@ export function ContactLanguageSection({
   const levels = ["Beginner", "Intermediate", "Advance", "Native"] as const;
 
   const getErrorMessage = (
-    error: FieldError | Merge<FieldError, FieldErrorsImpl<HostFormData>> | undefined
+    error:
+      | FieldError
+      | Merge<FieldError, FieldErrorsImpl<HostFormData>>
+      | undefined
   ): string => {
     return typeof error?.message === "string" ? error.message : "";
   };
@@ -107,9 +110,7 @@ export function ContactLanguageSection({
                 <div className="col-span-2 md:col-span-3">
                   <Select
                     value={watch("firstLanguage")}
-                    onValueChange={(value) =>
-                      setValue("firstLanguage", value)
-                    }
+                    onValueChange={(value) => setValue("firstLanguage", value)}
                   >
                     <SelectTrigger className="cursor-pointer w-full bg-white py-7 rounded-xl">
                       <SelectValue placeholder="Select language" />

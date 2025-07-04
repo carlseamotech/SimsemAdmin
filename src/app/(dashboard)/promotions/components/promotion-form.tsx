@@ -13,7 +13,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { promotionSchema, PromotionFormData } from "./promotion-schema";
+import {
+  promotionSchema,
+  PromotionFormData,
+} from "../../../../lib/promotion-validation";
 import { usePromoCodes } from "@/hooks/use-promo-codes";
 import { CreatePromoCodeDTO, UpdatePromoCodeDTO } from "@/dtos/promo-code";
 import { PromoCode } from "@/models/promo-code";
@@ -79,7 +82,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
       expiryDate: {
         __type: "Date" as const,
         iso: new Date(data.expiryDate).toISOString(),
-      }
+      },
     };
 
     if (isEditMode && promoToEdit) {
@@ -244,9 +247,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
                 className="bg-[#00000008] h-[59px] text-[19px] text-[#000000B2] rounded-xl p-6 border-0 focus-visible:ring-1"
               />
               {errors.expiryDate && (
-                <p className="text-red-500 mt-1">
-                  {errors.expiryDate.message}
-                </p>
+                <p className="text-red-500 mt-1">{errors.expiryDate.message}</p>
               )}
             </div>
             <div className="flex items-end gap-2">
@@ -288,9 +289,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
               <p className="text-red-500 mt-1">{errors.discount.message}</p>
             )}
             {errors.discountType && (
-              <p className="text-red-500 mt-1">
-                {errors.discountType.message}
-              </p>
+              <p className="text-red-500 mt-1">{errors.discountType.message}</p>
             )}
           </div>
         </div>

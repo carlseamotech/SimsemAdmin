@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "../ui/button";
+import { Button } from "../../../../components/ui/button";
 interface TabsExperienceProps {
   activeTab: string;
   setActiveTab: Dispatch<SetStateAction<string>>;

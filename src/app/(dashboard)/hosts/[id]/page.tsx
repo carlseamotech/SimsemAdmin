@@ -9,10 +9,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
-import { DocumentUploadSection } from "@/components/hosts/document-section";
-import { ContactLanguageSection } from "@/components/hosts/contact-section";
-import { PaymentInfoSection } from "@/components/hosts/payment-section";
-import { HostFormData, hostSchema } from "@/components/hosts/host-scema";
+import { DocumentUploadSection } from "@/app/(dashboard)/hosts/components/document-section";
+import { ContactLanguageSection } from "@/app/(dashboard)/hosts/components/contact-section";
+import { PaymentInfoSection } from "@/app/(dashboard)/hosts/components/payment-section";
+import {
+  HostFormData,
+  hostSchema,
+} from "@/app/(dashboard)/hosts/components/host-scema";
 import { useHost } from "@/hooks/use-hosts";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UpdateHostDTO } from "@/services/hosts";

@@ -5,8 +5,8 @@ import { Search, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Header from "@/components/common/header";
-import PromotionFormPage from "@/components/promotions/promotion-form";
-import ManagePromotionsPage from "@/components/promotions/manage-promotions-table";
+import PromotionFormPage from "@/app/(dashboard)/promotions/components/promotion-form";
+import ManagePromotionsPage from "@/app/(dashboard)/promotions/components/manage-promotions-table";
 import { PromoCode } from "@/models/promo-code";
 
 const PromotionsPage = () => {
