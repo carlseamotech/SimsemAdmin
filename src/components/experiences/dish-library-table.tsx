@@ -64,19 +64,19 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
                 <Badge
                   variant="secondary"
                   className={`rounded-full text-[16px] font-normal  ${
-                    dish.dishType === "Vegan"
+                    dish.type === "Vegan"
                       ? "bg-green-100 text-green-800 hover:bg-green-100"
-                      : dish.dishType === "Vegetarian"
+                      : dish.type === "Vegetarian"
                       ? "bg-blue-100 text-blue-800 hover:bg-blue-100"
                       : "bg-red-100 text-red-800 hover:bg-red-100"
                   }`}
                 >
-                  {dish.dishType}
+                  {dish.type}
                 </Badge>
               </TableCell>
               <TableCell className="text-gray-900">{dish.name}</TableCell>
               <TableCell className="text-gray-600">
-                {dish.ingredients.join(", ")}
+                {dish.ingredients}
               </TableCell>
               <TableCell className="text-gray-600">{dish.course}</TableCell>
               <TableCell className="text-gray-600">{dish.country}</TableCell>

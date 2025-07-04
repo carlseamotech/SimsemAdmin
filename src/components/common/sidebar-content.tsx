@@ -1,5 +1,3 @@
-"use client";
-
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import SimsemLogo from "../../../public/Simsem-Logo.svg";
@@ -10,8 +8,11 @@ import HostsIcon from "../../../public/sidebar-icons/hosts-icon.svg";
 import TravelersIcon from "../../../public/sidebar-icons/travelers-icon.svg";
 import LogoutIcon from "../../../public/sidebar-icons/logout-icon.svg";
 import PaymentsIcon from "../../../public/sidebar-icons/payments-icon.svg";
+import TeamsIcon from "../../../public/sidebar-icons/teams-icon.svg";
+import SettingsIcon from "../../../public/sidebar-icons/settings-icon.svg";
 import Image, { StaticImageData } from "next/image";
-import { useAuth } from "@/lib/auth";
+import { useAuth } from "@/context/auth";
+import { Role } from "@/models/role";
 
 // ✅ Interface for each sidebar item
 interface SidebarItem {
@@ -19,6 +20,7 @@ interface SidebarItem {
   href: string;
   icon: StaticImageData;
   badge?: string;
+  role?: Role;
 }
 
 const sidebarItems: SidebarItem[] = [
@@ -38,11 +40,20 @@ const sidebarItems: SidebarItem[] = [
     href: "/payments",
     badge: "COMING SOON",
   },
+  { name: "Teams", icon: TeamsIcon, href: "/teams", role: Role.Admin },
+  { name: "Settings", icon: SettingsIcon, href: "/settings", role: Role.SuperAdmin },
 ];
 
 export function SidebarContent() {
   const pathname = usePathname();
-  const { signOut } = useAuth();
+  const { user, signOut } = useAuth();
+
+  const filteredSidebarItems = sidebarItems.filter(item => {
+    if (!item.role) return true;
+    if (!user) return false;
+    if (user.role === Role.SuperAdmin) return true;
+    return user.role === item.role;
+  });
 
   return (
     <div className="flex flex-col h-full">
@@ -54,7 +65,7 @@ export function SidebarContent() {
       {/* Navigation */}
       <nav className="flex-1 py-4 pr-6">
         <ul className="space-y-2">
-          {sidebarItems.map((item, index) => {
+          {filteredSidebarItems.map((item, index) => {
             const isActive = pathname === item.href;
 
             return (

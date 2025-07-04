@@ -14,8 +14,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useAuth } from "@/lib/auth";
-import { signInSchema, type SignInFormData } from "../../lib/auth-validation";
+import { useAuth } from "@/context/auth";
+import { signInSchema, type SignInFormData } from "@/lib/auth-validation";
 import Image from "next/image";
 import SimsemLogo from "../../../public/Simsem-Logo.svg";
 
@@ -39,14 +39,11 @@ export default function SignInPage() {
     setError("");
 
     try {
-      const success = await signIn(data.email, data.password);
-      if (success) {
-        router.push("/");
-      } else {
-        setError("Invalid email or password. Please try again.");
-      }
-    } catch (err) {
-      setError("An error occurred. Please try again.");
+      await signIn(data.email, data.password);
+      router.push("/");
+    } catch (error) {
+      const signInError = error as { code: string; message: string };
+      setError(signInError.message);
     } finally {
       setIsLoading(false);
     }
@@ -80,7 +77,7 @@ export default function SignInPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@simsom.com"
+                  placeholder="admin@simsem.com"
                   className="h-12 bg-gray-50 border-gray-200"
                   {...register("email")}
                 />
@@ -151,14 +148,14 @@ export default function SignInPage() {
               <p className="text-sm text-blue-800 font-medium mb-1">
                 Demo Credentials:
               </p>
-              <p className="text-sm text-blue-700">Email: admin@simsom.com</p>
-              <p className="text-sm text-blue-700">Password: admin123</p>
+              <p className="text-sm text-blue-700">Email: superadmin@simsem.com</p>
+              <p className="text-sm text-blue-700">Password: password</p>
             </div>
           </CardContent>
         </Card>
 
         <p className="text-center text-gray-400 text-sm mt-6">
-          © 2025 Simsom. All rights reserved.
+          © 2025 Simsem. All rights reserved.
         </p>
       </div>
     </div>

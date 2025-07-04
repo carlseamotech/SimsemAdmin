@@ -1,13 +1,15 @@
+export type LanguageLevel = "Beginner" | "Intermediate" | "Advance" | "Native";
+
 export interface Host {
   objectId: string;
   city: string;
   about: string;
   firstLanguage: string;
-  firstLanguageLevel: string;
+  firstLanguageLevel: LanguageLevel;
   secondLanguage: string;
-  secondLanguageLevel: string;
+  secondLanguageLevel: LanguageLevel;
   thirdLanguage: string;
-  thirdLanguageLevel: string;
+  thirdLanguageLevel: LanguageLevel;
   imageUrl: string;
   imageFile: {
     __type: "File";

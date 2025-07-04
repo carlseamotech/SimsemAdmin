@@ -3,7 +3,7 @@
 import type React from "react";
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { useAuth } from "@/lib/auth";
+import { useAuth } from "@/context/auth";
 import { Loader2 } from "lucide-react";
 
 interface AuthGuardProps {
@@ -16,12 +16,24 @@ export function AuthGuard({ children }: AuthGuardProps) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!isLoading && !user && pathname !== "/auth") {
+    if (isLoading) {
+      return; // Do nothing while loading.
+    }
+
+    // If loading is finished and there's no user, redirect to login.
+    if (!user && pathname !== "/auth") {
       router.push("/auth");
     }
-  }, [user, isLoading, pathname, router]);
 
-  if (isLoading) {
+    // If loading is finished and there IS a user, but they are on the login page, redirect to home.
+    if (user && pathname === "/auth") {
+      router.push("/");
+    }
+  }, [isLoading, user, pathname, router]);
+
+  // While loading, or if a redirect is imminent, show a loader.
+  // This prevents the children from rendering and causing a hydration mismatch.
+  if (isLoading || (!user && pathname !== "/auth") || (user && pathname === "/auth")) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -32,9 +44,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
     );
   }
 
-  if (!user && pathname !== "/auth") {
-    return null;
-  }
-
+  // If we've passed all checks, the user is authenticated and on the correct page.
   return <>{children}</>;
 }
+

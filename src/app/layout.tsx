@@ -2,14 +2,14 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/lib/auth";
+import { AuthProvider } from "@/context/auth";
 import { AuthGuard } from "@/components/common/auth-guard";
 import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Simsom Dashboard",
+  title: "Simsem Dashboard",
   description: "Host management dashboard",
 };
 

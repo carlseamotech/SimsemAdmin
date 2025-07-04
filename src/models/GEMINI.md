@@ -9,3 +9,9 @@ This directory contains the type definitions for the core business entities of t
 -   **Properties**: Interface properties should be named using camelCase.
 -   **Relationships**: Relationships between models should be defined using a foreign key (e.g., `guideId` in the `Experience` model).
 -   **Enums**: Enums should be used to define a set of named constants (e.g., `ExperienceType`).
+
+## Authentication and Authorization
+
+-   **`User`**: This model represents a Firebase user.
+-   **`TeamMember`**: This model represents a team member and includes their role for RBAC.
+-   **`Role`**: This enum defines the possible roles for a team member (e.g., `SuperAdmin`, `Admin`, `Editor`).

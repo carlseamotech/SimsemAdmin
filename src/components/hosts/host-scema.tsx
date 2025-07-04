@@ -17,6 +17,15 @@ export const hostSchema = z.object({
   isVerified: z.boolean(),
   imageUrl: z.string().url().optional(),
   imageFile: z.any().optional(),
+  paymentInfo: z.object({
+    bankName: z.string().optional(),
+    bankAddress: z.string().optional(),
+    iban: z.string().optional(),
+    swiftBankCode: z.string().optional(),
+    yourName: z.string().optional(),
+    phoneNumber: z.string().optional(),
+    yourAddress: z.string().optional(),
+  }).optional(),
 });
 
 export type HostFormData = z.infer<typeof hostSchema>;
