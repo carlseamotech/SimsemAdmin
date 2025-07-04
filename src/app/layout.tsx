@@ -2,8 +2,9 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/common/sidebar";
-import { MobileSidebar } from "@/components/common/mobile-sidebar";
+import { AuthProvider } from "@/lib/auth";
+import { AuthGuard } from "@/components/common/auth-guard";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,15 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex h-screen bg-[#F8F8F8]">
-          <Sidebar />
-          <div className="flex-1 flex flex-col min-h-0">
-            <header className="lg:hidden">
-              <MobileSidebar />
-            </header>
-            <main className="flex-1 overflow-y-auto ">{children}</main>
-          </div>
-        </div>
+        <Suspense fallback={null}>
+          <AuthProvider>
+            <AuthGuard>{children}</AuthGuard>
+          </AuthProvider>
+        </Suspense>
       </body>
     </html>
   );

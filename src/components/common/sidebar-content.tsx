@@ -11,6 +11,7 @@ import TravelersIcon from "../../../public/sidebar-icons/travelers-icon.svg";
 import LogoutIcon from "../../../public/sidebar-icons/logout-icon.svg";
 import PaymentsIcon from "../../../public/sidebar-icons/payments-icon.svg";
 import Image, { StaticImageData } from "next/image";
+import { useAuth } from "@/lib/auth";
 
 // ✅ Interface for each sidebar item
 interface SidebarItem {
@@ -41,6 +42,7 @@ const sidebarItems: SidebarItem[] = [
 
 export function SidebarContent() {
   const pathname = usePathname();
+  const { signOut } = useAuth();
 
   return (
     <div className="flex flex-col h-full">
@@ -97,12 +99,15 @@ export function SidebarContent() {
 
       {/* Log Out */}
       <div className="p-4 border-t border-slate-700">
-        <div className="flex items-center space-x-3 p-3 text-slate-300 hover:bg-slate-700 rounded-lg cursor-pointer transition-colors">
+        <button
+          onClick={signOut}
+          className="w-full flex items-center space-x-3 p-3 text-slate-300 hover:bg-slate-700 rounded-lg cursor-pointer transition-colors"
+        >
           <span className="text-lg">
             <Image src={LogoutIcon} alt="logout" width={24} height={24} />
           </span>
           <span className="font-medium text-[14px]">Log Out</span>
-        </div>
+        </button>
       </div>
     </div>
   );
