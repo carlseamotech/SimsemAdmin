@@ -1,7 +1,7 @@
 "use client";
 import { FaChevronDown } from "react-icons/fa";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import SearchIcon from "../../../public/common/search-icon.svg";
+// import SearchIcon from "../../../public/common/search-icon.svg";
 import NotificationIcon from "../../../public/common/notification-icon.svg";
 import ProfileImage from "../../../public/common/profile-image.svg";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { Search } from "lucide-react";
 

@@ -10,6 +10,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Edit, Trash2 } from "lucide-react";
+import EditIcon from "../../../public/common/edit-icon.svg";
+import TrashIcon from "../../../public/common/trash-con.svg";
+import Image from "next/image";
 
 interface ManagePromotionsProps {
   searchTerm: string;
@@ -124,14 +127,18 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
                     size="icon"
                     className="w-8 h-8 text-gray-600 hover:text-gray-900"
                   >
-                    <Edit className="w-4 h-4" />
+                    <Image src={EditIcon} alt="EditIcon " className="w-4 h-4" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
                     className="w-8 h-8 text-gray-600 hover:text-red-600"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Image
+                      src={TrashIcon}
+                      alt="TrashIcon "
+                      className="w-4 h-4"
+                    />
                   </Button>
                 </div>
               </TableCell>

@@ -8,7 +8,7 @@ import Header from "@/components/common/header";
 import PromotionFormPage from "@/components/promotions/promotion-form";
 import ManagePromotionsPage from "@/components/promotions/manage-promotions-table";
 
-export default function PromotionsPage() {
+const PromotionsPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("promotions");
@@ -101,4 +101,6 @@ export default function PromotionsPage() {
       )}
     </>
   );
-}
+};
+
+export default PromotionsPage;

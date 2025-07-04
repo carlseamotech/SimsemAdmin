@@ -1,6 +1,5 @@
 "use client";
 import { Dispatch, SetStateAction, useState } from "react";
-import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,7 +11,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import Header from "@/components/common/header";
 
 interface DishFormProps {
   setShowForm: Dispatch<SetStateAction<boolean>>;
@@ -46,23 +44,19 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
   return (
     <>
       <div className="flex-1 p-6">
-        <div className="bg-white rounded-lg border 0 p-8 flex flex-col gap-6  ">
-          <div className="mb-6">
-            <div className="flex items-center mb-4">
-              <div>
-                <p className="text-sm text-gray-600 mb-1">ADD NEW PROMOTION</p>
-                <div className="text-2xl font-bold text-slate-800">
-                  Promotion Details
-                </div>
-              </div>
-            </div>
+        <div className="bg-white rounded-2xl drop-shadow-xl  flex flex-col gap-6  ">
+          <div className="border-b-2 border-[#0D2E61] p-6">
+            <p className=" text-[#3D3D3DCC] text-[15px] mb-1">
+              ADD NEW PROMOTION
+            </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 px-8 pb-8">
+            <div className="text-[30px] text-[#0D2E61]">Promotion Details</div>
             <div>
               <Label
                 htmlFor="promotionName"
-                className="text-sm font-medium text-gray-700 mb-2 block"
+                className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
               >
                 Promotion Name
               </Label>
@@ -73,14 +67,14 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
                   setFormData({ ...formData, promotionName: e.target.value })
                 }
                 placeholder="FirstBooking"
-                className="bg-gray-50 border-gray-200 h-12"
+                className="bg-[#00000008] h-[59px] text-[19px] text-[#000000B2]  rounded-xl p-6 border-0 focus-visible:ring-1"
               />
             </div>
 
             <div>
               <Label
                 htmlFor="promotionDetails"
-                className="text-sm font-medium text-gray-700 mb-2 block"
+                className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
               >
                 Promotion Details
               </Label>
@@ -95,15 +89,15 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
                   })
                 }
                 placeholder="For all first bookings"
-                className="bg-gray-50 border-gray-200 min-h-[100px] resize-none"
+                className="bg-[#00000008]  text-[19px] text-[#000000B2]  rounded-xl p-6 border-0 focus-visible:ring-1 min-h-[130px] "
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6 space-y-8">
               <div>
                 <Label
                   htmlFor="for"
-                  className="text-sm font-medium text-gray-700 mb-2 block"
+                  className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
                 >
                   For
                 </Label>
@@ -113,7 +107,7 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
                     setFormData({ ...formData, for: value })
                   }
                 >
-                  <SelectTrigger className="bg-gray-50 border-gray-200 h-12">
+                  <SelectTrigger className="bg-[#00000008] py-[29px] rounded-xl w-full">
                     <SelectValue placeholder="New users" />
                   </SelectTrigger>
                   <SelectContent>
@@ -128,7 +122,7 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
               <div>
                 <Label
                   htmlFor="promotionCode"
-                  className="text-sm font-medium text-gray-700 mb-2 block"
+                  className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
                 >
                   Promotion Code
                 </Label>
@@ -142,16 +136,16 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
                     })
                   }
                   placeholder="first-booking"
-                  className="bg-gray-50 border-gray-200 h-12"
+                  className="bg-[#00000008] h-[59px] text-[19px] text-[#000000B2]  rounded-xl p-6 border-0 focus-visible:ring-1"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-6 space-y-8">
               <div>
                 <Label
                   htmlFor="quantity"
-                  className="text-sm font-medium text-gray-700 mb-2 block"
+                  className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
                 >
                   Quantity
                 </Label>
@@ -163,14 +157,14 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
                     setFormData({ ...formData, quantity: e.target.value })
                   }
                   placeholder="15"
-                  className="bg-gray-50 border-gray-200 h-12"
+                  className="bg-[#00000008] h-[59px] text-[19px] text-[#000000B2]  rounded-xl p-6 border-0 focus-visible:ring-1"
                 />
               </div>
 
               <div>
                 <Label
                   htmlFor="expirationDate"
-                  className="text-sm font-medium text-gray-700 mb-2 block"
+                  className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
                 >
                   Expiration Date
                 </Label>
@@ -184,14 +178,14 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
                       expirationDate: e.target.value,
                     })
                   }
-                  className="bg-gray-50 border-gray-200 h-12"
+                  className="bg-[#00000008] h-[59px] text-[19px] text-[#000000B2]  rounded-xl p-6 border-0 focus-visible:ring-1"
                 />
               </div>
 
               <div>
                 <Label
                   htmlFor="discount"
-                  className="text-sm font-medium text-gray-700 mb-2 block"
+                  className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
                 >
                   Discount
                 </Label>
@@ -201,7 +195,7 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
                     setFormData({ ...formData, discount: value })
                   }
                 >
-                  <SelectTrigger className="bg-gray-50 border-gray-200 h-12">
+                  <SelectTrigger className="bg-[#00000008] py-[30px] rounded-xl w-full">
                     <SelectValue placeholder="10%" />
                   </SelectTrigger>
                   <SelectContent>
@@ -216,17 +210,20 @@ const PromotionFormPage: React.FC<DishFormProps> = ({ setShowForm }) => {
             </div>
           </div>
 
-          <div className="flex justify-end space-x-4 mt-8 pt-6 border-t border-gray-200">
+          <div className="flex justify-between space-x-4  pt-6 border-t border-gray-200 p-8">
             <Button
               variant="outline"
+              size="lg"
               onClick={() => setShowForm(false)}
-              className="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 border-gray-300"
+              className="px-6 py-2 text-[16px] bg-[#3D3D3D80] hover:text-[#FFFFFF] hover:bg-gray-500 text-[#FFFFFF] h-[48px] rounded-xl "
             >
               Cancel
             </Button>
+
             <Button
+              size="lg"
               onClick={handleFormSubmit}
-              className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white"
+              className="px-6 py-2 text-[16px] bg-[#FB8B24] hover:bg-orange-500 text-[#FFFFFF] h-[48px] rounded-xl"
             >
               Create
             </Button>
