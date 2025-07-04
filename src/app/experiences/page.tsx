@@ -5,9 +5,9 @@ import Header from "@/components/common/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import DishFormPage from "@/components/experiences/dish-form";
-import DishLibraryPage from "@/components/experiences/dish-library";
-import ExperiencesPage from "@/components/experiences/experiences";
-import ExperienceLibraryPage from "@/components/experiences/experience-library";
+import DishLibraryPage from "@/components/experiences/dish-library-table";
+import ExperiencesPage from "@/components/experiences/experiences-table";
+import ExperienceLibraryPage from "@/components/experiences/experience-library-table";
 import TabsExperiencePage from "@/components/experiences/tabs-experience";
 
 const ExperiencesMainPage = () => {
@@ -75,7 +75,7 @@ const ExperiencesMainPage = () => {
 
       {!showDishForm ? (
         <div className="flex-1 py-6 px-8">
-          <div className=" rounded-xl ">
+          <div className="rounded-xl">
             {/* Tabs and Add Button */}
             <TabsExperiencePage
               activeTab={activeTab}
@@ -120,7 +120,7 @@ const ExperiencesMainPage = () => {
                     </div>
 
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <span>1 - 10 of 52</span>
+                      <div>1 - 10 of 52</div>
                       <Button
                         variant="outline"
                         size="icon"
@@ -137,7 +137,7 @@ const ExperiencesMainPage = () => {
                       </Button>
                     </div>
 
-                    <div className="border-l border-[#D9D9DC] border h-10" />
+                    <div className="border-l border-[#D9D9DC] border h-9" />
 
                     <Button
                       variant="outline"
@@ -149,29 +149,6 @@ const ExperiencesMainPage = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Table Content */}
-              {/* {activeTab === "experiences" && (
-                <>
-                  <ExperiencesPage
-                    activeFilter={activeFilter}
-                    searchTerm={searchTerm}
-                  />
-                </>
-              )}
-
-              {activeTab === "experience-library" && (
-                <ExperienceLibraryPage
-                  activeFilter={activeFilter}
-                  searchTerm={searchTerm}
-                />
-              )}
-
-              {activeTab === "dish-library" && (
-                <>
-                  <DishLibraryPage searchTerm={searchTerm} />
-                </>
-              )} */}
 
               {renderTabContent()}
             </div>
