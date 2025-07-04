@@ -17,7 +17,7 @@ import {
 import { useAuth } from "@/context/auth";
 import { signInSchema, type SignInFormData } from "@/lib/auth-validation";
 import Image from "next/image";
-import SimsemLogo from ".././../../../public/simsem-logo.svg";
+import SimsemLogo from "../../../public/simsem-logo.svg";
 
 export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);

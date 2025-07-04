@@ -17,14 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <Suspense fallback={null}>
-      <AuthProvider>
         <AuthGuard>
           <div className="flex h-screen bg-gray-100">
             <Sidebar />
             <main className="flex-1 overflow-y-auto">{children}</main>
           </div>
         </AuthGuard>
-      </AuthProvider>
     </Suspense>
   );
 }
