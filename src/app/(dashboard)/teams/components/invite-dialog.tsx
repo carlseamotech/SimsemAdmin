@@ -20,6 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import toast from "react-hot-toast";
 
 interface InviteDialogProps {
   isOpen: boolean;
@@ -43,9 +44,15 @@ const InviteDialog: React.FC<InviteDialogProps> = ({ isOpen, onClose }) => {
   });
 
   const onSubmit = async (data: { email: string; role: Role }) => {
-    await inviteTeamMember(data.email, data.role);
-    mutate("/classes/Team");
-    onClose();
+    try {
+      await inviteTeamMember(data.email, data.role);
+      mutate("/classes/Team");
+      toast.success("Invitation sent successfully!");
+      onClose();
+    } catch (error) {
+      toast.error("Failed to send invitation.");
+      console.error("Error sending invitation:", error);
+    }
   };
 
   return (

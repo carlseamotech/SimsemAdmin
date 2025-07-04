@@ -1,7 +1,6 @@
 "use client";
 import { FaChevronDown } from "react-icons/fa";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-// import SearchIcon from "../../../public/common/search-icon.svg";
 import NotificationIcon from "../../../public/common/notification-icon.svg";
 import ProfileImage from "../../../public/common/profile-image.svg";
 import { Button } from "@/components/ui/button";
@@ -11,11 +10,15 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/auth";
 
 interface HeaderProps {
   title?: string;
@@ -25,6 +28,8 @@ interface HeaderProps {
 
 const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const router = useRouter();
 
   return (
     <header className="hidden lg:block px-6 py-12 bg-[#F8F8F8]">
@@ -75,13 +80,13 @@ const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
               <button className="flex items-center cursor-pointer">
                 <Avatar className="h-[50px] w-[50px]">
                   <Image
-                    src={ProfileImage}
+                    src={user?.photoURL || ProfileImage}
                     alt="Profile"
                     width={50}
                     height={50}
                     className="rounded-full"
                   />
-                  <AvatarFallback>U</AvatarFallback>
+                  <AvatarFallback>{user?.email?.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <FaChevronDown
                   className={`w-4 h-4 transition-transform duration-200 text-[#5F647E] ${
@@ -92,9 +97,16 @@ const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Log out</DropdownMenuItem>
+              <DropdownMenuLabel>
+                <div className="flex flex-col">
+                  <span className="font-semibold">{user?.displayName || "User"}</span>
+                  <span className="text-sm text-gray-500">{user?.email}</span>
+                </div>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => router.push("/profile")}>Profile</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/settings")}>Settings</DropdownMenuItem>
+              <DropdownMenuItem onClick={signOut}>Log out</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

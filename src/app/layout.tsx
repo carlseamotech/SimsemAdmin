@@ -2,9 +2,8 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/context/auth";
-import { AuthGuard } from "@/components/common/auth-guard";
 import { Suspense } from "react";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Suspense fallback={null}>
-          <AuthProvider>
-            <AuthGuard>{children}</AuthGuard>
-          </AuthProvider>
+           {children}
         </Suspense>
+        <Toaster />
       </body>
     </html>
   );

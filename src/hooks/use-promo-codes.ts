@@ -3,9 +3,9 @@ import {
   getPromoCodes,
   createPromoCode,
   updatePromoCode,
-  CreatePromoCodeDTO,
-  UpdatePromoCodeDTO,
 } from "@/services/promo-code";
+import { CreatePromoCodeDTO } from "@/dtos/create-promo-code-dto";
+import { UpdatePromoCodeDTO } from "@/dtos/update-promo-code-dto";
 
 export const usePromoCodes = () => {
   const { data, error, mutate } = useSWR("/promo-codes", getPromoCodes);

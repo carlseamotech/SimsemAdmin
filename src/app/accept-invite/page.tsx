@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { acceptInvite } from "@/services/teams";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const acceptInviteSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters"),
@@ -16,6 +19,7 @@ const AcceptInvitePage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get("token");
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -27,8 +31,17 @@ const AcceptInvitePage = () => {
 
   const onSubmit = async (data: { password: string }) => {
     if (token) {
-      await acceptInvite(token, data.password);
-      router.push("/");
+      setIsLoading(true);
+      try {
+        await acceptInvite(token, data.password);
+        toast.success("Invitation accepted successfully!");
+        router.push("/");
+      } catch (error) {
+        toast.error("Failed to accept invitation.");
+        console.error("Error accepting invite:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -60,8 +73,12 @@ const AcceptInvitePage = () => {
               </p>
             )}
           </div>
-          <Button type="submit" className="w-full">
-            Accept Invitation
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            ) : (
+              "Accept Invitation"
+            )}
           </Button>
         </form>
       </div>

@@ -15,6 +15,8 @@ import Image from "next/image";
 import EditIcon from "../../../public/common/edit-icon.svg";
 import TrashIcon from "../../../public/common/trash-con.svg";
 
+import PromotionsTableSkeleton from "./promotions-table-skeleton";
+
 interface ManagePromotionsProps {
   searchTerm: string;
 }
@@ -31,7 +33,7 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <PromotionsTableSkeleton />;
   }
 
   return (

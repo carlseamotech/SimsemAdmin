@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  env:{
+    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY
+  },
   webpack(config) {
     // config.module.rules.push({
     //   test: /\.svg$/,
