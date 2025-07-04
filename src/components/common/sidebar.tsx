@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import SimsemLogo from "../../../public/Simsem-Logo.svg";
 import HomeIcon from "../../../public/sidebar-icons/home-icon.svg";
 import ExperiencesIcon from "../../../public/sidebar-icons/experiences-icon.svg";
@@ -12,6 +11,7 @@ import TravelersIcon from "../../../public/sidebar-icons/travelers-icon.svg";
 import LogoutIcon from "../../../public/sidebar-icons/logout-icon.svg";
 import PaymentsIcon from "../../../public/sidebar-icons/payments-icon.svg";
 import Image, { StaticImageData } from "next/image";
+import { useAuth } from "@/lib/auth";
 
 // ✅ Interface for each sidebar item
 interface SidebarItem {
@@ -42,6 +42,7 @@ const sidebarItems: SidebarItem[] = [
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const { user, signOut } = useAuth();
 
   return (
     <div className="w-64 bg-[#0D2E61] text-white flex flex-col">
@@ -98,13 +99,32 @@ const Sidebar = () => {
       </nav>
 
       {/* Log Out */}
+
       <div className="p-4 border-t border-slate-700">
-        <div className="flex items-center space-x-3 p-3 text-slate-300 hover:bg-slate-700 rounded-lg cursor-pointer transition-colors">
+        {/* <div className="mb-3 px-3">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+              <span className="text-white text-sm font-medium">
+                {user?.name?.charAt(0) || "A"}
+              </span>
+            </div>
+            <div>
+              <p className="text-white text-sm font-medium">
+                {user?.name || "Admin"}
+              </p>
+              <p className="text-slate-400 text-xs">{user?.email}</p>
+            </div>
+          </div>
+        </div> */}
+        <button
+          onClick={signOut}
+          className="w-full flex items-center space-x-3 p-3 text-slate-300 hover:bg-slate-700 rounded-lg cursor-pointer transition-colors"
+        >
           <span className="text-lg">
             <Image src={LogoutIcon} alt="logout" width={24} height={24} />
           </span>
-          <span className="font-medium text-[14px]">Log Out</span>
-        </div>
+          <span className="font-medium">Log Out</span>
+        </button>
       </div>
     </div>
   );
