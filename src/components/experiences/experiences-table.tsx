@@ -10,51 +10,39 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  useCustomTours,
-  useGetawayTours,
-  useOfferedTours,
-} from "@/hooks/use-experiences";
-import { Experience, GetawayTour, OfferedTour } from "@/models/experience";
+import { useTours } from "@/hooks/use-experiences";
+import { Experience } from "@/models/experience";
 import { useMemo } from "react";
 import ExperiencesTableSkeleton from "./experiences-table-skeleton";
 
 interface ExperienceProps {
   activeFilter: string;
   searchTerm: string;
+  currentPage: number;
+  itemsPerPage: number;
 }
-
-type CombinedExperience = (Experience | GetawayTour | OfferedTour) & {
-  experienceType: string;
-};
 
 const ExperiencesPage: React.FC<ExperienceProps> = ({
   activeFilter,
   searchTerm,
+  currentPage,
+  itemsPerPage,
 }) => {
-  const { customTours, isLoading: customLoading } = useCustomTours();
-  const { getawayTours, isLoading: getawayLoading } = useGetawayTours();
-  const { offeredTours, isLoading: offeredLoading } = useOfferedTours();
+  const { tours, isLoading } = useTours(
+    ["custom", "getaway", "offered"],
+    10000
+  );
 
   const allExperiences = useMemo(() => {
-    const custom = customTours?.map((tour) => ({
+    return tours?.map((tour) => ({
       ...tour,
-      experienceType: "Custom",
+      experienceType:
+        tour.type.charAt(0).toUpperCase() + tour.type.slice(1),
     }));
-    const getaway = getawayTours?.map((tour) => ({
-      ...tour,
-      experienceType: "Getaway",
-    }));
-    const offered = offeredTours?.map((tour) => ({
-      ...tour,
-      experienceType: "Offered",
-    }));
-
-    return [...(custom || []), ...(getaway || []), ...(offered || [])];
-  }, [customTours, getawayTours, offeredTours]);
+  }, [tours]);
 
   const getFilteredExperiences = () => {
-    let data: CombinedExperience[] = allExperiences;
+    let data: Experience[] = allExperiences || [];
 
     if (activeFilter === "for-approval") {
       data = data.filter((item) => "isApproved" in item && !item.isApproved);
@@ -71,6 +59,11 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
     );
   };
 
+  const paginatedExperiences = getFilteredExperiences().slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   const isApprovalVisible =
     activeFilter === "all" || activeFilter === "for-approval";
   const isStatusVisible =
@@ -78,7 +71,7 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
     activeFilter === "active" ||
     activeFilter === "inactive";
 
-  if (customLoading || getawayLoading || offeredLoading) {
+  if (isLoading) {
     return <ExperiencesTableSkeleton />;
   }
 
@@ -113,13 +106,13 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
         </TableHeader>
 
         <TableBody>
-          {getFilteredExperiences().map((experience) => (
+          {paginatedExperiences.map((experience) => (
             <TableRow key={experience.objectId} className="hover:bg-gray-50">
               <TableCell className="text-gray-900">
                 {experience.name}
               </TableCell>
               <TableCell className="text-gray-600">
-                {experience.experienceType}
+                {/*{experience.experienceType}*/}
               </TableCell>
 
               {isApprovalVisible && "isApproved" in experience && (

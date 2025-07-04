@@ -14,8 +14,18 @@ export type CreateLibraryDishDTO = Omit<LibraryDish, "objectId" | "createdAt" | 
 export type UpdateLibraryDishDTO = Partial<Omit<LibraryDish, "objectId" | "createdAt" | "updatedAt">>;
 
 // Library Tours
-export const getLibraryTours = async (): Promise<LibraryTour[]> => {
-  const response = await api.get<{ results: LibraryTour[] }>(TOUR_BASE_URL);
+export const getLibraryTours = async (
+  limit?: number
+): Promise<LibraryTour[]> => {
+  const params: Record<string, unknown> = {
+    order: "-createdAt",
+  };
+  if (limit) {
+    params.limit = limit;
+  }
+  const response = await api.get<{ results: LibraryTour[] }>(TOUR_BASE_URL, {
+    params,
+  });
   return response.results;
 };
 
@@ -32,8 +42,18 @@ export const updateLibraryTour = async (id: string, tour: UpdateLibraryTourDTO):
 };
 
 // Library Meals
-export const getLibraryMeals = async (): Promise<LibraryMeal[]> => {
-  const response = await api.get<{ results: LibraryMeal[] }>(MEAL_BASE_URL);
+export const getLibraryMeals = async (
+  limit?: number
+): Promise<LibraryMeal[]> => {
+  const params: Record<string, unknown> = {
+    order: "-createdAt",
+  };
+  if (limit) {
+    params.limit = limit;
+  }
+  const response = await api.get<{ results: LibraryMeal[] }>(MEAL_BASE_URL, {
+    params,
+  });
   return response.results;
 };
 
@@ -50,8 +70,18 @@ export const updateLibraryMeal = async (id: string, meal: UpdateLibraryMealDTO):
 };
 
 // Library Dishes
-export const getLibraryDishes = async (): Promise<LibraryDish[]> => {
-  const response = await api.get<{ results: LibraryDish[] }>(DISH_BASE_URL);
+export const getLibraryDishes = async (
+  limit?: number
+): Promise<LibraryDish[]> => {
+  const params: Record<string, unknown> = {
+    order: "-createdAt",
+  };
+  if (limit) {
+    params.limit = limit;
+  }
+  const response = await api.get<{ results: LibraryDish[] }>(DISH_BASE_URL, {
+    params,
+  });
   return response.results;
 };
 

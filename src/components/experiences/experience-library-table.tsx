@@ -16,6 +16,8 @@ import ExperienceLibraryTableSkeleton from "./experience-library-table-skeleton"
 interface ExperienceLibraryProps {
   activeFilter: string;
   searchTerm: string;
+  currentPage: number;
+  itemsPerPage: number;
 }
 
 type CombinedLibraryItem = (LibraryTour | LibraryMeal) & { itemType: string };
@@ -23,9 +25,11 @@ type CombinedLibraryItem = (LibraryTour | LibraryMeal) & { itemType: string };
 const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
   activeFilter,
   searchTerm,
+  currentPage,
+  itemsPerPage,
 }) => {
-  const { libraryTours, isLoading: toursLoading } = useLibraryTours();
-  const { libraryMeals, isLoading: mealsLoading } = useLibraryMeals();
+  const { libraryTours, isLoading: toursLoading } = useLibraryTours(10000);
+  const { libraryMeals, isLoading: mealsLoading } = useLibraryMeals(10000);
 
   const allLibraryItems = useMemo(() => {
     const tours = libraryTours?.map((tour) => ({
@@ -56,6 +60,11 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
     );
   };
 
+  const paginatedLibraryItems = getFilteredLibrary().slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   if (toursLoading || mealsLoading) {
     return <ExperienceLibraryTableSkeleton />;
   }
@@ -84,7 +93,7 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
         </TableHeader>
 
         <TableBody>
-          {getFilteredLibrary().map((experience) => (
+          {paginatedLibraryItems.map((experience) => (
             <TableRow key={experience.objectId} className="hover:bg-gray-50">
               <TableCell>
                 <Badge

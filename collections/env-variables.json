@@ -4,19 +4,19 @@
   "values": [
     {
       "key": "baseUrl",
-      "value": "https://parseapi.back4app.com",
+      "value": "https://stella.b4a.io",
       "type": "default",
       "enabled": true
     },
     {
       "key": "parseAppId",
-      "value": "DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9",
+      "value": "o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei",
       "type": "default",
       "enabled": true
     },
     {
       "key": "parseApiKey",
-      "value": "0PchDvbMFD0uJZkjtZsfQsd0VM95imspd0nToKGw",
+      "value": "AkzcHv3OtW7pe1G4Wf7foJpNYkGp3JMiAVPG3y4S",
       "type": "default",
       "enabled": true
     }

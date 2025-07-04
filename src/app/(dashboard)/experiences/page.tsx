@@ -9,12 +9,15 @@ import DishLibraryPage from "@/components/experiences/dish-library-table";
 import ExperiencesPage from "@/components/experiences/experiences-table";
 import ExperienceLibraryPage from "@/components/experiences/experience-library-table";
 import TabsExperiencePage from "@/components/experiences/tabs-experience";
+import {useTours} from "@/hooks/use-experiences";
 
 const ExperiencesMainPage = () => {
   const [activeTab, setActiveTab] = useState("experiences");
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [showDishForm, setShowDishForm] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   const getButtonText = () => {
     if (activeTab === "dish-library") return "Add a new dish";
@@ -49,6 +52,8 @@ const ExperiencesMainPage = () => {
           <ExperiencesPage
             activeFilter={activeFilter}
             searchTerm={searchTerm}
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
           />
         );
       case "experience-library":
@@ -56,12 +61,45 @@ const ExperiencesMainPage = () => {
           <ExperienceLibraryPage
             activeFilter={activeFilter}
             searchTerm={searchTerm}
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
           />
         );
       case "dish-library":
-        return <DishLibraryPage searchTerm={searchTerm} />;
+        return (
+          <DishLibraryPage
+            searchTerm={searchTerm}
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
+          />
+        );
       default:
         return null;
+    }
+  };
+
+
+
+  const { tours } = useTours(["custom", "getaway", "offered"], 10000, activeTab === "experiences");
+
+  const totalItems = () => {
+    if (activeTab === "experiences") {
+      return tours?.length || 0;
+    }
+    return 0;
+  };
+
+  const totalPages = Math.ceil(totalItems() / itemsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
   };
 
@@ -120,11 +158,20 @@ const ExperiencesMainPage = () => {
                     </div>
 
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <div>1 - 10 of 52</div>
+                      <div>
+                        {`${
+                          (currentPage - 1) * itemsPerPage + 1
+                        } - ${Math.min(
+                          currentPage * itemsPerPage,
+                          totalItems()
+                        )} of ${totalItems()}`}
+                      </div>
                       <Button
                         variant="outline"
                         size="icon"
                         className="w-8 h-8 bg-transparent border-none"
+                        onClick={handlePreviousPage}
+                        disabled={currentPage === 1}
                       >
                         <ChevronLeft className="w-4 h-4" />
                       </Button>
@@ -132,6 +179,8 @@ const ExperiencesMainPage = () => {
                         variant="outline"
                         size="icon"
                         className="w-8 h-8 bg-transparent border-none"
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
                       >
                         <ChevronRight className="w-4 h-4" />
                       </Button>

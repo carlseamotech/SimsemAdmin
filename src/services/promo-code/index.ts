@@ -7,12 +7,8 @@ import {
 
 const BASE_URL = '/classes/PromoCode';
 
-export const getPromoCodes = async (
-  where?: Record<string, unknown>
-): Promise<PromoCode[]> => {
-  const response = await api.get<{ results: PromoCode[] }>(BASE_URL, {
-    params: { where },
-  });
+export const getPromoCodes = async (): Promise<PromoCode[]> => {
+  const response = await api.get<{ results: PromoCode[] }>(BASE_URL);
   return response.results;
 };
 

@@ -9,8 +9,10 @@ import {
   UpdateHostPaymentDTO,
 } from "@/services/hosts";
 
-export const useHosts = () => {
-  const { data, error, mutate } = useSWR("/hosts", getHosts);
+export const useHosts = (limit?: number) => {
+  const { data, error, mutate } = useSWR(["/hosts", limit], () =>
+    getHosts(limit)
+  );
   return {
     hosts: data,
     isLoading: !error && !data,

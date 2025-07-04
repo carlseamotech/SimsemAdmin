@@ -9,10 +9,19 @@ if (!BASE_URL || !APP_ID || !API_KEY) {
 }
 
 const api: SimsemApi = {
-  get: async <T>(endpoint: string, params?: Record<string, unknown>): Promise<T> => {
+  get: async <T>(
+    endpoint: string,
+    config?: { params?: Record<string, unknown> }
+  ): Promise<T> => {
     const url = new URL(`${BASE_URL}${endpoint}`);
-    if (params) {
-      Object.keys(params).forEach(key => url.searchParams.append(key, String(params[key])));
+    if (config?.params) {
+      Object.entries(config.params).forEach(([key, value]) => {
+        if (typeof value === "object" && value !== null) {
+          url.searchParams.append(key, JSON.stringify(value));
+        } else if (value !== undefined && value !== null) {
+          url.searchParams.append(key, String(value));
+        }
+      });
     }
 
     const response = await fetch(url.toString(), {

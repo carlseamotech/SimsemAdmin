@@ -6,8 +6,14 @@ const BASE_URL = "/classes/SelectedMeal";
 export type CreateMealDTO = Omit<Meal, "objectId" | "createdAt" | "updatedAt">;
 export type UpdateMealDTO = Partial<Omit<Meal, "objectId" | "createdAt" | "updatedAt">>;
 
-export const getMeals = async (): Promise<Meal[]> => {
-  const response = await api.get<{ results: Meal[] }>(BASE_URL);
+export const getMeals = async (limit?: number): Promise<Meal[]> => {
+  const params: Record<string, unknown> = {
+    order: "-createdAt",
+  };
+  if (limit) {
+    params.limit = limit;
+  }
+  const response = await api.get<{ results: Meal[] }>(BASE_URL, { params });
   return response.results;
 };
 

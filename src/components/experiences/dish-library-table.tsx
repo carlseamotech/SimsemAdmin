@@ -14,10 +14,16 @@ import DishLibraryTableSkeleton from "./dish-library-table-skeleton";
 
 interface DishLibraryProps {
   searchTerm: string;
+  currentPage: number;
+  itemsPerPage: number;
 }
 
-const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
-  const { libraryDishes, isLoading } = useLibraryDishes();
+const DishLibraryPage: React.FC<DishLibraryProps> = ({
+  searchTerm,
+  currentPage,
+  itemsPerPage,
+}) => {
+  const { libraryDishes, isLoading } = useLibraryDishes(10000);
 
   const getFilteredDishes = () => {
     if (!libraryDishes) return [];
@@ -27,6 +33,11 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
         item.country.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
+
+  const paginatedDishes = getFilteredDishes().slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   if (isLoading) {
     return <DishLibraryTableSkeleton />;
@@ -58,7 +69,7 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {getFilteredDishes().map((dish) => (
+          {paginatedDishes.map((dish) => (
             <TableRow key={dish.objectId} className="hover:bg-gray-50">
               <TableCell>
                 <Badge

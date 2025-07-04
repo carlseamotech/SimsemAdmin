@@ -7,8 +7,9 @@ const PAYMENT_BASE_URL = "/classes/ServiceProviderPayment";
 export type UpdateHostDTO = Partial<Omit<Host, "objectId" | "createdAt" | "updatedAt">>;
 export type UpdateHostPaymentDTO = Partial<Omit<HostPayment, "objectId" | "createdAt" | "updatedAt">>;
 
-export const getHosts = async (): Promise<Host[]> => {
-  const response = await api.get<{ results: Host[] }>(BASE_URL);
+export const getHosts = async (limit?: number): Promise<Host[]> => {
+  const params = limit ? { limit, order: "-createdAt" } : { order: "-createdAt" };
+  const response = await api.get<{ results: Host[] }>(BASE_URL, { params });
   return response.results;
 };
 

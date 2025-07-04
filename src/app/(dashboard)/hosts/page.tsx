@@ -22,8 +22,10 @@ import { HostsTableSkeleton } from "@/components/hosts/hosts-table-skeleton";
 export default function HostDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
   const router = useRouter();
-  const { hosts, isLoading } = useHosts();
+  const { hosts, isLoading } = useHosts(10000);
 
   const getFilterButtons = () => ["all", "for-approval", "approved"];
 
@@ -50,6 +52,24 @@ export default function HostDashboard() {
 
     return matchesSearch;
   });
+
+  const totalPages = Math.ceil((filteredHosts?.length || 0) / itemsPerPage);
+  const paginatedHosts = filteredHosts?.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -92,11 +112,18 @@ export default function HostDashboard() {
                   </div>
 
                   <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <span>1 - 10 of {filteredHosts?.length}</span>
+                    <span>
+                      {`${(currentPage - 1) * itemsPerPage + 1} - ${Math.min(
+                        currentPage * itemsPerPage,
+                        filteredHosts?.length || 0
+                      )} of ${filteredHosts?.length}`}
+                    </span>
                     <Button
                       variant="outline"
                       size="icon"
                       className="w-8 h-8 bg-transparent border-none"
+                      onClick={handlePreviousPage}
+                      disabled={currentPage === 1}
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </Button>
@@ -104,6 +131,8 @@ export default function HostDashboard() {
                       variant="outline"
                       size="icon"
                       className="w-8 h-8 bg-transparent border-none"
+                      onClick={handleNextPage}
+                      disabled={currentPage === totalPages}
                     >
                       <ChevronRight className="w-4 h-4" />
                     </Button>
@@ -148,7 +177,7 @@ export default function HostDashboard() {
                 </TableHeader>
 
                 <TableBody>
-                  {filteredHosts?.map((host) => (
+                  {paginatedHosts?.map((host) => (
                     <TableRow
                       key={host.objectId}
                       className="hover:bg-gray-50 cursor-pointer"

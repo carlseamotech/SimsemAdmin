@@ -1,28 +1,5 @@
 import useSWR from "swr";
-import {
-  getCustomTours,
-  createCustomTour,
-  updateCustomTour,
-  deleteCustomTour,
-  CreateExperienceDTO,
-  UpdateExperienceDTO,
-} from "@/services/experiences/custom-tour";
-import {
-  getGetawayTours,
-  createGetawayTour,
-  updateGetawayTour,
-  deleteGetawayTour,
-  CreateGetawayTourDTO,
-  UpdateGetawayTourDTO,
-} from "@/services/experiences/getaway-tour";
-import {
-  getOfferedTours,
-  createOfferedTour,
-  updateOfferedTour,
-  deleteOfferedTour,
-  CreateOfferedTourDTO,
-  UpdateOfferedTourDTO,
-} from "@/services/experiences/offered-tour";
+import { getTours } from "@/services/experiences";
 import {
   getMeals,
   getMeal,
@@ -53,102 +30,29 @@ import {
   UpdateLibraryDishDTO,
 } from "@/services/experiences/library";
 
-// Custom Tours
-export const useCustomTours = () => {
-  const { data, error, mutate } = useSWR("/custom-tours", getCustomTours);
-  return {
-    customTours: data,
-    isLoading: !error && !data,
-    isError: error,
-    createCustomTour: async (tour: CreateExperienceDTO) => {
-      const newTour = await createCustomTour(tour);
-      mutate((data) => (data ? [...data, newTour] : [newTour]), false);
-      return newTour;
-    },
-    updateCustomTour: async (id: string, tour: UpdateExperienceDTO) => {
-      const updatedTour = await updateCustomTour(id, tour);
-      mutate(
-        (data) =>
-          data?.map((t) => (t.objectId === id ? { ...t, ...updatedTour } : t)),
-        false
-      );
-      return updatedTour;
-    },
-    deleteCustomTour: async (id: string) => {
-      await deleteCustomTour(id);
-      mutate(
-        (data) => data?.filter((t) => t.objectId !== id),
-        false
-      );
-    },
-  };
-};
+export const useTours = (
+  types: string[],
+  limit?: number,
+  enabled: boolean = true
+) => {
+  const { data, error, mutate } = useSWR(
+    enabled ? ["/tours", types.join(","), limit] : null,
+    () => getTours({ where: { type: { $in: types } }, limit })
+  );
 
-// Getaway Tours
-export const useGetawayTours = () => {
-  const { data, error, mutate } = useSWR("/getaway-tours", getGetawayTours);
   return {
-    getawayTours: data,
+    tours: data,
     isLoading: !error && !data,
     isError: error,
-    createGetawayTour: async (tour: CreateGetawayTourDTO) => {
-      const newTour = await createGetawayTour(tour);
-      mutate((data) => (data ? [...data, newTour] : [newTour]), false);
-      return newTour;
-    },
-    updateGetawayTour: async (id: string, tour: UpdateGetawayTourDTO) => {
-      const updatedTour = await updateGetawayTour(id, tour);
-      mutate(
-        (data) =>
-          data?.map((t) => (t.objectId === id ? { ...t, ...updatedTour } : t)),
-        false
-      );
-      return updatedTour;
-    },
-    deleteGetawayTour: async (id: string) => {
-      await deleteGetawayTour(id);
-      mutate(
-        (data) => data?.filter((t) => t.objectId !== id),
-        false
-      );
-    },
-  };
-};
-
-// Offered Tours
-export const useOfferedTours = () => {
-  const { data, error, mutate } = useSWR("/offered-tours", getOfferedTours);
-  return {
-    offeredTours: data,
-    isLoading: !error && !data,
-    isError: error,
-    createOfferedTour: async (tour: CreateOfferedTourDTO) => {
-      const newTour = await createOfferedTour(tour);
-      mutate((data) => (data ? [...data, newTour] : [newTour]), false);
-      return newTour;
-    },
-    updateOfferedTour: async (id: string, tour: UpdateOfferedTourDTO) => {
-      const updatedTour = await updateOfferedTour(id, tour);
-      mutate(
-        (data) =>
-          data?.map((t) => (t.objectId === id ? { ...t, ...updatedTour } : t)),
-        false
-      );
-      return updatedTour;
-    },
-    deleteOfferedTour: async (id: string) => {
-      await deleteOfferedTour(id);
-      mutate(
-        (data) => data?.filter((t) => t.objectId !== id),
-        false
-      );
-    },
+    mutate,
   };
 };
 
 // Meals
-export const useMeals = () => {
-  const { data, error, mutate } = useSWR("/meals", getMeals);
+export const useMeals = (limit?: number) => {
+  const { data, error, mutate } = useSWR(["/meals", limit], () =>
+    getMeals(limit)
+  );
   return {
     meals: data,
     isLoading: !error && !data,
@@ -187,8 +91,10 @@ export const useMeal = (id: string) => {
 };
 
 // Library Tours
-export const useLibraryTours = () => {
-  const { data, error, mutate } = useSWR("/library-tours", getLibraryTours);
+export const useLibraryTours = (limit?: number) => {
+  const { data, error, mutate } = useSWR(["/library-tours", limit], () =>
+    getLibraryTours(limit)
+  );
   return {
     libraryTours: data,
     isLoading: !error && !data,
@@ -220,8 +126,10 @@ export const useLibraryTour = (id: string) => {
 };
 
 // Library Meals
-export const useLibraryMeals = () => {
-  const { data, error, mutate } = useSWR("/library-meals", getLibraryMeals);
+export const useLibraryMeals = (limit?: number) => {
+  const { data, error, mutate } = useSWR(["/library-meals", limit], () =>
+    getLibraryMeals(limit)
+  );
   return {
     libraryMeals: data,
     isLoading: !error && !data,
@@ -253,8 +161,10 @@ export const useLibraryMeal = (id: string) => {
 };
 
 // Library Dishes
-export const useLibraryDishes = () => {
-  const { data, error, mutate } = useSWR("/library-dishes", getLibraryDishes);
+export const useLibraryDishes = (limit?: number) => {
+  const { data, error, mutate } = useSWR(["/library-dishes", limit], () =>
+    getLibraryDishes(limit)
+  );
   return {
     libraryDishes: data,
     isLoading: !error && !data,
