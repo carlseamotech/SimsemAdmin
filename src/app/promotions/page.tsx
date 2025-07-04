@@ -27,7 +27,7 @@ export default function PromotionsPage() {
                 onValueChange={setActiveTab}
                 className="w-auto rounded-none "
               >
-                <TabsList className="grid w-full grid-cols-3 p-0 h-full  bg-transparent">
+                <TabsList className="grid w-full grid-cols-3 p-0 h-full  bg-transparent ">
                   <TabsTrigger
                     value="promotions"
                     className=" data-[state=active]:bg-[#FFFFFF] data-[state=active]:shadow-none font-bold  rounded-none rounded-t-2xl p-4 bg-[#ECECED] data-[state=active]:text-[#0E356C] text-[23px] text-[#707070]"
@@ -45,7 +45,7 @@ export default function PromotionsPage() {
               </Button>
             </div>
 
-            <div className="bg-white  drop-shadow-lg rounded-b-2xl rounded-tr-2xl px-16 py-4">
+            <div className="bg-white  drop-shadow-md rounded-b-2xl rounded-tr-2xl px-16 py-4">
               {/* Search and Filters */}
 
               <div className="flex items-center justify-between py-6 border-b">

@@ -1,9 +1,9 @@
 "use client";
 import { FaChevronDown } from "react-icons/fa";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import SearchIcon from "../../../public/header-icons/search-icon.svg";
-import NotificationIcon from "../../../public/header-icons/notification-icon.svg";
-import ProfileImage from "../../../public/header-icons/profile-image.svg";
+import SearchIcon from "../../../public/common/search-icon.svg";
+import NotificationIcon from "../../../public/common/notification-icon.svg";
+import ProfileImage from "../../../public/common/profile-image.svg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {

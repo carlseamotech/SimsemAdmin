@@ -55,31 +55,31 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
       <Table>
         <TableHeader>
           <TableRow className="bg-gray-50">
-            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold  text-[12px] text-[#101018] p-3.5">
               Promo Name
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold  text-[12px] text-[#101018] p-3.5">
               Description
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold  text-[12px] text-[#101018] p-3.5">
               For
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold  text-[12px] text-[#101018] p-3.5">
               Code
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold  text-[12px] text-[#101018] p-3.5">
               Quantity
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold  text-[12px] text-[#101018] p-3.5">
               Remaining
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold  text-[12px] text-[#101018] p-3.5">
               Expiry
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold  text-[12px] text-[#101018] p-3.5">
               Discount
             </TableHead>
-            <TableHead className="font-semibold  text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold  text-[12px] text-[#101018] p-3.5">
               Actions
             </TableHead>
           </TableRow>
@@ -87,25 +87,36 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
         <TableBody>
           {filteredPromotions.map((promo) => (
             <TableRow key={promo.id} className="hover:bg-gray-50">
-              <TableCell className="font-medium text-gray-900">
+              <TableCell className="text-[14px] text-[#707070]">
                 {promo.promoName}
               </TableCell>
-              <TableCell className="text-gray-600">
+              <TableCell className="text-[14px] text-[#707070]">
                 {promo.description}
               </TableCell>
-              <TableCell className="text-gray-600">{promo.for}</TableCell>
               <TableCell>
                 <Badge
                   variant="secondary"
-                  className="bg-blue-100 text-blue-800 hover:bg-blue-100"
+                  className="bg-[#3D3D3D1A] text-[14px] text-[#707070] rounded-full"
                 >
-                  {promo.code}
+                  {promo.for}
                 </Badge>
               </TableCell>
-              <TableCell className="text-gray-600">{promo.quantity}</TableCell>
-              <TableCell className="text-gray-600">{promo.remaining}</TableCell>
-              <TableCell className="text-gray-600">{promo.expiry}</TableCell>
-              <TableCell className="text-gray-600">{promo.discount}</TableCell>
+              <TableCell className="text-[#0D2E61] text-[14px] font-bold">
+                {promo.code}
+              </TableCell>
+              <TableCell className="text-[14px] text-[#707070]">
+                {promo.quantity}
+              </TableCell>
+              <TableCell className="text-[14px] text-[#707070]">
+                {promo.remaining}
+              </TableCell>
+              <TableCell className="text-[14px] text-[#707070]">
+                {promo.expiry}
+              </TableCell>
+              <TableCell className="text-[14px] font-bold text-[#707070]">
+                {promo.discount}
+              </TableCell>
+
               <TableCell>
                 <div className="flex space-x-2">
                   <Button

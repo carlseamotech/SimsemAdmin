@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import UploadIcon from "../../../public/experience-icons/upload-cloud-icon.svg";
+import UploadIcon from "../../../public/common/upload-cloud-icon.svg";
 import Image from "next/image";
 
 interface DishFormProps {
