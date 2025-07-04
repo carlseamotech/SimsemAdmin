@@ -1,5 +1,4 @@
-"use client";
-import { useState } from "react";
+import { useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,68 +9,44 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useLibraryTours, useLibraryMeals } from "@/hooks/use-experiences";
+import { LibraryTour, LibraryMeal } from "@/models/experience";
+import ExperienceLibraryTableSkeleton from "./experience-library-table-skeleton";
 
 interface ExperienceLibraryProps {
   activeFilter: string;
   searchTerm: string;
 }
 
-const experienceLibraryData = [
-  {
-    id: 1,
-    type: "Local Dining",
-    name: "The Ultimate Breakfast at Istanbul",
-    cost: "$12.00/Person",
-    country: "Turkey",
-  },
-  {
-    id: 2,
-    type: "Dining",
-    name: "The Ultimate Breakfast at Istanbul",
-    cost: "$12.00/Person",
-    country: "Turkey",
-  },
-  {
-    id: 3,
-    type: "Dining",
-    name: "The Ultimate Breakfast at Istanbul",
-    cost: "$12.00/Person",
-    country: "Turkey",
-  },
-  {
-    id: 4,
-    type: "Dining",
-    name: "The Ultimate Breakfast at Istanbul",
-    cost: "$12.00/Person",
-    country: "Turkey",
-  },
-  {
-    id: 5,
-    type: "Dining",
-    name: "The Ultimate Breakfast at Istanbul",
-    cost: "$12.00/Person",
-    country: "Turkey",
-  },
-  {
-    id: 6,
-    type: "Local Living",
-    name: "The Ultimate Breakfast at Istanbul",
-    cost: "$12.00/Person",
-    country: "Turkey",
-  },
-];
+type CombinedLibraryItem = (LibraryTour | LibraryMeal) & { itemType: string };
 
 const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
   activeFilter,
   searchTerm,
 }) => {
-  const getFilteredLibrary = () => {
-    let data = experienceLibraryData;
+  const { libraryTours, isLoading: toursLoading } = useLibraryTours();
+  const { libraryMeals, isLoading: mealsLoading } = useLibraryMeals();
 
-    if (activeFilter !== "all" && activeFilter === "dining") {
-      data = data.filter((item) => item.type === "Dining");
-    } else if (activeFilter === "local-living") {
-      data = data.filter((item) => item.type === "Local Living");
+  const allLibraryItems = useMemo(() => {
+    const tours = libraryTours?.map((tour) => ({
+      ...tour,
+      itemType: "Tour",
+    }));
+    const meals = libraryMeals?.map((meal) => ({
+      ...meal,
+      itemType: "Meal",
+    }));
+
+    return [...(tours || []), ...(meals || [])];
+  }, [libraryTours, libraryMeals]);
+
+  const getFilteredLibrary = () => {
+    let data: CombinedLibraryItem[] = allLibraryItems;
+
+    if (activeFilter !== "all") {
+      data = data.filter(
+        (item) => item.itemType.toLowerCase() === activeFilter
+      );
     }
 
     return data.filter(
@@ -80,6 +55,10 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
         item.country.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
+
+  if (toursLoading || mealsLoading) {
+    return <ExperienceLibraryTableSkeleton />;
+  }
 
   return (
     <div>
@@ -95,7 +74,7 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
             <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Cost
             </TableHead>
-            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3..5">
               Country
             </TableHead>
             <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
@@ -106,22 +85,26 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
 
         <TableBody>
           {getFilteredLibrary().map((experience) => (
-            <TableRow key={experience.id} className="hover:bg-gray-50">
+            <TableRow key={experience.objectId} className="hover:bg-gray-50">
               <TableCell>
                 <Badge
                   variant="secondary"
                   className={`rounded-full text-[16px] font-normal ${
-                    experience.type === "Dining"
+                    experience.itemType === "Meal"
                       ? "bg-[#0D2E6140] text-[#0D2E61]"
                       : "bg-[#FBB04040] text-[#F28E33]"
                   }`}
                 >
-                  {experience.type}
+                  {experience.itemType}
                 </Badge>
               </TableCell>
 
-              <TableCell className="text-gray-900">{experience.name}</TableCell>
-              <TableCell className="text-gray-600">{experience.cost}</TableCell>
+              <TableCell className="text-gray-900">
+                {experience.name}
+              </TableCell>
+              <TableCell className="text-gray-600">
+                {experience.cost}
+              </TableCell>
               <TableCell className="text-gray-600">
                 {experience.country}
               </TableCell>
@@ -151,3 +134,4 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
 };
 
 export default ExperienceLibraryPage;
+

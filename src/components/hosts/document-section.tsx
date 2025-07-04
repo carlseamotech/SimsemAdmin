@@ -43,10 +43,11 @@ export function DocumentUploadSection({
 
         {image ? (
           <>
-            <img
+            <Image
               src={URL.createObjectURL(image)}
               alt={label}
-              className="w-full h-full object-fill"
+              layout="fill"
+              objectFit="cover"
             />
             {isEditing && (
               <button

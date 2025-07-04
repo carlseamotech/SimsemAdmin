@@ -1,0 +1,27 @@
+{
+  "id": "5b81ac7b-1f05-4b29-b5f2-08e13e6424ae",
+  "name": "Simsem Dev",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "https://parseapi.back4app.com",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "parseAppId",
+      "value": "DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "parseApiKey",
+      "value": "0PchDvbMFD0uJZkjtZsfQsd0VM95imspd0nToKGw",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2025-06-29T16:56:44.580Z",
+  "_postman_exported_using": "Postman/11.51.6"
+}

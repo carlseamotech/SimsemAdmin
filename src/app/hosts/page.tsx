@@ -13,107 +13,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
+import { useHosts } from "@/hooks/use-hosts";
+import { Host } from "@/models/host";
 import Header from "@/components/common/header";
 import { useRouter } from "next/navigation";
-
-const hosts = [
-  {
-    id: 1,
-    name: "Ahmed Habib",
-    phone: "https://www.figma.com/des...",
-    email: "demo@example.com",
-    country: "Turkey",
-    status: "For Approval",
-    avatar: "https://github.com/shadcn.png",
-  },
-  {
-    id: 2,
-    name: "Sophia",
-    phone: "+962 6 555 5555",
-    email: "demo@example.com",
-    country: "Jordan",
-    status: "Approved",
-    avatar: "https://github.com/shadcn.png",
-  },
-  {
-    id: 3,
-    name: "Daneesh",
-    phone: "+20 12 3456 7890",
-    email: "demo@example.com",
-    country: "Egypt",
-    status: "Approved",
-    avatar: "/placeholder.svg?height=32&width=32",
-  },
-  {
-    id: 4,
-    name: "Layla Noor",
-    phone: "+962 6 555 5555",
-    email: "demo@example.com",
-    country: "Jordan",
-    status: "Approved",
-    avatar: "/placeholder.svg?height=32&width=32",
-  },
-  {
-    id: 5,
-    name: "Yousef Ibrahim",
-    phone: "+20 12 3456 7890",
-    email: "demo@example.com",
-    country: "Egypt",
-    status: "For Approval",
-    avatar: "/placeholder.svg?height=32&width=32",
-  },
-  {
-    id: 6,
-    name: "Fatima Zahra",
-    phone: "+962 6 555 5555",
-    email: "demo@example.com",
-    country: "Jordan",
-    status: "For Approval",
-    avatar: "/placeholder.svg?height=32&width=32",
-  },
-  {
-    id: 7,
-    name: "Omar Khalid",
-    phone: "+90 212 555 1212",
-    email: "demo@example.com",
-    country: "Turkey",
-    status: "For Approval",
-    avatar: "/placeholder.svg?height=32&width=32",
-  },
-  {
-    id: 8,
-    name: "Shirin Farah",
-    phone: "+962 6 555 5555",
-    email: "demo@example.com",
-    country: "Jordan",
-    status: "For Approval",
-    avatar: "/placeholder.svg?height=32&width=32",
-  },
-  {
-    id: 9,
-    name: "Mohammed Ali",
-    phone: "+90 212 555 1212",
-    email: "demo@example.com",
-    country: "Turkey",
-    status: "Approved",
-    avatar: "/placeholder.svg?height=32&width=32",
-  },
-  {
-    id: 10,
-    name: "Ahmed Hassan",
-    phone: "+20 12 3456 7890",
-    email: "demo@example.com",
-    country: "Egypt",
-    status: "For Approval",
-    avatar: "/placeholder.svg?height=32&width=32",
-  },
-];
+import { HostsTableSkeleton } from "@/components/hosts/hosts-table-skeleton";
 
 export default function HostDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
   const router = useRouter();
+  const { hosts, isLoading } = useHosts();
 
   const getFilterButtons = () => ["all", "for-approval", "approved"];
 
@@ -126,7 +36,7 @@ export default function HostDashboard() {
     return labels[filter] || filter;
   };
 
-  const filteredHosts = hosts.filter((host) => {
+  const filteredHosts = hosts?.filter((host: Host) => {
     const matchesSearch =
       host.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       host.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -134,12 +44,13 @@ export default function HostDashboard() {
 
     if (activeFilter === "all") return matchesSearch;
     if (activeFilter === "for-approval")
-      return matchesSearch && host.status === "For Approval";
+      return matchesSearch && !host.isVerified;
     if (activeFilter === "approved")
-      return matchesSearch && host.status === "Approved";
+      return matchesSearch && host.isVerified;
 
     return matchesSearch;
   });
+
   return (
     <div className="flex h-screen bg-gray-50">
       <div className="flex-1 flex flex-col">
@@ -181,7 +92,7 @@ export default function HostDashboard() {
                   </div>
 
                   <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <span>1 - 10 of {filteredHosts.length}</span>
+                    <span>1 - 10 of {filteredHosts?.length}</span>
                     <Button
                       variant="outline"
                       size="icon"
@@ -212,67 +123,72 @@ export default function HostDashboard() {
             </div>
 
             {/* Table */}
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-gray-50">
-                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
-                    Host
-                  </TableHead>
-                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
-                    Phone Number
-                  </TableHead>
-                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
-                    Email Address
-                  </TableHead>
-                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
-                    Country
-                  </TableHead>
-                  <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
-                    Status
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-
-              <TableBody>
-                {filteredHosts.map((host) => (
-                  <TableRow
-                    key={host.id}
-                    className="hover:bg-gray-50 cursor-pointer"
-                    onClick={() => router.push(`/hosts/${host.id}`)}
-                  >
-                    <TableCell>
-                      <div className="flex items-center space-x-3">
-                        <Avatar className="w-8 h-8">
-                          <AvatarImage src={host.avatar} alt="Host Image" />
-                          <AvatarFallback>{host.name[0]}</AvatarFallback>
-                        </Avatar>
-
-                        <span className="font-medium text-gray-900">
-                          {host.name}
-                        </span>
-                      </div>
-                    </TableCell>
-                    <TableCell>{host.phone}</TableCell>
-                    <TableCell>{host.email}</TableCell>
-                    <TableCell>{host.country}</TableCell>
-                    <TableCell>
-                      <Badge
-                        variant={
-                          host.status === "Approved" ? "default" : "secondary"
-                        }
-                        className={`rounded-full text-[16px] font-normal ${
-                          host.status === "Approved"
-                            ? "bg-[#C9E8E8] text-[#105352] hover:bg-teal-100"
-                            : "bg-[#FFF3DD] text-[#AA8345] hover:bg-orange-100"
-                        }`}
-                      >
-                        {host.status}
-                      </Badge>
-                    </TableCell>
+            {isLoading ? (
+              <HostsTableSkeleton />
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gray-50">
+                    <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+                      Host
+                    </TableHead>
+                    <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+                      Phone Number
+                    </TableHead>
+                    <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+                      Email Address
+                    </TableHead>
+                    <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+                      Country
+                    </TableHead>
+                    <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+                      Status
+                    </TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+
+                <TableBody>
+                  {filteredHosts?.map((host) => (
+                    <TableRow
+                      key={host.objectId}
+                      className="hover:bg-gray-50 cursor-pointer"
+                      onClick={() => router.push(`/hosts/${host.objectId}`)}
+                    >
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <Avatar className="w-8 h-8">
+                            <AvatarImage
+                              src={host.imageUrl}
+                              alt="Host Image"
+                            />
+                            <AvatarFallback>{host.name[0]}</AvatarFallback>
+                          </Avatar>
+
+                          <span className="font-medium text-gray-900">
+                            {host.name}
+                          </span>
+                        </div>
+                      </TableCell>
+                      <TableCell>{host.phone}</TableCell>
+                      <TableCell>{host.email}</TableCell>
+                      <TableCell>{host.country}</TableCell>
+                      <TableCell>
+                        <Badge
+                          variant={host.isVerified ? "default" : "secondary"}
+                          className={`rounded-full text-[16px] font-normal ${
+                            host.isVerified
+                              ? "bg-[#C9E8E8] text-[#105352] hover:bg-teal-100"
+                              : "bg-[#FFF3DD] text-[#AA8345] hover:bg-orange-100"
+                          }`}
+                        >
+                          {host.isVerified ? "Approved" : "For Approval"}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
           </div>
         </div>
       </div>

@@ -34,9 +34,6 @@ export function ContactLanguageSection({
     formState: { errors },
   } = form;
 
-  const contact = watch("contact");
-  const language = watch("language");
-
   const contactFields = [
     { key: "city", label: "City", type: "text" },
     { key: "country", label: "Country", type: "text" },
@@ -48,7 +45,7 @@ export function ContactLanguageSection({
   const levels = ["Beginner", "Intermediate", "Advance", "Native"] as const;
 
   const getErrorMessage = (
-    error: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
+    error: FieldError | Merge<FieldError, FieldErrorsImpl<HostFormData>> | undefined
   ): string => {
     return typeof error?.message === "string" ? error.message : "";
   };
@@ -74,18 +71,18 @@ export function ContactLanguageSection({
                   <div>
                     <Input
                       type={type}
-                      {...register(`contact.${key}`)}
+                      {...register(key)}
                       className=" bg-white h-[59px] rounded-xl  focus-visible:ring-0"
                     />
-                    {getErrorMessage(errors.contact?.[key]) && (
+                    {getErrorMessage(errors[key]) && (
                       <p className="text-red-500 text-sm mt-1 ">
-                        {getErrorMessage(errors.contact?.[key])}
+                        {getErrorMessage(errors[key])}
                       </p>
                     )}
                   </div>
                 ) : (
                   <span className={` text-[20px] font-bold text-[#3D3D3D] `}>
-                    {contact?.[key]}
+                    {watch(key)}
                   </span>
                 )}
               </div>
@@ -109,9 +106,9 @@ export function ContactLanguageSection({
               {isEditing ? (
                 <div className="col-span-2 md:col-span-3">
                   <Select
-                    value={language.firstLanguage}
+                    value={watch("firstLanguage")}
                     onValueChange={(value) =>
-                      setValue("language.firstLanguage", value)
+                      setValue("firstLanguage", value)
                     }
                   >
                     <SelectTrigger className="cursor-pointer w-full bg-white py-7 rounded-xl">
@@ -127,15 +124,15 @@ export function ContactLanguageSection({
                     </SelectContent>
                   </Select>
 
-                  {getErrorMessage(errors.language?.firstLanguage) && (
+                  {getErrorMessage(errors.firstLanguage) && (
                     <p className="text-red-500 text-sm mt-1">
-                      {getErrorMessage(errors.language?.firstLanguage)}
+                      {getErrorMessage(errors.firstLanguage)}
                     </p>
                   )}
                 </div>
               ) : (
                 <span className=" text-[20px] font-bold text-[#3D3D3D]">
-                  {language.firstLanguage}
+                  {watch("firstLanguage")}
                 </span>
               )}
             </div>
@@ -148,10 +145,10 @@ export function ContactLanguageSection({
               {isEditing ? (
                 <div className="col-span-2 md:col-span-3">
                   <Select
-                    value={language.languageLevel}
+                    value={watch("firstLanguageLevel")}
                     onValueChange={(
-                      value: HostFormData["language"]["languageLevel"]
-                    ) => setValue("language.languageLevel", value)}
+                      value: HostFormData["firstLanguageLevel"]
+                    ) => setValue("firstLanguageLevel", value)}
                   >
                     <SelectTrigger className="cursor-pointer w-full bg-white py-7 rounded-xl">
                       <SelectValue placeholder="Select level" />
@@ -165,15 +162,15 @@ export function ContactLanguageSection({
                       ))}
                     </SelectContent>
                   </Select>
-                  {getErrorMessage(errors.language?.languageLevel) && (
+                  {getErrorMessage(errors.firstLanguageLevel) && (
                     <p className="text-red-500 text-sm mt-1">
-                      {getErrorMessage(errors.language?.languageLevel)}
+                      {getErrorMessage(errors.firstLanguageLevel)}
                     </p>
                   )}
                 </div>
               ) : (
                 <span className=" text-[20px] font-bold text-[#3D3D3D]">
-                  {language.languageLevel}
+                  {watch("firstLanguageLevel")}
                 </span>
               )}
             </div>

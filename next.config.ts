@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "parsefiles.back4app.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
   webpack(config) {
     // config.module.rules.push({
     //   test: /\.svg$/,

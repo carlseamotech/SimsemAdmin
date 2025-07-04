@@ -1,6 +1,6 @@
 "use client";
 import { FaChevronDown } from "react-icons/fa";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 // import SearchIcon from "../../../public/common/search-icon.svg";
 import NotificationIcon from "../../../public/common/notification-icon.svg";
 import ProfileImage from "../../../public/common/profile-image.svg";
@@ -27,7 +27,7 @@ const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="px-6 py-12 bg-[#F8F8F8]">
+    <header className="hidden lg:block px-6 py-12 bg-[#F8F8F8]">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           {showBackButton ? (

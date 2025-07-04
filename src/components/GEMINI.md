@@ -1,0 +1,17 @@
+# Gemini Context: `src/components`
+
+This directory contains all the React components used in the application. The components are organized by feature to ensure a clear and scalable structure.
+
+## Directory Structure
+
+-   **`ui/`**: This subdirectory contains the core UI components that are used throughout the application, such as buttons, inputs, and cards. These components are built using `shadcn/ui` and are considered the building blocks of the application's UI.
+-   **`common/`**: This subdirectory contains components that are used across multiple features, such as the `Header` and `Sidebar`. These components are not specific to any single feature and are shared across the application.
+-   **`{feature}/`**: Each feature has its own directory, which contains all the components that are specific to that feature. For example, all components related to experiences are located in `src/components/experiences`.
+
+## Conventions
+
+-   **Component Naming**: Component files should be named using PascalCase (e.g., `MyComponent.tsx`).
+-   **Props**: Component props should be defined in an interface with the `Props` suffix (e.g., `MyComponentProps`).
+-   **Styling**: Components should be styled using Tailwind CSS. The `clsx` and `tailwind-merge` utilities should be used to merge class names.
+-   **State Management**: For local component state, use the `useState` and `useReducer` hooks. For global state, use the `useContext` hook or a state management library like `zustand`.
+-   **Data Fetching**: Data fetching should be handled by the custom hooks in the `src/hooks` directory. Components should not directly interact with the API.

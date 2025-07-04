@@ -1,12 +1,11 @@
 "use client";
 import Header from "@/components/common/header";
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ProfileImage from "../../../../public/common/profile-image.svg";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
@@ -14,36 +13,9 @@ import { DocumentUploadSection } from "@/components/hosts/document-section";
 import { ContactLanguageSection } from "@/components/hosts/contact-section";
 import { PaymentInfoSection } from "@/components/hosts/payment-section";
 import { HostFormData, hostSchema } from "@/components/hosts/host-scema";
-
-// Mock data
-const hosts: HostFormData[] = [
-  {
-    id: "1",
-    name: "Ahmed Habib",
-    status: "CHANGE PHOTO",
-    about:
-      "I am Ahmed Habib a freelance English-Turkish instructor. I'm working as a freelancer instructor for 2 years since I graduated from faculty of Abant Turkish department. In addition to my full-time job as VP Assistant, I always search for new adventures and opportunities that I think I will find here.",
-    contact: {
-      city: "Istanbul",
-      country: "Turkey",
-      email: "ahmedhabib@gmail.com",
-      phone: "+90 212 555 1212",
-    },
-    language: {
-      firstLanguage: "English",
-      languageLevel: "Advance",
-    },
-    paymentInfo: {
-      bankName: "Central Bank of Turkey",
-      bankAddress: "Istanbul, Turkey",
-      iban: "0519786457804326",
-      swiftBankCode: "AFKBTRISXXX",
-      yourName: "Ahmed Habib",
-      phoneNumber: "+90 212 555 1212",
-      yourAddress: "Istanbul, Turkey",
-    },
-  },
-];
+import { useHost } from "@/hooks/use-hosts";
+import { Skeleton } from "@/components/ui/skeleton";
+import { UpdateHostDTO } from "@/services/hosts";
 
 const HostSummaryPage = () => {
   const { id } = useParams();
@@ -51,12 +23,36 @@ const HostSummaryPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const host = hosts.find((h) => h.id === id);
+  const { host, isLoading, updateHost } = useHost(id as string);
 
   const form = useForm<HostFormData>({
     resolver: zodResolver(hostSchema),
-    defaultValues: host,
   });
+
+  useEffect(() => {
+    if (host) {
+      form.reset(host);
+    }
+  }, [host, form]);
+
+  if (isLoading) {
+    return (
+      <>
+        <Header showBackButton onBack={() => router.back()} />
+        <div className="flex-1 py-6 px-8">
+          <div className="bg-white rounded-xl drop-shadow-lg flex flex-col gap-4 p-8">
+            <Skeleton className="h-8 w-1/4" />
+            <Skeleton className="h-4 w-1/2" />
+            <div className="space-y-6 pt-8">
+              <Skeleton className="h-24 w-full" />
+              <Skeleton className="h-48 w-full" />
+              <Skeleton className="h-48 w-full" />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   if (!host) {
     return <div className="p-6 text-red-500">Host not found.</div>;
@@ -65,8 +61,21 @@ const HostSummaryPage = () => {
   const handleSave = async (data: HostFormData) => {
     setIsSubmitting(true);
     try {
-      console.log("Saving data:", data);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const updateDto: UpdateHostDTO = {
+        name: data.name,
+        about: data.about,
+        city: data.city,
+        country: data.country,
+        email: data.email,
+        phone: data.phone,
+        firstLanguage: data.firstLanguage,
+        firstLanguageLevel: data.firstLanguageLevel,
+        secondLanguage: data.secondLanguage,
+        secondLanguageLevel: data.secondLanguageLevel,
+        thirdLanguage: data.thirdLanguage,
+        thirdLanguageLevel: data.thirdLanguageLevel,
+      };
+      await updateHost(updateDto);
       setIsEditing(false);
     } catch (error) {
       console.error("Error saving data:", error);
@@ -78,8 +87,7 @@ const HostSummaryPage = () => {
   const handleApprove = async () => {
     setIsSubmitting(true);
     try {
-      console.log("Approving host");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await updateHost({ isVerified: true });
     } catch (error) {
       console.error("Error approving host:", error);
     } finally {
@@ -93,7 +101,6 @@ const HostSummaryPage = () => {
     formState: { errors },
   } = form;
   const name = watch("name");
-  const status = watch("status");
   const about = watch("about");
 
   return (
@@ -126,7 +133,7 @@ const HostSummaryPage = () => {
                   <div className="flex flex-col items-start gap-8">
                     <div className="flex flex-row items-center gap-6">
                       <Image
-                        src={ProfileImage}
+                        src={host.imageUrl || ProfileImage}
                         alt="Host Avatar"
                         width={80}
                         height={80}
@@ -138,7 +145,7 @@ const HostSummaryPage = () => {
                           variant="normal"
                           className="text-[#FFFFFF] flex items-center justify-center w-[132px] h-[30px] text-[13px] bg-[#5F0F40] rounded-full"
                         >
-                          {status}
+                          CHANGE PHOTO
                         </Button>
                       )}
                     </div>

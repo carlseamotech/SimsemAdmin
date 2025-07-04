@@ -9,49 +9,30 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Edit, Trash2 } from "lucide-react";
+import { usePromoCodes } from "@/hooks/use-promo-codes";
+import { PromoCode } from "@/models/promo-code";
+import Image from "next/image";
 import EditIcon from "../../../public/common/edit-icon.svg";
 import TrashIcon from "../../../public/common/trash-con.svg";
-import Image from "next/image";
 
 interface ManagePromotionsProps {
   searchTerm: string;
 }
 
-const promotionsData = [
-  {
-    id: 1,
-    promoName: "First Purchase",
-    description: "All new users",
-    for: "All Tours",
-    code: "new-user",
-    quantity: "Unlimited",
-    remaining: "Unlimited",
-    expiry: "Never",
-    discount: "10%",
-  },
-  {
-    id: 2,
-    promoName: "Kids Discount",
-    description: "All kids",
-    for: "Kids",
-    code: "kids-01",
-    quantity: "15",
-    remaining: "10",
-    expiry: "2025-01-31",
-    discount: "15%",
-  },
-];
-
 const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
   searchTerm,
 }) => {
-  const filteredPromotions = promotionsData.filter(
-    (promo) =>
-      promo.promoName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      promo.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      promo.code.toLowerCase().includes(searchTerm.toLowerCase())
+  const { promoCodes, isLoading } = usePromoCodes();
+
+  const filteredPromotions = promoCodes?.filter(
+    (promo: PromoCode) =>
+      promo.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      promo.serviceType.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -88,36 +69,37 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filteredPromotions.map((promo) => (
-            <TableRow key={promo.id} className="hover:bg-gray-50">
+          {filteredPromotions?.map((promo) => (
+            <TableRow key={promo.objectId} className="hover:bg-gray-50">
               <TableCell className="text-[14px] text-[#707070]">
-                {promo.promoName}
+                {promo.code}
               </TableCell>
               <TableCell className="text-[14px] text-[#707070]">
-                {promo.description}
+                {promo.serviceType}
               </TableCell>
               <TableCell>
                 <Badge
                   variant="secondary"
                   className="bg-[#3D3D3D1A] text-[14px] text-[#707070] rounded-full"
                 >
-                  {promo.for}
+                  {promo.serviceType}
                 </Badge>
               </TableCell>
               <TableCell className="text-[#0D2E61] text-[14px] font-bold">
                 {promo.code}
               </TableCell>
               <TableCell className="text-[14px] text-[#707070]">
-                {promo.quantity}
+                Unlimited
               </TableCell>
               <TableCell className="text-[14px] text-[#707070]">
-                {promo.remaining}
+                Unlimited
               </TableCell>
               <TableCell className="text-[14px] text-[#707070]">
-                {promo.expiry}
+                {new Date(promo.expiryDate.iso).toLocaleDateString()}
               </TableCell>
               <TableCell className="text-[14px] font-bold text-[#707070]">
                 {promo.discount}
+                {promo.discountType === "amount" ? "$" : "%"}
               </TableCell>
 
               <TableCell>

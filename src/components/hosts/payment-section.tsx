@@ -23,8 +23,6 @@ export function PaymentInfoSection({
     formState: { errors },
   } = form;
 
-  const paymentInfo = watch("paymentInfo");
-
   const paymentFields = [
     { key: "bankName", label: "Bank Name", icon: PaymentIcon },
     { key: "bankAddress", label: "Bank Address", icon: PaymentIcon },
@@ -71,7 +69,7 @@ export function PaymentInfoSection({
                 {paymentFields.map((field, index) => {
                   const IconComponent = field.icon;
                   const isLast = index === paymentFields.length - 1;
-                  const value = paymentInfo?.[field.key];
+                  const value = watch(`paymentInfo.${field.key}`);
 
                   return (
                     <div

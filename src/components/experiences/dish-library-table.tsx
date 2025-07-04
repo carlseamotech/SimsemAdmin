@@ -9,62 +9,28 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useLibraryDishes } from "@/hooks/use-experiences";
+import DishLibraryTableSkeleton from "./dish-library-table-skeleton";
 
 interface DishLibraryProps {
   searchTerm: string;
 }
 
-const dishLibraryData = [
-  {
-    id: 1,
-    dishType: "Vegan",
-    dishName: "Tabbouleh",
-    ingredients: "Food 1, Ingredient 1, Ingredien...",
-    course: "Main Course",
-    country: "Turkey",
-  },
-  {
-    id: 2,
-    dishType: "Vegetarian",
-    dishName: "Mashi",
-    ingredients: "Food 1, Ingredient 1, Ingredien...",
-    course: "Appetizer",
-    country: "Jordan",
-  },
-  {
-    id: 3,
-    dishType: "Meat",
-    dishName: "Qatayef",
-    ingredients: "Food 1, Ingredient 1, Ingredien...",
-    course: "Dessert",
-    country: "Turkey",
-  },
-  {
-    id: 4,
-    dishType: "Meat",
-    dishName: "Meal 1",
-    ingredients: "Food 1, Ingredient 1, Ingredien...",
-    course: "Dessert",
-    country: "Turkey",
-  },
-  {
-    id: 5,
-    dishType: "Meat",
-    dishName: "Meal 2",
-    ingredients: "Food 1, Ingredient 1, Ingredien...",
-    course: "Appetizer",
-    country: "Turkey",
-  },
-];
-
 const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
+  const { libraryDishes, isLoading } = useLibraryDishes();
+
   const getFilteredDishes = () => {
-    return dishLibraryData.filter(
+    if (!libraryDishes) return [];
+    return libraryDishes.filter(
       (item) =>
-        item.dishName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.country.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
+
+  if (isLoading) {
+    return <DishLibraryTableSkeleton />;
+  }
 
   return (
     <div>
@@ -93,7 +59,7 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
         </TableHeader>
         <TableBody>
           {getFilteredDishes().map((dish) => (
-            <TableRow key={dish.id} className="hover:bg-gray-50">
+            <TableRow key={dish.objectId} className="hover:bg-gray-50">
               <TableCell>
                 <Badge
                   variant="secondary"
@@ -108,9 +74,9 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
                   {dish.dishType}
                 </Badge>
               </TableCell>
-              <TableCell className="text-gray-900">{dish.dishName}</TableCell>
+              <TableCell className="text-gray-900">{dish.name}</TableCell>
               <TableCell className="text-gray-600">
-                {dish.ingredients}
+                {dish.ingredients.join(", ")}
               </TableCell>
               <TableCell className="text-gray-600">{dish.course}</TableCell>
               <TableCell className="text-gray-600">{dish.country}</TableCell>
