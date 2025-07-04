@@ -19,7 +19,7 @@ import Header from "@/components/common/header";
 import { useRouter } from "next/navigation";
 import { HostsTableSkeleton } from "@/app/(dashboard)/hosts/components/hosts-table-skeleton";
 
-export default function HostDashboard() {
+const HostDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -117,6 +117,7 @@ export default function HostDashboard() {
                         filteredHosts?.length || 0
                       )} of ${filteredHosts?.length}`}
                     </span>
+
                     <Button
                       variant="outline"
                       size="icon"
@@ -219,4 +220,6 @@ export default function HostDashboard() {
       </div>
     </div>
   );
-}
+};
+
+export default HostDashboard;

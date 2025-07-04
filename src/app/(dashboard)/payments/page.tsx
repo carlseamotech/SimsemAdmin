@@ -1,7 +1,7 @@
 import Header from "@/components/common/header";
 import { ComingSoon } from "@/components/common/coming-soon";
 
-export default function PaymentsPage() {
+const PaymentsPage = () => {
   return (
     <>
       <Header title="Payments" />
@@ -11,4 +11,6 @@ export default function PaymentsPage() {
       />
     </>
   );
-}
+};
+
+export default PaymentsPage;

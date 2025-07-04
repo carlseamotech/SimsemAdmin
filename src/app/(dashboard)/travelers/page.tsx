@@ -2,7 +2,7 @@
 import Header from "@/components/common/header";
 import { ComingSoon } from "@/components/common/coming-soon";
 
-export default function TravelersPage() {
+const TravelersPage = () => {
   return (
     <>
       <Header title="Travelers" />
@@ -12,4 +12,6 @@ export default function TravelersPage() {
       />
     </>
   );
-}
+};
+
+export default TravelersPage;
