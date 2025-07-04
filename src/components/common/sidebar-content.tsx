@@ -1,6 +1,6 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import SimsemLogo from "../../../public/Simsem-Logo.svg";
+import SimsemLogo from "../../../public/simsem-logo.svg";
 import HomeIcon from "../../../public/sidebar-icons/home-icon.svg";
 import ExperiencesIcon from "../../../public/sidebar-icons/experiences-icon.svg";
 import PromotionsIcon from "../../../public/sidebar-icons/promotions-icon.svg";
