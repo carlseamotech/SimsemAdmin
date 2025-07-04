@@ -7,11 +7,23 @@ import { Input } from "@/components/ui/input";
 import Header from "@/components/common/header";
 import PromotionFormPage from "@/components/promotions/promotion-form";
 import ManagePromotionsPage from "@/components/promotions/manage-promotions-table";
+import { PromoCode } from "@/models/promo-code";
 
 const PromotionsPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("promotions");
+  const [promoToEdit, setPromoToEdit] = useState<PromoCode | null>(null);
+
+  const handleEdit = (promo: PromoCode) => {
+    setPromoToEdit(promo);
+    setShowForm(true);
+  };
+
+  const handleAddNew = () => {
+    setPromoToEdit(null);
+    setShowForm(true);
+  };
 
   return (
     <>
@@ -39,7 +51,7 @@ const PromotionsPage = () => {
 
               <Button
                 className="bg-[#FB8B24] hover:bg-orange-400  text-white text-[15px] cursor-pointer rounded-full"
-                onClick={() => setShowForm(true)}
+                onClick={handleAddNew}
               >
                 Add new Promotion Code
               </Button>
@@ -90,13 +102,19 @@ const PromotionsPage = () => {
                 </div>
               </div>
 
-              <ManagePromotionsPage searchTerm={searchTerm} />
+              <ManagePromotionsPage
+                searchTerm={searchTerm}
+                onEdit={handleEdit}
+              />
             </div>
           </div>
         </div>
       ) : (
         <>
-          <PromotionFormPage setShowForm={setShowForm} />
+          <PromotionFormPage
+            setShowForm={setShowForm}
+            promoToEdit={promoToEdit}
+          />
         </>
       )}
     </>
