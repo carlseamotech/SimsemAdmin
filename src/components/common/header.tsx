@@ -86,7 +86,9 @@ const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
                     height={50}
                     className="rounded-full"
                   />
-                  <AvatarFallback>{user?.email?.charAt(0).toUpperCase()}</AvatarFallback>
+                  <AvatarFallback>
+                    {user?.email?.charAt(0).toUpperCase()}
+                  </AvatarFallback>
                 </Avatar>
                 <FaChevronDown
                   className={`w-4 h-4 transition-transform duration-200 text-[#5F647E] ${
@@ -99,13 +101,19 @@ const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>
                 <div className="flex flex-col">
-                  <span className="font-semibold">{user?.displayName || "User"}</span>
+                  <span className="font-semibold">
+                    {user?.displayName || "User"}
+                  </span>
                   <span className="text-sm text-gray-500">{user?.email}</span>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => router.push("/profile")}>Profile</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push("/settings")}>Settings</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/profile")}>
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/settings")}>
+                Settings
+              </DropdownMenuItem>
               <DropdownMenuItem onClick={signOut}>Log out</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

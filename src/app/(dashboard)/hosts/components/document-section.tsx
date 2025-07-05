@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import UploadIcon from "../../../public/common/upload-cloud-icon.svg";
+import UploadIcon from "../../../../../public/common/upload-cloud-icon.svg";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { HiOutlineX } from "react-icons/hi";

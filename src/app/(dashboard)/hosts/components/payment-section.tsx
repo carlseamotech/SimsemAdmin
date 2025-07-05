@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import type { UseFormReturn } from "react-hook-form";
 import { HostFormData } from "./host-scema";
 import Image from "next/image";
-import PaymentIcon from "../../../public/hosts-icons/payment-icon.svg";
+import PaymentIcon from "../../../../../public/hosts-icons/payment-icon.svg";
 
 interface PaymentInfoSectionProps {
   form: UseFormReturn<HostFormData>;

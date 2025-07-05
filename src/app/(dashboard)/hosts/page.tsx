@@ -168,6 +168,9 @@ const HostDashboard = () => {
                       Email Address
                     </TableHead>
                     <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+                      ID
+                    </TableHead>
+                    <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
                       Country
                     </TableHead>
                     <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
@@ -197,6 +200,7 @@ const HostDashboard = () => {
                       </TableCell>
                       <TableCell>{host.phone}</TableCell>
                       <TableCell>{host.email}</TableCell>
+                      <TableCell>{host.objectId}</TableCell>
                       <TableCell>{host.country}</TableCell>
                       <TableCell>
                         <Badge
