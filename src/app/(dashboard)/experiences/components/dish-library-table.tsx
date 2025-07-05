@@ -12,19 +12,21 @@ import {
 import { useLibraryDishes } from "@/hooks/use-experiences";
 import DishLibraryTableSkeleton from "./dish-library-table-skeleton";
 import { useRouter } from "next/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface DishLibraryProps {
   searchTerm: string;
-  currentPage: number;
-  itemsPerPage: number;
 }
 
-const DishLibraryPage: React.FC<DishLibraryProps> = ({
-  searchTerm,
-  currentPage,
-  itemsPerPage,
-}) => {
-  const { libraryDishes, isLoading } = useLibraryDishes(10000);
+const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
+  const {
+    libraryDishes,
+    count,
+    isLoading,
+    page,
+    limit,
+    setPage,
+  } = useLibraryDishes();
   const router = useRouter();
 
   const getFilteredDishes = () => {
@@ -35,11 +37,6 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({
         item.country.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
-
-  const paginatedDishes = getFilteredDishes().slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
 
   if (isLoading) {
     return <DishLibraryTableSkeleton />;
@@ -71,7 +68,7 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {paginatedDishes.map((dish) => (
+          {getFilteredDishes().map((dish) => (
             <TableRow
               key={dish.objectId}
               onClick={() =>
@@ -121,6 +118,27 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({
           ))}
         </TableBody>
       </Table>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex-1 text-sm text-muted-foreground">
+          {page} of {Math.ceil(count / limit)} pages
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(page - 1)}
+          disabled={page === 1}
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(page + 1)}
+          disabled={page === Math.ceil(count / limit)}
+        >
+          <ChevronRight className="w-4 h-4" />
+        </Button>
+      </div>
     </div>
   );
 };

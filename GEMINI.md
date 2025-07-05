@@ -52,3 +52,9 @@ For more detailed information on each layer, please refer to the `GEMINI.md` fil
 
 - **Authentication:** We will use Firebase Authentication for user management. The sign-in process will be handled by a server-side API route (`/api/auth`) that validates credentials with Firebase. Client-side authentication state will be managed by the `AuthContext`.
 - **Authorization:** We will implement Role-Based Access Control (RBAC) for the Teams feature. User roles will be stored in the `TeamMember` model and will be used to control access to specific actions and resources.
+
+## 7. Naming Conventions
+
+-   **`ProposedTour` vs. `Experience`**:
+    -   **`ProposedTour`**: This name is used in the backend, API, and data modeling layers (`/models`, `/services`, `/dtos`).
+    -   **`Experience`**: This name is used in the UI and display layers (`/app`, `/components`, `/hooks`).

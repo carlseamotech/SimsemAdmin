@@ -10,11 +10,17 @@ import ExperiencesPage from "@/app/(dashboard)/experiences/components/experience
 import ExperienceLibraryPage from "@/app/(dashboard)/experiences/components/experience-library-table";
 import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-experience";
 import { useSearchParams } from "next/navigation";
+import { ProposedTour } from "@/models/proposed-tour";
+import { ExperienceForm } from "./components/experience-form";
 
 const ExperiencesMainPage = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [showDishForm, setShowDishForm] = useState(false);
+  const [showExperienceForm, setShowExperienceForm] = useState(false);
+  const [experienceToEdit, setExperienceToEdit] = useState<ProposedTour | null>(
+    null
+  );
   const searchParams = useSearchParams();
   const tabInUrl = searchParams.get("tab") || "experiences";
   const [activeTab, setActiveTab] = useState(tabInUrl);
@@ -25,6 +31,11 @@ const ExperiencesMainPage = () => {
       setActiveTab(currentTab);
     }
   }, [searchParams, activeTab]);
+
+  const handleEdit = (experience: ProposedTour) => {
+    setExperienceToEdit(experience);
+    setShowExperienceForm(true);
+  };
 
   const getButtonText = () => {
     if (activeTab === "dish-library") return "Add a new dish";
@@ -59,6 +70,7 @@ const ExperiencesMainPage = () => {
           <ExperiencesPage
             activeFilter={activeFilter}
             searchTerm={searchTerm}
+            onEdit={handleEdit}
           />
         );
       case "experience-library":
@@ -78,12 +90,17 @@ const ExperiencesMainPage = () => {
   return (
     <>
       <Header
-        title={!showDishForm ? "Experiences" : undefined}
-        showBackButton={showDishForm}
-        onBack={() => setShowDishForm(false)}
+        title={
+          !showDishForm && !showExperienceForm ? "Experiences" : undefined
+        }
+        showBackButton={showDishForm || showExperienceForm}
+        onBack={() => {
+          setShowDishForm(false);
+          setShowExperienceForm(false);
+        }}
       />
 
-      {!showDishForm ? (
+      {!showDishForm && !showExperienceForm ? (
         <div className="flex-1 py-6 px-8">
           <div className="rounded-xl">
             <TabsExperiencePage
@@ -144,8 +161,13 @@ const ExperiencesMainPage = () => {
             </div>
           </div>
         </div>
-      ) : (
+      ) : showDishForm ? (
         <DishFormPage setShowDishForm={setShowDishForm} />
+      ) : (
+        <ExperienceForm
+          setShowForm={setShowExperienceForm}
+          experienceToEdit={experienceToEdit}
+        />
       )}
     </>
   );

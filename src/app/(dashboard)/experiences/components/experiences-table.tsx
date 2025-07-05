@@ -11,37 +11,60 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useTours } from "@/hooks/use-experiences";
-import { Experience } from "@/models/experience";
-import { useMemo } from "react";
+import { ProposedTour } from "@/models/proposed-tour";
+import { useMemo, useState } from "react";
 import ExperiencesTableSkeleton from "./experiences-table-skeleton";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useHosts } from "@/hooks/use-hosts";
+import { ConfirmationDialog } from "@/components/common/confirmation-dialog";
 
 interface ExperienceProps {
   activeFilter: string;
   searchTerm: string;
+  onEdit: (experience: ProposedTour) => void;
 }
 
 const ExperiencesPage: React.FC<ExperienceProps> = ({
   activeFilter,
   searchTerm,
+  onEdit,
 }) => {
-  const { tours, count, isLoading, page, limit, setPage } = useTours([
-    "custom",
-    "getaway",
-    "offered",
-  ]);
+  const { tours, count, isLoading, page, limit, setPage, deleteTour } =
+    useTours(["custom", "getaway", "offered"]);
+  const { hosts } = useHosts();
   const router = useRouter();
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [experienceToDelete, setExperienceToDelete] = useState<string | null>(
+    null
+  );
+
+  const handleDeleteClick = (id: string) => {
+    setExperienceToDelete(id);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (experienceToDelete) {
+      deleteTour(experienceToDelete);
+      setExperienceToDelete(null);
+    }
+    setIsDeleteDialogOpen(false);
+  };
 
   const allExperiences = useMemo(() => {
-    return tours?.map((tour) => ({
-      ...tour,
-      experienceType: tour.type.charAt(0).toUpperCase() + tour.type.slice(1),
-    }));
-  }, [tours]);
+    return tours?.map((tour) => {
+      const host = hosts?.find((h) => h.objectId === tour.guideId);
+      return {
+        ...tour,
+        experienceType: tour.type.charAt(0).toUpperCase() + tour.type.slice(1),
+        hostName: host?.name || "N/A",
+      };
+    });
+  }, [tours, hosts]);
 
   const getFilteredExperiences = () => {
-    let data: Experience[] = allExperiences || [];
+    let data: (ProposedTour & { hostName: string })[] = allExperiences || [];
 
     if (activeFilter === "for-approval") {
       data = data.filter((item) => "isApproved" in item && !item.isApproved);
@@ -53,8 +76,10 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
       );
     }
 
-    return data.filter((item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    return data.filter(
+      (item) =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.hostName.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
 
@@ -103,14 +128,18 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
           {getFilteredExperiences().map((experience) => (
             <TableRow
               key={experience.objectId}
-              onClick={() =>
-                router.push(
-                  `/experiences/${experience.objectId}?tab=experiences`
-                )
-              }
               className="hover:bg-gray-50 cursor-pointer"
             >
-              <TableCell className="text-gray-900">{experience.name}</TableCell>
+              <TableCell
+                className="text-gray-900"
+                onClick={() =>
+                  router.push(
+                    `/experiences/${experience.objectId}?tab=experiences`
+                  )
+                }
+              >
+                {experience.name}
+              </TableCell>
               <TableCell className="text-gray-600">
                 {/*{experience.experienceType}*/}
               </TableCell>
@@ -146,30 +175,15 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
               )}
 
               <TableCell className="text-gray-600">
-                {experience.guideId}
+                {experience.hostName}
               </TableCell>
-
-              {/* <TableCell>
-                <div className="flex items-center space-x-3">
-                  <Avatar className="w-8 h-8">
-                    <AvatarImage
-                      src={experience.hostImageUrls}
-                      alt="Host Image"
-                    />
-                    <AvatarFallback>{experience.name[0]}</AvatarFallback>
-                  </Avatar>
-
-                  <span className="font-medium text-gray-900">
-                    {experience.hostname}
-                  </span>
-                </div>
-              </TableCell> */}
 
               <TableCell>
                 <div className="flex space-x-2">
                   <Button
                     size="sm"
                     className="bg-[#0D2E61] hover:bg-blue-900 text-[#FFFFFF]"
+                    onClick={() => onEdit(experience)}
                   >
                     Edit
                   </Button>
@@ -177,6 +191,7 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
                     size="sm"
                     variant="destructive"
                     className="bg-[#9A031E]"
+                    onClick={() => handleDeleteClick(experience.objectId)}
                   >
                     Delete
                   </Button>
@@ -207,6 +222,13 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
           <ChevronRight className="w-4 h-4" />
         </Button>
       </div>
+      <ConfirmationDialog
+        isOpen={isDeleteDialogOpen}
+        onClose={() => setIsDeleteDialogOpen(false)}
+        onConfirm={handleConfirmDelete}
+        title="Are you sure you want to delete this experience?"
+        description="This action will mark the experience as inactive and cannot be undone."
+      />
     </div>
   );
 };

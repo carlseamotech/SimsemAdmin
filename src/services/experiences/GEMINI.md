@@ -1,5 +1,7 @@
 # Gemini Context: `src/services/experiences`
 
+**Note:** In the Parse Server backend, experiences are represented by the `ProposedTour` class. This service layer uses the `ProposedTour` model, while the UI and display layers refer to it as an "Experience."
+
 This directory handles all API communication related to "Experiences," interacting with the Parse Server backend. The services here are responsible for creating, reading, updating, and deleting various types of tour and meal experiences.
 
 ## Files and Endpoints

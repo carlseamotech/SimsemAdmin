@@ -15,3 +15,7 @@ This directory contains the type definitions for the core business entities of t
 -   **`User`**: This model represents a Firebase user.
 -   **`TeamMember`**: This model represents a team member and includes their role for RBAC.
 -   **`Role`**: This enum defines the possible roles for a team member (e.g., `SuperAdmin`, `Admin`, `Editor`).
+
+## Key Models
+
+-   **`ProposedTour`**: This model represents a tour or other experience offered in the application. It corresponds to the `ProposedTour` class in the Parse Server backend. In the UI and display layers, this is referred to as an "Experience."

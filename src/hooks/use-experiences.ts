@@ -1,5 +1,15 @@
-import useSWR from "swr";
-import { getTours } from "@/services/experiences";
+import {
+  createTour,
+  deleteTour,
+  getTours,
+  updateTour,
+} from "@/services/experiences";
+import {
+  CreateProposedTourDTO,
+  UpdateProposedTourDTO,
+} from "@/dtos/experiences";
+import toast from "react-hot-toast";
+import { ApiError } from "@/services/types";
 import {
   getMeals,
   getMeal,
@@ -30,6 +40,7 @@ import {
   UpdateLibraryDishDTO,
 } from "@/services/experiences/library";
 import { useState } from "react";
+import useSWR from "swr";
 
 export const useTours = (types: string[], enabled: boolean = true) => {
   const [page, setPage] = useState(1);
@@ -43,6 +54,49 @@ export const useTours = (types: string[], enabled: boolean = true) => {
       })
   );
 
+  const createTourHandler = async (tour: CreateProposedTourDTO) => {
+    try {
+      const newTour = await createTour(tour);
+      mutate();
+      toast.success("Experience created successfully");
+      return newTour;
+    } catch (error: unknown) {
+      const apiError = error as ApiError;
+      toast.error(
+        apiError.response?.data?.message || "Failed to create experience"
+      );
+    }
+  };
+
+  const updateTourHandler = async (
+    id: string,
+    tour: UpdateProposedTourDTO
+  ) => {
+    try {
+      await updateTour(id, tour);
+      mutate();
+      toast.success("Experience updated successfully");
+    } catch (error: unknown) {
+      const apiError = error as ApiError;
+      toast.error(
+        apiError.response?.data?.message || "Failed to update experience"
+      );
+    }
+  };
+
+  const deleteTourHandler = async (id: string) => {
+    try {
+      await deleteTour(id);
+      mutate();
+      toast.success("Experience deleted successfully");
+    } catch (error: unknown) {
+      const apiError = error as ApiError;
+      toast.error(
+        apiError.response?.data?.message || "Failed to delete experience"
+      );
+    }
+  };
+
   return {
     tours: data?.results || [],
     count: data?.count || 0,
@@ -52,6 +106,9 @@ export const useTours = (types: string[], enabled: boolean = true) => {
     limit,
     setPage,
     setLimit,
+    createTour: createTourHandler,
+    updateTour: updateTourHandler,
+    deleteTour: deleteTourHandler,
     mutate,
   };
 };
@@ -99,33 +156,41 @@ export const useMeal = (id: string) => {
 };
 
 // Library Tours
-export const useLibraryTours = (limit?: number) => {
-  const { data, error, mutate } = useSWR(["/library-tours", limit], () =>
-    getLibraryTours(limit)
+export const useLibraryTours = () => {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
+  const { data, error, mutate } = useSWR(
+    ["/library-tours", page, limit],
+    () => getLibraryTours(limit, (page - 1) * limit)
   );
+
   return {
-    libraryTours: data,
+    libraryTours: data?.results || [],
+    count: data?.count || 0,
     isLoading: !error && !data,
     isError: error,
+    page,
+    limit,
+    setPage,
+    setLimit,
     createLibraryTour: async (tour: CreateLibraryTourDTO) => {
       const newTour = await createLibraryTour(tour);
-      mutate((data) => (data ? [...data, newTour] : [newTour]), false);
+      mutate();
       return newTour;
     },
     updateLibraryTour: async (id: string, tour: UpdateLibraryTourDTO) => {
       const updatedTour = await updateLibraryTour(id, tour);
-      mutate(
-        (data) =>
-          data?.map((t) => (t.objectId === id ? { ...t, ...updatedTour } : t)),
-        false
-      );
+      mutate();
       return updatedTour;
     },
   };
 };
 
 export const useLibraryTour = (id: string) => {
-  const { data, error } = useSWR(`/library-tours/${id}`, () => getLibraryTour(id));
+  const { data, error } = useSWR(`/library-tours/${id}`, () =>
+    getLibraryTour(id)
+  );
   return {
     libraryTour: data,
     isLoading: !error && !data,
@@ -134,33 +199,41 @@ export const useLibraryTour = (id: string) => {
 };
 
 // Library Meals
-export const useLibraryMeals = (limit?: number) => {
-  const { data, error, mutate } = useSWR(["/library-meals", limit], () =>
-    getLibraryMeals(limit)
+export const useLibraryMeals = () => {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
+  const { data, error, mutate } = useSWR(
+    ["/library-meals", page, limit],
+    () => getLibraryMeals(limit, (page - 1) * limit)
   );
+
   return {
-    libraryMeals: data,
+    libraryMeals: data?.results || [],
+    count: data?.count || 0,
     isLoading: !error && !data,
     isError: error,
+    page,
+    limit,
+    setPage,
+    setLimit,
     createLibraryMeal: async (meal: CreateLibraryMealDTO) => {
       const newMeal = await createLibraryMeal(meal);
-      mutate((data) => (data ? [...data, newMeal] : [newMeal]), false);
+      mutate();
       return newMeal;
     },
     updateLibraryMeal: async (id: string, meal: UpdateLibraryMealDTO) => {
       const updatedMeal = await updateLibraryMeal(id, meal);
-      mutate(
-        (data) =>
-          data?.map((m) => (m.objectId === id ? { ...m, ...updatedMeal } : m)),
-        false
-      );
+      mutate();
       return updatedMeal;
     },
   };
 };
 
 export const useLibraryMeal = (id: string) => {
-  const { data, error } = useSWR(`/library-meals/${id}`, () => getLibraryMeal(id));
+  const { data, error } = useSWR(`/library-meals/${id}`, () =>
+    getLibraryMeal(id)
+  );
   return {
     libraryMeal: data,
     isLoading: !error && !data,
@@ -169,33 +242,41 @@ export const useLibraryMeal = (id: string) => {
 };
 
 // Library Dishes
-export const useLibraryDishes = (limit?: number) => {
-  const { data, error, mutate } = useSWR(["/library-dishes", limit], () =>
-    getLibraryDishes(limit)
+export const useLibraryDishes = () => {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
+  const { data, error, mutate } = useSWR(
+    ["/library-dishes", page, limit],
+    () => getLibraryDishes(limit, (page - 1) * limit)
   );
+
   return {
-    libraryDishes: data,
+    libraryDishes: data?.results || [],
+    count: data?.count || 0,
     isLoading: !error && !data,
     isError: error,
+    page,
+    limit,
+    setPage,
+    setLimit,
     createLibraryDish: async (dish: CreateLibraryDishDTO) => {
       const newDish = await createLibraryDish(dish);
-      mutate((data) => (data ? [...data, newDish] : [newDish]), false);
+      mutate();
       return newDish;
     },
     updateLibraryDish: async (id: string, dish: UpdateLibraryDishDTO) => {
       const updatedDish = await updateLibraryDish(id, dish);
-      mutate(
-        (data) =>
-          data?.map((d) => (d.objectId === id ? { ...d, ...updatedDish } : d)),
-        false
-      );
+      mutate();
       return updatedDish;
     },
   };
 };
 
 export const useLibraryDish = (id: string) => {
-  const { data, error } = useSWR(`/library-dishes/${id}`, () => getLibraryDish(id));
+  const { data, error } = useSWR(`/library-dishes/${id}`, () =>
+    getLibraryDish(id)
+  );
   return {
     libraryDish: data,
     isLoading: !error && !data,

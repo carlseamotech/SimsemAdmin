@@ -1,0 +1,46 @@
+{
+  "objectId": "RDTskS2Q7f",
+  "country": "Jordan",
+  "cost": "30",
+  "city": "Amman ",
+  "difficultyLevel": "Intermediate",
+  "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/288bcea61b7ff552b278606aff0e2546_1682282279311.jpeg",
+  "galleryImageUrls": [
+    "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/8bc08126469554780951becbc3c63969_1682282281930.jpeg",
+    "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/8969d995c02d2c916403fb5e85b19ba9_1682282281965.jpeg"
+  ],
+  "guideId": "Y39lfqEtvj",
+  "description": "Join me, on a walking tour through the old and new markets of Amman Downtown. During the tour, I will take you to popular markets such as Al-Bukhari Market, Fruit and Vegetable Market, Tailor's Market, and more. You will also have the opportunity to taste and learn about traditional Arabic food and sweets like baklava, kunafa, and nuts. Additionally, I  will provide insights into Arabic customs and traditions, as well as the true history of the Middle East.You will also visit the gold market, the path of the nymphs, and learn how to cross the street according to local methods. Don't miss the chance to explore Amman's bustling markets with a knowledgeable local guide!Note: The tour requires a minimum of 2 participants to run. Please note: Price does not include food, drinks, tickets or transportation.",
+  "tourFeatures": [
+    "Culture",
+    "History",
+    "Other"
+  ],
+  "cameraZoom": 15,
+  "type": "custom",
+  "meetingPointLat": 31.951787010087155,
+  "otherTourFeature": "food ",
+  "meetingPoint": "ش. الهاشمي 48، عمّان، الأردن",
+  "phone": "+962799717165",
+  "countryCode": "+962",
+  "name": "walking tour ",
+  "meetingPointLong": 35.93746114522219,
+  "tourTimes": [
+    "{\"date\":\"Thu: 01 May, 2025 - Sat: 31 May, 2025\",\"isEnabled\":true,\"repetition\":\"\",\"time\":\"\",\"times\":[{\"end\":\"12:00 PM\",\"start\":\"10:00 AM\"},{\"end\":\"04:00 PM\",\"start\":\"02:00 PM\"},{\"end\":\"07:00 PM\",\"start\":\"05:00 PM\"}],\"yearMonth\":\"05/2025\"}",
+    "{\"date\":\"Sun: 01 Jun, 2025 - Mon: 30 Jun, 2025\",\"isEnabled\":true,\"repetition\":\"\",\"time\":\"\",\"times\":[{\"end\":\"12:00 PM\",\"start\":\"10:00 AM\"},{\"end\":\"04:00 PM\",\"start\":\"02:00 PM\"},{\"end\":\"07:00 PM\",\"start\":\"05:00 PM\"}],\"yearMonth\":\"06/2025\"}",
+    "{\"date\":\"Tue: 01 Jul, 2025 - Thu: 31 Jul, 2025\",\"isEnabled\":true,\"repetition\":\"\",\"time\":\"\",\"times\":[{\"end\":\"12:00 PM\",\"start\":\"10:00 AM\"},{\"end\":\"04:00 PM\",\"start\":\"02:00 PM\"},{\"end\":\"07:00 PM\",\"start\":\"05:00 PM\"}],\"yearMonth\":\"07/2025\"}",
+    "{\"date\":\"Fri: 01 Aug, 2025 - Sun: 31 Aug, 2025\",\"isEnabled\":true,\"repetition\":\"\",\"time\":\"\",\"times\":[{\"end\":\"12:00 PM\",\"start\":\"10:00 AM\"},{\"end\":\"04:00 PM\",\"start\":\"02:00 PM\"},{\"end\":\"07:00 PM\",\"start\":\"05:00 PM\"}],\"yearMonth\":\"08/2025\"}",
+    "{\"date\":\"Mon: 01 Sep, 2025 - Tue: 30 Sep, 2025\",\"isEnabled\":true,\"repetition\":\"\",\"time\":\"\",\"times\":[{\"end\":\"12:00 PM\",\"start\":\"10:00 AM\"},{\"end\":\"04:00 PM\",\"start\":\"02:00 PM\"},{\"end\":\"07:00 PM\",\"start\":\"05:00 PM\"}],\"yearMonth\":\"09/2025\"}",
+    "{\"date\":\"Wed: 01 Oct, 2025 - Fri: 31 Oct, 2025\",\"isEnabled\":true,\"repetition\":\"\",\"time\":\"\",\"times\":[{\"end\":\"12:00 PM\",\"start\":\"10:00 AM\"},{\"end\":\"04:00 PM\",\"start\":\"02:00 PM\"},{\"end\":\"07:00 PM\",\"start\":\"05:00 PM\"}],\"yearMonth\":\"10/2025\"}",
+    "{\"date\":\"Sat: 01 Nov, 2025 - Sun: 30 Nov, 2025\",\"isEnabled\":true,\"repetition\":\"\",\"time\":\"\",\"times\":[{\"end\":\"12:00 PM\",\"start\":\"10:00 AM\"},{\"end\":\"04:00 PM\",\"start\":\"02:00 PM\"},{\"end\":\"07:00 PM\",\"start\":\"05:00 PM\"}],\"yearMonth\":\"11/2025\"}",
+    "{\"date\":\"Mon: 01 Dec, 2025 - Wed: 31 Dec, 2025\",\"isEnabled\":true,\"repetition\":\"\",\"time\":\"\",\"times\":[{\"end\":\"12:00 PM\",\"start\":\"10:00 AM\"},{\"end\":\"04:00 PM\",\"start\":\"02:00 PM\"},{\"end\":\"07:00 PM\",\"start\":\"05:00 PM\"}],\"yearMonth\":\"12/2025\"}"
+  ],
+  "tourDuration": "2 hours",
+  "isApproved": true,
+  "isNotified": true,
+  "isActive": true,
+  "createdAt": "2023-04-23T20:38:04.244Z",
+  "updatedAt": "2025-05-23T11:19:12.995Z",
+  "tourPackages": [],
+  "pickupPoints": []
+}

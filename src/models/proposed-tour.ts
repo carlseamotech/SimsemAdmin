@@ -1,19 +1,18 @@
-export interface CreateCustomTourDTO {
+export interface ProposedTour {
+  objectId: string;
   country: string;
   cost: string;
   city: string;
   difficultyLevel: string;
   coverImageUrl: string;
   galleryImageUrls: string[];
-  galleryVideoUrls: string[];
   guideId: string;
   description: string;
   tourFeatures: string[];
   cameraZoom: number;
-  maxGuest: string;
-  type: 'custom';
+  type: string;
   meetingPointLat: number;
-  otherTourFeature?: string;
+  otherTourFeature: string;
   meetingPoint: string;
   phone: string;
   countryCode: string;
@@ -21,5 +20,11 @@ export interface CreateCustomTourDTO {
   meetingPointLong: number;
   tourTimes: string[];
   tourDuration: string;
-  itinerary: Record<string, { schedule: string; activity: string; description: string }[]>;
+  isApproved: boolean;
+  isNotified: boolean;
+  isActive: boolean;
+  tourPackages: string[];
+  pickupPoints: string[];
+  createdAt: string;
+  updatedAt: string;
 }

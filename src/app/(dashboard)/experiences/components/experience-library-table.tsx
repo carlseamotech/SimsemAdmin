@@ -13,12 +13,11 @@ import { useLibraryTours, useLibraryMeals } from "@/hooks/use-experiences";
 import { LibraryTour, LibraryMeal } from "@/models/experience";
 import ExperienceLibraryTableSkeleton from "./experience-library-table-skeleton";
 import { useRouter } from "next/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ExperienceLibraryProps {
   activeFilter: string;
   searchTerm: string;
-  currentPage: number;
-  itemsPerPage: number;
 }
 
 type CombinedLibraryItem = (LibraryTour | LibraryMeal) & { itemType: string };
@@ -26,11 +25,23 @@ type CombinedLibraryItem = (LibraryTour | LibraryMeal) & { itemType: string };
 const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
   activeFilter,
   searchTerm,
-  currentPage,
-  itemsPerPage,
 }) => {
-  const { libraryTours, isLoading: toursLoading } = useLibraryTours(10000);
-  const { libraryMeals, isLoading: mealsLoading } = useLibraryMeals(10000);
+  const {
+    libraryTours,
+    count: toursCount,
+    isLoading: toursLoading,
+    page: toursPage,
+    limit: toursLimit,
+    setPage: setToursPage,
+  } = useLibraryTours();
+  const {
+    libraryMeals,
+    count: mealsCount,
+    isLoading: mealsLoading,
+    page: mealsPage,
+    limit: mealsLimit,
+    setPage: setMealsPage,
+  } = useLibraryMeals();
   const router = useRouter();
   const allLibraryItems = useMemo(() => {
     const tours = libraryTours?.map((tour) => ({
@@ -61,11 +72,6 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
     );
   };
 
-  const paginatedLibraryItems = getFilteredLibrary().slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
   if (toursLoading || mealsLoading) {
     return <ExperienceLibraryTableSkeleton />;
   }
@@ -94,7 +100,7 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
         </TableHeader>
 
         <TableBody>
-          {paginatedLibraryItems.map((experience) => (
+          {getFilteredLibrary().map((experience) => (
             <TableRow
               key={experience.objectId}
               onClick={() =>
@@ -143,6 +149,45 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
           ))}
         </TableBody>
       </Table>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex-1 text-sm text-muted-foreground">
+          {activeFilter === "all" || activeFilter === "tour"
+            ? `${toursPage} of ${Math.ceil(toursCount / toursLimit)} pages`
+            : `${mealsPage} of ${Math.ceil(mealsCount / mealsLimit)} pages`}
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            activeFilter === "all" || activeFilter === "tour"
+              ? setToursPage(toursPage - 1)
+              : setMealsPage(mealsPage - 1)
+          }
+          disabled={
+            activeFilter === "all" || activeFilter === "tour"
+              ? toursPage === 1
+              : mealsPage === 1
+          }
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            activeFilter === "all" || activeFilter === "tour"
+              ? setToursPage(toursPage + 1)
+              : setMealsPage(mealsPage + 1)
+          }
+          disabled={
+            activeFilter === "all" || activeFilter === "tour"
+              ? toursPage === Math.ceil(toursCount / toursLimit)
+              : mealsPage === Math.ceil(mealsCount / mealsLimit)
+          }
+        >
+          <ChevronRight className="w-4 h-4" />
+        </Button>
+      </div>
     </div>
   );
 };
