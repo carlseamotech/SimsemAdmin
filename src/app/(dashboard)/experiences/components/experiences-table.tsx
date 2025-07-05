@@ -15,24 +15,22 @@ import { Experience } from "@/models/experience";
 import { useMemo } from "react";
 import ExperiencesTableSkeleton from "./experiences-table-skeleton";
 import { useRouter } from "next/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ExperienceProps {
   activeFilter: string;
   searchTerm: string;
-  currentPage: number;
-  itemsPerPage: number;
 }
 
 const ExperiencesPage: React.FC<ExperienceProps> = ({
   activeFilter,
   searchTerm,
-  currentPage,
-  itemsPerPage,
 }) => {
-  const { tours, isLoading } = useTours(
-    ["custom", "getaway", "offered"],
-    10000
-  );
+  const { tours, count, isLoading, page, limit, setPage } = useTours([
+    "custom",
+    "getaway",
+    "offered",
+  ]);
   const router = useRouter();
 
   const allExperiences = useMemo(() => {
@@ -59,11 +57,6 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
       item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
-
-  const paginatedExperiences = getFilteredExperiences().slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
 
   const isApprovalVisible =
     activeFilter === "all" || activeFilter === "for-approval";
@@ -107,7 +100,7 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
         </TableHeader>
 
         <TableBody>
-          {paginatedExperiences.map((experience) => (
+          {getFilteredExperiences().map((experience) => (
             <TableRow
               key={experience.objectId}
               onClick={() =>
@@ -193,6 +186,27 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
           ))}
         </TableBody>
       </Table>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex-1 text-sm text-muted-foreground">
+          {page} of {Math.ceil(count / limit)} pages
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(page - 1)}
+          disabled={page === 1}
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(page + 1)}
+          disabled={page === Math.ceil(count / limit)}
+        >
+          <ChevronRight className="w-4 h-4" />
+        </Button>
+      </div>
     </div>
   );
 };

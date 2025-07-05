@@ -17,3 +17,12 @@ This directory contains all the React components used in the application. The co
 -   **State Management**: For local component state, use the `useState` and `useReducer` hooks. For global state, use the `useContext` hook or a state management library like `zustand`.
 -   **Data Fetching**: Data fetching should be handled by the custom hooks in the `src/hooks` directory. Components should not directly interact with the API.
 -   **Authorization**: Components that require specific roles or permissions should use the `useAuth` hook to check the user's role and render content accordingly.
+
+## Adding New UI Components
+
+When adding new UI components from `shadcn/ui`, use the following command:
+
+```bash
+npx shadcn@latest add <component-name>
+```
+This ensures that the component is added with the correct styling and configuration, consistent with the rest of the project. Do not create these components manually.

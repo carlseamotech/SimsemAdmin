@@ -8,7 +8,7 @@ This document provides a high-level overview of the SimsemAdmin project's archit
 - **Language:** TypeScript
 - **UI Library:** React 19
 - **Styling:** Tailwind CSS with `clsx` and `tailwind-merge`.
-- **UI Components:** Shadcn/UI (as indicated by `components.json` and `src/components/ui`).
+- **UI Components:** Shadcn/UI. New components should be added using the `shadcn/ui` CLI. See `src/components/GEMINI.md` for more details.
 - **Authentication:** Firebase Authentication
 - **Client-Side Data Fetching:** `swr`
 - **Forms:** React Hook Form (`react-hook-form`) with `zod` for schema validation.

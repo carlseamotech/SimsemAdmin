@@ -29,21 +29,29 @@ import {
   CreateLibraryDishDTO,
   UpdateLibraryDishDTO,
 } from "@/services/experiences/library";
+import { useState } from "react";
 
-export const useTours = (
-  types: string[],
-  limit?: number,
-  enabled: boolean = true
-) => {
+export const useTours = (types: string[], enabled: boolean = true) => {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const { data, error, mutate } = useSWR(
-    enabled ? ["/tours", types.join(","), limit] : null,
-    () => getTours({ where: { type: { $in: types } }, limit })
+    enabled ? ["/tours", types.join(","), page, limit] : null,
+    () =>
+      getTours(limit, (page - 1) * limit, {
+        where: { type: { $in: types } },
+      })
   );
 
   return {
-    tours: data,
+    tours: data?.results || [],
+    count: data?.count || 0,
     isLoading: !error && !data,
     isError: error,
+    page,
+    limit,
+    setPage,
+    setLimit,
     mutate,
   };
 };

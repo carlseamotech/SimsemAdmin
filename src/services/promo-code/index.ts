@@ -1,15 +1,20 @@
-import api from '../api';
-import { PromoCode } from '@/models/promo-code';
-import {
-  CreatePromoCodeDTO,
-  UpdatePromoCodeDTO,
-} from '@/dtos/promo-code';
+import api from "../api";
+import { PromoCode } from "@/models/promo-code";
+import { CreatePromoCodeDTO, UpdatePromoCodeDTO } from "@/dtos/promo-code";
 
-const BASE_URL = '/classes/PromoCode';
+const BASE_URL = "/classes/PromoCode";
 
-export const getPromoCodes = async (): Promise<PromoCode[]> => {
-  const response = await api.get<{ results: PromoCode[] }>(BASE_URL);
-  return response.results;
+export const getPromoCodes = async (
+  limit: number,
+  skip: number
+): Promise<{ results: PromoCode[]; count: number }> => {
+  return await api.get(BASE_URL, {
+    params: {
+      limit,
+      skip,
+      count: 1,
+    },
+  });
 };
 
 export const createPromoCode = async (

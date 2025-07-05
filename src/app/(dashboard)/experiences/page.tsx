@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Search, ChevronLeft, ChevronRight, Filter } from "lucide-react";
+import { Search, Filter } from "lucide-react";
 import Header from "@/components/common/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,17 +9,13 @@ import DishLibraryPage from "@/app/(dashboard)/experiences/components/dish-libra
 import ExperiencesPage from "@/app/(dashboard)/experiences/components/experiences-table";
 import ExperienceLibraryPage from "@/app/(dashboard)/experiences/components/experience-library-table";
 import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-experience";
-import { useTours } from "@/hooks/use-experiences";
 import { useSearchParams } from "next/navigation";
 
 const ExperiencesMainPage = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [showDishForm, setShowDishForm] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
   const searchParams = useSearchParams();
-  // const [activeTab, setActiveTab] = useState("experiences");
   const tabInUrl = searchParams.get("tab") || "experiences";
   const [activeTab, setActiveTab] = useState(tabInUrl);
 
@@ -63,8 +59,6 @@ const ExperiencesMainPage = () => {
           <ExperiencesPage
             activeFilter={activeFilter}
             searchTerm={searchTerm}
-            currentPage={currentPage}
-            itemsPerPage={itemsPerPage}
           />
         );
       case "experience-library":
@@ -72,47 +66,12 @@ const ExperiencesMainPage = () => {
           <ExperienceLibraryPage
             activeFilter={activeFilter}
             searchTerm={searchTerm}
-            currentPage={currentPage}
-            itemsPerPage={itemsPerPage}
           />
         );
       case "dish-library":
-        return (
-          <DishLibraryPage
-            searchTerm={searchTerm}
-            currentPage={currentPage}
-            itemsPerPage={itemsPerPage}
-          />
-        );
+        return <DishLibraryPage searchTerm={searchTerm} />;
       default:
         return null;
-    }
-  };
-
-  const { tours } = useTours(
-    ["custom", "getaway", "offered"],
-    10000,
-    activeTab === "experiences"
-  );
-
-  const totalItems = () => {
-    if (activeTab === "experiences") {
-      return tours?.length || 0;
-    }
-    return 0;
-  };
-
-  const totalPages = Math.ceil(totalItems() / itemsPerPage);
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
     }
   };
 
@@ -127,7 +86,6 @@ const ExperiencesMainPage = () => {
       {!showDishForm ? (
         <div className="flex-1 py-6 px-8">
           <div className="rounded-xl">
-            {/* Tabs and Add Button */}
             <TabsExperiencePage
               activeTab={activeTab}
               setActiveTab={setActiveTab}
@@ -136,7 +94,6 @@ const ExperiencesMainPage = () => {
             />
 
             <div className="bg-white  drop-shadow-lg rounded-b-2xl rounded-tr-2xl px-16 py-4">
-              {/* Filters and Search */}
               <div className="py-6 border-b">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -168,35 +125,6 @@ const ExperiencesMainPage = () => {
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10 w-64"
                       />
-                    </div>
-
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <div>
-                        {`${(currentPage - 1) * itemsPerPage + 1} - ${Math.min(
-                          currentPage * itemsPerPage,
-                          totalItems()
-                        )} of ${totalItems()}`}
-                      </div>
-
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="w-8 h-8 bg-transparent border-none"
-                        onClick={handlePreviousPage}
-                        disabled={currentPage === 1}
-                      >
-                        <ChevronLeft className="w-4 h-4" />
-                      </Button>
-
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="w-8 h-8 bg-transparent border-none"
-                        onClick={handleNextPage}
-                        disabled={currentPage === totalPages}
-                      >
-                        <ChevronRight className="w-4 h-4" />
-                      </Button>
                     </div>
 
                     <div className="border-l border-[#D9D9DC] border h-9" />

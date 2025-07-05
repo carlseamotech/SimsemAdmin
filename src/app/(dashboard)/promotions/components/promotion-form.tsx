@@ -4,7 +4,6 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -16,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import {
   promotionSchema,
   PromotionFormData,
-} from "../../../../lib/promotion-validation";
+} from "@/lib/promotion-validation";
 import { usePromoCodes } from "@/hooks/use-promo-codes";
 import { CreatePromoCodeDTO, UpdatePromoCodeDTO } from "@/dtos/promo-code";
 import { PromoCode } from "@/models/promo-code";
@@ -46,8 +45,6 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
   useEffect(() => {
     if (isEditMode && promoToEdit) {
       reset({
-        name: promoToEdit.name,
-        description: promoToEdit.description,
         code: promoToEdit.code,
         country: promoToEdit.country,
         discount: promoToEdit.discount,
@@ -55,20 +52,16 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
         expiryDate: new Date(promoToEdit.expiryDate.iso)
           .toISOString()
           .split("T")[0],
-        quantity: promoToEdit.quantity,
         serviceType: promoToEdit.serviceType,
         isActive: promoToEdit.isActive,
       });
     } else {
       reset({
-        name: "",
-        description: "",
         code: "",
         country: "",
         discount: 0,
         discountType: "percentage",
         expiryDate: "",
-        quantity: 1,
         serviceType: "tour",
         isActive: true,
       });
@@ -109,41 +102,6 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
 
         <div className="space-y-6 px-8 pb-8">
           <div className="text-[30px] text-[#0D2E61]">Promotion Details</div>
-          <div>
-            <Label
-              htmlFor="name"
-              className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
-            >
-              Promotion Name
-            </Label>
-            <Input
-              id="name"
-              {...register("name")}
-              placeholder="e.g. First Booking Discount"
-              className="bg-[#00000008] h-[59px] text-[19px] text-[#000000B2] rounded-xl p-6 border-0 focus-visible:ring-1"
-            />
-            {errors.name && (
-              <p className="text-red-500 mt-1">{errors.name.message}</p>
-            )}
-          </div>
-
-          <div>
-            <Label
-              htmlFor="description"
-              className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
-            >
-              Promotion Details
-            </Label>
-            <Textarea
-              id="description"
-              {...register("description")}
-              placeholder="e.g. For all first-time bookings"
-              className="bg-[#00000008] text-[19px] text-[#000000B2] rounded-xl p-6 border-0 focus-visible:ring-1 min-h-[130px]"
-            />
-            {errors.description && (
-              <p className="text-red-500 mt-1">{errors.description.message}</p>
-            )}
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -214,25 +172,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <Label
-                htmlFor="quantity"
-                className="text-[20px] font-semibold text-[#000000B2] mb-2 block"
-              >
-                Quantity
-              </Label>
-              <Input
-                id="quantity"
-                type="number"
-                {...register("quantity")}
-                placeholder="e.g. 100"
-                className="bg-[#00000008] h-[59px] text-[19px] text-[#000000B2] rounded-xl p-6 border-0 focus-visible:ring-1"
-              />
-              {errors.quantity && (
-                <p className="text-red-500 mt-1">{errors.quantity.message}</p>
-              )}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <Label
                 htmlFor="expirationDate"

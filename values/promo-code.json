@@ -1,0 +1,15 @@
+{
+  "objectId": "3Nx79W39Pk",
+  "expiryDate": {
+    "__type": "Date",
+    "iso": "2024-12-31T08:39:00.000Z"
+  },
+  "code": "EXPLOREMORE",
+  "discountType": "percent ",
+  "discount": 30,
+  "country": "Egypt",
+  "isActive": true,
+  "createdAt": "2023-03-12T07:40:36.064Z",
+  "updatedAt": "2024-12-25T19:34:22.515Z",
+  "serviceType": "meal"
+}

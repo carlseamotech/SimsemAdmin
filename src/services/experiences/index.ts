@@ -3,13 +3,20 @@ import { Experience } from "@/models/experience";
 
 const BASE_URL = "/classes/ProposedTour";
 
-export const getTours = async (params: {
-  where?: Record<string, unknown>;
-  limit?: number;
-  order?: string;
-}): Promise<Experience[]> => {
-  const response = await api.get<{ results: Experience[] }>(BASE_URL, {
-    params,
+export const getTours = async (
+  limit: number,
+  skip: number,
+  params?: {
+    where?: Record<string, unknown>;
+    order?: string;
+  }
+): Promise<{ results: Experience[]; count: number }> => {
+  return await api.get(BASE_URL, {
+    params: {
+      ...params,
+      limit,
+      skip,
+      count: 1,
+    },
   });
-  return response.results;
 };

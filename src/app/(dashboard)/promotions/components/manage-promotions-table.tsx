@@ -15,6 +15,9 @@ import Image from "next/image";
 import EditIcon from "../../../../../public/common/edit-icon.svg";
 import TrashIcon from "../../../../../public/common/trash-con.svg";
 import PromotionsTableSkeleton from "./promotions-table-skeleton";
+import { useState } from "react";
+import { ConfirmationDialog } from "@/components/common/confirmation-dialog";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ManagePromotionsProps {
   searchTerm: string;
@@ -25,13 +28,36 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
   searchTerm,
   onEdit,
 }) => {
-  const { promoCodes, isLoading, deletePromoCode } = usePromoCodes();
+  const {
+    promoCodes,
+    count,
+    isLoading,
+    deletePromoCode,
+    page,
+    limit,
+    setPage,
+  } = usePromoCodes();
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [promoToDelete, setPromoToDelete] = useState<string | null>(null);
+
+  const handleDeleteClick = (id: string) => {
+    setPromoToDelete(id);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (promoToDelete) {
+      deletePromoCode(promoToDelete);
+      setPromoToDelete(null);
+    }
+    setIsDeleteDialogOpen(false);
+  };
 
   const filteredPromotions = promoCodes?.filter(
     (promo: PromoCode) =>
       promo.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      promo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      promo.serviceType.toLowerCase().includes(searchTerm.toLowerCase())
+      promo.serviceType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      promo.country.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (isLoading) {
@@ -44,28 +70,22 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
         <TableHeader>
           <TableRow className="bg-gray-50">
             <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
-              Promo Name
-            </TableHead>
-            <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
-              Description
-            </TableHead>
-            <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
               For
+            </TableHead>
+            <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
+              Country
             </TableHead>
             <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
               Code
             </TableHead>
             <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
-              Quantity
-            </TableHead>
-            <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
-              Remaining
+              Discount
             </TableHead>
             <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
               Expiry
             </TableHead>
             <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
-              Discount
+              Created At
             </TableHead>
             <TableHead className="font-semibold text-[12px] text-[#101018] p-3.5">
               Status
@@ -78,36 +98,33 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
         <TableBody>
           {filteredPromotions?.map((promo) => (
             <TableRow key={promo.objectId} className="hover:bg-gray-50">
-              <TableCell className="text-[14px] text-[#707070]">
-                {promo.name}
-              </TableCell>
-              <TableCell className="text-[14px] text-[#707070] max-w-xs truncate">
-                {promo.description}
-              </TableCell>
               <TableCell>
                 <Badge
                   variant="secondary"
-                  className="bg-[#3D3D3D1A] text-[14px] text-[#707070] rounded-full capitalize"
+                  className={`${
+                    promo.serviceType === "tour"
+                      ? "bg-blue-100 text-blue-800"
+                      : "bg-purple-100 text-purple-800"
+                  } text-[14px] rounded-full capitalize`}
                 >
                   {promo.serviceType}
                 </Badge>
               </TableCell>
+              <TableCell className="text-[14px] text-[#707070]">
+                {promo.country}
+              </TableCell>
               <TableCell className="text-[#0D2E61] text-[14px] font-bold">
                 {promo.code}
               </TableCell>
-              <TableCell className="text-[14px] text-[#707070]">
-                {promo.quantity}
-              </TableCell>
-              <TableCell className="text-[14px] text-[#707070]">
-                {promo.remaining}
+              <TableCell className="text-[14px] font-bold text-[#707070]">
+                {promo.discount}
+                {promo.discountType === "percentage" ? "%" : "$"}
               </TableCell>
               <TableCell className="text-[14px] text-[#707070]">
                 {new Date(promo.expiryDate.iso).toLocaleDateString()}
               </TableCell>
-              <TableCell className="text-[14px] font-bold text-[#707070]">
-                {promo.discountType === "amount" ? "$" : ""}
-                {promo.discount}
-                {promo.discountType === "percentage" ? "%" : ""}
+              <TableCell className="text-[14px] text-[#707070]">
+                {new Date(promo.createdAt).toLocaleDateString()}
               </TableCell>
               <TableCell>
                 <Badge
@@ -135,7 +152,7 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
                     variant="ghost"
                     size="icon"
                     className="w-8 h-8 text-gray-600 hover:text-red-600"
-                    onClick={() => deletePromoCode(promo.objectId)}
+                    onClick={() => handleDeleteClick(promo.objectId)}
                   >
                     <Image
                       src={TrashIcon}
@@ -149,6 +166,34 @@ const ManagePromotionsPage: React.FC<ManagePromotionsProps> = ({
           ))}
         </TableBody>
       </Table>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex-1 text-sm text-muted-foreground">
+          {page} of {Math.ceil(count / limit)} pages
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(page - 1)}
+          disabled={page === 1}
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(page + 1)}
+          disabled={page === Math.ceil(count / limit)}
+        >
+          <ChevronRight className="w-4 h-4" />
+        </Button>
+      </div>
+      <ConfirmationDialog
+        isOpen={isDeleteDialogOpen}
+        onClose={() => setIsDeleteDialogOpen(false)}
+        onConfirm={handleConfirmDelete}
+        title="Are you sure you want to delete this promotion?"
+        description="This action cannot be undone."
+      />
     </div>
   );
 };

@@ -10,30 +10,33 @@ import {
   getHostPayment,
 } from "@/services/hosts";
 import { HostPayment } from "@/models/host";
+import { useState } from "react";
 
-export const useHosts = (limit?: number) => {
-  const { data, error, mutate } = useSWR(["/hosts", limit], () =>
-    getHosts(limit)
+export const useHosts = () => {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
+  const { data, error, mutate } = useSWR(
+    ["/hosts", page, limit],
+    () => getHosts(limit, (page - 1) * limit)
   );
+
   return {
-    hosts: data,
+    hosts: data?.results || [],
+    count: data?.count || 0,
     isLoading: !error && !data,
     isError: error,
+    page,
+    limit,
+    setPage,
+    setLimit,
     updateHost: async (id: string, host: UpdateHostDTO) => {
-      const updatedHost = await updateHost(id, host);
-      mutate(
-        (data) =>
-          data?.map((h) => (h.objectId === id ? { ...h, ...updatedHost } : h)),
-        false
-      );
-      return updatedHost;
+      await updateHost(id, host);
+      mutate();
     },
     deleteHost: async (phone: string) => {
       await deleteHost(phone);
-      mutate(
-        (data) => data?.filter((h) => h.phone !== phone),
-        false
-      );
+      mutate();
     },
   };
 };

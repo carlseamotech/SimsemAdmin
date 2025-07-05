@@ -1,7 +1,5 @@
 export interface PromoCode {
   objectId: string;
-  name: string;
-  description: string;
   code: string;
   discount: number;
   discountType: "amount" | "percentage";
@@ -11,8 +9,6 @@ export interface PromoCode {
   };
   country: string;
   serviceType: "tour" | "meal";
-  quantity: number;
-  remaining: number;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
