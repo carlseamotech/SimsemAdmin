@@ -21,10 +21,9 @@ export const hostSchema = z.object({
     bankName: z.string().optional(),
     bankAddress: z.string().optional(),
     iban: z.string().optional(),
-    swiftBankCode: z.string().optional(),
-    yourName: z.string().optional(),
-    phoneNumber: z.string().optional(),
-    yourAddress: z.string().optional(),
+    swiftOrBic: z.string().optional(),
+    fullName: z.string().optional(),
+    address: z.string().optional(),
   }).optional(),
 });
 

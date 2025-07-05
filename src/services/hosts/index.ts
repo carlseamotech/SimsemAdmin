@@ -28,3 +28,7 @@ export const deleteHost = async (phone: string): Promise<void> => {
 export const updateHostPayment = async (id: string, payment: UpdateHostPaymentDTO): Promise<HostPayment> => {
   return await api.put<HostPayment>(`${PAYMENT_BASE_URL}/${id}`, payment as Record<string, unknown>);
 };
+
+export const getHostPayment = async (id: string): Promise<HostPayment> => {
+  return await api.get<HostPayment>(`${PAYMENT_BASE_URL}/${id}`);
+};

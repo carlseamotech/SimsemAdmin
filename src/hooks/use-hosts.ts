@@ -7,7 +7,9 @@ import {
   updateHostPayment,
   UpdateHostDTO,
   UpdateHostPaymentDTO,
+  getHostPayment,
 } from "@/services/hosts";
+import { HostPayment } from "@/models/host";
 
 export const useHosts = (limit?: number) => {
   const { data, error, mutate } = useSWR(["/hosts", limit], () =>
@@ -37,21 +39,35 @@ export const useHosts = (limit?: number) => {
 };
 
 export const useHost = (id: string) => {
-  const { data, error, mutate } = useSWR(`/hosts/${id}`, () => getHost(id));
+  const { data: host, error, mutate } = useSWR(`/hosts/${id}`, () =>
+    getHost(id)
+  );
+  const { data: hostPayment } = useSWR<HostPayment>(
+    host ? `/payments/${host.payment.objectId}` : null,
+    () => getHostPayment(host!.payment.objectId)
+  );
+
   return {
-    host: data,
-    isLoading: !error && !data,
+    host,
+    hostPayment,
+    isLoading: !error && !host,
     isError: error,
     updateHost: async (host: UpdateHostDTO) => {
       const updatedHost = await updateHost(id, host);
       mutate(updatedHost, false);
       return updatedHost;
     },
-    updateHostPayment: async (paymentId: string, payment: UpdateHostPaymentDTO) => {
+    updateHostPayment: async (
+      paymentId: string,
+      payment: UpdateHostPaymentDTO
+    ) => {
       const updatedPayment = await updateHostPayment(paymentId, payment);
-      // Assuming the host object has a payment property that needs to be updated
-      mutate((data) => (data ? { ...data, payment: updatedPayment } : data), false);
+      mutate();
       return updatedPayment;
+    },
+    deleteHost: async (phone: string) => {
+      await deleteHost(phone);
+      mutate(undefined, false);
     },
   };
 };

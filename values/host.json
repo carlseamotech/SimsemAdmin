@@ -1,0 +1,61 @@
+{
+  "objectId": "4kQcAzFFXM",
+  "country": "Egypt",
+  "city": "Cairo",
+  "idBackFile": {
+    "__type": "File",
+    "name": "b8d9ebb6925b30d02b8fadb70b276d42_1750698718720.jpeg",
+    "url": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/b8d9ebb6925b30d02b8fadb70b276d42_1750698718720.jpeg"
+  },
+  "thirdLanguageLevel": "Advanced",
+  "about": "I'm Russian living in Egypt for 3+ years, and I found my passion in making it easier for foreigners like me to enjoy and explore the best of Egypt - through the experience and perspective of a foreigner who had to adapt to local life and who found unique beauty in ordinary things locals don't always see 🤩",
+  "secondLanguage": "Arabic",
+  "thirdLanguage": "Russian",
+  "idFrontFile": {
+    "__type": "File",
+    "name": "1241f4808252f66d0b583e46097ac6c8_1750698717903.jpeg",
+    "url": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1241f4808252f66d0b583e46097ac6c8_1750698717903.jpeg"
+  },
+  "isSocialAuth": false,
+  "idBackFileUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/b8d9ebb6925b30d02b8fadb70b276d42_1750698718720.jpeg",
+  "secondLanguageLevel": "Intermediate",
+  "phone": "+201020980955",
+  "firstLanguageLevel": "Advanced",
+  "imageFile": {
+    "__type": "File",
+    "name": "3f22c0fa079051f4d114d375d7c5679c_1750698717171.jpeg",
+    "url": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/3f22c0fa079051f4d114d375d7c5679c_1750698717171.jpeg"
+  },
+  "isLocalSeller": false,
+  "imageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/3f22c0fa079051f4d114d375d7c5679c_1750698717171.jpeg",
+  "isFamilyHost": false,
+  "name": "Sasha",
+  "isTourGuide": true,
+  "payment": {
+    "__type": "Pointer",
+    "className": "ServiceProviderPayment",
+    "objectId": "WNCKBtzKXn"
+  },
+  "idFrontFileUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1241f4808252f66d0b583e46097ac6c8_1750698717903.jpeg",
+  "email": "alexandragdavydova@gmail.com",
+  "firstLanguage": "English",
+  "isVerified": true,
+  "isProfileComplete": false,
+  "isNotified": true,
+  "hasProposedTour": false,
+  "hasProposedMeal": false,
+  "hasProposedShop": false,
+  "rating": 0,
+  "isActive": false,
+  "hourlyRate": 0,
+  "toursCompleted": 0,
+  "foodServed": 0,
+  "isEmailVerified": true,
+  "isContactCreated": true,
+  "createdAt": "2025-06-23T17:21:53.310Z",
+  "updatedAt": "2025-07-01T06:43:31.550Z",
+  "lastActive": {
+    "__type": "Date",
+    "iso": "2025-07-01T06:33:38.551Z"
+  }
+}

@@ -7,10 +7,14 @@ import { HiOutlineX } from "react-icons/hi";
 
 interface DocumentUploadSectionProps {
   isEditing: boolean;
+  idFrontFileUrl?: string;
+  idBackFileUrl?: string;
 }
 
 export function DocumentUploadSection({
   isEditing,
+  idFrontFileUrl,
+  idBackFileUrl,
 }: DocumentUploadSectionProps) {
   const [frontImage, setFrontImage] = useState<File | null>(null);
   const [backImage, setBackImage] = useState<File | null>(null);
@@ -29,7 +33,8 @@ export function DocumentUploadSection({
   const renderUploadBox = (
     label: string,
     image: File | null,
-    setImage: React.Dispatch<React.SetStateAction<File | null>>
+    setImage: React.Dispatch<React.SetStateAction<File | null>>,
+    imageUrl?: string
   ) => (
     <div className="rounded-lg text-center w-full mx-auto relative">
       <label className="bg-[#00000008] rounded-lg mb-4  w-full aspect-[5/2]  flex items-center justify-center border-2 border-dashed border-gray-100 hover:border-gray-300 transition-colors cursor-pointer overflow-hidden relative">
@@ -62,6 +67,13 @@ export function DocumentUploadSection({
               </button>
             )}
           </>
+        ) : imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={label}
+            layout="fill"
+            objectFit="cover"
+          />
         ) : (
           <div className="flex flex-col justify-center items-center gap-2">
             <Image
@@ -86,8 +98,18 @@ export function DocumentUploadSection({
         <CardContent className="p-6">
           <h3 className="text-[24px] font-bold text-[#0D2E61] mb-3">ID Card</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {renderUploadBox("Front Side", frontImage, setFrontImage)}
-            {renderUploadBox("Back Side", backImage, setBackImage)}
+            {renderUploadBox(
+              "Front Side",
+              frontImage,
+              setFrontImage,
+              idFrontFileUrl
+            )}
+            {renderUploadBox(
+              "Back Side",
+              backImage,
+              setBackImage,
+              idBackFileUrl
+            )}
           </div>
         </CardContent>
       </Card>

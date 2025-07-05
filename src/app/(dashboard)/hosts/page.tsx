@@ -180,7 +180,7 @@ const HostDashboard = () => {
                 </TableHeader>
 
                 <TableBody>
-                  {paginatedHosts?.map((host) => (
+                  {paginatedHosts?.map((host: Host) => (
                     <TableRow
                       key={host.objectId}
                       className="hover:bg-gray-50 cursor-pointer"

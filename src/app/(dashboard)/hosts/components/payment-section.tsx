@@ -8,18 +8,24 @@ import { HostFormData } from "./host-scema";
 import Image from "next/image";
 import PaymentIcon from "../../../../../public/hosts-icons/payment-icon.svg";
 
+import { UpdatePaymentDialog } from "./update-payment-dialog";
+import { HostPayment } from "@/models/host";
+
 interface PaymentInfoSectionProps {
   form: UseFormReturn<HostFormData>;
   isEditing: boolean;
+  hostId: string;
+  payment: HostPayment;
 }
 
 export function PaymentInfoSection({
   form,
   isEditing,
+  hostId,
+  payment,
 }: PaymentInfoSectionProps) {
   const {
     register,
-    watch,
     formState: { errors },
   } = form;
 
@@ -27,18 +33,21 @@ export function PaymentInfoSection({
     { key: "bankName", label: "Bank Name", icon: PaymentIcon },
     { key: "bankAddress", label: "Bank Address", icon: PaymentIcon },
     { key: "iban", label: "IBAN", icon: PaymentIcon },
-    { key: "swiftBankCode", label: "Swift Bank Code", icon: PaymentIcon },
-    { key: "yourName", label: "Your Name", icon: PaymentIcon },
-    { key: "phoneNumber", label: "Phone Number", icon: PaymentIcon },
-    { key: "yourAddress", label: "Your Address", icon: PaymentIcon },
+    { key: "swiftOrBic", label: "Swift or Bic", icon: PaymentIcon },
+    { key: "fullName", label: "Full Name", icon: PaymentIcon },
+    { key: "address", label: "Address", icon: PaymentIcon },
   ] as const;
-
   return (
     <Card className="bg-[#3D3D3D0D] border-none p-0">
       <CardContent className="p-6">
-        <h3 className="text-[24px] font-bold text-[#0D2E61] mb-3">
-          Payment Info
-        </h3>
+        <div className="flex justify-between items-center mb-3">
+          <h3 className="text-[24px] font-bold text-[#0D2E61]">
+            Payment Info
+          </h3>
+          {!isEditing && (
+            <UpdatePaymentDialog hostId={hostId} payment={payment} />
+          )}
+        </div>
 
         <div className="grid grid-cols-1 gap-4">
           {isEditing ? (
@@ -69,7 +78,7 @@ export function PaymentInfoSection({
                 {paymentFields.map((field, index) => {
                   const IconComponent = field.icon;
                   const isLast = index === paymentFields.length - 1;
-                  const value = watch(`paymentInfo.${field.key}`);
+                  const value = payment[field.key];
 
                   return (
                     <div

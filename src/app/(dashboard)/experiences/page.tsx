@@ -28,7 +28,7 @@ const ExperiencesMainPage = () => {
     if (currentTab && currentTab !== activeTab) {
       setActiveTab(currentTab);
     }
-  }, [searchParams]);
+  }, [searchParams, activeTab]);
 
   const getButtonText = () => {
     if (activeTab === "dish-library") return "Add a new dish";

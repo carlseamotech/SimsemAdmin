@@ -11,7 +11,8 @@ import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import { DocumentUploadSection } from "@/app/(dashboard)/hosts/components/document-section";
 import { ContactLanguageSection } from "@/app/(dashboard)/hosts/components/contact-section";
-import { PaymentInfoSection } from "@/app/(dashboard)/hosts/components/payment-section";
+import { PaymentInfoDisplaySection } from "@/app/(dashboard)/hosts/components/payment-display-section";
+import { DeleteHostDialog } from "@/app/(dashboard)/hosts/components/delete-host-dialog";
 import {
   HostFormData,
   hostSchema,
@@ -26,7 +27,9 @@ const HostSummaryPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { host, isLoading, updateHost } = useHost(id as string);
+  const { host, hostPayment, isLoading, updateHost } = useHost(
+    id as string
+  );
 
   const form = useForm<HostFormData>({
     resolver: zodResolver(hostSchema),
@@ -191,66 +194,176 @@ const HostSummaryPage = () => {
                 </CardContent>
               </Card>
 
+              {/* Host Status Section */}
+              <Card className={`bg-[#3D3D3D0D]  border-none p-0 `}>
+                <CardContent className="p-6 ">
+                  <h3 className="text-[24px] font-bold text-[#0D2E61] mb-5">
+                    Host Status
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-[#3D3D3DCC] text-[15px]">
+                        Tour Guide
+                      </p>
+                      <p className="text-[18px] font-bold text-[#0D2E61]">
+                        {host.isTourGuide ? "Yes" : "No"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#3D3D3DCC] text-[15px]">
+                        Family Host
+                      </p>
+                      <p className="text-[18px] font-bold text-[#0D2E61]">
+                        {host.isFamilyHost ? "Yes" : "No"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#3D3D3DCC] text-[15px]">
+                        Local Seller
+                      </p>
+                      <p className="text-[18px] font-bold text-[#0D2E61]">
+                        {host.isLocalSeller ? "Yes" : "No"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#3D3D3DCC] text-[15px]">Rating</p>
+                      <p className="text-[18px] font-bold text-[#0D2E61]">
+                        {host.rating}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#3D3D3DCC] text-[15px]">
+                        Tours Completed
+                      </p>
+                      <p className="text-[18px] font-bold text-[#0D2E61]">
+                        {host.toursCompleted}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#3D3D3DCC] text-[15px]">
+                        Food Served
+                      </p>
+                      <p className="text-[18px] font-bold text-[#0D2E61]">
+                        {host.foodServed}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#3D3D3DCC] text-[15px]">
+                        Last Active
+                      </p>
+                      <p className="text-[18px] font-bold text-[#0D2E61]">
+                        {new Date(host.lastActive.iso).toLocaleDateString()}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#3D3D3DCC] text-[15px]">
+                        Profile Complete
+                      </p>
+                      <p className="text-[18px] font-bold text-[#0D2E61]">
+                        {host.isProfileComplete ? "Yes" : "No"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#3D3D3DCC] text-[15px]">
+                        Active Status
+                      </p>
+                      <p className="text-[18px] font-bold text-[#0D2E61]">
+                        {host.isActive ? "Active" : "Inactive"}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* Document */}
-              <DocumentUploadSection isEditing={isEditing} />
+              <DocumentUploadSection
+                isEditing={isEditing}
+                idBackFileUrl={host.idBackFileUrl}
+                idFrontFileUrl={host.idFrontFileUrl}
+              />
 
               {/* Contact & Language */}
               <ContactLanguageSection form={form} isEditing={isEditing} />
 
-              {/* Payment  */}
-              <PaymentInfoSection form={form} isEditing={isEditing} />
-
-              {/* Action Buttons */}
-              <div
-                className={`flex  pt-4 ${
-                  isEditing ? "justify-end" : "justify-between"
-                }`}
-              >
-                {!isEditing && (
-                  <Button
-                    type="button"
-                    size="lg"
-                    variant="normal"
-                    onClick={() => router.back()}
-                    disabled={isSubmitting}
-                    className={`text-[17px] font-bold  bg-[#9A031E] text-white  `}
-                  >
-                    Decline
-                  </Button>
+              <div className="flex justify-between pt-4">
+                {!isEditing ? (
+                  <>
+                    <div className="space-x-3">
+                      <Button
+                        type="button"
+                        size="lg"
+                        variant="outline"
+                        onClick={() => router.back()}
+                        disabled={isSubmitting}
+                        className="text-[17px] font-bold"
+                      >
+                        Decline
+                      </Button>
+                      <DeleteHostDialog
+                        hostId={host.objectId}
+                        hostName={host.name}
+                        hostPhone={host.phone}
+                      />
+                    </div>
+                    <div className="space-x-3">
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsEditing(true)}
+                        disabled={isSubmitting}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        size="lg"
+                        type="button"
+                        className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
+                        onClick={handleApprove}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Approving..." : "Approve"}
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex justify-end w-full space-x-3">
+                    <Button
+                      size="lg"
+                      type="button"
+                      variant="outline"
+                      onClick={() => {
+                        form.reset(host);
+                        setIsEditing(false);
+                      }}
+                      disabled={isSubmitting}
+                      className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      size="lg"
+                      type="submit"
+                      className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Saving..." : "Save"}
+                    </Button>
+                  </div>
                 )}
-
-                <div className="space-x-3 ">
-                  <Button
-                    size="lg"
-                    type="button"
-                    variant={isEditing ? "normal" : "outline"}
-                    onClick={() =>
-                      isEditing
-                        ? (form.reset(host), setIsEditing(false))
-                        : setIsEditing(true)
-                    }
-                    disabled={isSubmitting}
-                    className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
-                  >
-                    {isEditing ? "Cancel" : "Edit"}
-                  </Button>
-
-                  <Button
-                    size="lg"
-                    type={isEditing ? "submit" : "button"}
-                    className="text-[17px] font-bold  bg-[#FB8B24] text-[#FFFFFF]  hover:bg-orange-500"
-                    onClick={!isEditing ? handleApprove : undefined}
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting
-                      ? "Saving..."
-                      : isEditing
-                      ? "Save & Approve"
-                      : "Approve"}
-                  </Button>
-                </div>
               </div>
             </form>
+
+            {/* Payment Info */}
+            {hostPayment && !isEditing && (
+              <div className="pt-6">
+                <PaymentInfoDisplaySection
+                  hostId={id as string}
+                  payment={hostPayment}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,0 +1,9 @@
+{
+  "type": "IBAN",
+  "fullName": "Local Host Name",
+  "address": "Giza, Egypt",
+  "bankName": "Bank Name",
+  "iban": "IBAN Number",
+  "swiftOrBic": "Swift Code",
+  "bankAddress": "Bank Address"
+}
