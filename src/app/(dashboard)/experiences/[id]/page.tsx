@@ -6,7 +6,6 @@ const ExperienceIdPage = () => {
   const { id } = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
-
   const tab = searchParams.get("tab");
 
   if (!id) return <div>Missing ID</div>;
@@ -20,11 +19,7 @@ const ExperienceIdPage = () => {
   return (
     <>
       <div>
-        <Header
-          showBackButton={showBack}
-          // onBack={goBackOrPush}
-          onBack={() => router.back()}
-        />
+        <Header showBackButton={showBack} onBack={() => router.back()} />
       </div>
 
       {tab === "experiences" && <>exp {id}</>}

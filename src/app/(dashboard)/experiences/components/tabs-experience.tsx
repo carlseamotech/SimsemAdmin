@@ -36,7 +36,7 @@ const TabsExperiencePage: React.FC<TabsExperienceProps> = ({
         onValueChange={handleTabChange}
         className="w-auto rounded-none"
       >
-        <TabsList className="grid w-full grid-cols-3 p-0 h-full rounded-none bg-transparent">
+        <TabsList className="grid w-full grid-cols-3 p-0 h-full rounded-none">
           <TabsTrigger
             value="experiences"
             className="data-[state=active]:bg-[#FFFFFF] data-[state=active]:shadow-none font-bold rounded-none rounded-t-2xl p-4 bg-[#ECECED] data-[state=active]:text-[#0E356C] text-[23px] text-[#707070]"
