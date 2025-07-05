@@ -7,16 +7,12 @@ import { Gallery } from "./components/gallery";
 import { Packages } from "./components/packages";
 import { useHost } from "@/hooks/use-hosts";
 import { TourTimes } from "./components/tour-times";
-import { ExperiencesTableSkeleton } from "../components/experiences-table-skeleton";
 
 const ExperienceDetailsPage = () => {
   const { id } = useParams();
-  const { tour, isLoading } = useTour(id as string);
+  const { tour } = useTour(id as string);
   const { host } = useHost(tour?.guideId || "");
 
-  if (isLoading) {
-    return <ExperiencesTableSkeleton />;
-  }
 
   if (!tour) {
     return <div>Tour not found</div>;
