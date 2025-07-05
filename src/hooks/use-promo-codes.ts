@@ -27,9 +27,7 @@ export const usePromoCodes = () => {
       return newPromoCode;
     } catch (error: unknown) {
       const apiError = error as ApiError;
-      toast.error(
-        apiError.response?.data?.message || "Failed to create promotion"
-      );
+      toast.error(apiError.message || "Failed to create promotion");
     }
   };
 
@@ -43,9 +41,7 @@ export const usePromoCodes = () => {
       toast.success("Promotion updated successfully");
     } catch (error: unknown) {
       const apiError = error as ApiError;
-      toast.error(
-        apiError.response?.data?.message || "Failed to update promotion"
-      );
+      toast.error(apiError.message || "Failed to update promotion");
     }
   };
 
@@ -56,9 +52,7 @@ export const usePromoCodes = () => {
       toast.success("Promotion deleted successfully");
     } catch (error: unknown) {
       const apiError = error as ApiError;
-      toast.error(
-        apiError.response?.data?.message || "Failed to delete promotion"
-      );
+      toast.error(apiError.message || "Failed to delete promotion");
     }
   };
 

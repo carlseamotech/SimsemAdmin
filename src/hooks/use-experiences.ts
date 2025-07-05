@@ -62,9 +62,7 @@ export const useTours = (types: string[], enabled: boolean = true) => {
       return newTour;
     } catch (error: unknown) {
       const apiError = error as ApiError;
-      toast.error(
-        apiError.response?.data?.message || "Failed to create experience"
-      );
+      toast.error(apiError.message || "Failed to create experience");
     }
   };
 
@@ -78,9 +76,7 @@ export const useTours = (types: string[], enabled: boolean = true) => {
       toast.success("Experience updated successfully");
     } catch (error: unknown) {
       const apiError = error as ApiError;
-      toast.error(
-        apiError.response?.data?.message || "Failed to update experience"
-      );
+      toast.error(apiError.message || "Failed to update experience");
     }
   };
 
@@ -91,9 +87,7 @@ export const useTours = (types: string[], enabled: boolean = true) => {
       toast.success("Experience deleted successfully");
     } catch (error: unknown) {
       const apiError = error as ApiError;
-      toast.error(
-        apiError.response?.data?.message || "Failed to delete experience"
-      );
+      toast.error(apiError.message || "Failed to delete experience");
     }
   };
 

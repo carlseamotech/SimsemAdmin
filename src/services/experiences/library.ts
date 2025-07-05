@@ -1,5 +1,5 @@
 import api from "../api";
-import { LibraryTour, LibraryMeal, LibraryDish } from "@/models/experience";
+import { LibraryTour, LibraryMeal, LibraryDish } from "@/models/library";
 
 const TOUR_BASE_URL = "/classes/OfferedTour";
 const MEAL_BASE_URL = "/classes/OfferedMeal";

@@ -148,7 +148,7 @@ const HostSummaryPage = () => {
 
                       {isEditing && (
                         <Button
-                          variant="normal"
+                          variant="default"
                           className="text-[#FFFFFF] flex items-center justify-center w-[132px] h-[30px] text-[13px] bg-[#5F0F40] rounded-full"
                         >
                           CHANGE PHOTO

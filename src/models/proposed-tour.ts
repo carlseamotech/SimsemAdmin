@@ -10,7 +10,7 @@ export interface ProposedTour {
   description: string;
   tourFeatures: string[];
   cameraZoom: number;
-  type: string;
+  type: "custom" | "getaway" | "offered";
   meetingPointLat: number;
   otherTourFeature: string;
   meetingPoint: string;

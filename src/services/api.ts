@@ -1,4 +1,4 @@
-import { SimsemApi } from "@/services/types";
+import { ApiClient, ApiError } from "@/services/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const APP_ID = process.env.NEXT_PUBLIC_PARSE_APP_ID;
@@ -8,7 +8,20 @@ if (!BASE_URL || !APP_ID || !API_KEY) {
   throw new Error("Missing Parse API credentials in environment variables");
 }
 
-const api: SimsemApi = {
+const handleResponse = async (response: Response) => {
+  if (!response.ok) {
+    const errorData = await response.json();
+    const error: ApiError = {
+      status: response.status,
+      message: errorData.message || response.statusText,
+      data: errorData,
+    };
+    throw error;
+  }
+  return response.json();
+};
+
+const apiClient: ApiClient = {
   get: async <T>(
     endpoint: string,
     config?: { params?: Record<string, unknown> }
@@ -32,14 +45,10 @@ const api: SimsemApi = {
       },
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return response.json();
+    return handleResponse(response);
   },
 
-  post: async <T>(endpoint: string, data: Record<string, unknown>): Promise<T> => {
+  post: async <T>(endpoint: string, data: unknown): Promise<T> => {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: "POST",
       headers: {
@@ -50,14 +59,10 @@ const api: SimsemApi = {
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return response.json();
+    return handleResponse(response);
   },
 
-  put: async <T>(endpoint: string, data: Record<string, unknown>): Promise<T> => {
+  put: async <T>(endpoint: string, data: unknown): Promise<T> => {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: "PUT",
       headers: {
@@ -68,11 +73,7 @@ const api: SimsemApi = {
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return response.json();
+    return handleResponse(response);
   },
 
   delete: async <T>(endpoint: string): Promise<T> => {
@@ -84,12 +85,8 @@ const api: SimsemApi = {
       },
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return response.json();
+    return handleResponse(response);
   },
 };
 
-export default api;
+export default apiClient;

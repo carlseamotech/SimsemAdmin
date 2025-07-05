@@ -62,7 +62,7 @@ const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
 
           {/* Notifications */}
           <Button
-            variant="normal"
+            variant="default"
             size="icon"
             className="relative bg-[#0D2E61] rounded-full h-[50px] w-[50px]"
           >

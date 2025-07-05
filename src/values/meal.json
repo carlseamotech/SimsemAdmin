@@ -1,0 +1,33 @@
+{
+  "objectId": "h4iX4npghU",
+  "country": "Egypt",
+  "courses": [
+    "{\"dishes\":[{\"course\":\"starter\",\"description\":\"\",\"id\":\"HPr4KqRAAM\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/78b9c08e7b979d3c8396952f79661733_Baba%20ganoush.png\",\"ingredients\":\"Large eggplants, Garlic cloves, Tahini, Lemon\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Baba ganoush\",\"type\":\"Vegetarian\"},{\"course\":\"starter\",\"description\":\"\",\"id\":\"OBN29nAgWr\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9d9e080631cbe50ff06daa7b9327bf4e_Fuul%20medames.png\",\"ingredients\":\"Fava beans, Chickpeas, Cumin, Lemon, Parsley\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Ful medames\",\"type\":\"Vegetarian\"},{\"course\":\"starter\",\"description\":\"\",\"id\":\"5sL6lTH8Ig\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/7f19aa9168cb201f43edf2df5b2de176_Falafel.png\",\"ingredients\":\"Dried chickpeas, Onion, Parsley, Coriander, A mix of herbs and spices (black pepper, cumin, and cilantro)\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Falafel\",\"type\":\"Vegetarian\"},{\"course\":\"starter\",\"description\":\"\",\"id\":\"D5niuChcFT\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9c76f211f9b7d99c9396f05c070fe820_Aish%20Baladi.jpg\",\"ingredients\":\"Whole wheat flour, Active dry yeast, Sugar, Oil, Cracked wheat bran\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Aish Baladi\",\"type\":\"Vegetarian\"},{\"course\":\"starter\",\"description\":\"\",\"id\":\"dROqMJJC5i\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/5166ad04109d4cceff6f4363a055711b_Tameya.png\",\"ingredients\":\"Fava beans, Onion, Chickpeas, A mix of fresh herbs (coriander, parsley), A mix of herbs and spices  (dried coriander and cumin)\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Tameya\",\"type\":\"Vegetarian\"},{\"course\":\"starter\",\"description\":\"\",\"id\":\"JmFd3onbnk\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d2fbfc17f94231570e2fcd4875109183_Shakshuka.png\",\"ingredients\":\"Eggs, Onions, Tomatoes, Red or green pepper, A mix of fresh herbs (hot chilli, and parsley)\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Shakshuka\",\"type\":\"Vegetarian\"}],\"name\":\"Starter\"}",
+    "{\"dishes\":[{\"course\":\"main\",\"description\":\"\",\"id\":\"zepLJuCb99\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d83cfe0f99dbc3a1ee9d9634714e2b8e_Hawawshi.png\",\"ingredients\":\"Marinated beef or lamb, Onion, A mix of herbs and spices (black pepper, cumin, paprika, turmeric, and more), Pita bread\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Hawawshi\",\"type\":\"Meat\"},{\"course\":\"main\",\"description\":\"\",\"id\":\"f6OrpwplCz\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/a222974e93b055e77d69bce3e433896b_Hamam%20mahshi.png\",\"ingredients\":\"Squabs with giblets (stuffed), Onions, A mix of herbs or allspice, Freekeh (bulgur or rice are always substitutions), Parsley\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Hamam mahshi\",\"type\":\"Meat\"},{\"course\":\"main\",\"description\":\"\",\"id\":\"kFPslmWG1l\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/ff5dabf972656f3465c41c5e4ddaf774_Mahshi%20kromb.jpg\",\"ingredients\":\"Cabbage leaves, Short grain rice, Onion, Tomato sauce, A mix of herbs and spices (black pepper, cilantro, cinnamon, parsley, and dill)\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Mahshi kromb\",\"type\":\"Vegetarian\"},{\"course\":\"main\",\"description\":\"\",\"id\":\"RCmAnaMHp6\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1a050bfe8e85c2945402e164bfb617e3_Mahshi%20filfil.png\",\"ingredients\":\"Short-grain rice, Tomato, Capsicums, Onions, A mix of herbs and spices (black pepper, baharat, cumin, paprika, and garlic powder)\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Mahshi filfil \",\"type\":\"Vegetarian\"},{\"course\":\"main\",\"description\":\"\",\"id\":\"1fnFyrhIqi\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/74e9169c9280d069aeef787e8540d394_Moluhiya.png\",\"ingredients\":\"Mulukhiyah leaves, Garlic cloves, A mix of herbs and spices (black pepper, and dried coriander), Chicken broth, Baking soda\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Mulukhiyah\",\"type\":\"Vegetarian\"}],\"name\":\"Main Dish\"}",
+    "{\"dishes\":[{\"course\":\"dessert\",\"description\":\"\",\"id\":\"O5gpnYdLAM\",\"imageUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1ae10b4b3eb3111dc2a1ecdbedff1832_Knafe.png\",\"ingredients\":\"Shredded phyllo dough, Unsalted butter melted, Fine semolina, Sugar, Crushed nuts\",\"isChecked\":true,\"isSpecial\":false,\"name\":\"Knafe/Kunafa/knafeh\",\"type\":\"Vegetarian\"}],\"name\":\"Dessert\"}"
+  ],
+  "cost": "50",
+  "kitchenTimes": [
+    "{\"date\":\"Fri: 29 Sep, 2023\",\"isEnabled\":true,\"repetition\":\"Weekly\",\"time\":\"\",\"times\":[{\"end\":\"09:00 PM\",\"start\":\"12:00 PM\"}],\"yearMonth\":\"09/2023\"}"
+  ],
+  "city": "Cairo",
+  "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9a383799e9bd1f20d4d9775e41ffb40f_1695903293966.jpeg",
+  "hostId": "AejeXbYKjL",
+  "cameraZoom": 17.476025,
+  "meetingPointLat": 30.0606991261865,
+  "meetingPoint": "366H+C3Q, Nile Corniche, Boulaq Num.5, Bulaq, Cairo Governorate 4311001, Egypt",
+  "phone": "+2001016023837",
+  "maxGuest": "2",
+  "name": "Lunch on Nile ",
+  "mealDuration": "3 hours",
+  "meetingPointLong": 31.22747328132391,
+  "coverImageFile": {
+    "__type": "File",
+    "name": "9a383799e9bd1f20d4d9775e41ffb40f_1695903293966.jpeg",
+    "url": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9a383799e9bd1f20d4d9775e41ffb40f_1695903293966.jpeg"
+  },
+  "isCustomMeal": true,
+  "isActive": true,
+  "createdAt": "2023-09-28T12:14:55.441Z",
+  "updatedAt": "2023-09-28T12:14:55.441Z"
+}

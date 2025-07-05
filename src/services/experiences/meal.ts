@@ -1,5 +1,5 @@
 import api from "../api";
-import { Meal } from "@/models/experience";
+import { Meal } from "@/models/meal";
 
 const BASE_URL = "/classes/SelectedMeal";
 

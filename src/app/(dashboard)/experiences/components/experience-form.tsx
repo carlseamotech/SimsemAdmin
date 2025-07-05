@@ -99,7 +99,15 @@ export const ExperienceForm: React.FC<ExperienceFormProps> = ({
       const tourData: UpdateProposedTourDTO = data;
       await updateTour(experienceToEdit.objectId, tourData);
     } else {
-      const tourData: CreateProposedTourDTO = data;
+      const tourData: CreateProposedTourDTO = {
+        ...data,
+        galleryImageUrls: data.galleryImageUrls || [],
+        tourFeatures: data.tourFeatures || [],
+        otherTourFeature: data.otherTourFeature || "",
+        tourTimes: data.tourTimes || [],
+        tourPackages: data.tourPackages || [],
+        pickupPoints: data.pickupPoints || [],
+      };
       await createTour(tourData);
     }
     setShowForm(false);
