@@ -16,6 +16,7 @@ import type {
   FieldErrorsImpl,
   Merge,
 } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { HostFormData } from "./host-scema";
 
 interface ContactLanguageSectionProps {
@@ -29,8 +30,8 @@ export function ContactLanguageSection({
 }: ContactLanguageSectionProps) {
   const {
     register,
+    control,
     watch,
-    setValue,
     formState: { errors },
   } = form;
 
@@ -41,8 +42,7 @@ export function ContactLanguageSection({
     { key: "phone", label: "Phone Number", type: "tel" },
   ] as const;
 
-  const languages = ["English", "Turkish", "Arabic", "Spanish", "French"];
-  const levels = ["Beginner", "Intermediate", "Advance", "Native"] as const;
+  const levels = ["Beginner", "Intermediate", "Advanced", "Native"] as const;
 
   const getErrorMessage = (
     error:
@@ -101,30 +101,17 @@ export function ContactLanguageSection({
             Language
           </h3>
           <div className="space-y-3">
+            {/* First Language */}
             <div className="grid grid-cols-4 gap-2">
               <Label className="text-[20px] text-[#3D3D3D] col-span-2 md:col-span-1 ">
                 First Language:
               </Label>
-
               {isEditing ? (
                 <div className="col-span-2 md:col-span-3">
-                  <Select
-                    value={watch("firstLanguage")}
-                    onValueChange={(value) => setValue("firstLanguage", value)}
-                  >
-                    <SelectTrigger className="cursor-pointer w-full bg-white py-7 rounded-xl">
-                      <SelectValue placeholder="Select language" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      {languages.map((lang) => (
-                        <SelectItem key={lang} value={lang}>
-                          {lang}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
+                  <Input
+                    {...register("firstLanguage")}
+                    className=" bg-white h-[59px] rounded-xl  focus-visible:ring-0"
+                  />
                   {getErrorMessage(errors.firstLanguage) && (
                     <p className="text-red-500 text-sm mt-1">
                       {getErrorMessage(errors.firstLanguage)}
@@ -137,32 +124,34 @@ export function ContactLanguageSection({
                 </span>
               )}
             </div>
-
             <div className="grid grid-cols-4 gap-2 ">
               <Label className="text-[20px] text-[#3D3D3D] col-span-2 md:col-span-1">
                 Language Level:
               </Label>
-
               {isEditing ? (
                 <div className="col-span-2 md:col-span-3">
-                  <Select
-                    value={watch("firstLanguageLevel")}
-                    onValueChange={(
-                      value: HostFormData["firstLanguageLevel"]
-                    ) => setValue("firstLanguageLevel", value)}
-                  >
-                    <SelectTrigger className="cursor-pointer w-full bg-white py-7 rounded-xl">
-                      <SelectValue placeholder="Select level" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      {levels.map((level) => (
-                        <SelectItem key={level} value={level}>
-                          {level}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Controller
+                    name="firstLanguageLevel"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger className="cursor-pointer w-full bg-white py-7 rounded-xl">
+                          <SelectValue placeholder="Select level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {levels.map((level) => (
+                            <SelectItem key={level} value={level}>
+                              {level}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
                   {getErrorMessage(errors.firstLanguageLevel) && (
                     <p className="text-red-500 text-sm mt-1">
                       {getErrorMessage(errors.firstLanguageLevel)}
@@ -176,13 +165,113 @@ export function ContactLanguageSection({
               )}
             </div>
 
-            {isEditing && (
-              <div>
-                <span className="text-[#FB8B24] text-[20px] font-medium cursor-pointer hover:underline">
-                  +Add Language
+            {/* Second Language */}
+            <div className="grid grid-cols-4 gap-2">
+              <Label className="text-[20px] text-[#3D3D3D] col-span-2 md:col-span-1 ">
+                Second Language:
+              </Label>
+              {isEditing ? (
+                <div className="col-span-2 md:col-span-3">
+                  <Input
+                    {...register("secondLanguage")}
+                    className=" bg-white h-[59px] rounded-xl  focus-visible:ring-0"
+                  />
+                </div>
+              ) : (
+                <span className=" text-[20px] font-bold text-[#3D3D3D]">
+                  {watch("secondLanguage")}
                 </span>
-              </div>
-            )}
+              )}
+            </div>
+            <div className="grid grid-cols-4 gap-2 ">
+              <Label className="text-[20px] text-[#3D3D3D] col-span-2 md:col-span-1">
+                Language Level:
+              </Label>
+              {isEditing ? (
+                <div className="col-span-2 md:col-span-3">
+                  <Controller
+                    name="secondLanguageLevel"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger className="cursor-pointer w-full bg-white py-7 rounded-xl">
+                          <SelectValue placeholder="Select level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {levels.map((level) => (
+                            <SelectItem key={level} value={level}>
+                              {level}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                </div>
+              ) : (
+                <span className=" text-[20px] font-bold text-[#3D3D3D]">
+                  {watch("secondLanguageLevel")}
+                </span>
+              )}
+            </div>
+
+            {/* Third Language */}
+            <div className="grid grid-cols-4 gap-2">
+              <Label className="text-[20px] text-[#3D3D3D] col-span-2 md:col-span-1 ">
+                Third Language:
+              </Label>
+              {isEditing ? (
+                <div className="col-span-2 md:col-span-3">
+                  <Input
+                    {...register("thirdLanguage")}
+                    className=" bg-white h-[59px] rounded-xl  focus-visible:ring-0"
+                  />
+                </div>
+              ) : (
+                <span className=" text-[20px] font-bold text-[#3D3D3D]">
+                  {watch("thirdLanguage")}
+                </span>
+              )}
+            </div>
+            <div className="grid grid-cols-4 gap-2 ">
+              <Label className="text-[20px] text-[#3D3D3D] col-span-2 md:col-span-1">
+                Language Level:
+              </Label>
+              {isEditing ? (
+                <div className="col-span-2 md:col-span-3">
+                  <Controller
+                    name="thirdLanguageLevel"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger className="cursor-pointer w-full bg-white py-7 rounded-xl">
+                          <SelectValue placeholder="Select level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {levels.map((level) => (
+                            <SelectItem key={level} value={level}>
+                              {level}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                </div>
+              ) : (
+                <span className=" text-[20px] font-bold text-[#3D3D3D]">
+                  {watch("thirdLanguageLevel")}
+                </span>
+              )}
+            </div>
           </div>
         </CardContent>
       </Card>
