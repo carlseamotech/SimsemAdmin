@@ -12,6 +12,7 @@ import {
 import { useLibraryTours, useLibraryMeals } from "@/hooks/use-experiences";
 import { LibraryTour, LibraryMeal } from "@/models/experience";
 import ExperienceLibraryTableSkeleton from "./experience-library-table-skeleton";
+import { useRouter } from "next/navigation";
 
 interface ExperienceLibraryProps {
   activeFilter: string;
@@ -30,7 +31,7 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
 }) => {
   const { libraryTours, isLoading: toursLoading } = useLibraryTours(10000);
   const { libraryMeals, isLoading: mealsLoading } = useLibraryMeals(10000);
-
+  const router = useRouter();
   const allLibraryItems = useMemo(() => {
     const tours = libraryTours?.map((tour) => ({
       ...tour,
@@ -94,7 +95,15 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
 
         <TableBody>
           {paginatedLibraryItems.map((experience) => (
-            <TableRow key={experience.objectId} className="hover:bg-gray-50">
+            <TableRow
+              key={experience.objectId}
+              onClick={() =>
+                router.push(
+                  `/experiences/${experience.objectId}?tab=experience-library`
+                )
+              }
+              className="hover:bg-gray-50 cursor-pointer"
+            >
               <TableCell>
                 <Badge
                   variant="secondary"
@@ -108,12 +117,8 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
                 </Badge>
               </TableCell>
 
-              <TableCell className="text-gray-900">
-                {experience.name}
-              </TableCell>
-              <TableCell className="text-gray-600">
-                {experience.cost}
-              </TableCell>
+              <TableCell className="text-gray-900">{experience.name}</TableCell>
+              <TableCell className="text-gray-600">{experience.cost}</TableCell>
               <TableCell className="text-gray-600">
                 {experience.country}
               </TableCell>
@@ -143,4 +148,3 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
 };
 
 export default ExperienceLibraryPage;
-

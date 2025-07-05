@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { useLibraryDishes } from "@/hooks/use-experiences";
 import DishLibraryTableSkeleton from "./dish-library-table-skeleton";
+import { useRouter } from "next/navigation";
 
 interface DishLibraryProps {
   searchTerm: string;
@@ -24,6 +25,7 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({
   itemsPerPage,
 }) => {
   const { libraryDishes, isLoading } = useLibraryDishes(10000);
+  const router = useRouter();
 
   const getFilteredDishes = () => {
     if (!libraryDishes) return [];
@@ -70,7 +72,13 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({
         </TableHeader>
         <TableBody>
           {paginatedDishes.map((dish) => (
-            <TableRow key={dish.objectId} className="hover:bg-gray-50">
+            <TableRow
+              key={dish.objectId}
+              onClick={() =>
+                router.push(`/experiences/${dish.objectId}?tab=dish-library`)
+              }
+              className="hover:bg-gray-50 cursor-pointer"
+            >
               <TableCell>
                 <Badge
                   variant="secondary"
@@ -86,9 +94,10 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({
                 </Badge>
               </TableCell>
               <TableCell className="text-gray-900">{dish.name}</TableCell>
-              <TableCell className="text-gray-600">
+              <TableCell className="text-gray-600 max-w-[200px] truncate  ">
                 {dish.ingredients}
               </TableCell>
+
               <TableCell className="text-gray-600">{dish.course}</TableCell>
               <TableCell className="text-gray-600">{dish.country}</TableCell>
               <TableCell>

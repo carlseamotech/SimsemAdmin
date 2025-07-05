@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import Header from "@/components/common/header";
 import { Button } from "@/components/ui/button";
@@ -10,14 +10,25 @@ import ExperiencesPage from "@/app/(dashboard)/experiences/components/experience
 import ExperienceLibraryPage from "@/app/(dashboard)/experiences/components/experience-library-table";
 import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-experience";
 import { useTours } from "@/hooks/use-experiences";
+import { useSearchParams } from "next/navigation";
 
 const ExperiencesMainPage = () => {
-  const [activeTab, setActiveTab] = useState("experiences");
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [showDishForm, setShowDishForm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  const searchParams = useSearchParams();
+  // const [activeTab, setActiveTab] = useState("experiences");
+  const tabInUrl = searchParams.get("tab") || "experiences";
+  const [activeTab, setActiveTab] = useState(tabInUrl);
+
+  useEffect(() => {
+    const currentTab = searchParams.get("tab");
+    if (currentTab && currentTab !== activeTab) {
+      setActiveTab(currentTab);
+    }
+  }, [searchParams]);
 
   const getButtonText = () => {
     if (activeTab === "dish-library") return "Add a new dish";

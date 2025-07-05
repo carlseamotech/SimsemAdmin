@@ -1,4 +1,5 @@
 "use client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,7 @@ import { useTours } from "@/hooks/use-experiences";
 import { Experience } from "@/models/experience";
 import { useMemo } from "react";
 import ExperiencesTableSkeleton from "./experiences-table-skeleton";
+import { useRouter } from "next/navigation";
 
 interface ExperienceProps {
   activeFilter: string;
@@ -32,12 +34,12 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
     ["custom", "getaway", "offered"],
     10000
   );
+  const router = useRouter();
 
   const allExperiences = useMemo(() => {
     return tours?.map((tour) => ({
       ...tour,
-      experienceType:
-        tour.type.charAt(0).toUpperCase() + tour.type.slice(1),
+      experienceType: tour.type.charAt(0).toUpperCase() + tour.type.slice(1),
     }));
   }, [tours]);
 
@@ -107,10 +109,16 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
 
         <TableBody>
           {paginatedExperiences.map((experience) => (
-            <TableRow key={experience.objectId} className="hover:bg-gray-50">
-              <TableCell className="text-gray-900">
-                {experience.name}
-              </TableCell>
+            <TableRow
+              key={experience.objectId}
+              onClick={() =>
+                router.push(
+                  `/experiences/${experience.objectId}?tab=experiences`
+                )
+              }
+              className="hover:bg-gray-50 cursor-pointer"
+            >
+              <TableCell className="text-gray-900">{experience.name}</TableCell>
               <TableCell className="text-gray-600">
                 {/*{experience.experienceType}*/}
               </TableCell>
@@ -149,6 +157,22 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
                 {experience.guideId}
               </TableCell>
 
+              {/* <TableCell>
+                <div className="flex items-center space-x-3">
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage
+                      src={experience.hostImageUrls}
+                      alt="Host Image"
+                    />
+                    <AvatarFallback>{experience.name[0]}</AvatarFallback>
+                  </Avatar>
+
+                  <span className="font-medium text-gray-900">
+                    {experience.hostname}
+                  </span>
+                </div>
+              </TableCell> */}
+
               <TableCell>
                 <div className="flex space-x-2">
                   <Button
@@ -175,4 +199,3 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
 };
 
 export default ExperiencesPage;
-
