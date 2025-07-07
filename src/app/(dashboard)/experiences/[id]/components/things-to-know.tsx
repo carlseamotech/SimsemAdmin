@@ -42,7 +42,7 @@ export function ThingsToKnow() {
 
             return (
               <div
-                key={item.name}
+                key={`${item.name}-${index}`}
                 className="relative flex items-start pb-8 last:pb-0 gap-4"
               >
                 {/* Timeline line (hide if last item) */}
