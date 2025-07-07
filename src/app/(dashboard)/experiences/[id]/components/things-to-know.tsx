@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import InfoIcon from "../../../../../../public/hosts-icons/payment-icon.svg";
 
-export function ThingsToKnow() {
+const ThingsToKnow = () => {
   const thingsToKnow = [
     {
       name: "Cancellation Policy",
@@ -71,4 +71,6 @@ export function ThingsToKnow() {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default ThingsToKnow;

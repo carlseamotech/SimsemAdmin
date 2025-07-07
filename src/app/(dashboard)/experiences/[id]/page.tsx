@@ -17,7 +17,8 @@ import XCloseIcon from "../../../../../public/experience/xclose-icon.svg";
 import Image from "next/image";
 import { TourMenu } from "./components/tour-menu";
 import { useState } from "react";
-import { ThingsToKnow } from "./components/things-to-know";
+import ThingsToKnow from "./components/things-to-know";
+import { WhatsIncludedNot } from "./components/included-not";
 
 const ExperienceDetailsPage = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -224,6 +225,9 @@ const ExperienceDetailsPage = () => {
 
                 {/* things to know */}
                 <ThingsToKnow />
+
+                {/* WhatsIncludedNot */}
+                <WhatsIncludedNot />
 
                 {/* tour menu */}
                 <TourMenu images={tour.galleryImageUrls} />
