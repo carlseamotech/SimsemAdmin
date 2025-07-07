@@ -14,11 +14,15 @@ import LocationIcon from "../../../../../public/experience/location-icon.svg";
 import FrameIcon from "../../../../../public/experience/frame-icon.svg";
 import CheckIcon from "../../../../../public/experience/check-icon.svg";
 import XCloseIcon from "../../../../../public/experience/xclose-icon.svg";
-
 import Image from "next/image";
 import { TourMenu } from "./components/tour-menu";
+import { useState } from "react";
+import { ThingsToKnow } from "./components/things-to-know";
 
 const ExperienceDetailsPage = () => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const router = useRouter();
   // const searchParams = useSearchParams();
   // const tab = searchParams.get("tab");
@@ -218,6 +222,9 @@ const ExperienceDetailsPage = () => {
                   </div>
                 </div>
 
+                {/* things to know */}
+                <ThingsToKnow />
+
                 {/* tour menu */}
                 <TourMenu images={tour.galleryImageUrls} />
 
@@ -288,6 +295,70 @@ const ExperienceDetailsPage = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="flex justify-between p-8 border-t">
+          {!isEditing ? (
+            <>
+              <div className="space-x-3">
+                <Button
+                  type="button"
+                  size="lg"
+                  variant="outline"
+                  onClick={() => router.back()}
+                  disabled={isSubmitting}
+                  className="text-[17px] font-bold bg-[#9A031E] text-white"
+                >
+                  Decline
+                </Button>
+              </div>
+              <div className="space-x-3">
+                <Button
+                  size="lg"
+                  type="button"
+                  variant="outline"
+                  onClick={() => setIsEditing(true)}
+                  disabled={isSubmitting}
+                  className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                >
+                  Edit
+                </Button>
+                <Button
+                  size="lg"
+                  type="button"
+                  className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
+                  // onClick={handleApprove}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Approving..." : "Approve"}
+                </Button>
+              </div>
+            </>
+          ) : (
+            <div className="flex justify-end w-full space-x-3">
+              <Button
+                size="lg"
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  // form.reset(host);
+                  setIsEditing(false);
+                }}
+                disabled={isSubmitting}
+                className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+              >
+                Cancel
+              </Button>
+              <Button
+                size="lg"
+                type="submit"
+                className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Saving..." : "Save"}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

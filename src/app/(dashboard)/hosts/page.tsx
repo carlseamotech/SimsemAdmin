@@ -71,10 +71,7 @@ const HostDashboard = () => {
                 </div>
               </div>
             </div>
-            <HostsTable
-              searchTerm={searchTerm}
-              activeFilter={activeFilter}
-            />
+            <HostsTable searchTerm={searchTerm} activeFilter={activeFilter} />
           </div>
         </div>
       </div>
