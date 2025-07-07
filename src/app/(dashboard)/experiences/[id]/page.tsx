@@ -9,15 +9,26 @@ import { useHost } from "@/hooks/use-hosts";
 import { TourTimes } from "./components/tour-times";
 import { Button } from "@/components/ui/button";
 import { CoverPhoto } from "./components/cover-photo";
+import ClockIcon from "../../../../../public/experience/clock-icon.svg";
+import LocationIcon from "../../../../../public/experience/location-icon.svg";
+import FrameIcon from "../../../../../public/experience/frame-icon.svg";
+import CheckIcon from "../../../../../public/experience/check-icon.svg";
+import XCloseIcon from "../../../../../public/experience/xclose-icon.svg";
+
+import Image from "next/image";
+import { TourMenu } from "./components/tour-menu";
 
 const ExperienceDetailsPage = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const tab = searchParams.get("tab");
+  // const searchParams = useSearchParams();
+  // const tab = searchParams.get("tab");
 
   const { id } = useParams();
   const { tour } = useTour(id as string);
   const { host } = useHost(tour?.guideId || "");
+
+  console.log(tour, "tour");
+  console.log("host", host);
 
   if (!tour) {
     return (
@@ -56,7 +67,9 @@ const ExperienceDetailsPage = () => {
             <div className="m-8 space-y-8 shadow-lg   drop-shadow-lg rounded-2xl p-8">
               <div className=" border-b rounded-none shadow-none flex justify-between items-center py-6">
                 <div>
-                  <h1 className="text-[15px] text-[#3D3D3DCC]">MEAL NAME</h1>
+                  <h1 className="text-[15px] text-[#3D3D3DCC]">
+                    MEAL / TOUR NAME
+                  </h1>
                   <p className="text-[#0D2E61] text-[30px] font-bold ">
                     The Ultimate Breakfast at Istanbul
                   </p>
@@ -68,7 +81,8 @@ const ExperienceDetailsPage = () => {
               </div>
 
               <div className=" flex flex-col gap-8 ">
-                <div className="drop-shadow-lg rounded-2xl p-6  bg-[#3D3D3D0D]  flex flex-col gap-12">
+                {/* about the toour */}
+                <div className=" rounded-2xl p-6  bg-[#3D3D3D0D]  flex flex-col gap-6">
                   <div className="text-[24px] font-bold text-[#0D2E61]">
                     About the tour
                   </div>
@@ -79,19 +93,43 @@ const ExperienceDetailsPage = () => {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-3 items-center w-1/2">
-                    <div className="border-y p-4 border-[#3D3D3D1A] flex flex-row items-center justify-center space-x-1">
-                      <p className="text-[#3D3D3D] font-bold text-[15px] capitalize">
-                        {tour.tourDuration}
-                      </p>
-                      <p className="text-[#3D3D3D]  text-[15px]">Duration</p>
+                  <div className="grid grid-cols-3 items-center w-full lg:w-1/2 h-[55px]">
+                    <div className="border-y p-4 border-[#3D3D3D1A] flex flex-row items-center justify-center gap-2 h-full ">
+                      <Image
+                        src={ClockIcon}
+                        alt="clock icon"
+                        className="object-contain"
+                      />
+
+                      <span className="text-[#3D3D3D] font-bold text-[15px] capitalize truncate space-x-1">
+                        <span> {tour.tourDuration} </span>
+                        <span className="text-[#3D3D3D] text-[15px] ">
+                          Duration
+                        </span>
+                      </span>
                     </div>
 
-                    <div className="border p-4 border-[#3D3D3D1A] flex items-center justify-center text-[#3D3D3D] font-bold text-[15px]">
-                      {tour.city}, {tour.country}
+                    <div className="border p-4 border-[#3D3D3D1A]  text-[#3D3D3D]  flex flex-row items-center justify-center gap-2 h-full  ">
+                      <Image
+                        src={LocationIcon}
+                        alt="location icon"
+                        className="object-contain"
+                      />
+                      <span className="font-bold text-[15px] truncate">
+                        {tour.city}, {tour.country}
+                      </span>
                     </div>
-                    <div className="border-y p-4 border-[#3D3D3D1A] flex items-center justify-center text-[#3D3D3D] font-bold text-[15px]">
-                      {tour.difficultyLevel}
+
+                    <div className="border-y p-4 border-[#3D3D3D1A] flex flex-row items-center justify-center gap-2  h-full ">
+                      <Image
+                        src={FrameIcon}
+                        alt="frame icon"
+                        className="object-contain"
+                      />
+
+                      <span className="text-[#3D3D3D] font-bold text-[15px] truncate">
+                        {tour.difficultyLevel}
+                      </span>
                     </div>
                   </div>
 
@@ -107,14 +145,86 @@ const ExperienceDetailsPage = () => {
                   </div>
                 </div>
 
-                <CoverPhoto images={tour.galleryImageUrls} />
+                {/* coverr photo */}
+                <CoverPhoto cover={tour.coverImageUrl} />
 
+                {/* gallery */}
                 <Gallery images={tour.galleryImageUrls} />
+
+                {/* whats to expect */}
+                <div className="rounded-2xl p-6  bg-[#3D3D3D0D]  flex flex-col gap-6">
+                  <div className="text-[24px] font-bold text-[#0D2E61]">
+                    What to expect
+                  </div>
+
+                  <div>
+                    <p className="text-[#000000B2]  text-[18px] ">
+                      {tour.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* child policy & guest requirements */}
+                <div className="grid grid-cols-2 gap-8">
+                  <div className="rounded-2xl p-8  bg-[#3D3D3D0D]  flex flex-col gap-6">
+                    <div className="text-[24px] font-bold text-[#0D2E61]">
+                      Children Policy
+                    </div>
+
+                    <div className="flex flex-wrap gap-4">
+                      <Image
+                        src={CheckIcon}
+                        alt="check icon"
+                        className="object-contain"
+                      />
+
+                      <span className="text-[#3D3D3D]  text-[18px]">
+                        Children are allowed
+                      </span>
+                    </div>
+
+                    <div className="bg-white drop-shadow-xl p-6 rounded-2xl space-y-6">
+                      <div className="flex flex-row justify-between items-center">
+                        <div className="text-[20px] text-[#0D2E61] font-bold">
+                          Children
+                        </div>
+
+                        <Image
+                          src={XCloseIcon}
+                          alt="xclose icon"
+                          className="object-contain"
+                        />
+                      </div>
+
+                      <p className="text-[#3D3D3DB2] font-bold text-[19px] ">
+                        ${tour.cost}/ person
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className=" rounded-2xl p-8  bg-[#3D3D3D0D]  flex flex-col gap-6">
+                    <div className="text-[24px] font-bold text-[#0D2E61]">
+                      Guest Requirements
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-[#3D3D3D] text-[20px]">
+                        Minimum Age:
+                      </span>
+                      <span className="text-[#000000B2]  text-[20px] font-bold ">
+                        18
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* tour menu */}
+                <TourMenu images={tour.galleryImageUrls} />
 
                 <TourTimes tourTimes={tour.tourTimes} />
 
                 <div className="drop-shadow-lg rounded-2xl p-8  bg-[#3D3D3D0D] ">
-                  {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
                       <div className="bg-gray-100 p-4 rounded-lg">
                         <h3 className="text-lg font-bold mb-2">Details</h3>
@@ -173,7 +283,7 @@ const ExperienceDetailsPage = () => {
                       </div>
                       <Packages packages={tour.tourPackages} />
                     </div>
-                  </div> */}
+                  </div>
                 </div>
               </div>
             </div>
