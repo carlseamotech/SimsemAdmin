@@ -19,14 +19,8 @@ interface DishLibraryProps {
 }
 
 const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
-  const {
-    libraryDishes,
-    count,
-    isLoading,
-    page,
-    limit,
-    setPage,
-  } = useLibraryDishes();
+  const { libraryDishes, count, isLoading, page, limit, setPage } =
+    useLibraryDishes();
   const router = useRouter();
 
   const getFilteredDishes = () => {
@@ -67,6 +61,7 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
             </TableHead>
           </TableRow>
         </TableHeader>
+
         <TableBody>
           {getFilteredDishes().map((dish) => (
             <TableRow

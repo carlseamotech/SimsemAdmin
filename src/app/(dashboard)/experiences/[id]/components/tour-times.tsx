@@ -17,8 +17,9 @@ export const TourTimes: React.FC<TourTimesProps> = ({ tourTimes }) => {
   const parsedTourTimes: TourTime[] = tourTimes.map((time) => JSON.parse(time));
 
   return (
-    <div className="mt-8">
-      <h3 className="text-lg font-bold mb-2">Tour Times</h3>
+    <div className="drop-shadow-lg rounded-2xl p-6  bg-[#3D3D3D0D] space-y-4">
+      <div className="text-[24px] font-bold text-[#0D2E61]">Tour Times</div>
+
       <div className="space-y-4">
         {parsedTourTimes.map((time, index) => (
           <div key={index} className="p-4 border rounded-lg">

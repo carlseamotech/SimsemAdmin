@@ -40,7 +40,7 @@ const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
               variant="ghost"
               size="icon"
               onClick={onBack}
-              className="mr-4 bg-[#F2EDED] rounded-full"
+              className="mr-4 bg-[#F2EDED] rounded-full cursor-pointer"
             >
               <FaChevronLeft className="w-4 h-4" />
             </Button>

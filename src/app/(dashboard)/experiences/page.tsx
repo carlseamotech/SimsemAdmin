@@ -21,16 +21,16 @@ const ExperiencesMainPage = () => {
   const [experienceToEdit, setExperienceToEdit] = useState<ProposedTour | null>(
     null
   );
+
+  const [activeTab, setActiveTab] = useState("experiences");
   const searchParams = useSearchParams();
-  const tabInUrl = searchParams.get("tab") || "experiences";
-  const [activeTab, setActiveTab] = useState(tabInUrl);
 
   useEffect(() => {
-    const currentTab = searchParams.get("tab");
-    if (currentTab && currentTab !== activeTab) {
-      setActiveTab(currentTab);
+    const tab = searchParams.get("tab");
+    if (tab && tab !== activeTab) {
+      setActiveTab(tab);
     }
-  }, [searchParams, activeTab]);
+  }, [searchParams]);
 
   const handleEdit = (experience: ProposedTour) => {
     setExperienceToEdit(experience);
@@ -90,9 +90,7 @@ const ExperiencesMainPage = () => {
   return (
     <>
       <Header
-        title={
-          !showDishForm && !showExperienceForm ? "Experiences" : undefined
-        }
+        title={!showDishForm && !showExperienceForm ? "Experiences" : undefined}
         showBackButton={showDishForm || showExperienceForm}
         onBack={() => {
           setShowDishForm(false);

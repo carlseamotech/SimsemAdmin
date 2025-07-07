@@ -27,9 +27,7 @@ const HostSummaryPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { host, hostPayment, isLoading, updateHost } = useHost(
-    id as string
-  );
+  const { host, hostPayment, isLoading, updateHost } = useHost(id as string);
 
   const form = useForm<HostFormData>({
     resolver: zodResolver(hostSchema),
@@ -202,9 +200,7 @@ const HostSummaryPage = () => {
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">
-                        Tour Guide
-                      </p>
+                      <p className="text-[#3D3D3DCC] text-[15px]">Tour Guide</p>
                       <p className="text-[18px] font-bold text-[#0D2E61]">
                         {host.isTourGuide ? "Yes" : "No"}
                       </p>
