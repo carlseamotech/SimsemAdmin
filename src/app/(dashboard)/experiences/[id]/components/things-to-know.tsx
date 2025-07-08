@@ -56,7 +56,7 @@ const ThingsToKnow = () => {
                 </div>
 
                 {/* Text content */}
-                <div className="flex-1 min-w-0 space-y-2">
+                <div className="flex-1 min-w-0 space-y-2 pt-2">
                   <div className="text-[18px] font-bold text-[#3D3D3D]">
                     {item.name}
                   </div>

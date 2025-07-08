@@ -19,6 +19,7 @@ import { TourMenu } from "./components/tour-menu";
 import { useState } from "react";
 import ThingsToKnow from "./components/things-to-know";
 import { WhatsIncludedNot } from "./components/included-not";
+import { Itinerary } from "./components/itinerary";
 
 const ExperienceDetailsPage = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -232,7 +233,27 @@ const ExperienceDetailsPage = () => {
                 {/* tour menu */}
                 <TourMenu images={tour.galleryImageUrls} />
 
-                <TourTimes tourTimes={tour.tourTimes} />
+                <Itinerary
+                  items={[
+                    {
+                      schedule: "8:00 AM",
+                      activity: "Hotel Pickup",
+                      description:
+                        "We will pick you up from your hotel in the city center.",
+                    },
+                    {
+                      schedule: "9:00 AM",
+                      activity: "Museum Visit",
+                      description:
+                        "Explore ancient artifacts and historical displays.",
+                    },
+                    {
+                      schedule: "12:00 PM",
+                      activity: "Lunch",
+                      description: "Enjoy a traditional local meal.",
+                    },
+                  ]}
+                />
 
                 <div className="drop-shadow-lg rounded-2xl p-8  bg-[#3D3D3D0D] ">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -301,6 +322,7 @@ const ExperienceDetailsPage = () => {
           </div>
         </div>
 
+        {/* button */}
         <div className="flex justify-between p-8 border-t">
           {!isEditing ? (
             <>

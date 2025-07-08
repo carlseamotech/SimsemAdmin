@@ -1,10 +1,9 @@
 "use client";
-
-import type React from "react";
-
 import Image from "next/image";
+import type React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import MenuIndicatorIcon from "../../../../../../public/experience/menu-indicator.svg";
 
 interface MenuItem {
   name: string;
@@ -23,7 +22,6 @@ interface TourMenuProps {
 }
 
 export const TourMenu: React.FC<TourMenuProps> = ({ images }) => {
-  // Distribute images across sections
   const starterImages = images.slice(0, 6);
   const mainDishImages = images.slice(6, 11);
   const dessertImages = images.slice(11, 12);
@@ -119,80 +117,87 @@ export const TourMenu: React.FC<TourMenuProps> = ({ images }) => {
   ];
 
   return (
-    <div className="rounded-2xl p-6  bg-[#3D3D3D0D] space-y-4">
-      <h1 className="text-2xl font-bold text-[#0D2E61] mb-8">Tour Menu</h1>
+    <Card className="bg-[#3D3D3D0D] border-none p-0">
+      <CardContent className="p-6">
+        <h1 className="text-2xl font-bold text-[#0D2E61] mb-8">Tour Menu</h1>
 
-      <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[#0D2E614D] z-0" />
+        <div className="relative">
+          {menuData.map((section, index) => {
+            const isLast = index === menuData.length - 1;
 
-        {menuData.map((section, sectionIndex) => (
-          <div key={section.title} className="relative mb-12 z-10">
-            {/* Timeline indicator and title */}
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-[#0D2E61] rounded-full flex items-center justify-center">
-                <div className="w-6 h-6 bg-white rounded-full" />
-              </div>
-              <div className="ml-4">
-                <h2 className="text-[20px] font-bold text-[#0D2E61]">
-                  {section.title}
-                </h2>
-              </div>
-            </div>
-
-            {/* Menu items grid - positioned below the title */}
-            <div className="ml-16">
+            return (
               <div
-                className={`grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 `}
+                key={section.title}
+                className="relative flex items-start pb-12 last:pb-0 gap-4"
               >
-                {section.items.map((item, itemIndex) => (
-                  <Card
-                    key={itemIndex}
-                    className="overflow-hidden hover:shadow-lg p-2 rounded-3xl transition-shadow duration-200"
-                  >
-                    <CardContent className="p-0">
-                      {/* ✅ Fixed aspect ratio container for image */}
-                      <div className="relative aspect-[175/99] w-full">
-                        <Image
-                          src={item.image || "/placeholder.svg"}
-                          alt={item.name}
-                          fill
-                          className="object-cover rounded-3xl"
-                        />
-                      </div>
+                {/* Vertical Line */}
+                {!isLast && (
+                  <div className="absolute left-[22px] top-8 w-0.5 h-full bg-gray-300 -translate-x-0.5" />
+                )}
 
-                      <div className="p-4 space-y-2">
-                        {/* ✅ One clean badge */}
-                        <Badge
-                          className={`text-[10px] text-white ${
-                            item.type === "Meat"
-                              ? "bg-[#FB8B24]"
-                              : "bg-[#183B56]"
-                          } rounded-full px-3 py-0.5`}
+                {/* Icon */}
+                <div className="relative z-10 flex items-center justify-center w-[43px] h-[43px]">
+                  <Image src={MenuIndicatorIcon} alt="menu indicator icon" />
+                </div>
+
+                <div className="flex-1 min-w-0 pt-2">
+                  <div className="flex items-center mb-6">
+                    <h2 className="text-[20px] font-bold text-[#0D2E61]">
+                      {section.title}
+                    </h2>
+                  </div>
+
+                  <div className="ml-4 md:ml-6">
+                    <div className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                      {section.items.map((item, itemIndex) => (
+                        <Card
+                          key={`${item.name}-${itemIndex}`}
+                          className="overflow-hidden hover:shadow-lg p-2 rounded-2xl transition-shadow duration-200 aspect-h-[184/241] "
                         >
-                          {item.type}
-                        </Badge>
+                          <CardContent className="p-0">
+                            <div className="relative w-full h-[99px] ">
+                              <Image
+                                src={item.image}
+                                alt={item.name}
+                                fill
+                                className="object-cover rounded-t-2xl "
+                              />
+                            </div>
 
-                        <h1 className="font-semibold text-[#0D2E61] text-[18px] truncate">
-                          {item.name}
-                        </h1>
+                            <div className="p-2 space-y-1">
+                              <Badge
+                                className={`text-[10px] text-white ${
+                                  item.type === "Meat"
+                                    ? "bg-[#FB8B24]"
+                                    : "bg-[#183B56]"
+                                } rounded-full px-3 py-0.5`}
+                              >
+                                {item.type}
+                              </Badge>
 
-                        <h3 className="font-medium text-[#3D3D3D80] text-[12px]">
-                          Ingredients
-                        </h3>
+                              <h1 className="font-semibold text-[#0D2E61] text-[18px] truncate">
+                                {item.name}
+                              </h1>
 
-                        <p className="text-[12px] text-[#3D3D3D] leading-relaxed line-clamp-3">
-                          {item.description}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                              <h3 className="font-medium text-[#3D3D3D80] text-[12px]">
+                                Ingredients
+                              </h3>
+
+                              <p className="text-[12px] text-[#3D3D3D] leading-relaxed line-clamp-3">
+                                {item.description}
+                              </p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+            );
+          })}
+        </div>
+      </CardContent>
+    </Card>
   );
 };
