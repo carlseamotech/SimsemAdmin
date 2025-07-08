@@ -4,22 +4,19 @@ import { Badge } from "@/components/ui/badge";
 import Header from "@/components/common/header";
 import { useTour } from "@/hooks/use-tour";
 import { Gallery } from "./components/gallery";
-import { Packages } from "./components/packages";
 import { useHost } from "@/hooks/use-hosts";
-import { TourTimes } from "./components/tour-times";
 import { Button } from "@/components/ui/button";
 import { CoverPhoto } from "./components/cover-photo";
 import ClockIcon from "../../../../../public/experience/clock-icon.svg";
 import LocationIcon from "../../../../../public/experience/location-icon.svg";
 import FrameIcon from "../../../../../public/experience/frame-icon.svg";
-import CheckIcon from "../../../../../public/experience/check-icon.svg";
-import XCloseIcon from "../../../../../public/experience/xclose-icon.svg";
 import Image from "next/image";
 import { TourMenu } from "./components/tour-menu";
 import { useState } from "react";
 import ThingsToKnow from "./components/things-to-know";
 import { WhatsIncludedNot } from "./components/included-not";
 import { Itinerary } from "./components/itinerary";
+import { ChildPollicyRequirements } from "./components/pollicy-requirements";
 
 const ExperienceDetailsPage = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -171,58 +168,7 @@ const ExperienceDetailsPage = () => {
                 </div>
 
                 {/* child policy & guest requirements */}
-                <div className="grid grid-cols-2 gap-8">
-                  <div className="rounded-2xl p-8  bg-[#3D3D3D0D]  flex flex-col gap-6">
-                    <div className="text-[24px] font-bold text-[#0D2E61]">
-                      Children Policy
-                    </div>
-
-                    <div className="flex flex-wrap gap-4">
-                      <Image
-                        src={CheckIcon}
-                        alt="check icon"
-                        className="object-contain"
-                      />
-
-                      <span className="text-[#3D3D3D]  text-[18px]">
-                        Children are allowed
-                      </span>
-                    </div>
-
-                    <div className="bg-white drop-shadow-xl p-6 rounded-2xl space-y-6">
-                      <div className="flex flex-row justify-between items-center">
-                        <div className="text-[20px] text-[#0D2E61] font-bold">
-                          Children
-                        </div>
-
-                        <Image
-                          src={XCloseIcon}
-                          alt="xclose icon"
-                          className="object-contain"
-                        />
-                      </div>
-
-                      <p className="text-[#3D3D3DB2] font-bold text-[19px] ">
-                        ${tour.cost}/ person
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className=" rounded-2xl p-8  bg-[#3D3D3D0D]  flex flex-col gap-6">
-                    <div className="text-[24px] font-bold text-[#0D2E61]">
-                      Guest Requirements
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      <span className="text-[#3D3D3D] text-[20px]">
-                        Minimum Age:
-                      </span>
-                      <span className="text-[#000000B2]  text-[20px] font-bold ">
-                        18
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <ChildPollicyRequirements cost={tour.cost} />
 
                 {/* things to know */}
                 <ThingsToKnow />
@@ -233,90 +179,8 @@ const ExperienceDetailsPage = () => {
                 {/* tour menu */}
                 <TourMenu images={tour.galleryImageUrls} />
 
-                <Itinerary
-                  items={[
-                    {
-                      schedule: "8:00 AM",
-                      activity: "Hotel Pickup",
-                      description:
-                        "We will pick you up from your hotel in the city center.",
-                    },
-                    {
-                      schedule: "9:00 AM",
-                      activity: "Museum Visit",
-                      description:
-                        "Explore ancient artifacts and historical displays.",
-                    },
-                    {
-                      schedule: "12:00 PM",
-                      activity: "Lunch",
-                      description: "Enjoy a traditional local meal.",
-                    },
-                  ]}
-                />
-
-                <div className="drop-shadow-lg rounded-2xl p-8  bg-[#3D3D3D0D] ">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div>
-                      <div className="bg-gray-100 p-4 rounded-lg">
-                        <h3 className="text-lg font-bold mb-2">Details</h3>
-                        <p>
-                          <strong>Host:</strong> {host?.name || "N/A"}
-                        </p>
-                        <p>
-                          <strong>Country:</strong> {tour.country}
-                        </p>
-                        <p>
-                          <strong>City:</strong> {tour.city}
-                        </p>
-                        <p>
-                          <strong>Duration:</strong> {tour.tourDuration}
-                        </p>
-                        <p>
-                          <strong>Difficulty:</strong> {tour.difficultyLevel}
-                        </p>
-                        <p>
-                          <strong>Cost:</strong> ${tour.cost}
-                        </p>
-                        <p>
-                          <strong>Phone:</strong> {tour.phone}
-                        </p>
-                        <p>
-                          <strong>Country Code:</strong> {tour.countryCode}
-                        </p>
-                        <p>
-                          <strong>Status:</strong>
-                          <Badge
-                            variant={tour.isActive ? "default" : "destructive"}
-                            className={
-                              tour.isActive
-                                ? "bg-green-100 text-green-800"
-                                : "bg-red-100 text-red-800"
-                            }
-                          >
-                            {tour.isActive ? "Active" : "Inactive"}
-                          </Badge>
-                        </p>
-                        <p>
-                          <strong>Approval Status:</strong>{" "}
-                          <Badge
-                            variant={
-                              tour.isApproved ? "default" : "destructive"
-                            }
-                            className={
-                              tour.isApproved
-                                ? "bg-green-100 text-green-800"
-                                : "bg-red-100 text-red-800"
-                            }
-                          >
-                            {tour.isApproved ? "Approved" : "Not Approved"}
-                          </Badge>
-                        </p>
-                      </div>
-                      <Packages packages={tour.tourPackages} />
-                    </div>
-                  </div>
-                </div>
+                {/* Our Detailed Itinerary */}
+                <Itinerary tourTimes={tour.tourTimes} />
               </div>
             </div>
           </div>
