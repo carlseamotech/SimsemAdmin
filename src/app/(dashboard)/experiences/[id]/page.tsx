@@ -19,16 +19,14 @@ import { Itinerary } from "./components/itinerary";
 import { ChildPollicyRequirements } from "./components/pollicy-requirements";
 
 const ExperienceDetailsPage = () => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const router = useRouter();
-  // const searchParams = useSearchParams();
-  // const tab = searchParams.get("tab");
-
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab");
   const { id } = useParams();
   const { tour } = useTour(id as string);
   const { host } = useHost(tour?.guideId || "");
+  const [isEditing, setIsEditing] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   console.log(tour, "tour");
   console.log("host", host);
@@ -37,8 +35,8 @@ const ExperienceDetailsPage = () => {
     return (
       <>
         <Header
-          //showBackButton={tab === "experience-library"}
-          showBackButton
+          showBackButton={tab === "experience-library"}
+          // showBackButton
           onBack={() => router.back()}
         />
         <div className=" py-6 px-8">Tour not found</div>
@@ -49,7 +47,11 @@ const ExperienceDetailsPage = () => {
   return (
     <div className="flex h-screen bg-gray-50">
       <div className="flex-1 flex flex-col">
-        <Header showBackButton onBack={() => router.back()} />
+        <Header
+          // showBackButton
+          showBackButton={tab === "experience-library"}
+          onBack={() => router.back()}
+        />
 
         <div className="flex-1 py-6 px-8 ">
           <div className="bg-white rounded-xl  drop-shadow-lg  flex flex-col ">
@@ -71,7 +73,7 @@ const ExperienceDetailsPage = () => {
               <div className=" border-b rounded-none shadow-none flex justify-between items-center py-6">
                 <div>
                   <h1 className="text-[15px] text-[#3D3D3DCC]">
-                    MEAL / TOUR NAME
+                    {tab === "experience-library" ? ` MEAL NAME` : `TOUR NAME`}
                   </h1>
                   <p className="text-[#0D2E61] text-[30px] font-bold ">
                     The Ultimate Breakfast at Istanbul
