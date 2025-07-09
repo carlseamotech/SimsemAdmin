@@ -12,16 +12,17 @@ import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-ex
 import { useSearchParams } from "next/navigation";
 import { ProposedTour } from "@/models/proposed-tour";
 import { ExperienceForm } from "./components/experience-form";
+import { OfferExperienceModal } from "./components/experience-library-modal";
 
 const ExperiencesMainPage = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [showDishForm, setShowDishForm] = useState(false);
   const [showExperienceForm, setShowExperienceForm] = useState(false);
+  const [showExperienceModal, setShowExperienceModal] = useState(false);
   const [experienceToEdit, setExperienceToEdit] = useState<ProposedTour | null>(
     null
   );
-
   const [activeTab, setActiveTab] = useState("experiences");
   const searchParams = useSearchParams();
 
@@ -35,11 +36,6 @@ const ExperiencesMainPage = () => {
   const handleEdit = (experience: ProposedTour) => {
     setExperienceToEdit(experience);
     setShowExperienceForm(true);
-  };
-
-  const getButtonText = () => {
-    if (activeTab === "dish-library") return "Add a new dish";
-    return "Add new experience";
   };
 
   const getFilterButtons = () => {
@@ -105,7 +101,7 @@ const ExperiencesMainPage = () => {
               activeTab={activeTab}
               setActiveTab={setActiveTab}
               setShowDishForm={setShowDishForm}
-              getButtonText={getButtonText}
+              setShowExperienceModal={setShowExperienceModal}
             />
 
             <div className="bg-white  drop-shadow-lg rounded-b-2xl rounded-tr-2xl px-16 py-4">
@@ -167,6 +163,11 @@ const ExperiencesMainPage = () => {
           experienceToEdit={experienceToEdit}
         />
       )}
+
+      <OfferExperienceModal
+        isOpen={showExperienceModal}
+        onClose={() => setShowExperienceModal(false)}
+      />
     </>
   );
 };

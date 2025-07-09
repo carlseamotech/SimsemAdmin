@@ -96,12 +96,20 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
                 <div className="flex space-x-2">
                   <Button
                     size="sm"
+                    onClick={(e) => {
+                      // ✅ Prevent triggering the TableRow's onClick
+                      e.stopPropagation();
+                    }}
                     className="bg-[#0D2E61] hover:bg-blue-900 text-[#FFFFFF]"
                   >
                     Edit
                   </Button>
                   <Button
                     size="sm"
+                    onClick={(e) => {
+                      // ✅ Prevent triggering the TableRow's onClick
+                      e.stopPropagation();
+                    }}
                     variant="destructive"
                     className="bg-[#9A031E]"
                   >

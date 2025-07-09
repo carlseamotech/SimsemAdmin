@@ -53,10 +53,7 @@ export const ExperienceForm: React.FC<ExperienceFormProps> = ({
   const { createTour, updateTour } = useTours([]);
   const isEditMode = !!experienceToEdit;
 
-  const {
-    handleSubmit,
-    reset,
-  } = useForm<ExperienceFormData>({
+  const { handleSubmit, reset } = useForm<ExperienceFormData>({
     resolver: zodResolver(experienceSchema),
   });
 
