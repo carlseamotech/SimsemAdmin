@@ -2,26 +2,14 @@
 
 import type React from "react";
 import { Upload } from "lucide-react";
+import type { DiningFormData } from "../page";
 
-interface FormData {
-  country: string;
-  costPerPerson: string;
-  minDuration: string;
-  maxDuration: string;
-  categories: string[];
-  description: string;
-  coverPhoto: File | null;
-  included: string[];
-  notIncluded: string[];
-  tourName: string;
+interface Step7CoverPhotoProps {
+  formData: DiningFormData;
+  setFormData: React.Dispatch<React.SetStateAction<DiningFormData>>;
 }
 
-interface Step5CoverPhotoProps {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-}
-
-const Step5CoverPhoto: React.FC<Step5CoverPhotoProps> = ({
+const Step7CoverPhoto: React.FC<Step7CoverPhotoProps> = ({
   formData,
   setFormData,
 }) => {
@@ -35,12 +23,12 @@ const Step5CoverPhoto: React.FC<Step5CoverPhotoProps> = ({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+        <h2 className="text-2xl font-semibold text-blue-900 mb-2">
           Add a Cover Photo
         </h2>
       </div>
 
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
+      <div className="border-2 border-dashed border-gray-300 rounded-lg p-16 text-center">
         <input
           type="file"
           accept="image/*"
@@ -62,4 +50,4 @@ const Step5CoverPhoto: React.FC<Step5CoverPhotoProps> = ({
   );
 };
 
-export default Step5CoverPhoto;
+export default Step7CoverPhoto;

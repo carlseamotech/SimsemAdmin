@@ -2,23 +2,11 @@
 
 import type React from "react";
 import { Textarea } from "@/components/ui/textarea";
-
-interface FormData {
-  country: string;
-  costPerPerson: string;
-  minDuration: string;
-  maxDuration: string;
-  categories: string[];
-  description: string;
-  coverPhoto: File | null;
-  included: string[];
-  notIncluded: string[];
-  tourName: string;
-}
+import type { DiningFormData } from "../page";
 
 interface Step2DescriptionProps {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  formData: DiningFormData;
+  setFormData: React.Dispatch<React.SetStateAction<DiningFormData>>;
 }
 
 const Step2Description: React.FC<Step2DescriptionProps> = ({
@@ -28,10 +16,10 @@ const Step2Description: React.FC<Step2DescriptionProps> = ({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-          Tour description
+        <h2 className="text-2xl font-semibold text-blue-900 mb-2">
+          Description
         </h2>
-        <p className="text-gray-600">Provide a brief overview of your tour</p>
+        <p className="text-gray-600">Provide a brief overview</p>
       </div>
 
       <div>
@@ -40,9 +28,11 @@ const Step2Description: React.FC<Step2DescriptionProps> = ({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, description: e.target.value }))
           }
-          placeholder="A walk through my campus in Turkey offers a delightful blend of modernity and tradition. You'll explore a vibrant community of students from diverse backgrounds, hear Turkish conversations, and witness cultural activities like backgammon games and tea-drinking at local cafes. In just a short walk, you'll experience the essence of Turkey's unique cultural tapestry."
+          placeholder="We'll pick you up from your hotel in Giza or Cairo downtown at 9am. Then start out tour to visit: Giza Pyramids and Sphinx, the panorama for the best view of the pyramid, Camel Rides (30 minutes), ATV Quad Bikes (60 minutes). Ticket to the whole area of the Pyramids and Sphinx is included.
+
+After the day trip, we'll transfer you back to your hotel. End of tour."
           rows={8}
-          className="w-full"
+          className="w-full resize-none"
         />
       </div>
     </div>
