@@ -53,12 +53,14 @@ const TabsExperiencePage: React.FC<TabsExperienceProps> = ({
           >
             Experiences
           </TabsTrigger>
+
           <TabsTrigger
             value="experience-library"
             className="data-[state=active]:bg-[#FFFFFF] data-[state=active]:shadow-none font-bold rounded-none rounded-t-2xl p-4 bg-[#ECECED] data-[state=active]:text-[#0E356C] text-[23px] text-[#707070]"
           >
             Experience Library
           </TabsTrigger>
+
           <TabsTrigger
             value="dish-library"
             className="data-[state=active]:bg-[#FFFFFF] data-[state=active]:shadow-none font-bold rounded-none rounded-t-2xl p-4 bg-[#ECECED] data-[state=active]:text-[#0E356C] text-[23px] text-[#707070]"

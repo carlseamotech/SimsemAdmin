@@ -80,7 +80,7 @@ export const OfferExperienceModal: React.FC<OfferExperienceModalProps> = ({
               onClick={() => setSelectedType("local-living")}
             >
               <CardContent className="p-4 space-y-4">
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-t-lg">
                   <Image
                     src={Living}
                     alt="Local Living Experience"
@@ -118,7 +118,7 @@ export const OfferExperienceModal: React.FC<OfferExperienceModalProps> = ({
               onClick={() => setSelectedType("dining")}
             >
               <CardContent className="p-4 space-y-4">
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-t-lg">
                   <Image
                     src={Dining}
                     alt="Dining Experience"
