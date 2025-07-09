@@ -51,12 +51,19 @@ export const OfferExperienceModal: React.FC<OfferExperienceModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="md:max-w-6xl p-0 rounded-2xl gap-4 ">
+      <DialogContent
+        showCloseButton={false}
+        className="md:max-w-6xl p-0 rounded-2xl gap-4 "
+      >
         <DialogHeader className="py-6 px-4 md:px-8 border-b">
           <div className="flex items-center justify-between">
             <DialogTitle className="text-[25px] font-semibold text-[#0D2E61]">
               Offer a New Experience
             </DialogTitle>
+
+            <button onClick={onClose} className="cursor-pointer">
+              <Image src={XCancelIcon} alt="CancelIcon" />
+            </button>
           </div>
         </DialogHeader>
 
