@@ -17,9 +17,7 @@ const Step1MealName: React.FC<Step1MealNameProps> = ({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-[30px] font-semibold text-[#0D2E61] mb-2">
-          Name your meal
-        </h2>
+        <h2 className="text-[30px] text-[#0D2E61] mb-2">Name your meal</h2>
         <p className="text-[#00000099] text-[15px]">
           Add a descriptive and enticing title for your menu!
         </p>
@@ -32,7 +30,7 @@ const Step1MealName: React.FC<Step1MealNameProps> = ({
             setFormData((prev) => ({ ...prev, mealName: e.target.value }))
           }
           placeholder="The Ultimate Breakfast at Istanbul"
-          className="w-full text-[5px] text-[#00000066] py-4 px-4 text-start foc bg-[#00000008] min-h-[130px] "
+          className="w-full text-[25px] text-[#00000066] py-4 px-4 bg-[#00000008] min-h-[130px] focus-visible:ring-[1px] "
           maxLength={60}
         />
 

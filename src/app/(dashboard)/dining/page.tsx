@@ -129,7 +129,7 @@ const DiningExperiencePage = () => {
                 variant="outline"
                 size="lg"
                 onClick={handleBack}
-                className="px-8 bg-[#3D3D3D80] text-[#FFFFFF]"
+                className="bg-[#3D3D3D80] text-[#FFFFFF] text-[14px]  rounded-lg"
               >
                 Back
               </Button>
@@ -137,7 +137,7 @@ const DiningExperiencePage = () => {
               <Button
                 onClick={handleNext}
                 size="lg"
-                className="bg-[#FB8B24] hover:bg-orange-400 text-[#FFFFFF] text-[14px] px-8 rounded-xl"
+                className="bg-[#FB8B24] hover:bg-orange-400 text-[#FFFFFF] text-[14px] rounded-lg"
               >
                 {currentStep === totalSteps ? "Confirm" : "Next"}
               </Button>
