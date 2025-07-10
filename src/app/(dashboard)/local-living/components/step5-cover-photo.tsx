@@ -1,7 +1,9 @@
 "use client";
 
-import type React from "react";
-import { Upload } from "lucide-react";
+import React from "react";
+import UploadIcon from "../../../../../public/common/upload-cloud-icon.svg";
+import Image from "next/image";
+import { X } from "lucide-react";
 
 interface FormData {
   country: string;
@@ -25,22 +27,27 @@ const Step5CoverPhoto: React.FC<Step5CoverPhotoProps> = ({
   formData,
   setFormData,
 }) => {
+  const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);
+
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       setFormData((prev) => ({ ...prev, coverPhoto: file }));
+      setPreviewUrl(URL.createObjectURL(file));
     }
+  };
+
+  const handleRemovePhoto = () => {
+    setFormData((prev) => ({ ...prev, coverPhoto: null }));
+    setPreviewUrl(null);
   };
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-          Add a Cover Photo
-        </h2>
-      </div>
+      <div className="text-[30px] text-[#0D2E61]">Add a Cover Photo</div>
 
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
+      <div className="relative border-2 border-dashed bg-[#00000008] rounded-lg h-[189px] overflow-hidden text-center flex items-center justify-center">
+        {/* Hidden file input */}
         <input
           type="file"
           accept="image/*"
@@ -48,14 +55,40 @@ const Step5CoverPhoto: React.FC<Step5CoverPhotoProps> = ({
           className="hidden"
           id="photo-upload"
         />
-        <label htmlFor="photo-upload" className="cursor-pointer">
-          <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-          <p className="text-gray-600">Upload or drag photo here</p>
-        </label>
-        {formData.coverPhoto && (
-          <p className="mt-2 text-sm text-green-600">
-            Photo uploaded: {formData.coverPhoto.name}
-          </p>
+
+        {/* Show uploaded image */}
+        {previewUrl ? (
+          <>
+            <Image
+              src={previewUrl}
+              alt="Cover Preview"
+              fill
+              className="object-cover"
+            />
+
+            {/* X button to remove */}
+            <button
+              onClick={handleRemovePhoto}
+              className="absolute top-3 right-3 bg-red-600 cursor-pointer rounded-full p-1 hover:bg-white"
+            >
+              <X className="w-4 h-4 hover:text-black" />
+            </button>
+          </>
+        ) : (
+          // Upload prompt
+          <label
+            htmlFor="photo-upload"
+            className="cursor-pointer flex flex-col justify-center items-center gap-4"
+          >
+            <Image
+              src={UploadIcon}
+              alt="Upload Icon"
+              className="w-[46px] h-[46px]"
+            />
+            <p className="text-[#3D3D3D] text-[15px] font-bold">
+              Upload or drag photo here
+            </p>
+          </label>
         )}
       </div>
     </div>
