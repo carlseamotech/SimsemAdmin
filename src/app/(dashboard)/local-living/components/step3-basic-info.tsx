@@ -167,14 +167,14 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
             Select what best describes your tour
           </label>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {categories.map((category) => (
               <Badge
                 key={category}
                 variant={
                   formData.categories.includes(category) ? "default" : "outline"
                 }
-                className={`cursor-pointer px-6 py-2 h-[59px] text-[19px] font-normal rounded-2xl ${
+                className={`cursor-pointer px-8 py-2 h-[59px] text-[19px] font-normal rounded-2xl ${
                   formData.categories.includes(category)
                     ? "bg-[#FEC540] hover:bg-yellow-500 text-white"
                     : "bg-[#00000008] hover:bg-gray-200 text-[#000000B2]"

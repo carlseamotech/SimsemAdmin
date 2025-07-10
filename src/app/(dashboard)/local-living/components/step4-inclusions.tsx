@@ -1,8 +1,9 @@
 "use client";
-
+import { BiPlus } from "react-icons/bi";
 import type React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface FormData {
   country: string;
@@ -48,28 +49,27 @@ const Step4Inclusions: React.FC<Step4InclusionsProps> = ({
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-          What's Included & Not Included in Your Tour
-        </h2>
-      </div>
+      <h2 className="text-[30px]  text-[#0D2E61] ">
+        What's Included & Not Included in Your Tour
+      </h2>
 
       <div className="space-y-6">
-        <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-3">
+        <div className="space-y-8">
+          <h3 className="block text-[20px] font-bold text-[#000000B2] mb-2">
             This tour includes
           </h3>
-          <div className="flex flex-wrap gap-2">
+
+          <div className="flex flex-wrap gap-3">
             {inclusionOptions.map((item) => (
               <Badge
                 key={`included-${item}`}
                 variant={
                   formData.included.includes(item) ? "default" : "outline"
                 }
-                className={`cursor-pointer px-4 py-2 ${
+                className={`cursor-pointer px-8 py-2 h-[59px] text-[19px] font-normal rounded-2xl ${
                   formData.included.includes(item)
-                    ? "bg-teal-600 hover:bg-teal-700 text-white"
-                    : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                    ? "bg-[#0F4C5C] hover:bg-cyan-800 text-white"
+                    : "bg-[#00000008] hover:bg-gray-200 text-[#000000B2]"
                 }`}
                 onClick={() => toggleInclusion(item, "included")}
               >
@@ -77,16 +77,28 @@ const Step4Inclusions: React.FC<Step4InclusionsProps> = ({
               </Badge>
             ))}
           </div>
-          <div className="mt-3">
-            <Input
-              placeholder="If others, please specify..."
-              className="w-full"
-            />
+
+          <div className="grid grid-cols-2 gap-4 ">
+            <div className="h-[59px] col-span-1 flex">
+              <Input
+                placeholder="If others, please specify..."
+                className=" placeholder:text-[19px] md:text-[19px]  h-[59px] rounded-l-3xl rounded-r-sm   focus-visible:ring-0 px-4 "
+              />
+
+              <Button
+                variant="outline"
+                className="bg-gray-200 h-full cursor-pointer flex justify-center items-center rounded-r-3xl rounded-l-sm w-18"
+              >
+                <BiPlus />
+              </Button>
+            </div>
+
+            <div className="col-span-1" />
           </div>
         </div>
 
-        <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-3">
+        <div className="space-y-8">
+          <h3 className="block text-[20px] font-bold text-[#000000B2] mb-2">
             This tour does NOT include
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -96,10 +108,10 @@ const Step4Inclusions: React.FC<Step4InclusionsProps> = ({
                 variant={
                   formData.notIncluded.includes(item) ? "default" : "outline"
                 }
-                className={`cursor-pointer px-4 py-2 ${
+                className={`cursor-pointer px-8 py-2 h-[59px] text-[19px] font-normal rounded-2xl ${
                   formData.notIncluded.includes(item)
-                    ? "bg-red-600 hover:bg-red-700 text-white"
-                    : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                    ? "bg-[#9A031E] hover:bg-red-800 text-white"
+                    : "bg-[#00000008] hover:bg-gray-200 text-[#000000B2]"
                 }`}
                 onClick={() => toggleInclusion(item, "notIncluded")}
               >
@@ -107,11 +119,23 @@ const Step4Inclusions: React.FC<Step4InclusionsProps> = ({
               </Badge>
             ))}
           </div>
-          <div className="mt-3">
-            <Input
-              placeholder="If others, please specify..."
-              className="w-full"
-            />
+
+          <div className="grid grid-cols-2 gap-4 ">
+            <div className="h-[59px] col-span-1 flex">
+              <Input
+                placeholder="If others, please specify..."
+                className=" placeholder:text-[19px] md:text-[19px]  h-[59px] rounded-l-3xl rounded-r-sm   focus-visible:ring-0 px-4 "
+              />
+
+              <Button
+                variant="outline"
+                className="bg-gray-200 h-full cursor-pointer flex justify-center items-center rounded-r-3xl rounded-l-sm w-18"
+              >
+                <BiPlus />
+              </Button>
+            </div>
+
+            <div className="col-span-1" />
           </div>
         </div>
       </div>
