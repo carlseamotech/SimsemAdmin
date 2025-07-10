@@ -14,6 +14,7 @@ import Step5Dessert from "./components/step5-dessert";
 import Step6TellUs from "./components/step6-tell-us";
 import Step7CoverPhoto from "./components/step7-cover-photo";
 import Step8Summary from "./components/step8-summary";
+export type { DishItem, DiningFormData };
 
 interface DishItem {
   id: string;
@@ -97,43 +98,51 @@ const DiningExperiencePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+    <div className="flex h-screen bg-gray-50">
+      <div className="flex-1 flex flex-col">
+        <Header />
 
-      <div className="max-w-4xl mx-auto p-6">
-        {/* Progress Section */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-600">
-              ADD DINING EXPERIENCE
-            </span>
-            <span className="text-sm text-gray-500">
-              Step {currentStep} of {totalSteps}
-            </span>
+        <div className="flex-1 py-6 px-8 ">
+          <div className="bg-white rounded-xl  drop-shadow-lg  flex flex-col ">
+            {/* Progress Section */}
+            <div className="flex justify-between px-8 py-6">
+              <div className="text-[15px] text-[#3D3D3DCC]">
+                ADD DINING EXPERIENCE
+              </div>
+
+              <div className="text-sm text-gray-500 ">
+                Step {currentStep} of {totalSteps}
+              </div>
+            </div>
+
+            <Progress
+              value={progressPercentage}
+              className="[&_[data-slot=progress-indicator]]:bg-[#0D2E61] h-[3px]"
+            />
+
+            {/* Form Content */}
+            <div className=" px-8 py-6 "> {renderStep()}</div>
+
+            {/* Navigation Buttons */}
+            <div className="flex justify-between  px-8 py-6 border-t">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handleBack}
+                className="px-8 bg-[#3D3D3D80] text-[#FFFFFF]"
+              >
+                Back
+              </Button>
+
+              <Button
+                onClick={handleNext}
+                size="lg"
+                className="bg-[#FB8B24] hover:bg-orange-400 text-[#FFFFFF] text-[14px] px-8 rounded-xl"
+              >
+                {currentStep === totalSteps ? "Confirm" : "Next"}
+              </Button>
+            </div>
           </div>
-          <Progress value={progressPercentage} className="h-2" />
-        </div>
-
-        {/* Form Content */}
-        <Card className="mb-6">
-          <CardContent className="p-8">{renderStep()}</CardContent>
-        </Card>
-
-        {/* Navigation Buttons */}
-        <div className="flex justify-between">
-          <Button
-            variant="outline"
-            onClick={handleBack}
-            className="px-8 bg-transparent"
-          >
-            Back
-          </Button>
-          <Button
-            onClick={handleNext}
-            className="bg-[#FB8B24] hover:bg-orange-400 text-white px-8"
-          >
-            {currentStep === totalSteps ? "Confirm" : "Next"}
-          </Button>
         </div>
       </div>
     </div>
@@ -141,6 +150,3 @@ const DiningExperiencePage = () => {
 };
 
 export default DiningExperiencePage;
-
-// Export types for components
-export type { DishItem, DiningFormData };

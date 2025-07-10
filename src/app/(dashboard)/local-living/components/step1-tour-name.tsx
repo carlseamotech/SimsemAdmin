@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FormData {
   country: string;
@@ -28,22 +29,25 @@ const Step1TourName: React.FC<Step5TourNameProps> = ({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-semibold text-gray-900 mb-2">Tour name</h2>
-        <p className="text-gray-600">
+        <h2 className="text-[30px] font-semibold text-[#0D2E61] mb-2">
+          Tour name
+        </h2>
+        <p className="text-[#00000099] text-[15px]">
           Add a descriptive and enticing title for your tour!
         </p>
       </div>
 
-      <div>
-        <Input
+      <div className="space-y-2">
+        <Textarea
           value={formData.tourName}
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, tourName: e.target.value }))
           }
-          placeholder="A walk through my campus"
-          className="w-full text-lg"
+          placeholder="The Ultimate Breakfast at Istanbul"
+          className="w-full text-[5px] text-[#00000066] py-4 px-4 text-start foc bg-[#00000008] min-h-[130px] "
           maxLength={60}
         />
+
         <p className="text-sm text-gray-500 mt-1">
           {formData.tourName.length}/60
         </p>

@@ -44,7 +44,7 @@ const Step8Summary: React.FC<Step8SummaryProps> = ({ formData }) => {
               <div className="flex items-center space-x-2">
                 <span className="text-blue-600">🌍</span>
                 <span>
-                  <strong>Country:</strong>{" "}
+                  <strong>Country:</strong>
                   {formData.country || "Istanbul Turkey"}
                 </span>
               </div>

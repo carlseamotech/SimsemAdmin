@@ -134,7 +134,7 @@ export const OfferExperienceModal: React.FC<OfferExperienceModalProps> = ({
 
                 <div className="space-y-3">
                   <h3 className="text-[18px] text-[#0D2E61]">
-                    Local Living Experience
+                    Dining experience
                   </h3>
                   <p className="text-[14px] text-[#3D3D3D] leading-relaxed line-clamp-3 md:line-clamp-none">
                     Cook and serve authentic local dishes to travelers in your
