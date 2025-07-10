@@ -1,9 +1,9 @@
 "use client";
-
-import type React from "react";
-import { Upload } from "lucide-react";
-import type { DiningFormData } from "../page";
+import React from "react";
+import UploadIcon from "../../../../../public/common/upload-cloud-icon.svg";
 import Image from "next/image";
+import { X } from "lucide-react"; // You can also use plain text like ✕
+import type { DiningFormData } from "../page";
 
 interface Step7CoverPhotoProps {
   formData: DiningFormData;
@@ -14,53 +14,72 @@ const Step7CoverPhoto: React.FC<Step7CoverPhotoProps> = ({
   formData,
   setFormData,
 }) => {
+  const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);
+
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       setFormData((prev) => ({ ...prev, coverPhoto: file }));
+      setPreviewUrl(URL.createObjectURL(file));
     }
   };
 
+  const handleRemovePhoto = () => {
+    setFormData((prev) => ({ ...prev, coverPhoto: null }));
+    setPreviewUrl(null);
+  };
+
   return (
-    <>
-      <div className="space-y-6">
-        <div>
-          <h2 className="text-2xl font-semibold text-blue-900 mb-2">
-            Add a Cover Photo
-          </h2>
-        </div>
+    <div className="space-y-6">
+      <div className="text-[30px] text-[#0D2E61]">Add a Cover Photo</div>
 
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-16 text-center">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileUpload}
-            className="hidden"
-            id="photo-upload"
-          />
-          <label htmlFor="photo-upload" className="cursor-pointer">
-            <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-            <p className="text-gray-600">Upload or drag photo here</p>
-          </label>
+      <div className="relative border-2 border-dashed bg-[#00000008] rounded-lg h-[189px] overflow-hidden text-center flex items-center justify-center">
+        {/* Hidden file input */}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileUpload}
+          className="hidden"
+          id="photo-upload"
+        />
 
-          {formData.coverPhoto && (
-            <p className="mt-2 text-sm text-green-600">
-              Photo uploaded: {formData.coverPhoto.name}
+        {/* Show uploaded image */}
+        {previewUrl ? (
+          <>
+            <Image
+              src={previewUrl}
+              alt="Cover Preview"
+              fill
+              className="object-cover"
+            />
+
+            {/* X button to remove */}
+            <button
+              onClick={handleRemovePhoto}
+              className="absolute top-3 right-3 bg-red-600 cursor-pointer rounded-full p-1 hover:bg-white"
+            >
+              <X className="w-4 h-4 hover:text-black" />
+            </button>
+          </>
+        ) : (
+          // Upload prompt
+          <label
+            htmlFor="photo-upload"
+            className="cursor-pointer flex flex-col justify-center items-center gap-4"
+          >
+            <Image
+              src={UploadIcon}
+              alt="Upload Icon"
+              className="w-[46px] h-[46px]"
+            />
+            <p className="text-[#3D3D3D] text-[15px] font-bold">
+              Upload or drag photo here
             </p>
-          )}
-        </div>
+          </label>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
 export default Step7CoverPhoto;
-{
-  /* <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
-  <div className="text-[24px] font-bold text-[#0D2E61]">Cover Photo</div>
-
-  <div className="relative w-full aspect-[887/312] rounded-lg overflow-hidden">
-    <Image src={cover} alt="Cover photo" fill className="object-cover" />
-  </div>
-</div> */
-}
