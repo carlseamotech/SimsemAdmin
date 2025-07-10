@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import UploadIcon from "../../../../../public/common/upload-cloud-icon.svg";
 import Image from "next/image";
