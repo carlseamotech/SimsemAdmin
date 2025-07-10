@@ -6,8 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import ClockIcon from "../../../../../public/experience/clock-icon.svg";
 import LocationIcon from "../../../../../public/experience/location-icon.svg";
 import cover from "../../../../../public/dining-test.png";
-import CheckIcon from "../../../../../public/experience/check-icon.svg";
-import XIcon from "../../../../../public/experience/x-icon.svg";
 import MenuIndicatorIcon from "../../../../../public/experience/menu-indicator.svg";
 import type { DiningFormData } from "../page";
 import { Button } from "@/components/ui/button";
