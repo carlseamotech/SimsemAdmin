@@ -17,6 +17,9 @@ import ThingsToKnow from "./components/things-to-know";
 import { WhatsIncludedNot } from "./components/included-not";
 import { Itinerary } from "./components/itinerary";
 import { ChildPollicyRequirements } from "./components/pollicy-requirements";
+import { Packages } from "./components/packages";
+import WhereToMeet from "./components/meet";
+import DateAndTime from "./components/dateandtime";
 
 const ExperienceDetailsPage = () => {
   const router = useRouter();
@@ -171,6 +174,12 @@ const ExperienceDetailsPage = () => {
 
                 {/* child policy & guest requirements */}
                 <ChildPollicyRequirements cost={tour.cost} />
+
+                <Packages packages={tour.tourPackages} />
+
+                <WhereToMeet />
+
+                <DateAndTime />
 
                 {/* things to know */}
                 <ThingsToKnow />
