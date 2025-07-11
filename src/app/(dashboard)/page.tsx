@@ -111,9 +111,7 @@ export default function HomePage() {
             <Card
               key={id}
               onClick={() => router.push(`/experiences/${localliving.id}`)}
-              className={`cursor-pointer p-0 transition-all duration-200 hover:shadow-md 
-                
-                  `}
+              className={`cursor-pointer p-0 transition-all duration-200 hover:shadow-md`}
             >
               <CardContent className="p-4 ">
                 {/* Fixed aspect ratio container */}
@@ -161,7 +159,7 @@ export default function HomePage() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
           {dining.length !== 0 && (
-            <Card className="cursor-pointer  bg-white  rounded-2xl transition-colors">
+            <Card className="cursor-pointer bg-white  rounded-2xl transition-colors">
               <CardContent className="p-0 h-full">
                 {/* Fixed aspect ratio container */}
                 <div className="aspect-[4/5] flex items-center justify-center">
