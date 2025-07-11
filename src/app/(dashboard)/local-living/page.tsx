@@ -4,7 +4,6 @@ import Header from "@/components/common/header";
 import { useRouter } from "next/navigation";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 
 // Import step components
 import Step1TourName from "./components/step1-tour-name";
