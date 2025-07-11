@@ -107,9 +107,9 @@ export default function HomePage() {
             </Card>
           )}
 
-          {localliving.map((localliving) => (
+          {localliving.map((localliving, id) => (
             <Card
-              key={localliving.id}
+              key={id}
               onClick={() => router.push(`/experiences/${localliving.id}`)}
               className={`cursor-pointer p-0 transition-all duration-200 hover:shadow-md 
                 
@@ -176,9 +176,9 @@ export default function HomePage() {
             </Card>
           )}
 
-          {dining.map((dining) => (
+          {dining.map((dining, id) => (
             <Card
-              key={dining.id}
+              key={id}
               onClick={() => router.push(`/experiences/${dining.id}`)}
               className={`cursor-pointer p-0 transition-all duration-200 hover:shadow-md`}
             >
