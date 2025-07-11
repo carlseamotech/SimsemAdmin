@@ -1,156 +1,212 @@
 "use client";
 import Header from "@/components/common/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Calendar, TrendingUp, DollarSign } from "lucide-react";
+import { Users, Calendar, TrendingUp, DollarSign, Plus } from "lucide-react";
+import TestImage from "../../../public/dining-test.png";
 import { useAuth } from "@/context/auth";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const { user } = useAuth();
+  const router = useRouter();
+
+  const localliving = [
+    {
+      id: "RDTskS2Q7f",
+      name: "Local Living experience",
+      description:
+        "Chickpeas, garlic, lemon, sesame paste (Tahini) and olive oil",
+      image: "/placeholder.svg?height=150&width=200",
+    },
+    {
+      id: "RDTskS2Q7f",
+      name: "Local Living experience",
+      description: "Tomatoes fried in olive oil with spicy sesame pepper",
+      image: "/placeholder.svg?height=150&width=200",
+    },
+    {
+      id: "RDTskS2Q7f",
+      name: "Local Living experience",
+      description: "Wrapped grape leaves stuffed with rice and vegetables",
+      image: "/placeholder.svg?height=150&width=200",
+      mealType: "vegetarian",
+    },
+    {
+      id: "RDTskS2Q7f",
+      name: "Local Living experience",
+      description: "Lentils, rice, caramelized onions, yogurt and herbs",
+      image: "/placeholder.svg?height=150&width=200",
+    },
+  ];
+
+  const dining = [
+    {
+      id: "RDTskS2Q7f",
+      name: "Dining experience",
+      description:
+        "Chickpeas, garlic, lemon, sesame paste (Tahini) and olive oil",
+      image: "/placeholder.svg?height=150&width=200",
+    },
+    {
+      id: "RDTskS2Q7f",
+      name: "Dining experience",
+      description: "Tomatoes fried in olive oil with spicy sesame pepper",
+      image: "/placeholder.svg?height=150&width=200",
+    },
+    {
+      id: "RDTskS2Q7f",
+      name: "Dining experience",
+      description: "Wrapped grape leaves stuffed with rice and vegetables",
+      image: "/placeholder.svg?height=150&width=200",
+      mealType: "vegetarian",
+    },
+    {
+      id: "RDTskS2Q7f",
+      name: "Dining experience",
+      description: "Lentils, rice, caramelized onions, yogurt and herbs",
+      image: "/placeholder.svg?height=150&width=200",
+    },
+  ];
+
   return (
     <>
       <Header title={`Hello, ${user?.displayName || "User"}`} />
 
-      <div className="flex-1 p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Hosts</CardTitle>
-              <Users className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">52</div>
-              <p className="text-xs text-muted-foreground">
-                +12% from last month
-              </p>
-            </CardContent>
-          </Card>
+      {/* Local Living Experience */}
+      <div className="p-6 space-y-4">
+        <div className="flex justify-between items-center">
+          <div className="text-[#3D3D3D] text-[20px] font-bold">
+            Local Living Experiences
+          </div>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Active Experiences
-              </CardTitle>
-              <Calendar className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">127</div>
-              <p className="text-xs text-muted-foreground">
-                +8% from last month
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Bookings</CardTitle>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">1,234</div>
-              <p className="text-xs text-muted-foreground">
-                +23% from last month
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Revenue</CardTitle>
-              <DollarSign className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">$45,231</div>
-              <p className="text-xs text-muted-foreground">
-                +19% from last month
-              </p>
-            </CardContent>
-          </Card>
+          <Button
+            variant="default"
+            size="sm"
+            className={`rounded-full border-none text-[16px]  font-normal h-[39px] px-4 bg-[#FBB040] hover:bg-orange-400 text-white `}
+          >
+            Add new experience
+          </Button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">New host approved</p>
-                    <p className="text-xs text-muted-foreground">
-                      Ahmed Hassan from Egypt
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {localliving.length === 0 && (
+            <Card className="cursor-pointer  bg-white  rounded-2xl transition-colors">
+              <CardContent className="p-0 h-full">
+                {/* Fixed aspect ratio container */}
+                <div className="aspect-[4/5] flex items-center justify-center">
+                  <div className="flex flex-col items-center justify-center">
+                    <Plus className="h-14 w-14 text-[#0F4C5C] mb-2" />
+                    <p className="text-[18px] text-[#0D2E61] text-center uppercase px-4">
+                      Add A new experience
                     </p>
                   </div>
-                  <span className="text-xs text-muted-foreground">
-                    2 min ago
-                  </span>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">Host pending approval</p>
-                    <p className="text-xs text-muted-foreground">
-                      Fatima Zahra from Jordan
-                    </p>
-                  </div>
-                  <span className="text-xs text-muted-foreground">
-                    5 min ago
-                  </span>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">
-                      New experience created
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      Desert Safari in Dubai
-                    </p>
-                  </div>
-                  <span className="text-xs text-muted-foreground">
-                    1 hour ago
-                  </span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          )}
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
-                  <div className="text-2xl mb-2">👥</div>
-                  <h3 className="font-medium">Review Hosts</h3>
-                  <p className="text-sm text-muted-foreground">
-                    5 pending approvals
-                  </p>
+          {localliving.map((localliving) => (
+            <Card
+              key={localliving.id}
+              onClick={() => router.push(`/experiences/${localliving.id}`)}
+              className={`cursor-pointer p-0 transition-all duration-200 hover:shadow-md 
+                
+                  `}
+            >
+              <CardContent className="p-4 ">
+                {/* Fixed aspect ratio container */}
+                <div className="aspect-[4/5] flex flex-col gap-4">
+                  {/* Image section */}
+                  <div className="flex-[3] relative overflow-hidden">
+                    <Image
+                      src={TestImage || "/placeholder.svg?height=200&width=300"}
+                      alt={localliving.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  {/* Content section */}
+                  <div className="flex-[2]  flex flex-col justify-start">
+                    <h4 className=" text-[#0D2E61] text-[18px] mb-1 truncate">
+                      {localliving.name}
+                    </h4>
+                    <p className="text-[14px] text-[#3D3D3D] leading-relaxed line-clamp-2">
+                      {localliving.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
-                  <div className="text-2xl mb-2">✨</div>
-                  <h3 className="font-medium">New Experience</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Create new listing
-                  </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Dinning Experience */}
+      <div className="p-6 space-y-4">
+        <div className="flex justify-between items-center">
+          <div className="text-[#3D3D3D] text-[20px] font-bold">
+            Dining Experiences
+          </div>
+
+          {/* <Button
+            variant="default"
+            size="sm"
+            className={`rounded-full border-none text-[16px]  font-normal h-[39px] px-4 bg-[#FBB040] hover:bg-orange-400 text-white `}
+          >
+            Add new experience
+          </Button> */}
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
+          {dining.length !== 0 && (
+            <Card className="cursor-pointer  bg-white  rounded-2xl transition-colors">
+              <CardContent className="p-0 h-full">
+                {/* Fixed aspect ratio container */}
+                <div className="aspect-[4/5] flex items-center justify-center">
+                  <div className="flex flex-col items-center justify-center">
+                    <Plus className="h-14 w-14 text-[#0F4C5C] mb-2" />
+                    <p className="text-[18px] text-[#0D2E61] text-center uppercase px-4">
+                      Add A new experience
+                    </p>
+                  </div>
                 </div>
-                <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
-                  <div className="text-2xl mb-2">🎯</div>
-                  <h3 className="font-medium">Promotions</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Manage campaigns
-                  </p>
+              </CardContent>
+            </Card>
+          )}
+
+          {dining.map((dining) => (
+            <Card
+              key={dining.id}
+              onClick={() => router.push(`/experiences/${dining.id}`)}
+              className={`cursor-pointer p-0 transition-all duration-200 hover:shadow-md`}
+            >
+              <CardContent className="p-4 ">
+                {/* Fixed aspect ratio container */}
+                <div className="aspect-[4/5] flex flex-col gap-4">
+                  {/* Image section */}
+                  <div className="flex-[3] relative overflow-hidden">
+                    <Image
+                      src={TestImage || "/placeholder.svg?height=200&width=300"}
+                      alt={dining.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  {/* Content section */}
+                  <div className="flex-[2]  flex flex-col justify-start">
+                    <h4 className=" text-[#0D2E61] text-[18px] mb-1 truncate">
+                      {dining.name}
+                    </h4>
+                    <p className="text-[14px] text-[#3D3D3D] leading-relaxed line-clamp-2">
+                      {dining.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
-                  <div className="text-2xl mb-2">📊</div>
-                  <h3 className="font-medium">Analytics</h3>
-                  <p className="text-sm text-muted-foreground">View reports</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </>
