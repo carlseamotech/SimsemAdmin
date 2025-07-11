@@ -1,5 +1,4 @@
 "use client";
-
 import XCloseIcon from "../../../../../../public/experience/xclose-icon.svg";
 import Image from "next/image";
 
