@@ -91,7 +91,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {localliving.length === 0 && (
+          {localliving.length !== 0 && (
             <Card className="cursor-pointer  bg-white  rounded-2xl transition-colors">
               <CardContent className="p-0 h-full">
                 {/* Fixed aspect ratio container */}
@@ -158,7 +158,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
-          {dining.length !== 0 && (
+          {dining.length === 0 && (
             <Card className="cursor-pointer bg-white  rounded-2xl transition-colors">
               <CardContent className="p-0 h-full">
                 {/* Fixed aspect ratio container */}
