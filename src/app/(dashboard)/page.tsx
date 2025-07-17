@@ -6,6 +6,7 @@ import TestImage from "../../../public/dining-test.png";
 import { useAuth } from "@/context/auth";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDashboard } from "@/hooks/use-dashboard";
 import { ProposedTour } from "@/models/proposed-tour";
@@ -35,13 +36,15 @@ export default function HomePage() {
             Local Living Experiences
           </div>
 
-          <Button
-            variant="default"
-            size="sm"
-            className={`rounded-full border-none text-[16px]  font-normal h-[39px] px-4 bg-[#FBB040] hover:bg-orange-400 text-white `}
-          >
-            Add new experience
-          </Button>
+          <Link href="/local-living">
+            <Button
+              variant="default"
+              size="sm"
+              className={`rounded-full border-none text-[16px]  font-normal h-[39px] px-4 bg-[#FBB040] hover:bg-orange-400 text-white `}
+            >
+              Add new experience
+            </Button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -51,7 +54,7 @@ export default function HomePage() {
             ))
           ) : (
             <>
-              {localliving && localliving.length !== 0 && (
+              <Link href="/local-living">
                 <Card className="cursor-pointer  bg-white  rounded-2xl transition-colors">
                   <CardContent className="p-0 h-full">
                     {/* Fixed aspect ratio container */}
@@ -65,7 +68,7 @@ export default function HomePage() {
                     </div>
                   </CardContent>
                 </Card>
-              )}
+              </Link>
 
               {localliving &&
                 localliving.map((localliving: ProposedTour, id) => (
@@ -117,13 +120,15 @@ export default function HomePage() {
             Dining Experiences
           </div>
 
-          {/* <Button
-            variant="default"
-            size="sm"
-            className={`rounded-full border-none text-[16px]  font-normal h-[39px] px-4 bg-[#FBB040] hover:bg-orange-400 text-white `}
-          >
-            Add new experience
-          </Button> */}
+          <Link href="/dining">
+            <Button
+              variant="default"
+              size="sm"
+              className={`rounded-full border-none text-[16px]  font-normal h-[39px] px-4 bg-[#FBB040] hover:bg-orange-400 text-white `}
+            >
+              Add new experience
+            </Button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
@@ -133,7 +138,7 @@ export default function HomePage() {
             ))
           ) : (
             <>
-              {dining && dining.length === 0 && (
+              <Link href="/dining">
                 <Card className="cursor-pointer bg-white  rounded-2xl transition-colors">
                   <CardContent className="p-0 h-full">
                     {/* Fixed aspect ratio container */}
@@ -147,7 +152,7 @@ export default function HomePage() {
                     </div>
                   </CardContent>
                 </Card>
-              )}
+              </Link>
 
               {dining &&
                 dining.map((dining: Meal, id) => (
