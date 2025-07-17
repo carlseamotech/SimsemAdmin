@@ -5,9 +5,10 @@ import {
   useContext,
   useState,
   useEffect,
+  useMemo,
   type ReactNode,
 } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
 import * as authService from "@/services/auth";
 import { auth, db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -21,14 +22,37 @@ interface AuthContextType {
   signOut: () => Promise<void>;
 }
 
+interface AuthService {
+  onAuthStateChanged: (callback: (user: FirebaseUser | null) => void) => () => void;
+  signIn: (email: string, password: string) => Promise<User>;
+  signOut: () => Promise<void>;
+}
+
+const defaultAuthService: AuthService = {
+  onAuthStateChanged: (callback) => onAuthStateChanged(auth, callback),
+  signIn: authService.signIn,
+  signOut: authService.signOut,
+};
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({
+  children,
+  authService: providedAuthService,
+}: {
+  children: ReactNode;
+  authService?: Partial<AuthService>;
+}) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const authServiceInstance = useMemo(
+    () => ({ ...defaultAuthService, ...providedAuthService }),
+    [providedAuthService]
+  );
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+    const unsubscribe = authServiceInstance.onAuthStateChanged(async (firebaseUser) => {
       if (firebaseUser) {
         const teamMemberRef = doc(db, "team", firebaseUser.uid);
         const teamMemberSnap = await getDoc(teamMemberRef);
@@ -37,8 +61,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           const teamMember = teamMemberSnap.data() as TeamMember;
           setUser({ ...firebaseUser, ...teamMember });
         } else {
-          // This case should ideally not happen for a logged-in admin,
-          // but we handle it gracefully.
           setUser(firebaseUser as User);
         }
       } else {
@@ -48,14 +70,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [authServiceInstance]);
 
   const signIn = async (email: string, password: string) => {
-    await authService.signIn(email, password);
+    authServiceInstance.signIn(email, password);
   };
 
   const signOut = async () => {
-    await authService.signOut();
+    await authServiceInstance.signOut();
   };
 
   const contextValue: AuthContextType = {

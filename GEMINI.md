@@ -58,3 +58,10 @@ For more detailed information on each layer, please refer to the `GEMINI.md` fil
 -   **`ProposedTour` vs. `Experience`**:
     -   **`ProposedTour`**: This name is used in the backend, API, and data modeling layers (`/models`, `/services`, `/dtos`).
     -   **`Experience`**: This name is used in the UI and display layers (`/app`, `/components`, `/hooks`).
+
+## 8. Testing
+
+- **Framework:** Playwright is used for end-to-end (E2E) testing to ensure that all forms and user flows function as expected.
+- **Test Location:** All Playwright test files are located in the `playwright/tests` directory. Each test file should be named with the `.spec.ts` extension (e.g., `login.spec.ts`).
+- **Running Tests:** To run the entire test suite, use the command `npm run test`. Make sure the development server is running before executing the tests.
+- **Authentication Testing:** The `AuthContext` has been designed to be test-friendly by allowing for dependency injection. When writing tests that require authentication, a mock `authService` can be provided to the `AuthProvider` to control the user's authentication state.

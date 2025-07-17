@@ -1,4 +1,4 @@
-export type LanguageLevel = "Beginner" | "Intermediate" | "Advance" | "Native";
+export type LanguageLevel = "Beginner" | "Intermediate" | "Advanced" | "Native";
 
 export interface Host {
   objectId: string;

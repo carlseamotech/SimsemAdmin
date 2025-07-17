@@ -31,7 +31,7 @@ const ExperiencesMainPage = () => {
     if (tab && tab !== activeTab) {
       setActiveTab(tab);
     }
-  }, [searchParams]);
+  }, [searchParams, activeTab]);
 
   const handleEdit = (experience: ProposedTour) => {
     setExperienceToEdit(experience);

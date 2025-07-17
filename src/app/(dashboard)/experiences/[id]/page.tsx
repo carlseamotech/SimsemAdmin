@@ -29,7 +29,6 @@ const ExperienceDetailsPage = () => {
   const { tour } = useTour(id as string);
   const { host } = useHost(tour?.guideId || "");
   const [isEditing, setIsEditing] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   console.log(tour, "tour");
   console.log("host", host);
@@ -207,7 +206,7 @@ const ExperienceDetailsPage = () => {
                   size="lg"
                   variant="outline"
                   onClick={() => router.back()}
-                  disabled={isSubmitting}
+                  
                   className="text-[17px] font-bold bg-[#9A031E] text-white"
                 >
                   Decline
@@ -219,7 +218,7 @@ const ExperienceDetailsPage = () => {
                   type="button"
                   variant="outline"
                   onClick={() => setIsEditing(true)}
-                  disabled={isSubmitting}
+                  
                   className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
                 >
                   Edit
@@ -229,9 +228,9 @@ const ExperienceDetailsPage = () => {
                   type="button"
                   className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
                   // onClick={handleApprove}
-                  disabled={isSubmitting}
+                  
                 >
-                  {isSubmitting ? "Approving..." : "Approve"}
+                  Approve
                 </Button>
               </div>
             </>
@@ -245,7 +244,7 @@ const ExperienceDetailsPage = () => {
                   // form.reset(host);
                   setIsEditing(false);
                 }}
-                disabled={isSubmitting}
+                
                 className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
               >
                 Cancel
@@ -254,9 +253,9 @@ const ExperienceDetailsPage = () => {
                 size="lg"
                 type="submit"
                 className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
-                disabled={isSubmitting}
+                
               >
-                {isSubmitting ? "Saving..." : "Save"}
+                Save
               </Button>
             </div>
           )}

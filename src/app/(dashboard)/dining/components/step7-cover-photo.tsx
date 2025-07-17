@@ -11,7 +11,6 @@ interface Step7CoverPhotoProps {
 }
 
 const Step7CoverPhoto: React.FC<Step7CoverPhotoProps> = ({
-  formData,
   setFormData,
 }) => {
   const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);

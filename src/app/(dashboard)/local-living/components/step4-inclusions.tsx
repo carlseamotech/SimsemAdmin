@@ -50,7 +50,7 @@ const Step4Inclusions: React.FC<Step4InclusionsProps> = ({
   return (
     <div className="space-y-6">
       <h2 className="text-[30px]  text-[#0D2E61] ">
-        What's Included & Not Included in Your Tour
+        What&apos;s Included & Not Included in Your Tour
       </h2>
 
       <div className="space-y-6">

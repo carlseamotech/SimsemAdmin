@@ -1,7 +1,7 @@
 "use client";
 import Header from "@/components/common/header";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Calendar, TrendingUp, DollarSign, Plus } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Plus } from "lucide-react";
 import TestImage from "../../../public/dining-test.png";
 import { useAuth } from "@/context/auth";
 import Image from "next/image";

@@ -5,7 +5,6 @@ import Header from "@/components/common/header";
 import { useRouter } from "next/navigation";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import Step1MealName from "./components/step1-meal-name";
 import Step2Description from "./components/step2-description";
 import Step3Starter from "./components/step3-starter";

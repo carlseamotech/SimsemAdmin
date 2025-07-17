@@ -3,7 +3,6 @@
 import type React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import ClockIcon from "../../../../../public/experience/clock-icon.svg";
 import LocationIcon from "../../../../../public/experience/location-icon.svg";
 import cover from "../../../../../public/dining-test.png";
 import MenuIndicatorIcon from "../../../../../public/experience/menu-indicator.svg";
@@ -15,7 +14,7 @@ interface Step8SummaryProps {
   formData: DiningFormData;
 }
 
-const Step8Summary: React.FC<Step8SummaryProps> = ({ formData }) => {
+const Step8Summary: React.FC<Step8SummaryProps> = () => {
   const menuData = [
     {
       title: "Starter",

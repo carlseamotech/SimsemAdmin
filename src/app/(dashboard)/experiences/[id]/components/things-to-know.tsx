@@ -1,6 +1,5 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import InfoIcon from "../../../../../../public/hosts-icons/payment-icon.svg";
 

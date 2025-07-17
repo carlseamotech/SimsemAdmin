@@ -26,7 +26,7 @@ interface Step6SummaryProps {
   formData: FormData;
 }
 
-const Step6Summary: React.FC<Step6SummaryProps> = ({ formData }) => {
+const Step6Summary: React.FC<Step6SummaryProps> = () => {
   const includedItems = [
     "Local tour guide",
     "Entrance fees",

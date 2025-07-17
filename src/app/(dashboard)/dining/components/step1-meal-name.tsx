@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import type { DiningFormData } from "../page";
 
