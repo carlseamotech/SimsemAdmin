@@ -20,7 +20,7 @@ const ExperiencesMainPage = () => {
   const [showDishForm, setShowDishForm] = useState(false);
   const [showExperienceForm, setShowExperienceForm] = useState(false);
   const [showExperienceModal, setShowExperienceModal] = useState(false);
-  const [experienceToEdit, setExperienceToEdit] = useState<ProposedTour | null>(
+  const [experienceToEdit] = useState<ProposedTour | null>(
     null
   );
   const [activeTab, setActiveTab] = useState("experiences");
@@ -32,11 +32,6 @@ const ExperiencesMainPage = () => {
       setActiveTab(tab);
     }
   }, [searchParams, activeTab]);
-
-  const handleEdit = (experience: ProposedTour) => {
-    setExperienceToEdit(experience);
-    setShowExperienceForm(true);
-  };
 
   const getFilterButtons = () => {
     if (activeTab === "experiences") {
@@ -66,7 +61,6 @@ const ExperiencesMainPage = () => {
           <ExperiencesPage
             activeFilter={activeFilter}
             searchTerm={searchTerm}
-            onEdit={handleEdit}
           />
         );
       case "experience-library":

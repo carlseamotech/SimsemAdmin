@@ -22,13 +22,11 @@ import { ConfirmationDialog } from "@/components/common/confirmation-dialog";
 interface ExperienceProps {
   activeFilter: string;
   searchTerm: string;
-  onEdit: (experience: ProposedTour) => void;
 }
 
 const ExperiencesPage: React.FC<ExperienceProps> = ({
   activeFilter,
   searchTerm,
-  onEdit,
 }) => {
   const { tours, count, isLoading, page, limit, setPage, deleteTour } =
     useTours(["custom", "getaway", "offered"]);
@@ -183,7 +181,11 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
                   <Button
                     size="sm"
                     className="bg-[#0D2E61] hover:bg-blue-900 text-[#FFFFFF]"
-                    onClick={() => onEdit(experience)}
+                    onClick={() =>
+                      router.push(
+                        `/experiences/${experience.objectId}?tab=experiences`
+                      )
+                    }
                   >
                     Edit
                   </Button>

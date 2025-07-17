@@ -97,8 +97,10 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
                   <Button
                     size="sm"
                     onClick={(e) => {
-                      // ✅ Prevent triggering the TableRow's onClick
                       e.stopPropagation();
+                      router.push(
+                        `/experiences/${dish.objectId}?tab=dish-library`
+                      );
                     }}
                     className="bg-[#0D2E61] hover:bg-blue-900 text-[#FFFFFF]"
                   >
