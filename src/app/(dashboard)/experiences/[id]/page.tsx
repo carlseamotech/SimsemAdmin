@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import Header from "@/components/common/header";
 import { useTour } from "@/hooks/use-tour";
 import { Gallery } from "./components/gallery";
-import { useHost } from "@/hooks/use-hosts";
 import { Button } from "@/components/ui/button";
 import { CoverPhoto } from "./components/cover-photo";
 import ClockIcon from "../../../../../public/experience/clock-icon.svg";
@@ -20,25 +19,25 @@ import { ChildPollicyRequirements } from "./components/pollicy-requirements";
 import { Packages } from "./components/packages";
 import WhereToMeet from "./components/meet";
 import DateAndTime from "./components/dateandtime";
+import { ExperienceDetailsSkeleton } from "./components/experience-details-skeleton";
 
 const ExperienceDetailsPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
   const { id } = useParams();
-  const { tour } = useTour(id as string);
-  const { host } = useHost(tour?.guideId || "");
+  const { tour, isLoading } = useTour(id as string);
   const [isEditing, setIsEditing] = useState(false);
 
-  console.log(tour, "tour");
-  console.log("host", host);
+  if (isLoading) {
+    return <ExperienceDetailsSkeleton />;
+  }
 
   if (!tour) {
     return (
       <>
         <Header
           showBackButton={tab === "experience-library"}
-          // showBackButton
           onBack={() => router.back()}
         />
         <div className=" py-6 px-8">Tour not found</div>
@@ -50,7 +49,6 @@ const ExperienceDetailsPage = () => {
     <div className="flex h-screen bg-gray-50">
       <div className="flex-1 flex flex-col">
         <Header
-          // showBackButton
           showBackButton={tab === "experience-library"}
           onBack={() => router.back()}
         />
@@ -141,7 +139,7 @@ const ExperienceDetailsPage = () => {
                   </div>
 
                   <div className="flex flex-wrap gap-2 ">
-                    {tour.tourFeatures.map((feature) => (
+                    {tour.tourFeatures?.map((feature) => (
                       <Badge
                         key={feature}
                         className="text-[15px] text-[#3D3D3D] bg-[#0D2E610D] rounded-full px-4 py-1.5"
@@ -156,7 +154,7 @@ const ExperienceDetailsPage = () => {
                 <CoverPhoto cover={tour.coverImageUrl} />
 
                 {/* gallery */}
-                <Gallery images={tour.galleryImageUrls} />
+                <Gallery images={tour.galleryImageUrls || []} />
 
                 {/* whats to expect */}
                 <div className="rounded-2xl p-6  bg-[#3D3D3D0D]  flex flex-col gap-6">
@@ -174,7 +172,7 @@ const ExperienceDetailsPage = () => {
                 {/* child policy & guest requirements */}
                 <ChildPollicyRequirements cost={tour.cost} />
 
-                <Packages packages={tour.tourPackages} />
+                <Packages packages={tour.tourPackages || []} />
 
                 <WhereToMeet />
 
@@ -187,10 +185,10 @@ const ExperienceDetailsPage = () => {
                 <WhatsIncludedNot />
 
                 {/* tour menu */}
-                <TourMenu images={tour.galleryImageUrls} />
+                <TourMenu images={tour.galleryImageUrls || []} />
 
                 {/* Our Detailed Itinerary */}
-                <Itinerary tourTimes={tour.tourTimes} />
+                <Itinerary tourTimes={tour.tourTimes || []} />
               </div>
             </div>
           </div>
@@ -206,7 +204,6 @@ const ExperienceDetailsPage = () => {
                   size="lg"
                   variant="outline"
                   onClick={() => router.back()}
-                  
                   className="text-[17px] font-bold bg-[#9A031E] text-white"
                 >
                   Decline
@@ -218,7 +215,6 @@ const ExperienceDetailsPage = () => {
                   type="button"
                   variant="outline"
                   onClick={() => setIsEditing(true)}
-                  
                   className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
                 >
                   Edit
@@ -228,7 +224,6 @@ const ExperienceDetailsPage = () => {
                   type="button"
                   className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
                   // onClick={handleApprove}
-                  
                 >
                   Approve
                 </Button>
@@ -244,7 +239,6 @@ const ExperienceDetailsPage = () => {
                   // form.reset(host);
                   setIsEditing(false);
                 }}
-                
                 className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
               >
                 Cancel
@@ -253,7 +247,6 @@ const ExperienceDetailsPage = () => {
                 size="lg"
                 type="submit"
                 className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
-                
               >
                 Save
               </Button>
