@@ -65,3 +65,18 @@ For more detailed information on each layer, please refer to the `GEMINI.md` fil
 - **Test Location:** All Playwright test files are located in the `playwright/tests` directory. Each test file should be named with the `.spec.ts` extension (e.g., `login.spec.ts`).
 - **Running Tests:** To run the entire test suite, use the command `npm run test`. Make sure the development server is running before executing the tests.
 - **Authentication Testing:** The `AuthContext` has been designed to be test-friendly by allowing for dependency injection. When writing tests that require authentication, a mock `authService` can be provided to the `AuthProvider` to control the user's authentication state.
+
+## 9. List Query Standard
+
+- **Pagination and Counting:** All list queries should support pagination and counting. The following parameters should be included in the API request:
+    - `limit`: The number of items to return per page.
+    - `skip`: The number of items to skip for pagination.
+    - `count`: Set to `1` to include the total count of items in the response.
+- **Response Format:** The response for a list query should have the following format:
+    ```json
+    {
+      "results": [...],
+      "count": 123
+    }
+    ```
+- **Hooks:** The SWR hooks that consume these services should return the `results` and `count` values, along with pagination state and handlers (e.g., `page`, `limit`, `setPage`, `setLimit`).
