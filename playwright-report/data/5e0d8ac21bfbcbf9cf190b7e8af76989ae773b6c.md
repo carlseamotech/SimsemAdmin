@@ -1,0 +1,52 @@
+# Page snapshot
+
+```yaml
+- img "Simsem Logo"
+- navigation:
+  - list:
+    - listitem:
+      - link "Home icon Home":
+        - /url: /
+        - img "Home icon"
+        - text: Home
+    - listitem:
+      - link "Experiences icon Experiences":
+        - /url: /experiences
+        - img "Experiences icon"
+        - text: Experiences
+    - listitem:
+      - link "Promotions icon Promotions":
+        - /url: /promotions
+        - img "Promotions icon"
+        - text: Promotions
+    - listitem:
+      - link "Hosts icon Hosts":
+        - /url: /hosts
+        - img "Hosts icon"
+        - text: Hosts
+    - listitem:
+      - link "Travelers icon Travelers COMING SOON":
+        - /url: /travelers
+        - img "Travelers icon"
+        - text: Travelers COMING SOON
+    - listitem:
+      - link "Payments icon Payments COMING SOON":
+        - /url: /payments
+        - img "Payments icon"
+        - text: Payments COMING SOON
+- button "logout Log Out":
+  - img "logout"
+  - text: Log Out
+- main:
+  - button:
+    - img
+  - textbox "Global Search"
+  - button "Notification Icon":
+    - img "Notification Icon"
+  - button "Profile":
+    - img "Profile"
+    - img
+- alert
+- button "Open Next.js Dev Tools":
+  - img
+```

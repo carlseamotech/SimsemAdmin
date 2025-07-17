@@ -139,7 +139,7 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
                 {experience.name}
               </TableCell>
               <TableCell className="text-gray-600">
-                {/*{experience.experienceType}*/}
+                {experience.type}
               </TableCell>
 
               {isApprovalVisible && "isApproved" in experience && (

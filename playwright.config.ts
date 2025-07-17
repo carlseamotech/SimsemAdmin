@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const authFile = 'playwright/.auth/user.json';
+
 export default defineConfig({
   testDir: './playwright/tests',
   fullyParallel: true,
@@ -13,8 +15,19 @@ export default defineConfig({
   },
   projects: [
     {
+      name: 'setup',
+      testMatch: /auth\.setup\.ts/,
+    },
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: authFile,
+        launchOptions: {
+          executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+        }
+      },
+      dependencies: ['setup'],
     },
   ],
 });
