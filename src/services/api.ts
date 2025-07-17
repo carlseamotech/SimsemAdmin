@@ -49,14 +49,15 @@ const apiClient: ApiClient = {
   },
 
   post: async <T>(endpoint: string, data: unknown): Promise<T> => {
+    const isFile = data instanceof File;
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: "POST",
       headers: {
         "X-Parse-Application-Id": APP_ID,
         "X-Parse-REST-API-Key": API_KEY,
-        "Content-Type": "application/json",
+        ...(isFile ? {} : { "Content-Type": "application/json" }),
       },
-      body: JSON.stringify(data),
+      body: isFile ? (data as BodyInit) : JSON.stringify(data),
     });
 
     return handleResponse(response);

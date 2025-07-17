@@ -9,12 +9,18 @@ interface DocumentUploadSectionProps {
   isEditing: boolean;
   idFrontFileUrl?: string;
   idBackFileUrl?: string;
+  onFrontFileChange: (file: File | null) => void;
+  onBackFileChange: (file: File | null) => void;
+  onCertificateFileChange?: (file: File | null) => void;
 }
 
 export function DocumentUploadSection({
   isEditing,
   idFrontFileUrl,
   idBackFileUrl,
+  onFrontFileChange,
+  onBackFileChange,
+  onCertificateFileChange,
 }: DocumentUploadSectionProps) {
   const [frontImage, setFrontImage] = useState<File | null>(null);
   const [backImage, setBackImage] = useState<File | null>(null);
@@ -22,11 +28,13 @@ export function DocumentUploadSection({
 
   const handleFileChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    setImage: React.Dispatch<React.SetStateAction<File | null>>
+    setImage: React.Dispatch<React.SetStateAction<File | null>>,
+    onFileChange?: (file: File | null) => void
   ) => {
     const file = e.target.files?.[0];
     if (file) {
       setImage(file);
+      onFileChange?.(file);
     }
   };
 
@@ -34,62 +42,71 @@ export function DocumentUploadSection({
     label: string,
     image: File | null,
     setImage: React.Dispatch<React.SetStateAction<File | null>>,
+    onFileChange?: (file: File | null) => void,
     imageUrl?: string
-  ) => (
-    <div className="rounded-lg text-center w-full mx-auto relative">
-      <label className="bg-[#00000008] rounded-lg mb-4  w-full aspect-[5/2]  flex items-center justify-center border-2 border-dashed border-gray-100 hover:border-gray-300 transition-colors cursor-pointer overflow-hidden relative">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => handleFileChange(e, setImage)}
-          className="hidden"
-          disabled={!isEditing}
-        />
+  ) => {
+    const inputId = `file-upload-${label.replace(/\s+/g, "-").toLowerCase()}`;
+    return (
+      <div className="rounded-lg text-center w-full mx-auto relative">
+        <label
+          htmlFor={inputId}
+          className="bg-[#00000008] rounded-lg mb-4  w-full aspect-[5/2]  flex items-center justify-center border-2 border-dashed border-gray-100 hover:border-gray-300 transition-colors cursor-pointer overflow-hidden relative"
+        >
+          <input
+            id={inputId}
+            type="file"
+            accept="image/*"
+            onChange={(e) => handleFileChange(e, setImage, onFileChange)}
+            className="hidden"
+            disabled={!isEditing}
+          />
 
-        {image ? (
-          <>
+          {image ? (
+            <>
+              <Image
+                src={URL.createObjectURL(image)}
+                alt={label}
+                layout="fill"
+                objectFit="cover"
+              />
+              {isEditing && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation(); // prevent triggering file input
+                    setImage(null);
+                    onFileChange?.(null);
+                  }}
+                  className="absolute top-2 right-2 bg-[#F63838] rounded-full w-7 h-7 flex items-center justify-center text-white "
+                >
+                  <HiOutlineX />
+                </button>
+              )}
+            </>
+          ) : imageUrl ? (
             <Image
-              src={URL.createObjectURL(image)}
+              src={imageUrl}
               alt={label}
               layout="fill"
               objectFit="cover"
             />
-            {isEditing && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation(); // prevent triggering file input
-                  setImage(null);
-                }}
-                className="absolute top-2 right-2 bg-[#F63838] rounded-full w-7 h-7 flex items-center justify-center text-white "
-              >
-                <HiOutlineX />
-              </button>
-            )}
-          </>
-        ) : imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt={label}
-            layout="fill"
-            objectFit="cover"
-          />
-        ) : (
-          <div className="flex flex-col justify-center items-center gap-2">
-            <Image
-              src={UploadIcon}
-              alt="Upload Icon"
-              className="w-[46px] h-[46px]"
-            />
-            <p className="text-[15px] font-bold text-[#3D3D3D]">
-              Upload or drag here
-            </p>
-          </div>
-        )}
-      </label>
-      <p className="text-[20px] text-[#3D3D3D] font-medium">{label}</p>
-    </div>
-  );
+          ) : (
+            <div className="flex flex-col justify-center items-center gap-2">
+              <Image
+                src={UploadIcon}
+                alt="Upload Icon"
+                className="w-[46px] h-[46px]"
+              />
+              <p className="text-[15px] font-bold text-[#3D3D3D]">
+                Upload or drag here
+              </p>
+            </div>
+          )}
+        </label>
+        <p className="text-[20px] text-[#3D3D3D] font-medium">{label}</p>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -102,12 +119,14 @@ export function DocumentUploadSection({
               "Front Side",
               frontImage,
               setFrontImage,
+              onFrontFileChange,
               idFrontFileUrl
             )}
             {renderUploadBox(
               "Back Side",
               backImage,
               setBackImage,
+              onBackFileChange,
               idBackFileUrl
             )}
           </div>
@@ -123,7 +142,8 @@ export function DocumentUploadSection({
           {renderUploadBox(
             "Certificate",
             certificateImage,
-            setCertificateImage
+            setCertificateImage,
+            onCertificateFileChange
           )}
         </CardContent>
       </Card>

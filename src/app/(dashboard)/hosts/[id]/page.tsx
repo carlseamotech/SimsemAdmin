@@ -20,12 +20,17 @@ import {
 import { useHost } from "@/hooks/use-hosts";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UpdateHostDTO } from "@/services/hosts";
+import { uploadFile } from "@/services/files";
 
 const HostSummaryPage = () => {
   const { id } = useParams();
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [frontImageFile, setFrontImageFile] = useState<File | null>(null);
+  const [backImageFile, setBackImageFile] = useState<File | null>(null);
+  const [certificateFile, setCertificateFile] = useState<File | null>(null);
+  const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
 
   const { host, hostPayment, isLoading, updateHost } = useHost(id as string);
 
@@ -79,6 +84,27 @@ const HostSummaryPage = () => {
         thirdLanguage: data.thirdLanguage,
         thirdLanguageLevel: data.thirdLanguageLevel,
       };
+
+      if (profileImageFile) {
+        const uploadedProfileImage = await uploadFile(profileImageFile);
+        updateDto.imageUrl = uploadedProfileImage.url;
+      }
+
+      if (frontImageFile) {
+        const uploadedFrontImage = await uploadFile(frontImageFile);
+        updateDto.idFrontFileUrl = uploadedFrontImage.url;
+      }
+
+      if (backImageFile) {
+        const uploadedBackImage = await uploadFile(backImageFile);
+        updateDto.idBackFileUrl = uploadedBackImage.url;
+      }
+
+      if (certificateFile) {
+        const uploadedCertificate = await uploadFile(certificateFile);
+        updateDto.certificateFileUrl = uploadedCertificate.url;
+      }
+
       await updateHost(updateDto);
       setIsEditing(false);
     } catch (error) {
@@ -137,7 +163,11 @@ const HostSummaryPage = () => {
                   <div className="flex flex-col items-start gap-8">
                     <div className="flex flex-row items-center gap-6">
                       <Image
-                        src={host.imageUrl || ProfileImage}
+                        src={
+                          profileImageFile
+                            ? URL.createObjectURL(profileImageFile)
+                            : host.imageUrl || ProfileImage
+                        }
                         alt="Host Avatar"
                         width={80}
                         height={80}
@@ -146,10 +176,20 @@ const HostSummaryPage = () => {
 
                       {isEditing && (
                         <Button
+                          asChild
                           variant="default"
                           className="text-[#FFFFFF] flex items-center justify-center w-[132px] h-[30px] text-[13px] bg-[#5F0F40] rounded-full"
                         >
-                          CHANGE PHOTO
+                          <label>
+                            CHANGE PHOTO
+                            <input
+                              type="file"
+                              className="hidden"
+                              onChange={(e) =>
+                                setProfileImageFile(e.target.files?.[0] || null)
+                              }
+                            />
+                          </label>
                         </Button>
                       )}
                     </div>
@@ -276,6 +316,9 @@ const HostSummaryPage = () => {
                 isEditing={isEditing}
                 idBackFileUrl={host.idBackFileUrl}
                 idFrontFileUrl={host.idFrontFileUrl}
+                onFrontFileChange={setFrontImageFile}
+                onBackFileChange={setBackImageFile}
+                onCertificateFileChange={setCertificateFile}
               />
 
               {/* Contact & Language */}

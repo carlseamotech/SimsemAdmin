@@ -39,6 +39,7 @@ export interface Host {
     objectId: string;
   };
   idFrontFileUrl: string;
+  certificateFileUrl?: string;
   email: string;
   firstLanguage: string;
   isVerified: boolean;
