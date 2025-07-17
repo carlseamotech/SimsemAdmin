@@ -9,7 +9,8 @@ export type UpdateHostPaymentDTO = Partial<Omit<HostPayment, "objectId" | "creat
 
 export const getHosts = async (
   limit: number,
-  skip: number
+  skip: number,
+  filter?: { where: Record<string, unknown> }
 ): Promise<{ results: Host[]; count: number }> => {
   return await api.get(BASE_URL, {
     params: {
@@ -17,6 +18,7 @@ export const getHosts = async (
       skip,
       count: 1,
       order: "-createdAt",
+      ...filter,
     },
   });
 };

@@ -12,14 +12,42 @@ import {
 import { HostPayment } from "@/models/host";
 import { useState } from "react";
 
-export const useHosts = () => {
+export const useHosts = (
+  name?: string,
+  hostId?: string,
+  email?: string,
+  country?: string
+) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-  const { data, error, mutate } = useSWR(
-    ["/hosts", page, limit],
-    () => getHosts(limit, (page - 1) * limit)
-  );
+  const swrKey = ["/hosts", page, limit, name, hostId, email, country];
+
+  const fetcher = () => {
+    const filter: {
+      where: {
+        name?: { $regex: string; $options: string };
+        objectId?: string;
+        email?: string;
+        country?: string;
+      };
+    } = { where: {} };
+    if (name) {
+      filter.where.name = { $regex: name, $options: "i" };
+    }
+    if (hostId) {
+      filter.where.objectId = hostId;
+    }
+    if (email) {
+      filter.where.email = email;
+    }
+    if (country) {
+      filter.where.country = country;
+    }
+    return getHosts(limit, (page - 1) * limit, filter);
+  };
+
+  const { data, error, mutate } = useSWR(swrKey, fetcher);
 
   return {
     hosts: data?.results || [],

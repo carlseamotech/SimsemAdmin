@@ -19,27 +19,31 @@ import { HostsTableSkeleton } from "@/app/(dashboard)/hosts/components/hosts-tab
 interface HostsTableProps {
   searchTerm: string;
   activeFilter: string;
+  hostId: string;
+  email: string;
+  country: string;
 }
 
 export const HostsTable: React.FC<HostsTableProps> = ({
   searchTerm,
   activeFilter,
+  hostId,
+  email,
+  country,
 }) => {
-  const { hosts, count, isLoading, page, limit, setPage } = useHosts();
+  const { hosts, count, isLoading, page, limit, setPage } = useHosts(
+    searchTerm,
+    hostId,
+    email,
+    country
+  );
   const router = useRouter();
 
   const filteredHosts = hosts?.filter((host: Host) => {
-    const matchesSearch =
-      host.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      host.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      host.country.toLowerCase().includes(searchTerm.toLowerCase());
-
-    if (activeFilter === "all") return matchesSearch;
-    if (activeFilter === "for-approval")
-      return matchesSearch && !host.isVerified;
-    if (activeFilter === "approved") return matchesSearch && host.isVerified;
-
-    return matchesSearch;
+    if (activeFilter === "all") return true;
+    if (activeFilter === "for-approval") return !host.isVerified;
+    if (activeFilter === "approved") return host.isVerified;
+    return true;
   });
 
   if (isLoading) {

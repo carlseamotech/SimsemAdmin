@@ -13,7 +13,8 @@ test.describe('Host Form', () => {
     // Modify a field
     await page.fill('input[name="about"]', 'This is an updated bio for the host.');
     await page.fill('input[name="city"]', 'New York');
-    await page.fill('input[name="languages"]', 'English, Spanish');
+    await page.fill('input[name="firstLanguage"]', 'English');
+    await page.fill('input[name="secondLanguage"]', 'Spanish');
 
     // Save the changes
     await page.click('button:has-text("Save")');
@@ -21,7 +22,8 @@ test.describe('Host Form', () => {
     // Verify the change was saved
     await expect(page.locator('input[name="about"]')).toHaveValue('This is an updated bio for the host.');
     await expect(page.locator('input[name="city"]')).toHaveValue('New York');
-    await expect(page.locator('input[name="languages"]')).toHaveValue('English, Spanish');
+    await expect(page.locator('input[name="firstLanguage"]')).toHaveValue('English');
+    await expect(page.locator('input[name="secondLanguage"]')).toHaveValue('Spanish');
   });
 
   test('should allow updating payment information', async ({ page }) => {

@@ -3,12 +3,18 @@ import { useState } from "react";
 import { Search, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useHosts } from "@/hooks/use-hosts";
 import Header from "@/components/common/header";
 import { HostsTable } from "@/app/(dashboard)/hosts/components/hosts-table";
 
 const HostDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [hostId, setHostId] = useState("");
+  const [email, setEmail] = useState("");
+  const [country, setCountry] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
+
+  const { count } = useHosts(searchTerm, hostId, email, country);
 
   const getFilterButtons = () => ["all", "for-approval", "approved"];
 
@@ -46,18 +52,39 @@ const HostDashboard = () => {
                       {getFilterLabel(filter)}
                     </Button>
                   ))}
+                  <p className="text-sm text-muted-foreground">
+                    Total: {count}
+                  </p>
                 </div>
 
                 <div className="flex items-center space-x-4">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <Input
-                      placeholder="Search"
+                      placeholder="Search by Name"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 w-64"
+                      className="pl-10 w-48"
                     />
                   </div>
+                  <Input
+                    placeholder="Host ID"
+                    value={hostId}
+                    onChange={(e) => setHostId(e.target.value)}
+                    className="w-48"
+                  />
+                  <Input
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-48"
+                  />
+                  <Input
+                    placeholder="Country"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    className="w-48"
+                  />
 
                   <div className="border-l border-[#D9D9DC] h-10" />
 
@@ -71,7 +98,13 @@ const HostDashboard = () => {
                 </div>
               </div>
             </div>
-            <HostsTable searchTerm={searchTerm} activeFilter={activeFilter} />
+            <HostsTable
+              searchTerm={searchTerm}
+              activeFilter={activeFilter}
+              hostId={hostId}
+              email={email}
+              country={country}
+            />
           </div>
         </div>
       </div>

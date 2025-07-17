@@ -22,14 +22,20 @@ import { ConfirmationDialog } from "@/components/common/confirmation-dialog";
 interface ExperienceProps {
   activeFilter: string;
   searchTerm: string;
+  experienceId: string;
+  hostId: string;
+  country: string;
 }
 
 const ExperiencesPage: React.FC<ExperienceProps> = ({
   activeFilter,
   searchTerm,
+  experienceId,
+  hostId,
+  country,
 }) => {
   const { tours, count, isLoading, page, limit, setPage, deleteTour } =
-    useTours(["custom", "getaway", "offered"]);
+    useTours(undefined, true, experienceId, hostId, country);
   const { hosts } = useHosts();
   const router = useRouter();
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -55,14 +61,17 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
       const host = hosts?.find((h) => h.objectId === tour.guideId);
       return {
         ...tour,
-        experienceType: tour.type.charAt(0).toUpperCase() + tour.type.slice(1),
+        experienceType:
+          tour.type?.charAt(0).toUpperCase() + tour.type?.slice(1) || "N/A",
         hostName: host?.name || "N/A",
+        country: host?.country || "N/A",
       };
     });
   }, [tours, hosts]);
 
   const getFilteredExperiences = () => {
-    let data: (ProposedTour & { hostName: string })[] = allExperiences || [];
+    let data: (ProposedTour & { hostName: string; country: string })[] =
+      allExperiences || [];
 
     if (activeFilter === "for-approval") {
       data = data.filter((item) => "isApproved" in item && !item.isApproved);
@@ -76,8 +85,11 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
 
     return data.filter(
       (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.hostName.toLowerCase().includes(searchTerm.toLowerCase())
+        (item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.hostName.toLowerCase().includes(searchTerm.toLowerCase())) &&
+        item.objectId.toLowerCase().includes(experienceId.toLowerCase()) &&
+        item.guideId.toLowerCase().includes(hostId.toLowerCase()) &&
+        item.country.toLowerCase().includes(country.toLowerCase())
     );
   };
 

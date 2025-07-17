@@ -288,7 +288,7 @@ const HostSummaryPage = () => {
                         Last Active
                       </p>
                       <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {new Date(host.lastActive.iso).toLocaleDateString()}
+                        {host.lastActive?.iso ? new Date(host.lastActive.iso).toLocaleDateString() : 'N/A'}
                       </p>
                     </div>
                     <div>

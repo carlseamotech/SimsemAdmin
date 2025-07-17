@@ -42,17 +42,45 @@ import {
 import { useState } from "react";
 import useSWR from "swr";
 
-export const useTours = (types: string[], enabled: boolean = true) => {
+export const useTours = (
+  types?: string[],
+  enabled: boolean = true,
+  experienceId?: string,
+  hostId?: string,
+  country?: string
+) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-  const { data, error, mutate } = useSWR(
-    enabled ? ["/tours", types.join(","), page, limit] : null,
-    () =>
-      getTours(limit, (page - 1) * limit, {
-        where: { type: { $in: types } },
-      })
-  );
+  const swrKey = enabled
+    ? ["/tours", types?.join(","), page, limit, experienceId, hostId, country]
+    : null;
+
+  const fetcher = () => {
+    const filter: {
+      where: {
+        type?: { $in: string[] };
+        objectId?: string;
+        guideId?: string;
+        country?: string;
+      };
+    } = { where: {} };
+    if (types && types.length > 0) {
+      filter.where.type = { $in: types };
+    }
+    if (experienceId) {
+      filter.where.objectId = experienceId;
+    }
+    if (hostId) {
+      filter.where.guideId = hostId;
+    }
+    if (country) {
+      filter.where.country = country;
+    }
+    return getTours(limit, (page - 1) * limit, filter);
+  };
+
+  const { data, error, mutate } = useSWR(swrKey, fetcher);
 
   const createTourHandler = async (tour: CreateProposedTourDTO) => {
     try {

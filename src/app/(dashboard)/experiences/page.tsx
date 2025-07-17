@@ -12,16 +12,27 @@ import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-ex
 import { useSearchParams } from "next/navigation";
 import { ProposedTour } from "@/models/proposed-tour";
 import { ExperienceForm } from "./components/experience-form";
+import { useTours } from "@/hooks/use-experiences";
 import { OfferExperienceModal } from "./components/experience-library-modal";
 
 const ExperiencesMainPage = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [experienceId, setExperienceId] = useState("");
+  const [hostId, setHostId] = useState("");
+  const [country, setCountry] = useState("");
   const [showDishForm, setShowDishForm] = useState(false);
   const [showExperienceForm, setShowExperienceForm] = useState(false);
   const [showExperienceModal, setShowExperienceModal] = useState(false);
   const [experienceToEdit] = useState<ProposedTour | null>(
     null
+  );
+  const { count } = useTours(
+    undefined,
+    true,
+    experienceId,
+    hostId,
+    country
   );
   const [activeTab, setActiveTab] = useState("experiences");
   const searchParams = useSearchParams();
@@ -61,6 +72,9 @@ const ExperiencesMainPage = () => {
           <ExperiencesPage
             activeFilter={activeFilter}
             searchTerm={searchTerm}
+            experienceId={experienceId}
+            hostId={hostId}
+            country={country}
           />
         );
       case "experience-library":
@@ -119,18 +133,39 @@ const ExperiencesMainPage = () => {
                         {getFilterLabel(filter)}
                       </Button>
                     ))}
+                    <p className="text-sm text-muted-foreground">
+                      Total: {count}
+                    </p>
                   </div>
 
                   <div className="flex items-center space-x-4">
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                       <Input
-                        placeholder="Search"
+                        placeholder="Search by Name"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10 w-64"
+                        className="pl-10 w-48"
                       />
                     </div>
+                    <Input
+                      placeholder="Experience ID"
+                      value={experienceId}
+                      onChange={(e) => setExperienceId(e.target.value)}
+                      className="w-48"
+                    />
+                    <Input
+                      placeholder="Host ID"
+                      value={hostId}
+                      onChange={(e) => setHostId(e.target.value)}
+                      className="w-48"
+                    />
+                    <Input
+                      placeholder="Country"
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      className="w-48"
+                    />
 
                     <div className="border-l border-[#D9D9DC] border h-9" />
 
