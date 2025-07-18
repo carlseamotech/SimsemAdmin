@@ -3,19 +3,7 @@ import React from "react";
 import UploadIcon from "../../../../../public/common/upload-cloud-icon.svg";
 import Image from "next/image";
 import { X } from "lucide-react";
-
-interface FormData {
-  country: string;
-  costPerPerson: string;
-  minDuration: string;
-  maxDuration: string;
-  categories: string[];
-  description: string;
-  coverPhoto: File | null;
-  included: string[];
-  notIncluded: string[];
-  tourName: string;
-}
+import { FormData } from "./types";
 
 interface Step5CoverPhotoProps {
   formData: FormData;

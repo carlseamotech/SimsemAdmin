@@ -2,26 +2,14 @@
 
 import type React from "react";
 import { Textarea } from "@/components/ui/textarea";
+import { FormData } from "./types";
 
-interface FormData {
-  country: string;
-  costPerPerson: string;
-  minDuration: string;
-  maxDuration: string;
-  categories: string[];
-  description: string;
-  coverPhoto: File | null;
-  included: string[];
-  notIncluded: string[];
-  tourName: string;
-}
-
-interface Step5TourNameProps {
+interface Step1TourNameProps {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
-const Step1TourName: React.FC<Step5TourNameProps> = ({
+const Step1TourName: React.FC<Step1TourNameProps> = ({
   formData,
   setFormData,
 }) => {
@@ -36,9 +24,9 @@ const Step1TourName: React.FC<Step5TourNameProps> = ({
 
       <div className="space-y-2">
         <Textarea
-          value={formData.tourName}
+          value={formData.name}
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, tourName: e.target.value }))
+            setFormData((prev) => ({ ...prev, name: e.target.value }))
           }
           placeholder="The Ultimate Breakfast at Istanbul"
           className="w-full text-[25px] text-[#00000066] py-4 px-4 bg-[#00000008] min-h-[130px] focus-visible:ring-[1px] "
@@ -46,7 +34,7 @@ const Step1TourName: React.FC<Step5TourNameProps> = ({
         />
 
         <p className="text-sm text-gray-500 mt-1">
-          {formData.tourName.length}/60
+          {formData.name.length}/60
         </p>
       </div>
     </div>

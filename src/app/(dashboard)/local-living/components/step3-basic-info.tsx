@@ -10,19 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-
-interface FormData {
-  country: string;
-  costPerPerson: string;
-  minDuration: string;
-  maxDuration: string;
-  categories: string[];
-  description: string;
-  coverPhoto: File | null;
-  included: string[];
-  notIncluded: string[];
-  tourName: string;
-}
+import { FormData } from "./types";
 
 interface Step3BasicInfoProps {
   formData: FormData;
@@ -44,9 +32,9 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
   const toggleCategory = (category: string) => {
     setFormData((prev) => ({
       ...prev,
-      categories: prev.categories.includes(category)
-        ? prev.categories.filter((c) => c !== category)
-        : [...prev.categories, category],
+      tourFeatures: prev.tourFeatures.includes(category)
+        ? prev.tourFeatures.filter((c: string) => c !== category)
+        : [...prev.tourFeatures, category],
     }));
   };
 
@@ -92,11 +80,11 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
 
                 <Input
                   type="number"
-                  value={formData.costPerPerson}
+                  value={formData.cost}
                   onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
-                      costPerPerson: e.target.value,
+                      cost: e.target.value,
                     }))
                   }
                   placeholder="20"
@@ -116,47 +104,22 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
           <div className="grid grid-cols-2 gap-4">
             <div className="relative">
               <label className="block text-[14px] font-semibold text-[#000000B2] mb-1">
-                Min Duration
+                Duration
               </label>
 
               <div className="flex items-center ">
                 <Input
-                  type="number"
-                  value={formData.minDuration}
+                  type="text"
+                  value={formData.tourDuration}
                   onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
-                      minDuration: e.target.value,
+                      tourDuration: e.target.value,
                     }))
                   }
                   className="bg-[#00000008]  placeholder:text-[19px] md:text-[19px]  text-[#000000B2]  h-[59px] rounded-xl  focus-visible:ring-0"
-                  placeholder="2"
+                  placeholder="2 hours"
                 />
-                <div className="text-sm absolute right-10 ">hours</div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <label className="block text-[14px] font-semibold text-[#000000B2] mb-1">
-                Max Duration
-              </label>
-
-              <div className="flex items-center ">
-                <Input
-                  type="number"
-                  value={formData.maxDuration}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      maxDuration: e.target.value,
-                    }))
-                  }
-                  placeholder="3"
-                  className="bg-[#00000008]  placeholder:text-[19px] md:text-[19px]  text-[#000000B2]  h-[59px] rounded-xl  focus-visible:ring-0"
-                />
-                <span className="text-sm absolute right-10 text-gray-500">
-                  hours
-                </span>
               </div>
             </div>
           </div>
@@ -172,10 +135,12 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
               <Badge
                 key={category}
                 variant={
-                  formData.categories.includes(category) ? "default" : "outline"
+                  formData.tourFeatures.includes(category)
+                    ? "default"
+                    : "outline"
                 }
                 className={`cursor-pointer px-8 py-2 h-[59px] text-[19px] font-normal rounded-2xl ${
-                  formData.categories.includes(category)
+                  formData.tourFeatures.includes(category)
                     ? "bg-[#FEC540] hover:bg-yellow-500 text-white"
                     : "bg-[#00000008] hover:bg-gray-200 text-[#000000B2]"
                 }`}

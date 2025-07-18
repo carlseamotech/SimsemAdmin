@@ -1,49 +1,19 @@
 "use client";
 import ClockIcon from "../../../../../public/experience/clock-icon.svg";
 import LocationIcon from "../../../../../public/experience/location-icon.svg";
-import cover from "../../../../../public/dining-test.png";
 import CheckIcon from "../../../../../public/experience/check-icon.svg";
 import XIcon from "../../../../../public/experience/x-icon.svg";
 import type React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-
-interface FormData {
-  country: string;
-  costPerPerson: string;
-  minDuration: string;
-  maxDuration: string;
-  categories: string[];
-  description: string;
-  coverPhoto: File | null;
-  included: string[];
-  notIncluded: string[];
-  tourName: string;
-}
+import { FormData } from "./types";
 
 interface Step6SummaryProps {
   formData: FormData;
 }
 
-const Step6Summary: React.FC<Step6SummaryProps> = () => {
-  const includedItems = [
-    "Local tour guide",
-    "Entrance fees",
-    "Bottled water",
-    "Transportation during tour",
-  ];
-
-  const excludedItems = ["Meals and drinks", "History", "Architecture"];
-
-  const tourFeatures = [
-    "Culture",
-    "Gratuities",
-    "Shopping",
-    "Outdoor",
-    "Workshop",
-  ];
-
+const Step6Summary: React.FC<Step6SummaryProps> = ({ formData }) => {
   return (
     <div className="space-y-6">
       <div className="space-y-6">
@@ -61,12 +31,12 @@ const Step6Summary: React.FC<Step6SummaryProps> = () => {
           <div>
             <h1 className="text-[15px] text-[#3D3D3DCC]">TOUR NAME</h1>
             <p className="text-[#0D2E61] text-[30px] font-bold ">
-              A walk through my campus
+              {formData.name}
             </p>
           </div>
 
           <Button className="h-[64px] bg-[#FB8B24] hover:bg-orange-400 font-bold text-white text-[22px] cursor-pointer rounded-full">
-            $30.00/ Person
+            ${formData.cost}/ Person
           </Button>
         </div>
 
@@ -79,13 +49,7 @@ const Step6Summary: React.FC<Step6SummaryProps> = () => {
 
             <div>
               <p className="text-[#3D3D3D] text-[18px] ">
-                {/* {formData.description} */}
-                We’ll pick you up from your hotel in Giza or Cairo downtown at
-                9am. Then start out tour to visit: Giza Pyramids and Sphinx, the
-                panorama fot the best view of the pyramid, Came Rides (30
-                minutes), ATV Quad Bikes (60 minutes). Ticket to the whole area
-                of the Pyramids and Sphinx is included. After the day trip,
-                we’ll transfer you back to your hotel. End of tour.
+                {formData.description}
               </p>
             </div>
 
@@ -99,11 +63,7 @@ const Step6Summary: React.FC<Step6SummaryProps> = () => {
 
                 <span className="text-[#3D3D3D] font-bold text-[15px] capitalize truncate space-x-1">
                   <span className="text-[#0D2E61] text-[15px] ">Country:</span>
-                  <span>
-                    {/* {formData.city},  
-                  {formData.country}*/}
-                    Istanbul, Turkey
-                  </span>
+                  <span>{formData.country}</span>
                 </span>
               </div>
 
@@ -115,14 +75,16 @@ const Step6Summary: React.FC<Step6SummaryProps> = () => {
                 />
 
                 <span className="text-[#3D3D3D] font-bold text-[15px] capitalize truncate space-x-1">
-                  <span className="text-[#0D2E61] text-[15px] ">Duration:</span>
-                  <span> 2-3 Hours</span>
+                  <span className="text-[#0D2E61] text-[15px] ">
+                    Duration:
+                  </span>
+                  <span> {formData.tourDuration}</span>
                 </span>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-2 ">
-              {tourFeatures.map((feature) => (
+              {formData.tourFeatures.map((feature) => (
                 <Badge
                   key={feature}
                   className="text-[15px] text-[#3D3D3D] bg-[#0D2E610D] rounded-full px-4 py-1.5"
@@ -141,12 +103,14 @@ const Step6Summary: React.FC<Step6SummaryProps> = () => {
 
             {/* This wrapper ensures responsive ratio */}
             <div className="relative w-full aspect-[887/312] rounded-lg overflow-hidden">
-              <Image
-                src={cover}
-                alt="Cover photo"
-                fill
-                className="object-cover"
-              />
+              {formData.coverPhoto && (
+                <Image
+                  src={URL.createObjectURL(formData.coverPhoto)}
+                  alt="Cover photo"
+                  fill
+                  className="object-cover"
+                />
+              )}
             </div>
           </div>
 
@@ -159,7 +123,7 @@ const Step6Summary: React.FC<Step6SummaryProps> = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <ul className="space-y-2">
-                  {includedItems.map((item, index) => (
+                  {formData.inclusions.map((item, index) => (
                     <li
                       key={index}
                       className="flex items-center gap-2 text-[#3D3D3D]"
@@ -171,7 +135,7 @@ const Step6Summary: React.FC<Step6SummaryProps> = () => {
                 </ul>
 
                 <ul className="space-y-2">
-                  {excludedItems.map((item, index) => (
+                  {formData.exclusions.map((item, index) => (
                     <li
                       key={index}
                       className="flex items-center gap-2 text-[#3D3D3D]"

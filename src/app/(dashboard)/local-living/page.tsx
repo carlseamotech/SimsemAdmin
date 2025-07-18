@@ -13,18 +13,10 @@ import Step6Summary from "./components/step6-summary";
 import Step3BasicInfo from "./components/step3-basic-info";
 import Step5CoverPhoto from "./components/step5-cover-photo";
 
-interface FormData {
-  country: string;
-  costPerPerson: string;
-  minDuration: string;
-  maxDuration: string;
-  categories: string[];
-  description: string;
-  coverPhoto: File | null;
-  included: string[];
-  notIncluded: string[];
-  tourName: string;
-}
+import { FormData } from "./components/types";
+import { createCustomTour } from "@/services/experiences/custom-tour";
+import { uploadFile } from "@/services/files";
+import toast from "react-hot-toast";
 
 const LocalLivingExperiencePage = () => {
   const router = useRouter();
@@ -32,24 +24,63 @@ const LocalLivingExperiencePage = () => {
   const totalSteps = 6;
   const [formData, setFormData] = useState<FormData>({
     country: "",
-    costPerPerson: "",
-    minDuration: "",
-    maxDuration: "",
-    categories: [],
+    cost: "",
+    city: "",
+    difficultyLevel: "Basic",
+    coverImageUrl: "",
+    galleryImageUrls: [],
+    guideId: "kifpSShKKb", // Hardcoded for now
     description: "",
+    tourFeatures: [],
+    cameraZoom: 15,
+    type: "custom",
+    meetingPointLat: 23.764437246189587,
+    meetingPoint:
+      "Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh",
+    phone: "+8801703464048",
+    countryCode: "+880",
+    name: "",
+    meetingPointLong: 90.4352742433548,
+    tourTimes: [],
+    tourDuration: "",
     coverPhoto: null,
-    included: [],
-    notIncluded: [],
-    tourName: "",
+    inclusions: [],
+    exclusions: [],
+    itinerary: {},
+    thingsToKnow: [],
+    whatToExpect: "",
   });
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    if (currentStep === 1 && !formData.name) {
+      toast.error("Tour name is required");
+      return;
+    }
+    if (currentStep === 3 && (!formData.country || !formData.cost || !formData.tourDuration)) {
+      toast.error("Country and cost are required");
+      return;
+    }
+
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     } else {
-      // Submit form
-      console.log("Form submitted:", formData);
-      router.push("/experiences?tab=experience-library");
+      try {
+        let coverImageUrl = "";
+        if (formData.coverPhoto) {
+          const uploadedFile = await uploadFile(formData.coverPhoto);
+          coverImageUrl = uploadedFile.url;
+        }
+
+        const tourData = {
+          ...formData,
+          coverImageUrl,
+        };
+        await createCustomTour(tourData);
+        toast.success("Local living experience created successfully");
+        router.push("/experiences?tab=experience-library");
+      } catch {
+        toast.error("Failed to create local living experience");
+      }
     }
   };
 

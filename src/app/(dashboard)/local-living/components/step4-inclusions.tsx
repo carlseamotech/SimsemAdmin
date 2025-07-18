@@ -4,19 +4,7 @@ import type React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
-interface FormData {
-  country: string;
-  costPerPerson: string;
-  minDuration: string;
-  maxDuration: string;
-  categories: string[];
-  description: string;
-  coverPhoto: File | null;
-  included: string[];
-  notIncluded: string[];
-  tourName: string;
-}
+import { FormData } from "./types";
 
 interface Step4InclusionsProps {
   formData: FormData;
@@ -38,11 +26,11 @@ const Step4Inclusions: React.FC<Step4InclusionsProps> = ({
     "Snacks",
   ];
 
-  const toggleInclusion = (item: string, type: "included" | "notIncluded") => {
+  const toggleInclusion = (item: string, type: "inclusions" | "exclusions") => {
     setFormData((prev) => ({
       ...prev,
       [type]: prev[type].includes(item)
-        ? prev[type].filter((i) => i !== item)
+        ? prev[type].filter((i: string) => i !== item)
         : [...prev[type], item],
     }));
   };
@@ -64,14 +52,14 @@ const Step4Inclusions: React.FC<Step4InclusionsProps> = ({
               <Badge
                 key={`included-${item}`}
                 variant={
-                  formData.included.includes(item) ? "default" : "outline"
+                  formData.inclusions.includes(item) ? "default" : "outline"
                 }
                 className={`cursor-pointer px-8 py-2 h-[59px] text-[19px] font-normal rounded-2xl ${
-                  formData.included.includes(item)
+                  formData.inclusions.includes(item)
                     ? "bg-[#0F4C5C] hover:bg-cyan-800 text-white"
                     : "bg-[#00000008] hover:bg-gray-200 text-[#000000B2]"
                 }`}
-                onClick={() => toggleInclusion(item, "included")}
+                onClick={() => toggleInclusion(item, "inclusions")}
               >
                 {item}
               </Badge>
@@ -106,14 +94,14 @@ const Step4Inclusions: React.FC<Step4InclusionsProps> = ({
               <Badge
                 key={`not-included-${item}`}
                 variant={
-                  formData.notIncluded.includes(item) ? "default" : "outline"
+                  formData.exclusions.includes(item) ? "default" : "outline"
                 }
                 className={`cursor-pointer px-8 py-2 h-[59px] text-[19px] font-normal rounded-2xl ${
-                  formData.notIncluded.includes(item)
+                  formData.exclusions.includes(item)
                     ? "bg-[#9A031E] hover:bg-red-800 text-white"
                     : "bg-[#00000008] hover:bg-gray-200 text-[#000000B2]"
                 }`}
-                onClick={() => toggleInclusion(item, "notIncluded")}
+                onClick={() => toggleInclusion(item, "exclusions")}
               >
                 {item}
               </Badge>
