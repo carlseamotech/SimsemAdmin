@@ -10,37 +10,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useHost } from "@/hooks/use-hosts";
 import { useState } from "react";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 interface DeleteHostDialogProps {
-  hostId: string;
   hostName: string;
-  hostPhone: string;
+  onConfirm: () => void;
 }
 
 export const DeleteHostDialog = ({
-  hostId,
   hostName,
-  hostPhone,
+  onConfirm,
 }: DeleteHostDialogProps) => {
   const [open, setOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const { deleteHost } = useHost(hostId);
-  const router = useRouter();
 
   const handleDelete = async () => {
     setIsDeleting(true);
     try {
-      await deleteHost(hostPhone);
-      toast.success(`Host "${hostName}" has been deleted.`);
+      await onConfirm();
       setOpen(false);
-      router.push("/hosts");
-    } catch (error) {
-      console.error("Error deleting host:", error);
-      toast.error("Failed to delete host.");
     } finally {
       setIsDeleting(false);
     }
@@ -49,7 +37,11 @@ export const DeleteHostDialog = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="destructive" size="lg" className="text-[17px] font-bold">
+        <Button
+          variant="destructive"
+          size="lg"
+          className="text-[17px] font-bold"
+        >
           Delete
         </Button>
       </DialogTrigger>

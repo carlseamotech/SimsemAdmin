@@ -27,4 +27,10 @@ export interface ProposedTour {
   pickupPoints: string[];
   createdAt: string;
   updatedAt: string;
+  offeredTourId?: string;
+  maxGuest?: string;
+  thingsToKnow?: string[];
+  exclusions?: string[];
+  itinerary?: string[];
+  whatToExpect?: string;
 }

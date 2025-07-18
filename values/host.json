@@ -1,44 +1,22 @@
 {
-  "objectId": "4kQcAzFFXM",
-  "country": "Egypt",
-  "city": "Cairo",
-  "idBackFile": {
-    "__type": "File",
-    "name": "b8d9ebb6925b30d02b8fadb70b276d42_1750698718720.jpeg",
-    "url": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/b8d9ebb6925b30d02b8fadb70b276d42_1750698718720.jpeg"
-  },
-  "thirdLanguageLevel": "Advanced",
-  "about": "I'm Russian living in Egypt for 3+ years, and I found my passion in making it easier for foreigners like me to enjoy and explore the best of Egypt - through the experience and perspective of a foreigner who had to adapt to local life and who found unique beauty in ordinary things locals don't always see 🤩",
-  "secondLanguage": "Arabic",
-  "thirdLanguage": "Russian",
-  "idFrontFile": {
-    "__type": "File",
-    "name": "1241f4808252f66d0b583e46097ac6c8_1750698717903.jpeg",
-    "url": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1241f4808252f66d0b583e46097ac6c8_1750698717903.jpeg"
-  },
-  "isSocialAuth": false,
-  "idBackFileUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/b8d9ebb6925b30d02b8fadb70b276d42_1750698718720.jpeg",
-  "secondLanguageLevel": "Intermediate",
-  "phone": "+201020980955",
-  "firstLanguageLevel": "Advanced",
-  "imageFile": {
-    "__type": "File",
-    "name": "3f22c0fa079051f4d114d375d7c5679c_1750698717171.jpeg",
-    "url": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/3f22c0fa079051f4d114d375d7c5679c_1750698717171.jpeg"
-  },
+  "objectId": "kifpSShKKb",
+  "country": "Bangladesh",
+  "city": "dhaka",
+  "about": "test hdjd the API url update on the way home transport allowance for doubtful but I don't think it will be a ",
+  "isSocialAuth": true,
+  "phone": "+8801703464048",
+  "firstLanguageLevel": "Basic",
   "isLocalSeller": false,
-  "imageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/3f22c0fa079051f4d114d375d7c5679c_1750698717171.jpeg",
-  "isFamilyHost": false,
-  "name": "Sasha",
+  "isFamilyHost": true,
+  "name": "Asif Localhost ",
   "isTourGuide": true,
   "payment": {
     "__type": "Pointer",
     "className": "ServiceProviderPayment",
-    "objectId": "WNCKBtzKXn"
+    "objectId": "dWVrOxuLS8"
   },
-  "idFrontFileUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1241f4808252f66d0b583e46097ac6c8_1750698717903.jpeg",
-  "email": "alexandragdavydova@gmail.com",
-  "firstLanguage": "English",
+  "email": "asif.rahman307@gmail.com",
+  "firstLanguage": "French",
   "isVerified": true,
   "isProfileComplete": false,
   "isNotified": true,
@@ -47,15 +25,35 @@
   "hasProposedShop": false,
   "rating": 0,
   "isActive": false,
-  "hourlyRate": 0,
-  "toursCompleted": 0,
+  "hourlyRate": 25,
+  "toursCompleted": 12,
   "foodServed": 0,
   "isEmailVerified": true,
   "isContactCreated": true,
-  "createdAt": "2025-06-23T17:21:53.310Z",
-  "updatedAt": "2025-07-01T06:43:31.550Z",
+  "createdAt": "2025-06-27T04:23:37.331Z",
+  "updatedAt": "2025-07-18T05:32:19.271Z",
+  "idBackFileUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/11f10c352e8d182bc77c4ef747902a59_1750998227340.jpeg",
+  "imageFile": {
+    "__type": "File",
+    "name": "040c3d3502e8c13a867db6d5aad4de81_1750998223265.jpeg",
+    "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/040c3d3502e8c13a867db6d5aad4de81_1750998223265.jpeg"
+  },
+  "idBackFile": {
+    "__type": "File",
+    "name": "11f10c352e8d182bc77c4ef747902a59_1750998227340.jpeg",
+    "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/11f10c352e8d182bc77c4ef747902a59_1750998227340.jpeg"
+  },
+  "imageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/040c3d3502e8c13a867db6d5aad4de81_1750998223265.jpeg",
+  "idFrontFile": {
+    "__type": "File",
+    "name": "7d6cebc88a69ed7ae1790ad0131621d3_1750998226685.jpeg",
+    "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/7d6cebc88a69ed7ae1790ad0131621d3_1750998226685.jpeg"
+  },
+  "idFrontFileUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/7d6cebc88a69ed7ae1790ad0131621d3_1750998226685.jpeg",
   "lastActive": {
     "__type": "Date",
-    "iso": "2025-07-01T06:33:38.551Z"
-  }
+    "iso": "2025-07-13T16:47:50.987Z"
+  },
+  "lastLat": 23.7644467,
+  "lastLong": 90.4351955
 }

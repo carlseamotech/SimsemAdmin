@@ -19,8 +19,14 @@ import {
 } from "@/app/(dashboard)/hosts/components/host-scema";
 import { useHost } from "@/hooks/use-hosts";
 import { Skeleton } from "@/components/ui/skeleton";
-import { UpdateHostDTO } from "@/services/hosts";
+import {
+  UpdateHostDTO,
+  approveHost,
+  declineHost,
+  deleteHost,
+} from "@/services/hosts";
 import { uploadFile } from "@/services/files";
+import toast from "react-hot-toast";
 
 const HostSummaryPage = () => {
   const { id } = useParams();
@@ -32,7 +38,9 @@ const HostSummaryPage = () => {
   const [certificateFile, setCertificateFile] = useState<File | null>(null);
   const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
 
-  const { host, hostPayment, isLoading, updateHost } = useHost(id as string);
+  const { host, hostPayment, isLoading, updateHost, mutate } = useHost(
+    id as string
+  );
 
   const form = useForm<HostFormData>({
     resolver: zodResolver(hostSchema),
@@ -40,7 +48,20 @@ const HostSummaryPage = () => {
 
   useEffect(() => {
     if (host) {
-      form.reset(host);
+      const updatedHost = { ...host };
+      const languageLevels: ("firstLanguageLevel" | "secondLanguageLevel" | "thirdLanguageLevel")[] = [
+        "firstLanguageLevel",
+        "secondLanguageLevel",
+        "thirdLanguageLevel",
+      ];
+
+      languageLevels.forEach((level) => {
+        if ((updatedHost[level] as unknown as string) === "Basic") {
+          updatedHost[level] = "Beginner";
+        }
+      });
+
+      form.reset(updatedHost);
     }
   }, [host, form]);
 
@@ -107,8 +128,9 @@ const HostSummaryPage = () => {
 
       await updateHost(updateDto);
       setIsEditing(false);
-    } catch (error) {
-      console.error("Error saving data:", error);
+      toast.success("Host updated successfully");
+    } catch {
+      toast.error("Error saving data");
     } finally {
       setIsSubmitting(false);
     }
@@ -117,9 +139,37 @@ const HostSummaryPage = () => {
   const handleApprove = async () => {
     setIsSubmitting(true);
     try {
-      await updateHost({ isVerified: true });
-    } catch (error) {
-      console.error("Error approving host:", error);
+      await approveHost(id as string);
+      mutate();
+      toast.success("Host approved successfully");
+    } catch {
+      toast.error("Error approving host");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleDecline = async () => {
+    setIsSubmitting(true);
+    try {
+      await declineHost(id as string);
+      mutate();
+      toast.success("Host declined successfully");
+    } catch {
+      toast.error("Error declining host");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    setIsSubmitting(true);
+    try {
+      await deleteHost(host.phone);
+      toast.success("Host deleted successfully");
+      router.push("/hosts");
+    } catch {
+      toast.error("Error deleting host");
     } finally {
       setIsSubmitting(false);
     }
@@ -288,7 +338,9 @@ const HostSummaryPage = () => {
                         Last Active
                       </p>
                       <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.lastActive?.iso ? new Date(host.lastActive.iso).toLocaleDateString() : 'N/A'}
+                        {host.lastActive?.iso
+                          ? new Date(host.lastActive.iso).toLocaleDateString()
+                          : "N/A"}
                       </p>
                     </div>
                     <div>
@@ -331,17 +383,16 @@ const HostSummaryPage = () => {
                       <Button
                         type="button"
                         size="lg"
-                        variant="outline"
-                        onClick={() => router.back()}
+                        variant="destructive"
+                        onClick={handleDecline}
                         disabled={isSubmitting}
                         className="text-[17px] font-bold"
                       >
-                        Decline
+                        {isSubmitting ? "Declining..." : "Decline"}
                       </Button>
                       <DeleteHostDialog
-                        hostId={host.objectId}
+                        onConfirm={handleDelete}
                         hostName={host.name}
-                        hostPhone={host.phone}
                       />
                     </div>
                     <div className="space-x-3">

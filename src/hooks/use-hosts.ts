@@ -119,9 +119,10 @@ export const useHost = (id: string) => {
     hostPayment,
     isLoading: !error && !host,
     isError: error,
+    mutate,
     updateHost: async (host: UpdateHostDTO) => {
       const updatedHost = await updateHost(id, host);
-      mutate(updatedHost, false);
+      mutate();
       return updatedHost;
     },
     updateHostPayment: async (

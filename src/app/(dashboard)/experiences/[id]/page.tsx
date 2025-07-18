@@ -265,7 +265,7 @@ const ExperienceDetailsPage = () => {
 
                     <div>
                       <p className="text-[#000000B2]  text-[18px] ">
-                        {tour.description}
+                        {tour.whatToExpect}
                       </p>
                     </div>
                   </div>
@@ -288,8 +288,7 @@ const ExperienceDetailsPage = () => {
                   {/* tour menu */}
                   <TourMenu images={tour.galleryImageUrls || []} />
 
-                  {/* Our Detailed Itinerary */}
-                  <Itinerary tourTimes={tour.tourTimes || []} />
+                  <Itinerary itinerary={tour.itinerary || []} />
                 </div>
               </div>
             </div>

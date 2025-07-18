@@ -58,20 +58,23 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
 
   const allExperiences = useMemo(() => {
     return tours?.map((tour) => {
-      const host = hosts?.find((h) => h.objectId === tour.guideId);
+      const host = hosts?.find(
+        (h: { objectId: string; name: string }) => h.objectId === tour.guideId
+      );
       return {
         ...tour,
         experienceType:
           tour.type?.charAt(0).toUpperCase() + tour.type?.slice(1) || "N/A",
         hostName: host?.name || "N/A",
-        country: host?.country || "N/A",
       };
     });
   }, [tours, hosts]);
 
   const getFilteredExperiences = () => {
-    let data: (ProposedTour & { hostName: string; country: string })[] =
-      allExperiences || [];
+    let data: (ProposedTour & {
+      hostName: string;
+      experienceType: string;
+    })[] = allExperiences || [];
 
     if (activeFilter === "for-approval") {
       data = data.filter((item) => "isApproved" in item && !item.isApproved);
@@ -115,6 +118,12 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
             <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Experience Type
             </TableHead>
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+              City
+            </TableHead>
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+              Country
+            </TableHead>
             {isApprovalVisible && (
               <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
                 Approval Status
@@ -152,6 +161,12 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
               </TableCell>
               <TableCell className="text-gray-600">
                 {experience.type}
+              </TableCell>
+              <TableCell className="text-gray-600">
+                {experience.city}
+              </TableCell>
+              <TableCell className="text-gray-600">
+                {experience.country}
               </TableCell>
 
               {isApprovalVisible && "isApproved" in experience && (

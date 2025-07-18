@@ -1,374 +1,141 @@
 {
   "results": [
     {
-      "objectId": "DIDErDtGI9",
+      "objectId": "B5yxNyTdjX",
       "country": "Turkey",
-      "cost": "10",
-      "city": "Antalya ",
-      "difficultyLevel": "Basic",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/32e674c3595426681ee667b89099aff4_1657012032683.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/e15843b4ba99302d78a2c75b8ddcde31_1657012042227.jpeg"
-      ],
-      "guideId": "jN9mOUSYrH",
-      "description": "Orta Likya'nin en önemli antik kentlerinden birine gidiyoruz. Özellikle Hristiyanlık sonrasında piskoposluk merkezi ve Likya'nın başkenti unvanını almıştır. Kent Likya sanatının en önemli örneklerinden kaya mezarlarına ev sahipliği yapmaktadır. Kaya mezarları ise M.Ö 4-5yy'la tarihlenmektedir. Likyalılar öldükten sonra bu mezarlarda yaşayacağına inandığı için, kaya mezarlarını evleri gibi betimlemiştir. Her bir detay bize Likya mimarisi hakkında bizi bilgi verecektir ",
+      "cost": "20",
+      "city": "js",
+      "coverImageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/3dd8a0f31ba0712f1c435b303d5ca811_Hammam%20day.png",
+      "guideId": "kifpSShKKb",
+      "description": "You’ve been travelling for some time now and have seen so much, it’s been great but you’re feeling like you could slow down a bit. You also feel like being pampered and indulging… and you’ve considered the famous Middle Estern hammams…but you don’t feel completely comfortable with the idea…I get it and I got your back. The Hammam is a ritual and you could use a friendly companion. I can recommend the best one in town! You’ll feel like a new human after the experience and you I guarantee you it won’t be your last time!  Please note: Price does not include food, drinks, tickets or transportation.",
       "tourFeatures": [
-        "History",
-        "Culture",
-        "Photography"
+        "Knowing a local hammam that you visit regularly.",
+        "Being able to give guidance and advice to your host."
       ],
-      "cameraZoom": 15.512311,
-      "meetingPointLat": 36.258140844122174,
-      "otherTourFeature": "",
-      "meetingPoint": "Alakent, Karabucak Cd. No:20, 07570 Demre/Antalya, Türkiye",
-      "phone": "+905454959402",
-      "countryCode": "+90",
-      "name": "Lycia Tour",
-      "meetingPointLong": 29.986019209027287,
-      "tourTimes": [],
+      "cameraZoom": 15,
+      "type": "offered",
+      "isActive": true,
+      "meetingPointLat": 23.764437246189587,
+      "offeredTourId": "Sv7yJHLmXq",
+      "meetingPoint": "Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh",
+      "isNotified": true,
+      "phone": "+8801703464048",
+      "maxGuest": "646",
+      "countryCode": "+880",
+      "name": "Today Feels like a Hammam Day! ",
+      "meetingPointLong": 90.4352742433548,
+      "tourTimes": [
+        "08:00 AM",
+        "10:00 AM"
+      ],
+      "isApproved": true,
       "tourDuration": "2 hours",
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2022-07-05T09:07:30.234Z",
-      "updatedAt": "2022-07-10T17:17:51.101Z"
+      "createdAt": "2025-07-12T06:07:16.932Z",
+      "updatedAt": "2025-07-13T18:19:56.540Z",
+      "tourPackages": [
+        "{\"cost\":\"15\",\"fromPerson\":\"1\",\"toPerson\":\"3\"}",
+        "{\"cost\":\"10\",\"fromPerson\":\"4\",\"toPerson\":\"6\"}",
+        "{\"cost\":\"9\",\"fromPerson\":\"7\",\"toPerson\":\"9\"}"
+      ]
     },
     {
-      "objectId": "paQ0ywB78I",
-      "country": "Turkey",
-      "cost": "10",
-      "city": "Antalya ",
-      "difficultyLevel": "Intermediate",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/53ac62f757e480560899a25984d22186_1657013018499.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d78db4b44adb5766e211107d2f146f3b_1657013021080.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/6152082e331ae712ed1a87ec292a65ea_1657013021111.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/3a4dab2d3218a712f917ef1fee5227a6_1657013021072.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/cfe9b91d1bcc56d89188834777fe71c4_1657013021090.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/db82e82a0711b38bf2d4cc0428d1d7f0_1657013021117.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d909f7d76b844a0cc9be69cd297610bf_1657013021128.jpeg"
+      "objectId": "3TVd5avbYZ",
+      "thingsToKnow": [
+        "{\"description\":\"hrhdhhd\",\"title\":\"bdbdh\"}"
       ],
-      "guideId": "jN9mOUSYrH",
-      "description": "Antalya'nın en güzel ilçelerinden biri olan Kaş'ı geziyoruz. Sabah ilk durağımız dünyanın en güzel plajları listelerinde kendine her zaman yer bulan Kaputaj Plajına gideceğiz. Burada fotoğraf ve deniz molasının ardından Kaş merkezde gezimize devam edeceğiz. Kaş'nın sokaklarında gezip keyfini çıkaracağız. İsteğe göre turumuza içecek/yiyecek mekanları, gezi noktaları, tekne turu vs gibi ekleme ve çıkarmalar yapabiliriz",
-      "tourFeatures": [
-        "Other",
-        "History",
-        "Culture",
-        "Photography"
-      ],
-      "cameraZoom": 11.515086,
-      "meetingPointLat": 36.19935931954811,
-      "otherTourFeature": "sea",
-      "meetingPoint": "Andifli, Liman Sk. No: 22 / A, 07580 Kaş/Antalya, Türkiye",
-      "phone": "+905454959402",
-      "countryCode": "+90",
-      "name": "Kaş Tour",
-      "meetingPointLong": 29.6399237215519,
-      "tourTimes": [],
-      "tourDuration": "4 hours",
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2022-07-05T09:23:45.733Z",
-      "updatedAt": "2022-07-10T17:17:49.185Z"
-    },
-    {
-      "objectId": "8FFRjGC014",
       "country": "Turkey",
-      "cost": "10",
-      "city": "İstanbul ",
+      "city": "dhdh",
       "difficultyLevel": "Basic",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d8f932f76fd607cdefd32346e76dfa37_1657037661947.jpeg",
+      "coverImageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/34a29f0a0af0b083cc26cb75aefa6125_1752300721321.jpeg",
       "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1feb881cbc787caeb9aead5fbbbe3e3e_1657037662616.jpeg"
+        "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/8100f2359d79353d28630ce5735cda45_1752300722355.jpeg",
+        "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a0c16250ad137c24aaeedefa318ff5ea_1752300722358.jpeg"
       ],
-      "guideId": "cGDLmo7jiD",
-      "description": "We will visit the hippodrome Square then we will visit the Blue Mosque then we will pass by Arasta Bazaar and we will finish our tour with Hagia Sophia! Please note: Price does not include food, drinks, tickets or transportation.",
+      "guideId": "kifpSShKKb",
+      "description": "dbbd",
+      "exclusions": [
+        "hdhd"
+      ],
+      "itinerary": [
+        "{\"day\":\"Day 1\",\"description\":\"bdbdbbd\",\"title\":\"bdbd\"}"
+      ],
       "tourFeatures": [
-        "History",
-        "Culture",
-        "Photography"
+        "Architecture"
       ],
-      "cameraZoom": 14.010253,
-      "meetingPointLat": 41.00632868002035,
+      "cameraZoom": 15,
+      "type": "custom",
+      "whatToExpect": "nxnd",
       "otherTourFeature": "",
-      "meetingPoint": "Sultan Ahmet, Atmeydanı Cd. No:21, 34122 Fatih/İstanbul, Turkey",
-      "phone": "+905427674027",
+      "meetingPoint": "Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh",
       "countryCode": "+90",
-      "name": "Blue Mosque and Hagia Sophia ",
-      "meetingPointLong": 28.975705169141296,
-      "tourTimes": [
-        "{\"date\":\"Fri: 30 Sep, 2022 - Fri: 30 Sep, 2022\",\"repetition\":\"\",\"times\":[{\"end\":\"06:30 AM\",\"start\":\"12:00 AM\"}],\"yearMonth\":\"09/2022\"}"
-      ],
-      "tourDuration": "2 hours",
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2022-07-05T16:14:24.315Z",
-      "updatedAt": "2023-10-30T14:26:47.617Z",
-      "tourPackages": [],
-      "pickupPoints": []
-    },
-    {
-      "objectId": "HDID3X5yQP",
-      "country": "Turkey",
-      "cost": "10",
-      "city": "İstanbul ",
-      "difficultyLevel": "Basic",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/53140df0f24ba07949b9f84c126b1c25_1657097812232.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/2a97b7feefe6cecf78ac20f2bfc7adfc_1657097813086.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/b31a72e4ddc1b484f3690dc62fc9148e_1657097813092.jpeg"
-      ],
-      "guideId": "cGDLmo7jiD",
-      "description": "We will head to Mecidiye Grand Mosque, then we will pass by gift shops, then we will head to potatoes Street where everybody sells Kumpir. Our tour will end there!  Please note: Price does not include food, drinks, tickets or transportation.",
-      "tourFeatures": [
-        "Photography"
-      ],
-      "cameraZoom": 19.192638,
-      "meetingPointLat": 41.047193347166,
-      "otherTourFeature": "",
-      "meetingPoint": "Mecidiye, Mecidiye Köprüsü Sk. No:1 D:1, 34347 Beşiktaş/İstanbul, Turkey",
-      "phone": "+905427674027",
-      "countryCode": "+90",
-      "name": "Ortaköy ",
-      "meetingPointLong": 29.026673510670665,
-      "tourTimes": [],
+      "meetingPointLong": 90.4352742433548,
       "tourDuration": "1 hour",
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2022-07-06T08:56:55.072Z",
-      "updatedAt": "2023-10-30T14:28:24.261Z",
-      "tourPackages": [],
-      "pickupPoints": []
-    },
-    {
-      "objectId": "p185x94Rqy",
-      "country": "Jordan",
-      "cost": "150",
-      "city": "Wadi Rum",
-      "difficultyLevel": "Advanced",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1e0c041b2b392bfd6541559d96fb6243_1664098570153.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/56d13b957754bcee4253cf996bb6043f_1664098571676.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/fd0b21da10b4d97977a72648049490e1_1664098571669.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/17ba380f936cc2bad77ef0f7e232af77_1664098571682.jpeg"
-      ],
-      "guideId": "PW2gAZBgHE",
-      "description": "First day: Meet at wadi rum village, then we will ride \"Bedouin jeep\" for 45 min. to reach the start of the route to start scrambling and climbing to the summit, it will take 4- 6 hours, after enjoying the summit with it's unique views, we'll camp in a nice spot near the summit.second day:climbing down the mountain through abseiling 7 dry waterfalls, between 8 and 45 meters high. Please note: Price does not include food, drinks, tickets or transportation.",
-      "tourFeatures": [
-        "Other"
-      ],
-      "cameraZoom": 13.447648,
-      "meetingPointLat": 29.576351137523435,
-      "otherTourFeature": "Mountaineering ",
-      "meetingPoint": "طريق وادي رم، قرية وادي رم،، HCG9+FVX, Wadi Rum Village, Jordan",
-      "phone": "+962772252960",
-      "countryCode": "+962",
-      "name": "Jabal Rum crossing ",
-      "meetingPointLong": 35.41988465934992,
+      "cost": "25",
+      "meetingPointLat": 23.764437246189587,
+      "phone": "+8801703464048",
+      "name": "custom ",
       "tourTimes": [
-        "{\"date\":\"Fri: 21 Oct, 2022 - Sat: 22 Oct, 2022\",\"repetition\":\"\",\"times\":[{\"end\":\"07:00 PM\",\"start\":\"07:00 AM\"}],\"yearMonth\":\"10/2022\"}",
-        "{\"date\":\"Fri: 04 Nov, 2022\",\"repetition\":\"None\",\"times\":[{\"end\":\"07:00 PM\",\"start\":\"07:00 AM\"}],\"yearMonth\":\"11/2022\"}"
+        "12:00 AM"
       ],
-      "tourDuration": "5 hours",
+      "inclusions": [
+        "bdbd"
+      ],
       "isApproved": true,
       "isNotified": true,
       "isActive": true,
-      "createdAt": "2022-09-25T09:36:14.042Z",
-      "updatedAt": "2023-10-30T14:16:17.288Z",
-      "tourPackages": [],
-      "pickupPoints": []
+      "createdAt": "2025-07-12T06:12:04.063Z",
+      "updatedAt": "2025-07-13T18:20:24.739Z",
+      "tourPackages": []
     },
     {
-      "objectId": "U6PljskrRK",
-      "country": "Jordan",
-      "cost": "75",
-      "city": "Ajlun",
-      "difficultyLevel": "Intermediate",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/aa8f702d7514691af95f7c02d83475da_1664098973484.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/b81ad2a8df19de352801b6d6e4566854_1664098974514.jpeg"
+      "objectId": "tGIzOH7rUh",
+      "thingsToKnow": [
+        "{\"description\":\" d dbbd\",\"title\":\"bdbd\"}"
       ],
-      "guideId": "PW2gAZBgHE",
-      "description": "One day Trekking between oak trees, 7 km , very nice walk with amazing views. Please note: Price does not include food, drinks, tickets or transportation.",
-      "tourFeatures": [
-        "Other"
-      ],
-      "cameraZoom": 15.701199,
-      "meetingPointLat": 32.38862191327398,
-      "otherTourFeature": "Trekking ",
-      "meetingPoint": "Orjan SubDistrict, Jordan",
-      "phone": "+962772252960",
-      "countryCode": "+962",
-      "name": "Zoubia forest trail",
-      "meetingPointLong": 35.757438987493515,
-      "tourTimes": [
-        "{\"date\":\"Mon: 01 Apr, 2024\",\"repetition\":\"None\",\"times\":[{\"end\":\"07:00 PM\",\"start\":\"07:00 AM\"}],\"yearMonth\":\"04/2024\"}"
-      ],
-      "tourDuration": "5 hours",
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2022-09-25T09:42:57.776Z",
-      "updatedAt": "2024-03-31T18:30:46.315Z",
-      "tourPackages": [],
-      "pickupPoints": [],
-      "galleryVideoUrls": []
-    },
-    {
-      "objectId": "WmDFCQ0ATo",
-      "country": "Jordan",
-      "cost": "150",
-      "city": "Shobak",
-      "difficultyLevel": "Advanced",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/54417307f4e31a15a3aebaf2139fad36_1664099307145.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/c1996434f20b0124ff6d4818806cd83c_1664099308390.jpeg"
-      ],
-      "guideId": "PW2gAZBgHE",
-      "description": "Two days canyoning Wadi Feid;11 waterfalls to abseil, camping inside the canyon, beautiful scenery and refreshing water pools. Please note: Price does not include food, drinks, tickets or transportation.",
-      "tourFeatures": [
-        "Other"
-      ],
-      "cameraZoom": 13.1221075,
-      "meetingPointLat": 30.499664779946336,
-      "otherTourFeature": "Canyoning",
-      "meetingPoint": "35, Jordan",
-      "phone": "+962772252960",
-      "countryCode": "+962",
-      "name": "Wadi Feid",
-      "meetingPointLong": 35.526231564581394,
-      "tourTimes": [
-        "{\"date\":\"Fri: 04 Nov, 2022 - Sat: 05 Nov, 2022\",\"repetition\":\"\",\"times\":[{\"end\":\"07:00 PM\",\"start\":\"07:00 AM\"}],\"yearMonth\":\"11/2022\"}"
-      ],
-      "tourDuration": "5 hours ",
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2022-09-25T09:48:30.247Z",
-      "updatedAt": "2023-10-30T14:23:45.710Z",
-      "tourPackages": [],
-      "pickupPoints": []
-    },
-    {
-      "objectId": "gWIEIt4Njw",
-      "country": "Jordan",
-      "cost": "150",
-      "city": "Tafeilah",
-      "difficultyLevel": "Advanced",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/7e68b5bd8c941ee7effef427114e64fd_1664307348126.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/64be07fbd971dc4f91f096a7771c498c_1664307348889.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/e76878c77c2878c5f3b608f671742ee6_1664307348893.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/eb620960e710ebeb06e0baab4d05e03c_1664307348897.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9e70c7e82aedcc15ee7b69e53944bdaa_1664307348884.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/cb5afb341d49114a71ff17d2a7759a1e_1664307348899.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/75d1a2f339ae64893c6227f93708f1ef_1664307348909.jpeg"
-      ],
-      "guideId": "PW2gAZBgHE",
-      "description": "Wadi Hasa sports magnificent hanging gardens, narrow gorges and hot springs. Its upper reaches are carved into white limestone, creating a playground of giant boulders. A dramatic change of scenery is displayed along its lower course, where the wadi cuts a spectacular canyon in red sandstone. The total distance is around 24 km, you need a good backpack with sleeping bag and mattress, tent, headlight. Please note: Price does not include food, drinks, tickets or transportation.",
-      "tourFeatures": [
-        "Other"
-      ],
-      "cameraZoom": 13.968601,
-      "meetingPointLat": 30.940579410124013,
-      "otherTourFeature": "Canyoning ",
-      "meetingPoint": "WJQ7+MVR, At-Tafilah, Jordan",
-      "phone": "+962772252960",
-      "countryCode": "+962",
-      "name": "Wadi Hasa full trail ",
-      "meetingPointLong": 35.61400718986988,
-      "tourTimes": [
-        "{\"date\":\"Fri: 11 Nov, 2022\",\"repetition\":\"None\",\"times\":[{\"end\":\"07:00 PM\",\"start\":\"07:00 AM\"}],\"yearMonth\":\"11/2022\"}"
-      ],
-      "tourDuration": "5 hours",
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2022-09-27T19:35:51.169Z",
-      "updatedAt": "2023-10-30T14:24:03.770Z",
-      "tourPackages": [],
-      "pickupPoints": []
-    },
-    {
-      "objectId": "Ln0V7T78OK",
       "country": "Turkey",
-      "cost": "100",
-      "city": "istanbul",
+      "pickupPoints": [
+        "{\"key\":\"locationPickup\",\"value\":{\"cameraZoom\":15.0,\"pickupPoint\":\"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\"pickupPointLat\":23.764418835305104,\"pickupPointLong\":90.43520417064428,\"pickupPointTitle\":\"Pick-up from a specific location\"}}"
+      ],
+      "city": "ue",
       "difficultyLevel": "Basic",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/fdde90b6ff1893d7f928ea178e53470b_1665395047791.jpeg",
+      "coverImageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/1530f4f39824177d1ea6aef43e5fe612_1752330837460.jpeg",
       "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/549f21d84adabd4d8cb597012760196e_1665395053935.jpeg"
+        "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c0ace21cca8782e84182cdc1da20508b_1752330838181.jpeg"
       ],
-      "guideId": "7AhFDDCSCk",
-      "description": "With this tour you will experience great Turkish street food and have a chance to see the most beautiful asian side of the city. Please note: Price does not include food, drinks, tickets or transportation.",
+      "guideId": "kifpSShKKb",
+      "description": "jdjd the API ",
+      "exclusions": [
+        "bsbs"
+      ],
+      "itinerary": [
+        "{\"day\":\"Day 1\",\"description\":\"bdbdb\",\"title\":\"hdhd\"}"
+      ],
+      "tourPackages": ["{\"actualCost\":\"\",\"cost\":\"2\",\"fromPerson\":\"\>10\",\"toPerson\":\"\"}"
+      ],
       "tourFeatures": [
-        "Culture",
-        "Other"
+        "Camping",
+        "Outdoor"
       ],
-      "cameraZoom": 17.707098,
-      "meetingPointLat": 41.0413137037238,
-      "otherTourFeature": "eating in the most delicious local restaurants and visiting the cool places",
-      "meetingPoint": "Sinanpaşa, Beşiktaş (Turyol), 34353 Beşiktaş/İstanbul, Türkiye",
-      "phone": "+905368262568",
-      "countryCode": "+90",
-      "name": "how to enjoy like a local",
-      "meetingPointLong": 29.00762278586626,
-      "tourTimes": [
-        "{\"date\":\"Mon: 17 Oct, 2022 - Tue: 18 Oct, 2022\",\"repetition\":\"\",\"times\":[{\"end\":\"03:00 PM\",\"start\":\"09:00 AM\"}],\"yearMonth\":\"10/2022\"}"
-      ],
-      "tourDuration": "5 hours",
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2022-10-10T09:44:19.426Z",
-      "updatedAt": "2023-10-30T14:27:47.003Z",
-      "tourPackages": [],
-      "pickupPoints": []
-    },
-    {
-      "objectId": "P1aTJKjdz0",
-      "country": "Jordan",
-      "cost": "15",
-      "city": "Aqaba ",
-      "difficultyLevel": "Advanced",
-      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/5e67f27215d6c86a1327f48d81f1939b_1670099115829.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/c9c1f504ead49e1e11cc7b74628fae7b_1670099116757.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/6b2be30e5f7e4758d81ab4cbc86e5717_1670099116755.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/8580568a760d157fbb577387446e1f0c_1670099116762.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/4db99c270129e36335c4a3ce62e4bcaa_1670099116759.jpeg",
-        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/2466fb5e2e47d84986d7d743656a712c_1670099116765.jpeg"
-      ],
-      "guideId": "CSarrGvt3Q",
-      "description": "Walk behind mosque and explain about mosque and can have pic about mosque and walk into it. After that, we have to buy souvenir gift like traditional wear. Please note: Price does not include food, drinks, tickets or transportation.",
-      "tourFeatures": [
-        "Culture",
-        "History"
-      ],
-      "cameraZoom": 21,
-      "meetingPointLat": 29.52751767842043,
+      "type": "getaway",
+      "whatToExpect": "djnd",
       "otherTourFeature": "",
-      "meetingPoint": "شارع زهران 54، العقبة، الأردن",
-      "phone": "+962795265228",
-      "countryCode": "+962",
-      "name": "buy Gift",
-      "meetingPointLong": 35.0025000795722,
+      "phone": "+8801703464048",
+      "countryCode": "+90",
+      "name": "test",
       "tourTimes": [
-        "{\"date\":\"Sun: 04 Dec, 2022 - Sat: 31 Dec, 2022\",\"repetition\":\"\",\"times\":[{\"end\":\"05:00 PM\",\"start\":\"03:00 PM\"},{\"end\":\"06:00 PM\",\"start\":\"04:00 PM\"},{\"end\":\"07:00 PM\",\"start\":\"06:00 PM\"},{\"end\":\"10:00 PM\",\"start\":\"08:00 PM\"}],\"yearMonth\":\"12/2022\"}"
+        "08:00 AM",
+        "11:00 AM"
       ],
-      "tourDuration": "1 hour",
+      "tourDuration": "2 Day",
+      "inclusions": [
+        "bsbs"
+      ],
       "isApproved": true,
       "isNotified": true,
       "isActive": true,
-      "createdAt": "2022-12-03T19:30:08.081Z",
-      "updatedAt": "2024-03-31T18:29:35.259Z",
-      "tourPackages": [],
-      "pickupPoints": [],
-      "galleryVideoUrls": []
+      "createdAt": "2025-07-12T14:33:58.700Z",
+      "updatedAt": "2025-07-13T15:08:26.569Z"
     }
   ],
-  "count": 209
+  "count": 3
 }

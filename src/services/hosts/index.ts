@@ -42,3 +42,15 @@ export const updateHostPayment = async (id: string, payment: UpdateHostPaymentDT
 export const getHostPayment = async (id: string): Promise<HostPayment> => {
   return await api.get<HostPayment>(`${PAYMENT_BASE_URL}/${id}`);
 };
+
+export const approveHost = async (id: string): Promise<Host> => {
+  return await api.put<Host>(`${BASE_URL}/${id}`, {
+    isVerified: true,
+  } as Record<string, unknown>);
+};
+
+export const declineHost = async (id: string): Promise<Host> => {
+  return await api.put<Host>(`${BASE_URL}/${id}`, {
+    isVerified: false,
+  } as Record<string, unknown>);
+};
