@@ -5,9 +5,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Plus } from "lucide-react";
-import type { DiningFormData, DishItem } from "../page";
 import TestImage from "../../../../../public/dining-test.png";
+import type { DiningFormData, DishItem } from "../page";
+import { CreateDishModal } from "./create-dish-modal";
 
 interface Step4MainDishProps {
   formData: DiningFormData;
@@ -22,7 +22,7 @@ const Step4MainDish: React.FC<Step4MainDishProps> = ({
     "vegetarian" | "meat" | "vegan"
   >("vegetarian");
 
-  const mainDishes: DishItem[] = [
+  const [mainDishes, setMainDishes] = useState<DishItem[]>([
     {
       id: "tabbouleh",
       name: "Tabbouleh",
@@ -75,7 +75,7 @@ const Step4MainDish: React.FC<Step4MainDishProps> = ({
       ingredients: "Lentils, rice, caramelized onions, yogurt and herbs",
       type: "vegetarian",
     },
-  ];
+  ]);
 
   const filteredDishes = mainDishes.filter(
     (dish) => dish.mealType === selectedMealType
@@ -88,6 +88,11 @@ const Step4MainDish: React.FC<Step4MainDishProps> = ({
         ? prev.main.filter((d) => d.id !== dish.id)
         : [...prev.main, dish],
     }));
+  };
+
+  const onDishCreated = (dish: DishItem) => {
+    setMainDishes((prev) => [...prev, dish]);
+    handleDishSelect(dish);
   };
 
   return (
@@ -126,20 +131,7 @@ const Step4MainDish: React.FC<Step4MainDishProps> = ({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-14">
-        {/* Create Custom Dish Card */}
-        <Card className="cursor-pointer border-2 border-dashed border-[#0F4C5C] bg-[#F8F8F8] hover:border-cyan-600 rounded-2xl transition-colors">
-          <CardContent className="p-0 h-full">
-            {/* Fixed aspect ratio container */}
-            <div className="aspect-[4/4] flex items-center justify-center">
-              <div className="flex flex-col items-center justify-center">
-                <Plus className="h-12 w-12 text-[#0F4C5C] mb-2" />
-                <p className="text-[15px] text-[#3D3D3D] text-center px-4">
-                  Create your own dish
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <CreateDishModal onDishCreated={onDishCreated} course="main" />
 
         {/* Main Dish Cards */}
         {filteredDishes.map((dish) => (

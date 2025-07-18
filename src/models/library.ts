@@ -36,4 +36,9 @@ export interface LibraryDish {
   country: string;
   course: string;
   type: string;
+  image: {
+    __type: "File";
+    name: string;
+    url: string;
+  };
 }
