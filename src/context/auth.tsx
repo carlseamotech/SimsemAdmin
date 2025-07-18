@@ -14,6 +14,7 @@ import { auth, db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { User } from "@/models/user";
 import { TeamMember } from "@/models/team";
+import { useRouter } from "next/navigation";
 
 interface AuthContextType {
   user: User | null;
@@ -45,6 +46,7 @@ export function AuthProvider({
 }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   const authServiceInstance = useMemo(
     () => ({ ...defaultAuthService, ...providedAuthService }),
@@ -73,11 +75,12 @@ export function AuthProvider({
   }, [authServiceInstance]);
 
   const signIn = async (email: string, password: string) => {
-    authServiceInstance.signIn(email, password);
+    await authServiceInstance.signIn(email, password);
   };
 
   const signOut = async () => {
     await authServiceInstance.signOut();
+    router.push("/auth");
   };
 
   const contextValue: AuthContextType = {
