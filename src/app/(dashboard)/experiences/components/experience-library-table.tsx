@@ -10,7 +10,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useLibraryTours, useLibraryMeals } from "@/hooks/use-experiences";
-import { LibraryTour, LibraryMeal } from "@/models/library";
+import {
+  LibraryTour,
+  LibraryMeal,
+} from "@/models/library";
 import ExperienceLibraryTableSkeleton from "./experience-library-table-skeleton";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";

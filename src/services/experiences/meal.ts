@@ -1,9 +1,9 @@
+import { CreateDiningExperienceDTO } from "@/dtos/experiences/create-dining-experience.dto";
 import api from "../api";
 import { Meal } from "@/models/meal";
 
 const BASE_URL = "/classes/SelectedMeal";
 
-export type CreateMealDTO = Omit<Meal, "objectId" | "createdAt" | "updatedAt">;
 export type UpdateMealDTO = Partial<Omit<Meal, "objectId" | "createdAt" | "updatedAt">>;
 
 export const getMeals = async (limit?: number): Promise<Meal[]> => {
@@ -21,8 +21,10 @@ export const getMeal = async (id: string): Promise<Meal> => {
   return await api.get<Meal>(`${BASE_URL}/${id}`);
 };
 
-export const createMeal = async (meal: CreateMealDTO): Promise<Meal> => {
-  return await api.post<Meal>(BASE_URL, meal as Record<string, unknown>);
+export const createDiningExperience = async (
+  meal: CreateDiningExperienceDTO
+): Promise<Meal> => {
+  return await api.post<Meal>(BASE_URL, meal);
 };
 
 export const updateMeal = async (id: string, meal: UpdateMealDTO): Promise<Meal> => {

@@ -1,51 +1,39 @@
-export interface LibraryTour {
-  objectId: string;
+export interface Dish {
+  id: string;
   name: string;
   description: string;
-  requirements: string[];
-  coverImage: {
+  image: {
     __type: "File";
     name: string;
     url: string;
   };
+  mealType: "vegetarian" | "meat" | "vegan";
+  ingredients: string;
+  type: string;
+}
+
+export interface LibraryTour {
+  objectId: string;
+  name: string;
+  description: string;
   country: string;
-  cost: number;
-  minDuration: number;
-  maxDuration: number;
   feature: string;
-  timeUnit: string;
-  createdAt: string;
-  updatedAt: string;
+  cost: string;
 }
 
 export interface LibraryMeal {
   objectId: string;
   name: string;
   description: string;
-  dishIds: string[];
-  coverImage: {
-    __type: "File";
-    name: string;
-    url: string;
-  };
   country: string;
   cost: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface LibraryDish {
   objectId: string;
   name: string;
   ingredients: string;
-  image: {
-    __type: "File";
-    name: string;
-    url: string;
-  };
   country: string;
   course: string;
   type: string;
-  createdAt: string;
-  updatedAt: string;
 }

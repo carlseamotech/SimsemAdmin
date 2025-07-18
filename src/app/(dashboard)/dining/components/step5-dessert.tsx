@@ -28,31 +28,56 @@ const Step5Dessert: React.FC<Step5DessertProps> = ({
       name: "Knafeh",
       description:
         "Crust of spun pastry and a filling of sweet cheese topped with a suga...",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "knafeh.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients:
+        "Crust of spun pastry and a filling of sweet cheese topped with a suga...",
+      type: "vegetarian",
     },
     {
       id: "namoura",
       name: "Namoura",
       description: "Honey, butter, and milk",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "namoura.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Honey, butter, and milk",
+      type: "vegetarian",
     },
     {
       id: "baklava",
       name: "Baklava",
       description:
         "Phyllo dough that is layered with nuts and sweetened with honey",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "baklava.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Phyllo dough that is layered with nuts and sweetened with honey",
+      type: "vegetarian",
     },
     {
       id: "qatayef",
       name: "Qatayef",
       description:
         "Fried sweet dumplings filled with cream and nuts then covered in s...",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "qatayef.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Fried sweet dumplings filled with cream and nuts then covered in s...",
+      type: "vegetarian",
     },
   ];
 
@@ -61,7 +86,12 @@ const Step5Dessert: React.FC<Step5DessertProps> = ({
   );
 
   const handleDessertSelect = (dessert: DishItem) => {
-    setFormData((prev) => ({ ...prev, selectedDessert: dessert }));
+    setFormData((prev) => ({
+      ...prev,
+      dessert: prev.dessert.find((d) => d.id === dessert.id)
+        ? prev.dessert.filter((d) => d.id !== dessert.id)
+        : [...prev.dessert, dessert],
+    }));
   };
 
   return (
@@ -120,7 +150,7 @@ const Step5Dessert: React.FC<Step5DessertProps> = ({
           <Card
             key={dessert.id}
             className={`cursor-pointer transition-all duration-200 hover:shadow-md p-0 gap-0 ${
-              formData.selectedMainDish?.id === dessert.id
+              formData.dessert.find((d) => d.id === dessert.id)
                 ? "ring-2 ring-[#FB8B24]"
                 : ""
             }`}

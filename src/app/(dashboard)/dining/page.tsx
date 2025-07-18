@@ -13,25 +13,23 @@ import Step5Dessert from "./components/step5-dessert";
 import Step6TellUs from "./components/step6-tell-us";
 import Step7CoverPhoto from "./components/step7-cover-photo";
 import Step8Summary from "./components/step8-summary";
-export type { DishItem, DiningFormData };
+import { createDiningExperience } from "@/services/experiences/meal";
+import { uploadFile } from "@/services/files";
+import toast from "react-hot-toast";
+import { Dish } from "@/models/library";
 
-interface DishItem {
-  id: string;
+export type DishItem = Dish;
+
+export interface DiningFormData {
   name: string;
   description: string;
-  image: string;
-  mealType: "vegetarian" | "meat" | "vegan";
-}
-
-interface DiningFormData {
-  mealName: string;
-  description: string;
-  selectedStarter: DishItem | null;
-  selectedMainDish: DishItem | null;
-  selectedDessert: DishItem | null;
   country: string;
-  costPerPerson: string;
+  city: string;
+  cost: string;
   coverPhoto: File | null;
+  starter: DishItem[];
+  main: DishItem[];
+  dessert: DishItem[];
 }
 
 const DiningExperiencePage = () => {
@@ -39,23 +37,81 @@ const DiningExperiencePage = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 8;
   const [formData, setFormData] = useState<DiningFormData>({
-    mealName: "",
+    name: "",
     description: "",
-    selectedStarter: null,
-    selectedMainDish: null,
-    selectedDessert: null,
     country: "",
-    costPerPerson: "",
+    city: "",
+    cost: "",
     coverPhoto: null,
+    starter: [],
+    main: [],
+    dessert: [],
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    if (currentStep === 1 && !formData.name) {
+      toast.error("Meal name is required");
+      return;
+    }
+    if (currentStep === 2 && !formData.description) {
+      toast.error("Description is required");
+      return;
+    }
+    if (
+      currentStep === 6 &&
+      (!formData.country || !formData.city || !formData.cost)
+    ) {
+      toast.error("Country, city and cost are required");
+      return;
+    }
+
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     } else {
-      // Submit form
-      console.log("Dining experience submitted:", formData);
-      router.push("/experiences?tab=experience-library");
+      setIsSubmitting(true);
+      try {
+        let coverImageUrl = "";
+        if (formData.coverPhoto) {
+          const uploadedFile = await uploadFile(formData.coverPhoto);
+          coverImageUrl = uploadedFile.url;
+        }
+
+        const courses = [
+          { name: "Starter", dishes: formData.starter },
+          { name: "Main Dish", dishes: formData.main },
+          { name: "Dessert", dishes: formData.dessert },
+        ]
+          .filter((course) => course.dishes.length > 0)
+          .map((course) => JSON.stringify(course));
+
+        const diningData = {
+          name: formData.name,
+          description: formData.description,
+          country: formData.country,
+          city: formData.city,
+          cost: formData.cost,
+          coverImageUrl,
+          courses,
+          guideId: "kifpSShKKb", // Hardcoded for now
+          phone: "+8801703464048",
+          countryCode: "+880",
+          isActive: true,
+          isNotified: false,
+          isApproved: false,
+          kitchenTimes: [],
+          galleryImageUrls: [],
+          maxGuest: "1",
+        };
+
+        await createDiningExperience(diningData);
+        toast.success("Dining experience created successfully");
+        router.push("/experiences?tab=experience-library");
+      } catch {
+        toast.error("Failed to create dining experience");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -129,6 +185,7 @@ const DiningExperiencePage = () => {
                 size="lg"
                 onClick={handleBack}
                 className="bg-[#3D3D3D80] text-[#FFFFFF] text-[14px]  rounded-lg"
+                disabled={isSubmitting}
               >
                 Back
               </Button>
@@ -137,8 +194,13 @@ const DiningExperiencePage = () => {
                 onClick={handleNext}
                 size="lg"
                 className="bg-[#FB8B24] hover:bg-orange-400 text-[#FFFFFF] text-[14px] rounded-lg"
+                disabled={isSubmitting}
               >
-                {currentStep === totalSteps ? "Confirm" : "Next"}
+                {isSubmitting
+                  ? "Submitting..."
+                  : currentStep === totalSteps
+                  ? "Confirm"
+                  : "Next"}
               </Button>
             </div>
           </div>

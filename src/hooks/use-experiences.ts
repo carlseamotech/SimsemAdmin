@@ -13,12 +13,12 @@ import { ApiError } from "@/services/types";
 import {
   getMeals,
   getMeal,
-  createMeal,
   updateMeal,
   deleteMeal,
-  CreateMealDTO,
   UpdateMealDTO,
+  createDiningExperience,
 } from "@/services/experiences/meal";
+import { CreateDiningExperienceDTO } from "@/dtos/experiences/create-dining-experience.dto";
 import {
   getLibraryTours,
   getLibraryTour,
@@ -144,8 +144,8 @@ export const useMeals = (limit?: number) => {
     meals: data,
     isLoading: !error && !data,
     isError: error,
-    createMeal: async (meal: CreateMealDTO) => {
-      const newMeal = await createMeal(meal);
+    createMeal: async (meal: CreateDiningExperienceDTO) => {
+      const newMeal = await createDiningExperience(meal);
       mutate((data) => (data ? [...data, newMeal] : [newMeal]), false);
       return newMeal;
     },

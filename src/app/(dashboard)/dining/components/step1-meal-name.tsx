@@ -24,9 +24,9 @@ const Step1MealName: React.FC<Step1MealNameProps> = ({
 
       <div className="space-y-2">
         <Textarea
-          value={formData.mealName}
+          value={formData.name}
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, mealName: e.target.value }))
+            setFormData((prev) => ({ ...prev, name: e.target.value }))
           }
           placeholder="The Ultimate Breakfast at Istanbul"
           className="w-full text-[25px] text-[#00000066] py-4 px-4 bg-[#00000008] min-h-[130px] focus-visible:ring-[1px] "
@@ -34,7 +34,7 @@ const Step1MealName: React.FC<Step1MealNameProps> = ({
         />
 
         <p className="text-sm text-gray-500 mt-1">
-          {formData.mealName.length}/60
+          {formData.name.length}/60
         </p>
       </div>
     </div>

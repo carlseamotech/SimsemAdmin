@@ -6,17 +6,13 @@ export interface CreateDiningExperienceDTO {
   city: string;
   coverImageUrl: string;
   galleryImageUrls: string[];
-  galleryVideoUrls: string[];
   guideId: string;
   description: string;
   maxGuest: string;
-  type: 'meal';
-  meetingPointLat: number;
-  meetingPoint: string;
   phone: string;
   countryCode: string;
   name: string;
-  meetingPointLong: number;
-  isNotified: boolean;
   isActive: boolean;
+  isNotified: boolean;
+  isApproved: boolean;
 }

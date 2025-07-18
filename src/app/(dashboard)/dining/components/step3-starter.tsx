@@ -28,31 +28,55 @@ const Step3Starter: React.FC<Step3StarterProps> = ({
       name: "Hummus",
       description:
         "Chickpeas, garlic, lemon, sesame paste (Tahini) and olive oil",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "hummus.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Chickpeas, garlic, lemon, sesame paste (Tahini) and olive oil",
+      type: "vegetarian",
     },
     {
       id: "mutabbal",
       name: "Mutabbal",
       description: "Eggplant, tahini, and lemon",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "mutabbal.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Eggplant, tahini, and lemon",
+      type: "vegetarian",
     },
     {
       id: "makdous",
       name: "Makdous",
       description:
         "Small pickled eggplant stuffed with red pepper, walnuts, garlic...",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "makdous.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Small pickled eggplant stuffed with red pepper, walnuts, garlic...",
+      type: "vegetarian",
     },
     {
       id: "ful",
       name: "Ful",
       description:
         "Pureed fava beans, lemon juice, olive oil and chopped chilis",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "ful.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Pureed fava beans, lemon juice, olive oil and chopped chilis",
+      type: "vegetarian",
     },
   ];
 
@@ -61,7 +85,12 @@ const Step3Starter: React.FC<Step3StarterProps> = ({
   );
 
   const handleStarterSelect = (starter: DishItem) => {
-    setFormData((prev) => ({ ...prev, selectedStarter: starter }));
+    setFormData((prev) => ({
+      ...prev,
+      starter: prev.starter.find((d) => d.id === starter.id)
+        ? prev.starter.filter((d) => d.id !== starter.id)
+        : [...prev.starter, starter],
+    }));
   };
 
   return (
@@ -120,7 +149,7 @@ const Step3Starter: React.FC<Step3StarterProps> = ({
           <Card
             key={starter.id}
             className={`cursor-pointer transition-all duration-200 hover:shadow-md p-0 gap-0 ${
-              formData.selectedMainDish?.id === starter.id
+              formData.starter.find((d) => d.id === starter.id)
                 ? "ring-2 ring-[#FB8B24]"
                 : ""
             }`}

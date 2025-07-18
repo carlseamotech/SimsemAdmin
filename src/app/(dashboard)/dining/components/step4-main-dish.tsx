@@ -27,29 +27,53 @@ const Step4MainDish: React.FC<Step4MainDishProps> = ({
       id: "tabbouleh",
       name: "Tabbouleh",
       description: "Chopped ",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "tabbouleh.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Chopped ",
+      type: "vegetarian",
     },
     {
       id: "galayet",
       name: "Galayet Banadoura",
       description: "Tomatoes fried in olive oil with spicy sesame pepper",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "galayet.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Tomatoes fried in olive oil with spicy sesame pepper",
+      type: "vegetarian",
     },
     {
       id: "dawali",
       name: "Dawali",
       description: "Wrapped grape leaves stuffed with rice and vegetables",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "dawali.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Wrapped grape leaves stuffed with rice and vegetables",
+      type: "vegetarian",
     },
     {
       id: "mujadara",
       name: "Mujadara",
       description: "Lentils, rice, caramelized onions, yogurt and herbs",
-      image: "/placeholder.svg?height=150&width=200",
+      image: {
+        __type: "File",
+        name: "mujadara.jpg",
+        url: "/placeholder.svg?height=150&width=200",
+      },
       mealType: "vegetarian",
+      ingredients: "Lentils, rice, caramelized onions, yogurt and herbs",
+      type: "vegetarian",
     },
   ];
 
@@ -58,7 +82,12 @@ const Step4MainDish: React.FC<Step4MainDishProps> = ({
   );
 
   const handleDishSelect = (dish: DishItem) => {
-    setFormData((prev) => ({ ...prev, selectedMainDish: dish }));
+    setFormData((prev) => ({
+      ...prev,
+      main: prev.main.find((d) => d.id === dish.id)
+        ? prev.main.filter((d) => d.id !== dish.id)
+        : [...prev.main, dish],
+    }));
   };
 
   return (
@@ -117,7 +146,7 @@ const Step4MainDish: React.FC<Step4MainDishProps> = ({
           <Card
             key={dish.id}
             className={`cursor-pointer transition-all duration-200 hover:shadow-md p-0 gap-0 ${
-              formData.selectedMainDish?.id === dish.id
+              formData.main.find((d) => d.id === dish.id)
                 ? "ring-2 ring-[#FB8B24]"
                 : ""
             }`}
