@@ -2,25 +2,15 @@
 
 import type React from "react";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { FormData } from "./types";
+import { CountryDropdown } from "@/components/common/country-dropdown";
+import { useFormContext } from "react-hook-form";
 
-interface Step3BasicInfoProps {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-}
+const Step3BasicInfo: React.FC = () => {
+  const { control, register, watch, setValue } = useFormContext<FormData>();
+  const tourFeatures = watch("tourFeatures") || [];
 
-const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
-  formData,
-  setFormData,
-}) => {
   const categories = [
     "Historical",
     "Culture",
@@ -30,12 +20,11 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
   ];
 
   const toggleCategory = (category: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      tourFeatures: prev.tourFeatures.includes(category)
-        ? prev.tourFeatures.filter((c: string) => c !== category)
-        : [...prev.tourFeatures, category],
-    }));
+    const currentFeatures = tourFeatures;
+    const newFeatures = currentFeatures.includes(category)
+      ? currentFeatures.filter((c: string) => c !== category)
+      : [...currentFeatures, category];
+    setValue("tourFeatures", newFeatures);
   };
 
   return (
@@ -50,22 +39,7 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
                 To which country do you want to make this experience available
               </label>
 
-              <Select
-                onValueChange={(value) =>
-                  setFormData((prev) => ({ ...prev, country: value }))
-                }
-              >
-                <SelectTrigger className="w-full text-[19px]  text-[#000000B2]  bg-[#00000008] py-7 rounded-xl mr-4">
-                  <SelectValue placeholder="Select Country" />
-                </SelectTrigger>
-
-                <SelectContent>
-                  <SelectItem value="turkey">Turkey</SelectItem>
-                  <SelectItem value="egypt">Egypt</SelectItem>
-                  <SelectItem value="morocco">Morocco</SelectItem>
-                  <SelectItem value="jordan">Jordan</SelectItem>
-                </SelectContent>
-              </Select>
+              <CountryDropdown control={control} name="country" label="" />
             </div>
 
             <div className="w-1/2 ">
@@ -80,13 +54,7 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
 
                 <Input
                   type="number"
-                  value={formData.cost}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      cost: e.target.value,
-                    }))
-                  }
+                  {...register("cost")}
                   placeholder="20"
                   className="bg-[#00000008]  placeholder:text-[19px] md:text-[19px]  text-[#000000B2] h-[59px] rounded-xl  focus-visible:ring-0 pl-7"
                 />
@@ -110,13 +78,7 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
               <div className="flex items-center ">
                 <Input
                   type="text"
-                  value={formData.tourDuration}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      tourDuration: e.target.value,
-                    }))
-                  }
+                  {...register("tourDuration")}
                   className="bg-[#00000008]  placeholder:text-[19px] md:text-[19px]  text-[#000000B2]  h-[59px] rounded-xl  focus-visible:ring-0"
                   placeholder="2 hours"
                 />
@@ -135,12 +97,10 @@ const Step3BasicInfo: React.FC<Step3BasicInfoProps> = ({
               <Badge
                 key={category}
                 variant={
-                  formData.tourFeatures.includes(category)
-                    ? "default"
-                    : "outline"
+                  tourFeatures.includes(category) ? "default" : "outline"
                 }
                 className={`cursor-pointer px-8 py-2 h-[59px] text-[19px] font-normal rounded-2xl ${
-                  formData.tourFeatures.includes(category)
+                  tourFeatures.includes(category)
                     ? "bg-[#FEC540] hover:bg-yellow-500 text-white"
                     : "bg-[#00000008] hover:bg-gray-200 text-[#000000B2]"
                 }`}

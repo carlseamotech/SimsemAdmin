@@ -26,5 +26,4 @@ export interface FormData {
   inclusions: string[];
   exclusions: string[];
   whatToExpect: string;
-  coverPhoto: File | null;
 }

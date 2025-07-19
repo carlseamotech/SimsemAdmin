@@ -3,16 +3,11 @@
 import type React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { FormData } from "./types";
+import { useFormContext } from "react-hook-form";
 
-interface Step2DescriptionProps {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-}
+const Step2Description: React.FC = () => {
+  const { register } = useFormContext<FormData>();
 
-const Step2Description: React.FC<Step2DescriptionProps> = ({
-  formData,
-  setFormData,
-}) => {
   return (
     <div className="space-y-6">
       <div>
@@ -24,13 +19,7 @@ const Step2Description: React.FC<Step2DescriptionProps> = ({
 
       <div>
         <Textarea
-          value={formData.description}
-          onChange={(e) =>
-            setFormData((prev) => ({
-              ...prev,
-              description: e.target.value,
-            }))
-          }
+          {...register("description")}
           placeholder="A walk through my campus in Turkey offers a delightful blend of modernity and tradition. You'll explore a vibrant community of students from diverse backgrounds, hear Turkish conversations, and witness cultural activities like backgammon games and tea-drinking at local cafes. In just a short walk, you'll experience the essence of Turkey's unique cultural tapestry."
           rows={8}
           className="w-full text-[18px] focus-visible:ring-[1px] text-[#00000066] py-4 px-4 bg-[#00000008] min-h-[257px]  "

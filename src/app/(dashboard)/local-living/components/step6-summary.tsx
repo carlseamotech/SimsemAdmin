@@ -8,12 +8,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { FormData } from "./types";
+import { useCountries } from "@/hooks/use-countries";
 
 interface Step6SummaryProps {
   formData: FormData;
 }
 
 const Step6Summary: React.FC<Step6SummaryProps> = ({ formData }) => {
+  const { countries } = useCountries();
+  const countryName =
+    countries.find((c) => c.objectId === formData.country)?.name ||
+    formData.country;
+
   return (
     <div className="space-y-6">
       <div className="space-y-6">
@@ -63,7 +69,7 @@ const Step6Summary: React.FC<Step6SummaryProps> = ({ formData }) => {
 
                 <span className="text-[#3D3D3D] font-bold text-[15px] capitalize truncate space-x-1">
                   <span className="text-[#0D2E61] text-[15px] ">Country:</span>
-                  <span>{formData.country}</span>
+                  <span>{countryName}</span>
                 </span>
               </div>
 
@@ -103,9 +109,9 @@ const Step6Summary: React.FC<Step6SummaryProps> = ({ formData }) => {
 
             {/* This wrapper ensures responsive ratio */}
             <div className="relative w-full aspect-[887/312] rounded-lg overflow-hidden">
-              {formData.coverPhoto && (
+              {formData.galleryImageUrls[0] && (
                 <Image
-                  src={URL.createObjectURL(formData.coverPhoto)}
+                  src={formData.galleryImageUrls[0]}
                   alt="Cover photo"
                   fill
                   className="object-cover"

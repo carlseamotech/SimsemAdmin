@@ -1,0 +1,87 @@
+{
+  "country": "Egypt",
+  "cost": "15",
+  "city": "New Cairo",
+  "difficultyLevel": "Basic",
+  "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/517bae13a5a9c12fc37453368b3dae13_1691104329990.jpeg",
+  "galleryImageUrls": [
+    "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/0ef5cba52b5722606a5fb86800d431b1_1691104331973.jpeg"
+  ],
+  "galleryVideoUrls": [
+    "{\"thumbnailUrl\":\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/a0836c6471f2371bc4919af52d5cb936_1716193476323.jpeg\",\"name\":\"1716193419572_VID_20240410_211714.mp4\"}"
+  ],
+  "guideId": "oiwgJNXiWN",
+  "description": "description",
+  "tourFeatures": [
+    "Other",
+    "Outdoor"
+  ],
+  "cameraZoom": 15,
+  "maxGuest": "2",
+  "type": "custom",
+  "meetingPointLat": 30.007801753600166,
+  "otherTourFeature": "Activity",
+  "meetingPoint": "2G5P+859, New Cairo 1, Cairo Governorate 4760150, Egypt",
+  "phone": "+201019585743",
+  "countryCode": "+20",
+  "name": "Let's Get a Kayak Ride and Chill",
+  "meetingPointLong": 31.535637639462944,
+  "tourTimes": [
+    "{\"date\":\"Sat: 05 Aug, 2023 - Sat: 05 Aug, 2023\",\"isEnabled\":true,\"repetition\":\"\",\"time\":\"\",\"times\":[{\"end\":\"05:00 PM\",\"start\":\"04:00 PM\"},{\"end\":\"06:00 PM\",\"start\":\"05:00 PM\"}],\"yearMonth\":\"08/2023\"}"
+  ],
+  "tourDuration": "30 mins",
+  "itinerary": {
+    "Day 1": [
+      {
+        "schedule": "Day 1: 8:00 AM",
+        "activity": "Meetup & Breakfast",
+        "description": "I will pick you up!"
+      },
+      {
+        "schedule": "Day 1: 10:00 AM",
+        "activity": "City Tour",
+        "description": "Exploring the city's historical sites."
+      }
+    ],
+    "Day 2": [
+      {
+        "schedule": "Day 2: 9:00 AM",
+        "activity": "Beach Visit",
+        "description": "Relaxing at the beach with some fun activities."
+      },
+      {
+        "schedule": "Day 2: 12:00 PM",
+        "activity": "Lunch at Local Restaurant",
+        "description": "Enjoying local cuisine."
+      }
+    ]
+  },
+  "thingsToKnow": [
+    {
+      "guideline": "What to bring",
+      "description": [
+        "Hiking shoes",
+        "Hat, caps or umbrella",
+        "Sunscreen",
+        "Water bottle"
+      ]
+    },
+    {
+      "guideline": "Important Notes",
+      "description": [
+        "Arrive 15 minutes early",
+        "Follow the guide’s instructions",
+        "Wear comfortable clothes"
+      ]
+    }
+  ],
+  "inclusions": [
+    "Lunch",
+    "Accomodation"
+  ],
+  "exclusions": [
+    "Tickets",
+    "Transportation"
+  ],
+  "whatToExpect": "what to expect details goes here."
+}

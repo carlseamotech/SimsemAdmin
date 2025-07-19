@@ -3,16 +3,12 @@
 import type React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { FormData } from "./types";
+import { useFormContext } from "react-hook-form";
 
-interface Step1TourNameProps {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-}
+const Step1TourName: React.FC = () => {
+  const { register, watch } = useFormContext<FormData>();
+  const name = watch("name");
 
-const Step1TourName: React.FC<Step1TourNameProps> = ({
-  formData,
-  setFormData,
-}) => {
   return (
     <div className="space-y-6">
       <div>
@@ -24,17 +20,14 @@ const Step1TourName: React.FC<Step1TourNameProps> = ({
 
       <div className="space-y-2">
         <Textarea
-          value={formData.name}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, name: e.target.value }))
-          }
+          {...register("name")}
           placeholder="The Ultimate Breakfast at Istanbul"
           className="w-full text-[25px] text-[#00000066] py-4 px-4 bg-[#00000008] min-h-[130px] focus-visible:ring-[1px] "
           maxLength={60}
         />
 
         <p className="text-sm text-gray-500 mt-1">
-          {formData.name.length}/60
+          {name?.length || 0}/60
         </p>
       </div>
     </div>
