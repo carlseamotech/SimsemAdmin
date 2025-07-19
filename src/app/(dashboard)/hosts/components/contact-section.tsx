@@ -1,5 +1,6 @@
 "use client";
 
+import { CountryDropdown } from "@/components/common/country-dropdown";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,6 +19,9 @@ import type {
 } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import { HostFormData } from "./host-scema";
+import { useCountries } from "@/hooks/use-countries";
+import { LanguageDropdown } from "@/components/common/language-dropdown";
+import { useLanguages } from "@/hooks/use-languages";
 
 interface ContactLanguageSectionProps {
   form: UseFormReturn<HostFormData>;
@@ -35,9 +39,29 @@ export function ContactLanguageSection({
     formState: { errors },
   } = form;
 
+  const { countries } = useCountries();
+  const { languages } = useLanguages();
+  const countryId = watch("country");
+  const countryName =
+    countries.find((c) => c.objectId === countryId)?.name || countryId;
+
+  const firstLanguageId = watch("firstLanguage");
+  const firstLanguageName =
+    languages.find((l) => l.objectId === firstLanguageId)?.name ||
+    firstLanguageId;
+
+  const secondLanguageId = watch("secondLanguage");
+  const secondLanguageName =
+    languages.find((l) => l.objectId === secondLanguageId)?.name ||
+    secondLanguageId;
+
+  const thirdLanguageId = watch("thirdLanguage");
+  const thirdLanguageName =
+    languages.find((l) => l.objectId === thirdLanguageId)?.name ||
+    thirdLanguageId;
+
   const contactFields = [
     { key: "city", label: "City", type: "text" },
-    { key: "country", label: "Country", type: "text" },
     { key: "email", label: "Email", type: "email" },
     { key: "phone", label: "Phone Number", type: "tel" },
   ] as const;
@@ -61,6 +85,22 @@ export function ContactLanguageSection({
           <h3 className="text-[24px] font-bold text-[#0D2E61] mb-3">Contact</h3>
 
           <div className="space-y-4">
+            <div
+              className={`gap-2 flex ${isEditing ? "flex-col" : "flex-row"}`}
+            >
+              <Label className="text-[20px] text-[#3D3D3D]">Country:</Label>
+              {isEditing ? (
+                <CountryDropdown
+                  control={control}
+                  name="country"
+                  label=""
+                />
+              ) : (
+                <span className="text-[20px] font-bold text-[#3D3D3D]">
+                  {countryName}
+                </span>
+              )}
+            </div>
             {contactFields.map(({ key, label, type }) => (
               <div
                 className={`gap-2 flex ${
@@ -108,9 +148,10 @@ export function ContactLanguageSection({
               </Label>
               {isEditing ? (
                 <div className="col-span-2 md:col-span-3">
-                  <Input
-                    {...register("firstLanguage")}
-                    className=" bg-white h-[59px] rounded-xl  focus-visible:ring-0"
+                  <LanguageDropdown
+                    control={control}
+                    name="firstLanguage"
+                    label=""
                   />
                   {getErrorMessage(errors.firstLanguage) && (
                     <p className="text-red-500 text-sm mt-1">
@@ -120,7 +161,7 @@ export function ContactLanguageSection({
                 </div>
               ) : (
                 <span className=" text-[20px] font-bold text-[#3D3D3D]">
-                  {watch("firstLanguage")}
+                  {firstLanguageName}
                 </span>
               )}
             </div>
@@ -172,14 +213,15 @@ export function ContactLanguageSection({
               </Label>
               {isEditing ? (
                 <div className="col-span-2 md:col-span-3">
-                  <Input
-                    {...register("secondLanguage")}
-                    className=" bg-white h-[59px] rounded-xl  focus-visible:ring-0"
+                  <LanguageDropdown
+                    control={control}
+                    name="secondLanguage"
+                    label=""
                   />
                 </div>
               ) : (
                 <span className=" text-[20px] font-bold text-[#3D3D3D]">
-                  {watch("secondLanguage")}
+                  {secondLanguageName}
                 </span>
               )}
             </div>
@@ -226,14 +268,15 @@ export function ContactLanguageSection({
               </Label>
               {isEditing ? (
                 <div className="col-span-2 md:col-span-3">
-                  <Input
-                    {...register("thirdLanguage")}
-                    className=" bg-white h-[59px] rounded-xl  focus-visible:ring-0"
+                  <LanguageDropdown
+                    control={control}
+                    name="thirdLanguage"
+                    label=""
                   />
                 </div>
               ) : (
                 <span className=" text-[20px] font-bold text-[#3D3D3D]">
-                  {watch("thirdLanguage")}
+                  {thirdLanguageName}
                 </span>
               )}
             </div>
@@ -249,7 +292,7 @@ export function ContactLanguageSection({
                     render={({ field }) => (
                       <Select
                         {...field}
-                        onValueChange={field.onChange}
+                        onValue-change={field.onChange}
                         defaultValue={field.value}
                       >
                         <SelectTrigger className="cursor-pointer w-full bg-white py-7 rounded-xl">
@@ -278,3 +321,4 @@ export function ContactLanguageSection({
     </div>
   );
 }
+

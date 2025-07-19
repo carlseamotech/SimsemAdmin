@@ -1,8 +1,9 @@
 "use client";
+import { useCountries } from "@/hooks/use-countries";
 import Header from "@/components/common/header";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ProfileImage from "../../../../../public/common/profile-image.svg";
 import { Button } from "@/components/ui/button";
@@ -41,14 +42,19 @@ const HostSummaryPage = () => {
   const { host, hostPayment, isLoading, updateHost, mutate } = useHost(
     id as string
   );
+  const { countries } = useCountries();
 
   const form = useForm<HostFormData>({
     resolver: zodResolver(hostSchema),
   });
 
   useEffect(() => {
-    if (host) {
-      const updatedHost = { ...host };
+    if (host && countries.length > 0) {
+      const country = countries.find((c) => c.name === host.country);
+      const updatedHost = {
+        ...host,
+        country: country ? country.objectId : "",
+      };
       const languageLevels: ("firstLanguageLevel" | "secondLanguageLevel" | "thirdLanguageLevel")[] = [
         "firstLanguageLevel",
         "secondLanguageLevel",
@@ -63,7 +69,7 @@ const HostSummaryPage = () => {
 
       form.reset(updatedHost);
     }
-  }, [host, form]);
+  }, [host, countries, form]);
 
   if (isLoading) {
     return (
@@ -91,11 +97,13 @@ const HostSummaryPage = () => {
   const handleSave = async (data: HostFormData) => {
     setIsSubmitting(true);
     try {
+      const countryName =
+        countries.find((c) => c.objectId === data.country)?.name || "";
       const updateDto: UpdateHostDTO = {
         name: data.name,
         about: data.about,
         city: data.city,
-        country: data.country,
+        country: countryName,
         email: data.email,
         phone: data.phone,
         firstLanguage: data.firstLanguage,
@@ -203,247 +211,255 @@ const HostSummaryPage = () => {
           </div>
 
           <div className="p-8">
-            <form
-              onSubmit={form.handleSubmit(handleSave)}
-              className="space-y-6"
-            >
-              {/* Host Profile */}
-              <Card className=" border-x-0 border-t-0 rounded-none shadow-none">
-                <CardContent>
-                  <div className="flex flex-col items-start gap-8">
-                    <div className="flex flex-row items-center gap-6">
-                      <Image
-                        src={
-                          profileImageFile
-                            ? URL.createObjectURL(profileImageFile)
-                            : host.imageUrl || ProfileImage
-                        }
-                        alt="Host Avatar"
-                        width={80}
-                        height={80}
-                        className="rounded-full border object-cover"
-                      />
+            <FormProvider {...form}>
+              <form
+                onSubmit={form.handleSubmit(handleSave)}
+                className="space-y-6"
+              >
+                {/* Host Profile */}
+                <Card className=" border-x-0 border-t-0 rounded-none shadow-none">
+                  <CardContent>
+                    <div className="flex flex-col items-start gap-8">
+                      <div className="flex flex-row items-center gap-6">
+                        <Image
+                          src={
+                            profileImageFile
+                              ? URL.createObjectURL(profileImageFile)
+                              : host.imageUrl || ProfileImage
+                          }
+                          alt="Host Avatar"
+                          width={80}
+                          height={80}
+                          className="rounded-full border object-cover"
+                        />
 
-                      {isEditing && (
-                        <Button
-                          asChild
-                          variant="default"
-                          className="text-[#FFFFFF] flex items-center justify-center w-[132px] h-[30px] text-[13px] bg-[#5F0F40] rounded-full"
-                        >
-                          <label>
-                            CHANGE PHOTO
-                            <input
-                              type="file"
-                              className="hidden"
-                              onChange={(e) =>
-                                setProfileImageFile(e.target.files?.[0] || null)
-                              }
-                            />
-                          </label>
-                        </Button>
-                      )}
-                    </div>
+                        {isEditing && (
+                          <Button
+                            asChild
+                            variant="default"
+                            className="text-[#FFFFFF] flex items-center justify-center w-[132px] h-[30px] text-[13px] bg-[#5F0F40] rounded-full"
+                          >
+                            <label>
+                              CHANGE PHOTO
+                              <input
+                                type="file"
+                                className="hidden"
+                                onChange={(e) =>
+                                  setProfileImageFile(
+                                    e.target.files?.[0] || null
+                                  )
+                                }
+                              />
+                            </label>
+                          </Button>
+                        )}
+                      </div>
 
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">Host Name</p>
-                      <p className="text-[30px] font-bold text-[#0D2E61]">
-                        {name}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* About Section */}
-              <Card className={`bg-[#3D3D3D0D]  border-none p-0 `}>
-                <CardContent className="p-6 ">
-                  <h3 className="text-[24px] font-bold text-[#0D2E61] mb-5">
-                    About the Host
-                  </h3>
-
-                  {isEditing ? (
-                    <div>
-                      <Textarea
-                        {...register("about")}
-                        className="min-h-[100px] bg-[#FFFFFF] "
-                        placeholder="Tell us about yourself..."
-                      />
-                      {errors.about && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.about.message}
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Host Name
                         </p>
-                      )}
+                        <p className="text-[30px] font-bold text-[#0D2E61]">
+                          {name}
+                        </p>
+                      </div>
                     </div>
+                  </CardContent>
+                </Card>
+
+                {/* About Section */}
+                <Card className={`bg-[#3D3D3D0D]  border-none p-0 `}>
+                  <CardContent className="p-6 ">
+                    <h3 className="text-[24px] font-bold text-[#0D2E61] mb-5">
+                      About the Host
+                    </h3>
+
+                    {isEditing ? (
+                      <div>
+                        <Textarea
+                          {...register("about")}
+                          className="min-h-[100px] bg-[#FFFFFF] "
+                          placeholder="Tell us about yourself..."
+                        />
+                        {errors.about && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.about.message}
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      <p className="text-[#3D3D3D] text-[18px] leading-relaxed">
+                        {about}
+                      </p>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* Host Status Section */}
+                <Card className={`bg-[#3D3D3D0D]  border-none p-0 `}>
+                  <CardContent className="p-6 ">
+                    <h3 className="text-[24px] font-bold text-[#0D2E61] mb-5">
+                      Host Status
+                    </h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Tour Guide
+                        </p>
+                        <p className="text-[18px] font-bold text-[#0D2E61]">
+                          {host.isTourGuide ? "Yes" : "No"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Family Host
+                        </p>
+                        <p className="text-[18px] font-bold text-[#0D2E61]">
+                          {host.isFamilyHost ? "Yes" : "No"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Local Seller
+                        </p>
+                        <p className="text-[18px] font-bold text-[#0D2E61]">
+                          {host.isLocalSeller ? "Yes" : "No"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">Rating</p>
+                        <p className="text-[18px] font-bold text-[#0D2E61]">
+                          {host.rating}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Tours Completed
+                        </p>
+                        <p className="text-[18px] font-bold text-[#0D2E61]">
+                          {host.toursCompleted}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Food Served
+                        </p>
+                        <p className="text-[18px] font-bold text-[#0D2E61]">
+                          {host.foodServed}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Last Active
+                        </p>
+                        <p className="text-[18px] font-bold text-[#0D2E61]">
+                          {host.lastActive?.iso
+                            ? new Date(host.lastActive.iso).toLocaleDateString()
+                            : "N/A"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Profile Complete
+                        </p>
+                        <p className="text-[18px] font-bold text-[#0D2E61]">
+                          {host.isProfileComplete ? "Yes" : "No"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Active Status
+                        </p>
+                        <p className="text-[18px] font-bold text-[#0D2E61]">
+                          {host.isActive ? "Active" : "Inactive"}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Document */}
+                <DocumentUploadSection
+                  isEditing={isEditing}
+                  idBackFileUrl={host.idBackFileUrl}
+                  idFrontFileUrl={host.idFrontFileUrl}
+                  onFrontFileChange={setFrontImageFile}
+                  onBackFileChange={setBackImageFile}
+                  onCertificateFileChange={setCertificateFile}
+                />
+
+                {/* Contact & Language */}
+                <ContactLanguageSection form={form} isEditing={isEditing} />
+
+                <div className="flex justify-between pt-4">
+                  {!isEditing ? (
+                    <>
+                      <div className="space-x-3">
+                        <Button
+                          type="button"
+                          size="lg"
+                          variant="destructive"
+                          onClick={handleDecline}
+                          disabled={isSubmitting}
+                          className="text-[17px] font-bold"
+                        >
+                          {isSubmitting ? "Declining..." : "Decline"}
+                        </Button>
+                        <DeleteHostDialog
+                          onConfirm={handleDelete}
+                          hostName={host.name}
+                        />
+                      </div>
+                      <div className="space-x-3">
+                        <Button
+                          size="lg"
+                          type="button"
+                          variant="outline"
+                          onClick={() => setIsEditing(true)}
+                          disabled={isSubmitting}
+                          className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          size="lg"
+                          type="button"
+                          className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
+                          onClick={handleApprove}
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? "Approving..." : "Approve"}
+                        </Button>
+                      </div>
+                    </>
                   ) : (
-                    <p className="text-[#3D3D3D] text-[18px] leading-relaxed">
-                      {about}
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
-
-              {/* Host Status Section */}
-              <Card className={`bg-[#3D3D3D0D]  border-none p-0 `}>
-                <CardContent className="p-6 ">
-                  <h3 className="text-[24px] font-bold text-[#0D2E61] mb-5">
-                    Host Status
-                  </h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">Tour Guide</p>
-                      <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.isTourGuide ? "Yes" : "No"}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">
-                        Family Host
-                      </p>
-                      <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.isFamilyHost ? "Yes" : "No"}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">
-                        Local Seller
-                      </p>
-                      <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.isLocalSeller ? "Yes" : "No"}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">Rating</p>
-                      <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.rating}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">
-                        Tours Completed
-                      </p>
-                      <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.toursCompleted}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">
-                        Food Served
-                      </p>
-                      <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.foodServed}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">
-                        Last Active
-                      </p>
-                      <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.lastActive?.iso
-                          ? new Date(host.lastActive.iso).toLocaleDateString()
-                          : "N/A"}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">
-                        Profile Complete
-                      </p>
-                      <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.isProfileComplete ? "Yes" : "No"}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[#3D3D3DCC] text-[15px]">
-                        Active Status
-                      </p>
-                      <p className="text-[18px] font-bold text-[#0D2E61]">
-                        {host.isActive ? "Active" : "Inactive"}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Document */}
-              <DocumentUploadSection
-                isEditing={isEditing}
-                idBackFileUrl={host.idBackFileUrl}
-                idFrontFileUrl={host.idFrontFileUrl}
-                onFrontFileChange={setFrontImageFile}
-                onBackFileChange={setBackImageFile}
-                onCertificateFileChange={setCertificateFile}
-              />
-
-              {/* Contact & Language */}
-              <ContactLanguageSection form={form} isEditing={isEditing} />
-
-              <div className="flex justify-between pt-4">
-                {!isEditing ? (
-                  <>
-                    <div className="space-x-3">
-                      <Button
-                        type="button"
-                        size="lg"
-                        variant="destructive"
-                        onClick={handleDecline}
-                        disabled={isSubmitting}
-                        className="text-[17px] font-bold"
-                      >
-                        {isSubmitting ? "Declining..." : "Decline"}
-                      </Button>
-                      <DeleteHostDialog
-                        onConfirm={handleDelete}
-                        hostName={host.name}
-                      />
-                    </div>
-                    <div className="space-x-3">
+                    <div className="flex justify-end w-full space-x-3">
                       <Button
                         size="lg"
                         type="button"
                         variant="outline"
-                        onClick={() => setIsEditing(true)}
+                        onClick={() => {
+                          form.reset(host);
+                          setIsEditing(false);
+                        }}
                         disabled={isSubmitting}
                         className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
                       >
-                        Edit
+                        Cancel
                       </Button>
                       <Button
                         size="lg"
-                        type="button"
+                        type="submit"
                         className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
-                        onClick={handleApprove}
                         disabled={isSubmitting}
                       >
-                        {isSubmitting ? "Approving..." : "Approve"}
+                        {isSubmitting ? "Saving..." : "Save"}
                       </Button>
                     </div>
-                  </>
-                ) : (
-                  <div className="flex justify-end w-full space-x-3">
-                    <Button
-                      size="lg"
-                      type="button"
-                      variant="outline"
-                      onClick={() => {
-                        form.reset(host);
-                        setIsEditing(false);
-                      }}
-                      disabled={isSubmitting}
-                      className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      size="lg"
-                      type="submit"
-                      className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Saving..." : "Save"}
-                    </Button>
-                  </div>
-                )}
-              </div>
-            </form>
+                  )}
+                </div>
+              </form>
+            </FormProvider>
 
             {/* Payment Info */}
             {hostPayment && !isEditing && (

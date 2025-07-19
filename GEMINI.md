@@ -45,22 +45,17 @@ For more detailed information on each layer, please refer to the `GEMINI.md` fil
 
 - **Run Development Server:** `npm run dev`
 - **Create Production Build:** `npm run build`
-- **Linting:** `npm run lint`
 - **Dependencies:** Manage dependencies using `package.json`.
 
-## 6. Authentication and Authorization
-
-- **Authentication:** We will use Firebase Authentication for user management. The sign-in process will be handled by a server-side API route (`/api/auth`) that validates credentials with Firebase. Client-side authentication state will be managed by the `AuthContext`.
-- **Authorization:** We will implement Role-Based Access Control (RBAC) for the Teams feature. User roles will be stored in the `TeamMember` model and will be used to control access to specific actions and resources.
-
-## 7. Naming Conventions
+## 6. Naming Conventions
 
 -   **`ProposedTour` vs. `Experience`**:
     -   **`ProposedTour`**: This name is used in the backend, API, and data modeling layers (`/models`, `/services`, `/dtos`).
     -   **`Experience`**: This name is used in the UI and display layers (`/app`, `/components`, `/hooks`).
 
-## 8. Testing
+## 7. Testing
 
+- **Linting and Type-Checking:** `npm run lint` and `npx tsc --noEmit`
 - **Framework:** Playwright is used for end-to-end (E2E) testing to ensure that all forms and user flows function as expected.
 - **Test Location:** All Playwright test files are located in the `playwright/tests` directory. Each test file should be named with the `.spec.ts` extension (e.g., `login.spec.ts`).
 - **Running Tests:** To run the entire test suite, use the command `npm run test`. Make sure the development server is running before executing the tests.

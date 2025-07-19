@@ -1,0 +1,1564 @@
+{
+  "results": [
+    {
+      "objectId": "Svjfpf4DmA",
+      "code": "+93",
+      "name": "Afghanistan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.494Z",
+      "updatedAt": "2025-04-13T18:08:08.494Z"
+    },
+    {
+      "objectId": "gRASloeCSK",
+      "code": "+355",
+      "name": "Albania",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.495Z",
+      "updatedAt": "2025-04-13T18:08:08.495Z"
+    },
+    {
+      "objectId": "NK0pMUMJOy",
+      "code": "+376",
+      "name": "Andorra",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.500Z",
+      "updatedAt": "2025-04-13T18:08:08.500Z"
+    },
+    {
+      "objectId": "TULaABhsG3",
+      "code": "+374",
+      "name": "Armenia",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.505Z",
+      "updatedAt": "2025-04-13T18:08:08.505Z"
+    },
+    {
+      "objectId": "lR52sZDSbX",
+      "code": "+43",
+      "name": "Austria",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.502Z",
+      "updatedAt": "2025-04-13T18:08:08.502Z"
+    },
+    {
+      "objectId": "1gExausVMQ",
+      "code": "+213",
+      "name": "Algeria",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.501Z",
+      "updatedAt": "2025-04-13T18:08:08.501Z"
+    },
+    {
+      "objectId": "GgbvVsR6EJ",
+      "code": "+54",
+      "name": "Argentina",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:08.509Z",
+      "updatedAt": "2025-04-13T18:08:08.509Z"
+    },
+    {
+      "objectId": "rHokXx75yH",
+      "code": "+994",
+      "name": "Azerbaijan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.510Z",
+      "updatedAt": "2025-04-13T18:08:08.510Z"
+    },
+    {
+      "objectId": "JgGAg2WY3m",
+      "code": "+61",
+      "name": "Australia",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:08.511Z",
+      "updatedAt": "2025-04-13T18:08:08.511Z"
+    },
+    {
+      "objectId": "avwy7svNjD",
+      "code": "+1-242",
+      "name": "Bahamas",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.511Z",
+      "updatedAt": "2025-04-13T18:08:08.511Z"
+    },
+    {
+      "objectId": "JTAw0g6BKx",
+      "code": "+229",
+      "name": "Benin",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.512Z",
+      "updatedAt": "2025-04-13T18:08:08.512Z"
+    },
+    {
+      "objectId": "EmP0TAT2y8",
+      "code": "+1-268",
+      "name": "Antigua and Barbuda",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.516Z",
+      "updatedAt": "2025-04-13T18:08:08.516Z"
+    },
+    {
+      "objectId": "Bi547Q8gSv",
+      "code": "+673",
+      "name": "Brunei",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.517Z",
+      "updatedAt": "2025-04-13T18:08:08.517Z"
+    },
+    {
+      "objectId": "zGKKlI2K5z",
+      "code": "+591",
+      "name": "Bolivia",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:08.526Z",
+      "updatedAt": "2025-04-13T18:08:08.526Z"
+    },
+    {
+      "objectId": "FXTcGZu8UX",
+      "code": "+226",
+      "name": "Burkina Faso",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.533Z",
+      "updatedAt": "2025-04-13T18:08:08.533Z"
+    },
+    {
+      "objectId": "eFxDJ4EYOB",
+      "code": "+32",
+      "name": "Belgium",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.517Z",
+      "updatedAt": "2025-04-13T18:08:08.517Z"
+    },
+    {
+      "objectId": "VpgjlyeszH",
+      "code": "+55",
+      "name": "Brazil",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:08.534Z",
+      "updatedAt": "2025-04-13T18:08:08.534Z"
+    },
+    {
+      "objectId": "aAwev1osEb",
+      "code": "+244",
+      "name": "Angola",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.534Z",
+      "updatedAt": "2025-04-13T18:08:08.534Z"
+    },
+    {
+      "objectId": "VaZFYI4SHQ",
+      "code": "+880",
+      "name": "Bangladesh",
+      "region": "Middle East",
+      "createdAt": "2025-04-13T18:08:08.683Z",
+      "updatedAt": "2025-07-05T05:52:35.712Z"
+    },
+    {
+      "objectId": "daEC3jPnVw",
+      "code": "+973",
+      "name": "Bahrain",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:08.685Z",
+      "updatedAt": "2025-06-27T04:35:54.892Z"
+    },
+    {
+      "objectId": "hBCcPdYAIr",
+      "code": "+501",
+      "name": "Belize",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.687Z",
+      "updatedAt": "2025-04-13T18:08:08.687Z"
+    },
+    {
+      "objectId": "pyXeQvV3zc",
+      "code": "+1-246",
+      "name": "Barbados",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.698Z",
+      "updatedAt": "2025-04-13T18:08:08.698Z"
+    },
+    {
+      "objectId": "nbcB4mBk1L",
+      "code": "+267",
+      "name": "Botswana",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.699Z",
+      "updatedAt": "2025-04-13T18:08:08.699Z"
+    },
+    {
+      "objectId": "MiFijQcN9u",
+      "code": "+375",
+      "name": "Belarus",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.701Z",
+      "updatedAt": "2025-04-13T18:08:08.701Z"
+    },
+    {
+      "objectId": "PkPj5HtzdB",
+      "code": "+975",
+      "name": "Bhutan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.702Z",
+      "updatedAt": "2025-04-13T18:08:08.702Z"
+    },
+    {
+      "objectId": "E5mQCidFKO",
+      "code": "+359",
+      "name": "Bulgaria",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.713Z",
+      "updatedAt": "2025-04-13T18:08:08.713Z"
+    },
+    {
+      "objectId": "KjuHCPqs5b",
+      "code": "+257",
+      "name": "Burundi",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.714Z",
+      "updatedAt": "2025-04-13T18:08:08.714Z"
+    },
+    {
+      "objectId": "KNjKWp8dWu",
+      "code": "+387",
+      "name": "Bosnia and Herzegovina",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.726Z",
+      "updatedAt": "2025-04-13T18:08:08.726Z"
+    },
+    {
+      "objectId": "JBxyEifj7t",
+      "code": "+56",
+      "name": "Chile",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:08.797Z",
+      "updatedAt": "2025-04-13T18:08:08.797Z"
+    },
+    {
+      "objectId": "FiX3e10VpQ",
+      "code": "+236",
+      "name": "Central African Republic",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.844Z",
+      "updatedAt": "2025-04-13T18:08:08.844Z"
+    },
+    {
+      "objectId": "DK0CCdUYGM",
+      "code": "+1",
+      "name": "Canada",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.851Z",
+      "updatedAt": "2025-04-13T18:08:08.851Z"
+    },
+    {
+      "objectId": "CEEYDdWeKO",
+      "code": "+385",
+      "name": "Croatia",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.846Z",
+      "updatedAt": "2025-04-13T18:08:08.846Z"
+    },
+    {
+      "objectId": "VKh0uYtkZr",
+      "code": "+242",
+      "name": "Republic of the Congo",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.862Z",
+      "updatedAt": "2025-04-13T18:08:08.862Z"
+    },
+    {
+      "objectId": "yZXBfmbZ1y",
+      "code": "+235",
+      "name": "Chad",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.864Z",
+      "updatedAt": "2025-04-13T18:08:08.864Z"
+    },
+    {
+      "objectId": "V8Cj6dq7ha",
+      "code": "+20",
+      "name": "Egypt",
+      "region": "Middle East",
+      "createdAt": "2025-04-13T18:08:08.865Z",
+      "updatedAt": "2025-04-13T18:08:08.865Z"
+    },
+    {
+      "objectId": "7UJbfXCOCK",
+      "code": "+57",
+      "name": "Colombia",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:08.868Z",
+      "updatedAt": "2025-04-13T18:08:08.868Z"
+    },
+    {
+      "objectId": "ty4AEjFuGt",
+      "code": "+45",
+      "name": "Denmark",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.869Z",
+      "updatedAt": "2025-04-13T18:08:08.869Z"
+    },
+    {
+      "objectId": "x6mtGxiutv",
+      "code": "+1-767",
+      "name": "Dominica",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.870Z",
+      "updatedAt": "2025-04-13T18:08:08.870Z"
+    },
+    {
+      "objectId": "FDCggHtmcp",
+      "code": "+357",
+      "name": "Cyprus",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:08.872Z",
+      "updatedAt": "2025-06-27T04:36:00.834Z"
+    },
+    {
+      "objectId": "WdUVJfbYvI",
+      "code": "+269",
+      "name": "Comoros",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.872Z",
+      "updatedAt": "2025-04-13T18:08:08.872Z"
+    },
+    {
+      "objectId": "0GnA4p5fRB",
+      "code": "+86",
+      "name": "China",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.878Z",
+      "updatedAt": "2025-04-13T18:08:08.878Z"
+    },
+    {
+      "objectId": "tcp7gBgshs",
+      "code": "+855",
+      "name": "Cambodia",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.873Z",
+      "updatedAt": "2025-04-13T18:08:08.873Z"
+    },
+    {
+      "objectId": "4hP4rXuzHS",
+      "code": "+253",
+      "name": "Djibouti",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.879Z",
+      "updatedAt": "2025-04-13T18:08:08.879Z"
+    },
+    {
+      "objectId": "lDERuxKDLc",
+      "code": "+243",
+      "name": "Democratic Republic of the Congo",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.880Z",
+      "updatedAt": "2025-04-13T18:08:08.880Z"
+    },
+    {
+      "objectId": "7TNroSCIRE",
+      "code": "+593",
+      "name": "Ecuador",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:08.881Z",
+      "updatedAt": "2025-04-13T18:08:08.881Z"
+    },
+    {
+      "objectId": "MEHd3RRNIR",
+      "code": "+1-809",
+      "name": "Dominican Republic",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.882Z",
+      "updatedAt": "2025-04-13T18:08:08.882Z"
+    },
+    {
+      "objectId": "i5qNVdRKd4",
+      "code": "+237",
+      "name": "Cameroon",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.883Z",
+      "updatedAt": "2025-04-13T18:08:08.883Z"
+    },
+    {
+      "objectId": "KrtnxOjQsM",
+      "code": "+420",
+      "name": "Czech Republic",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.884Z",
+      "updatedAt": "2025-04-13T18:08:08.884Z"
+    },
+    {
+      "objectId": "66VbbBLO1z",
+      "code": "+679",
+      "name": "Fiji",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:08.885Z",
+      "updatedAt": "2025-04-13T18:08:08.885Z"
+    },
+    {
+      "objectId": "LRLFVFhJ0r",
+      "code": "+53",
+      "name": "Cuba",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.886Z",
+      "updatedAt": "2025-04-13T18:08:08.886Z"
+    },
+    {
+      "objectId": "Ksi0rcCVgd",
+      "code": "+506",
+      "name": "Costa Rica",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.920Z",
+      "updatedAt": "2025-04-13T18:08:08.920Z"
+    },
+    {
+      "objectId": "ZhLIyWy53e",
+      "code": "+291",
+      "name": "Eritrea",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.920Z",
+      "updatedAt": "2025-04-13T18:08:08.920Z"
+    },
+    {
+      "objectId": "FM2foGlryo",
+      "code": "+30",
+      "name": "Greece",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.980Z",
+      "updatedAt": "2025-04-13T18:08:08.980Z"
+    },
+    {
+      "objectId": "iGY6rNcOQO",
+      "code": "+503",
+      "name": "El Salvador",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.981Z",
+      "updatedAt": "2025-04-13T18:08:08.981Z"
+    },
+    {
+      "objectId": "cxgWXdsN7a",
+      "code": "+372",
+      "name": "Estonia",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.981Z",
+      "updatedAt": "2025-04-13T18:08:08.981Z"
+    },
+    {
+      "objectId": "GRq3a2bkk7",
+      "code": "+240",
+      "name": "Equatorial Guinea",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.982Z",
+      "updatedAt": "2025-04-13T18:08:08.982Z"
+    },
+    {
+      "objectId": "mDSrV51f0W",
+      "code": "+358",
+      "name": "Finland",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.982Z",
+      "updatedAt": "2025-04-13T18:08:08.982Z"
+    },
+    {
+      "objectId": "DxW7x5aqYI",
+      "code": "+220",
+      "name": "Gambia",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.983Z",
+      "updatedAt": "2025-04-13T18:08:08.983Z"
+    },
+    {
+      "objectId": "3koLlXo7hx",
+      "code": "+233",
+      "name": "Ghana",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.983Z",
+      "updatedAt": "2025-04-13T18:08:08.983Z"
+    },
+    {
+      "objectId": "1Fwfo30uwq",
+      "code": "+224",
+      "name": "Guinea",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.984Z",
+      "updatedAt": "2025-04-13T18:08:08.984Z"
+    },
+    {
+      "objectId": "O9N8HC4Sqm",
+      "code": "+502",
+      "name": "Guatemala",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.984Z",
+      "updatedAt": "2025-04-13T18:08:08.984Z"
+    },
+    {
+      "objectId": "jQ1ASKen0v",
+      "code": "+1-473",
+      "name": "Grenada",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.984Z",
+      "updatedAt": "2025-04-13T18:08:08.984Z"
+    },
+    {
+      "objectId": "zTfZVECaQi",
+      "code": "+509",
+      "name": "Haiti",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.986Z",
+      "updatedAt": "2025-04-13T18:08:08.986Z"
+    },
+    {
+      "objectId": "vBZ6TMJHj1",
+      "code": "+251",
+      "name": "Ethiopia",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.987Z",
+      "updatedAt": "2025-04-13T18:08:08.987Z"
+    },
+    {
+      "objectId": "JbkxnsCyYG",
+      "code": "+62",
+      "name": "Indonesia",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.985Z",
+      "updatedAt": "2025-04-13T18:08:08.985Z"
+    },
+    {
+      "objectId": "UBsHKjpJqn",
+      "code": "+33",
+      "name": "France",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.987Z",
+      "updatedAt": "2025-04-13T18:08:08.987Z"
+    },
+    {
+      "objectId": "QXoMFGyXFO",
+      "code": "+995",
+      "name": "Georgia",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.987Z",
+      "updatedAt": "2025-04-13T18:08:08.987Z"
+    },
+    {
+      "objectId": "gnAE8j5HtQ",
+      "code": "+241",
+      "name": "Gabon",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.988Z",
+      "updatedAt": "2025-04-13T18:08:08.988Z"
+    },
+    {
+      "objectId": "2sukdzJMdb",
+      "code": "+592",
+      "name": "Guyana",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:08.988Z",
+      "updatedAt": "2025-04-13T18:08:08.988Z"
+    },
+    {
+      "objectId": "GnCDprjDXq",
+      "code": "+1",
+      "name": "Jamaica",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:08.989Z",
+      "updatedAt": "2025-04-13T18:08:08.989Z"
+    },
+    {
+      "objectId": "TDT1HJD8iI",
+      "code": "+49",
+      "name": "Germany",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.989Z",
+      "updatedAt": "2025-04-13T18:08:08.989Z"
+    },
+    {
+      "objectId": "lHW1Il5zqi",
+      "code": "+91",
+      "name": "India",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.990Z",
+      "updatedAt": "2025-04-13T18:08:08.990Z"
+    },
+    {
+      "objectId": "lssTXbMmzc",
+      "code": "+964",
+      "name": "Iraq",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:08.991Z",
+      "updatedAt": "2025-06-27T04:36:05.180Z"
+    },
+    {
+      "objectId": "7YphDEcgbJ",
+      "code": "+370",
+      "name": "Lithuania",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.992Z",
+      "updatedAt": "2025-04-13T18:08:08.992Z"
+    },
+    {
+      "objectId": "lcUUwkbBo0",
+      "code": "+7",
+      "name": "Kazakhstan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.992Z",
+      "updatedAt": "2025-04-13T18:08:08.992Z"
+    },
+    {
+      "objectId": "5w2m2vpspC",
+      "code": "+39",
+      "name": "Italy",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.993Z",
+      "updatedAt": "2025-04-13T18:08:08.993Z"
+    },
+    {
+      "objectId": "QQtr0A0SEf",
+      "code": "+98",
+      "name": "Iran",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:08.993Z",
+      "updatedAt": "2025-06-27T04:36:03.327Z"
+    },
+    {
+      "objectId": "5jGMxNUqbb",
+      "code": "+352",
+      "name": "Luxembourg",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.993Z",
+      "updatedAt": "2025-04-13T18:08:08.993Z"
+    },
+    {
+      "objectId": "dWC5oBU1VY",
+      "code": "+265",
+      "name": "Malawi",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.994Z",
+      "updatedAt": "2025-04-13T18:08:08.994Z"
+    },
+    {
+      "objectId": "kbmI5KrIH3",
+      "code": "+36",
+      "name": "Hungary",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.994Z",
+      "updatedAt": "2025-04-13T18:08:08.994Z"
+    },
+    {
+      "objectId": "tPZnPTpWNd",
+      "code": "+850",
+      "name": "North Korea",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.995Z",
+      "updatedAt": "2025-04-13T18:08:08.995Z"
+    },
+    {
+      "objectId": "6FASuXi94h",
+      "code": "+960",
+      "name": "Maldives",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.995Z",
+      "updatedAt": "2025-04-13T18:08:08.995Z"
+    },
+    {
+      "objectId": "F9s85Esm6S",
+      "code": "+962",
+      "name": "Jordan",
+      "region": "Middle East",
+      "createdAt": "2025-04-13T18:08:08.997Z",
+      "updatedAt": "2025-04-13T18:08:08.997Z"
+    },
+    {
+      "objectId": "kshrrUF2Av",
+      "code": "+81",
+      "name": "Japan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:08.996Z",
+      "updatedAt": "2025-04-13T18:08:08.996Z"
+    },
+    {
+      "objectId": "Cp9kiXJc2k",
+      "code": "+371",
+      "name": "Latvia",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.998Z",
+      "updatedAt": "2025-04-13T18:08:08.998Z"
+    },
+    {
+      "objectId": "sikVGJYTFu",
+      "code": "+254",
+      "name": "Kenya",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.997Z",
+      "updatedAt": "2025-04-13T18:08:08.997Z"
+    },
+    {
+      "objectId": "yZKSXvsPn9",
+      "code": "+212",
+      "name": "Morocco",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.999Z",
+      "updatedAt": "2025-04-13T18:08:08.999Z"
+    },
+    {
+      "objectId": "v9GPzdL7dk",
+      "code": "+245",
+      "name": "Guinea-Bissau",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:08.998Z",
+      "updatedAt": "2025-04-13T18:08:08.998Z"
+    },
+    {
+      "objectId": "Rqq7GVsdVr",
+      "code": "+686",
+      "name": "Kiribati",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.000Z",
+      "updatedAt": "2025-04-13T18:08:09.000Z"
+    },
+    {
+      "objectId": "W8RMyA1O9u",
+      "code": "+377",
+      "name": "Monaco",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:08.999Z",
+      "updatedAt": "2025-04-13T18:08:08.999Z"
+    },
+    {
+      "objectId": "pByydVKzwi",
+      "code": "+389",
+      "name": "North Macedonia",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.001Z",
+      "updatedAt": "2025-04-13T18:08:09.001Z"
+    },
+    {
+      "objectId": "sVjxrexgew",
+      "code": "+691",
+      "name": "Micronesia",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.000Z",
+      "updatedAt": "2025-04-13T18:08:09.000Z"
+    },
+    {
+      "objectId": "HoiBb9xCDc",
+      "code": "+856",
+      "name": "Laos",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.003Z",
+      "updatedAt": "2025-04-13T18:08:09.003Z"
+    },
+    {
+      "objectId": "oDF0cHZwYl",
+      "code": "+95",
+      "name": "Myanmar",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.002Z",
+      "updatedAt": "2025-04-13T18:08:09.002Z"
+    },
+    {
+      "objectId": "rf8zTwlwDe",
+      "code": "+218",
+      "name": "Libya",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.001Z",
+      "updatedAt": "2025-04-13T18:08:09.001Z"
+    },
+    {
+      "objectId": "82p7y4NapC",
+      "code": "+674",
+      "name": "Nauru",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.003Z",
+      "updatedAt": "2025-04-13T18:08:09.003Z"
+    },
+    {
+      "objectId": "xbS2bHB5TD",
+      "code": "+353",
+      "name": "Ireland",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.004Z",
+      "updatedAt": "2025-04-13T18:08:09.004Z"
+    },
+    {
+      "objectId": "EwW4aJmCaC",
+      "code": "+82",
+      "name": "South Korea",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.003Z",
+      "updatedAt": "2025-04-13T18:08:09.003Z"
+    },
+    {
+      "objectId": "9cAKp1Ydfg",
+      "code": "+266",
+      "name": "Lesotho",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.004Z",
+      "updatedAt": "2025-04-13T18:08:09.004Z"
+    },
+    {
+      "objectId": "TE1UZ9BAuN",
+      "code": "+965",
+      "name": "Kuwait",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:09.005Z",
+      "updatedAt": "2025-06-27T04:36:07.431Z"
+    },
+    {
+      "objectId": "SUu1ZlUYga",
+      "code": "+64",
+      "name": "New Zealand",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.005Z",
+      "updatedAt": "2025-04-13T18:08:09.005Z"
+    },
+    {
+      "objectId": "9LTzDdHzC9",
+      "code": "+258",
+      "name": "Mozambique",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.006Z",
+      "updatedAt": "2025-04-13T18:08:09.006Z"
+    },
+    {
+      "objectId": "vLaghig41D",
+      "code": "+976",
+      "name": "Mongolia",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.006Z",
+      "updatedAt": "2025-04-13T18:08:09.006Z"
+    },
+    {
+      "objectId": "XHnhJLIfpc",
+      "code": "+354",
+      "name": "Iceland",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.006Z",
+      "updatedAt": "2025-04-13T18:08:09.006Z"
+    },
+    {
+      "objectId": "dzwEYtWKYF",
+      "code": "+504",
+      "name": "Honduras",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.007Z",
+      "updatedAt": "2025-04-13T18:08:09.007Z"
+    },
+    {
+      "objectId": "PuWHbZjyRA",
+      "code": "+423",
+      "name": "Liechtenstein",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.008Z",
+      "updatedAt": "2025-04-13T18:08:09.008Z"
+    },
+    {
+      "objectId": "GP51zFnH9S",
+      "code": "+231",
+      "name": "Liberia",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.008Z",
+      "updatedAt": "2025-04-13T18:08:09.008Z"
+    },
+    {
+      "objectId": "PIJPR4HGPS",
+      "code": "+60",
+      "name": "Malaysia",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.009Z",
+      "updatedAt": "2025-04-13T18:08:09.009Z"
+    },
+    {
+      "objectId": "HlHWpsN5ID",
+      "code": "+261",
+      "name": "Madagascar",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.010Z",
+      "updatedAt": "2025-04-13T18:08:09.010Z"
+    },
+    {
+      "objectId": "tXCDIjdVs6",
+      "code": "+47",
+      "name": "Norway",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.010Z",
+      "updatedAt": "2025-04-13T18:08:09.010Z"
+    },
+    {
+      "objectId": "UfriUSc4ni",
+      "code": "+234",
+      "name": "Nigeria",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.011Z",
+      "updatedAt": "2025-04-13T18:08:09.011Z"
+    },
+    {
+      "objectId": "DAqAHYna4y",
+      "code": "+382",
+      "name": "Montenegro",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.011Z",
+      "updatedAt": "2025-04-13T18:08:09.011Z"
+    },
+    {
+      "objectId": "lZvZJBe5CT",
+      "code": "+996",
+      "name": "Kyrgyzstan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.012Z",
+      "updatedAt": "2025-04-13T18:08:09.012Z"
+    },
+    {
+      "objectId": "eZ66MsY2GX",
+      "code": "+223",
+      "name": "Mali",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.014Z",
+      "updatedAt": "2025-04-13T18:08:09.014Z"
+    },
+    {
+      "objectId": "Kqs7mROCWz",
+      "code": "+373",
+      "name": "Moldova",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.014Z",
+      "updatedAt": "2025-04-13T18:08:09.014Z"
+    },
+    {
+      "objectId": "5Bq0rxB78M",
+      "code": "+977",
+      "name": "Nepal",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.013Z",
+      "updatedAt": "2025-04-13T18:08:09.013Z"
+    },
+    {
+      "objectId": "JjwaPBKaHT",
+      "code": "+356",
+      "name": "Malta",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.012Z",
+      "updatedAt": "2025-04-13T18:08:09.012Z"
+    },
+    {
+      "objectId": "6r5zHFa7A8",
+      "code": "+961",
+      "name": "Lebanon",
+      "region": "Middle East",
+      "createdAt": "2025-04-13T18:08:09.015Z",
+      "updatedAt": "2025-04-13T18:08:09.015Z"
+    },
+    {
+      "objectId": "SOwa7ElgKk",
+      "code": "+505",
+      "name": "Nicaragua",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.016Z",
+      "updatedAt": "2025-04-13T18:08:09.016Z"
+    },
+    {
+      "objectId": "PWYDascwgm",
+      "code": "+222",
+      "name": "Mauritania",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.015Z",
+      "updatedAt": "2025-04-13T18:08:09.015Z"
+    },
+    {
+      "objectId": "KxXcdaAUjv",
+      "code": "+230",
+      "name": "Mauritius",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.016Z",
+      "updatedAt": "2025-04-13T18:08:09.016Z"
+    },
+    {
+      "objectId": "rG7G6nKukp",
+      "code": "+968",
+      "name": "Oman",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:09.017Z",
+      "updatedAt": "2025-06-27T04:36:28.830Z"
+    },
+    {
+      "objectId": "uowEokwvYp",
+      "code": "+31",
+      "name": "Netherlands",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.017Z",
+      "updatedAt": "2025-04-13T18:08:09.017Z"
+    },
+    {
+      "objectId": "Ca9CBCRuxJ",
+      "code": "+264",
+      "name": "Namibia",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.019Z",
+      "updatedAt": "2025-04-13T18:08:09.019Z"
+    },
+    {
+      "objectId": "a9KMCo5dFt",
+      "code": "+52",
+      "name": "Mexico",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.018Z",
+      "updatedAt": "2025-04-13T18:08:09.018Z"
+    },
+    {
+      "objectId": "2Rq9VGObWr",
+      "code": "+692",
+      "name": "Marshall Islands",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.018Z",
+      "updatedAt": "2025-04-13T18:08:09.018Z"
+    },
+    {
+      "objectId": "rKDtj9yqsL",
+      "code": "+680",
+      "name": "Palau",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.053Z",
+      "updatedAt": "2025-04-13T18:08:09.053Z"
+    },
+    {
+      "objectId": "pYucmyPpvQ",
+      "code": "+92",
+      "name": "Pakistan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.053Z",
+      "updatedAt": "2025-04-13T18:08:09.053Z"
+    },
+    {
+      "objectId": "evLpbxs1qV",
+      "code": "+227",
+      "name": "Niger",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.020Z",
+      "updatedAt": "2025-04-13T18:08:09.020Z"
+    },
+    {
+      "objectId": "j9UxF011mx",
+      "code": "+675",
+      "name": "Papua New Guinea",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.054Z",
+      "updatedAt": "2025-04-13T18:08:09.054Z"
+    },
+    {
+      "objectId": "SMNGAuKr05",
+      "code": "+507",
+      "name": "Panama",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.054Z",
+      "updatedAt": "2025-04-13T18:08:09.054Z"
+    },
+    {
+      "objectId": "QXAQY6i1bh",
+      "code": "+48",
+      "name": "Poland",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.056Z",
+      "updatedAt": "2025-04-13T18:08:09.056Z"
+    },
+    {
+      "objectId": "mwu33CLs0S",
+      "code": "+63",
+      "name": "Philippines",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.055Z",
+      "updatedAt": "2025-04-13T18:08:09.055Z"
+    },
+    {
+      "objectId": "pAh6IFoNgh",
+      "code": "+595",
+      "name": "Paraguay",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:09.055Z",
+      "updatedAt": "2025-04-13T18:08:09.055Z"
+    },
+    {
+      "objectId": "MDHuq3CkCV",
+      "code": "+40",
+      "name": "Romania",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.106Z",
+      "updatedAt": "2025-04-13T18:08:09.106Z"
+    },
+    {
+      "objectId": "iLBN4XUnkm",
+      "code": "+7",
+      "name": "Russia",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.106Z",
+      "updatedAt": "2025-04-13T18:08:09.106Z"
+    },
+    {
+      "objectId": "tPiBVAeeol",
+      "code": "+974",
+      "name": "Qatar",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:09.107Z",
+      "updatedAt": "2025-06-27T04:37:18.251Z"
+    },
+    {
+      "objectId": "3kn7EQH0Jf",
+      "code": "+250",
+      "name": "Rwanda",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.108Z",
+      "updatedAt": "2025-04-13T18:08:09.108Z"
+    },
+    {
+      "objectId": "471zmivPAD",
+      "code": "+351",
+      "name": "Portugal",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.108Z",
+      "updatedAt": "2025-04-13T18:08:09.108Z"
+    },
+    {
+      "objectId": "a99bxUyARF",
+      "code": "+590",
+      "name": "Réunion",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.109Z",
+      "updatedAt": "2025-04-13T18:08:09.109Z"
+    },
+    {
+      "objectId": "nolTKtnIUj",
+      "code": "+1-869",
+      "name": "Saint Kitts and Nevis",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.110Z",
+      "updatedAt": "2025-04-13T18:08:09.110Z"
+    },
+    {
+      "objectId": "1qiSrfjuwE",
+      "code": "+684",
+      "name": "Samoa",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.111Z",
+      "updatedAt": "2025-04-13T18:08:09.111Z"
+    },
+    {
+      "objectId": "RXKJ1O1UI8",
+      "code": "+1-758",
+      "name": "Saint Lucia",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.112Z",
+      "updatedAt": "2025-04-13T18:08:09.112Z"
+    },
+    {
+      "objectId": "Q6cGClaPCQ",
+      "code": "+378",
+      "name": "San Marino",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.112Z",
+      "updatedAt": "2025-04-13T18:08:09.112Z"
+    },
+    {
+      "objectId": "MhKFKF4iYS",
+      "code": "+239",
+      "name": "São Tomé and Príncipe",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.196Z",
+      "updatedAt": "2025-04-13T18:08:09.196Z"
+    },
+    {
+      "objectId": "IsFFDOLJJD",
+      "code": "+966",
+      "name": "Saudi Arabia",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:09.196Z",
+      "updatedAt": "2025-06-27T04:36:30.431Z"
+    },
+    {
+      "objectId": "3WisVbTFiD",
+      "code": "+232",
+      "name": "Sierra Leone",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.197Z",
+      "updatedAt": "2025-04-13T18:08:09.197Z"
+    },
+    {
+      "objectId": "MQqEw6Mzqh",
+      "code": "+46",
+      "name": "Sweden",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.196Z",
+      "updatedAt": "2025-04-13T18:08:09.196Z"
+    },
+    {
+      "objectId": "ynwAAqO29c",
+      "code": "+381",
+      "name": "Serbia",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.198Z",
+      "updatedAt": "2025-04-13T18:08:09.198Z"
+    },
+    {
+      "objectId": "QN4NccZPgS",
+      "code": "+386",
+      "name": "Slovenia",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.198Z",
+      "updatedAt": "2025-04-13T18:08:09.198Z"
+    },
+    {
+      "objectId": "2GG3CjwsLC",
+      "code": "+677",
+      "name": "Solomon Islands",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.199Z",
+      "updatedAt": "2025-04-13T18:08:09.199Z"
+    },
+    {
+      "objectId": "QSG2GKQ5G9",
+      "code": "+249",
+      "name": "Sudan",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.200Z",
+      "updatedAt": "2025-04-13T18:08:09.200Z"
+    },
+    {
+      "objectId": "GGmDP89nnt",
+      "code": "+65",
+      "name": "Singapore",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.199Z",
+      "updatedAt": "2025-04-13T18:08:09.199Z"
+    },
+    {
+      "objectId": "U1ggWIa79L",
+      "code": "+94",
+      "name": "Sri Lanka",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.200Z",
+      "updatedAt": "2025-04-13T18:08:09.200Z"
+    },
+    {
+      "objectId": "j9mIl53zsU",
+      "code": "+27",
+      "name": "South Africa",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.201Z",
+      "updatedAt": "2025-04-13T18:08:09.201Z"
+    },
+    {
+      "objectId": "XSoindWYR8",
+      "code": "+268",
+      "name": "Eswatini",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.251Z",
+      "updatedAt": "2025-04-13T18:08:09.251Z"
+    },
+    {
+      "objectId": "q4H0TkVpJu",
+      "code": "+41",
+      "name": "Switzerland",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.313Z",
+      "updatedAt": "2025-04-13T18:08:09.313Z"
+    },
+    {
+      "objectId": "o0ZEmr0pys",
+      "code": "+992",
+      "name": "Tajikistan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.313Z",
+      "updatedAt": "2025-04-13T18:08:09.313Z"
+    },
+    {
+      "objectId": "9oXNjSWFkS",
+      "code": "+886",
+      "name": "Taiwan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.314Z",
+      "updatedAt": "2025-04-13T18:08:09.314Z"
+    },
+    {
+      "objectId": "eJ75Q5mIoI",
+      "code": "+670",
+      "name": "Timor-Leste",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.314Z",
+      "updatedAt": "2025-04-13T18:08:09.314Z"
+    },
+    {
+      "objectId": "IvUSKg2Ri5",
+      "code": "+690",
+      "name": "Tokelau",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.315Z",
+      "updatedAt": "2025-04-13T18:08:09.315Z"
+    },
+    {
+      "objectId": "1872H761OK",
+      "code": "+676",
+      "name": "Tonga",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.316Z",
+      "updatedAt": "2025-04-13T18:08:09.316Z"
+    },
+    {
+      "objectId": "eBt9HSvwW5",
+      "code": "+255",
+      "name": "Tanzania",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.317Z",
+      "updatedAt": "2025-04-13T18:08:09.317Z"
+    },
+    {
+      "objectId": "i7leKw6c4K",
+      "code": "+66",
+      "name": "Thailand",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.316Z",
+      "updatedAt": "2025-04-13T18:08:09.316Z"
+    },
+    {
+      "objectId": "HY6DmSRNQx",
+      "code": "+44",
+      "name": "United Kingdom",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.318Z",
+      "updatedAt": "2025-04-13T18:08:09.318Z"
+    },
+    {
+      "objectId": "s8Z0K1TBSC",
+      "code": "+216",
+      "name": "Tunisia",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.317Z",
+      "updatedAt": "2025-04-13T18:08:09.317Z"
+    },
+    {
+      "objectId": "zOgAb4OBgh",
+      "code": "+1-649",
+      "name": "Turks and Caicos Islands",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.318Z",
+      "updatedAt": "2025-04-13T18:08:09.318Z"
+    },
+    {
+      "objectId": "ms37mfqaKI",
+      "code": "+598",
+      "name": "Uruguay",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:09.319Z",
+      "updatedAt": "2025-04-13T18:08:09.319Z"
+    },
+    {
+      "objectId": "8wpcZeYTB0",
+      "code": "+90",
+      "name": "Turkey",
+      "region": "Middle East",
+      "createdAt": "2025-04-13T18:08:09.319Z",
+      "updatedAt": "2025-04-13T18:08:09.319Z"
+    },
+    {
+      "objectId": "sklnKuL4IN",
+      "code": "+58",
+      "name": "Venezuela",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:09.377Z",
+      "updatedAt": "2025-04-13T18:08:09.377Z"
+    },
+    {
+      "objectId": "hMiWOpPqeH",
+      "code": "+256",
+      "name": "Uganda",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.379Z",
+      "updatedAt": "2025-04-13T18:08:09.379Z"
+    },
+    {
+      "objectId": "4geQyecdDz",
+      "code": "+998",
+      "name": "Uzbekistan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.378Z",
+      "updatedAt": "2025-04-13T18:08:09.378Z"
+    },
+    {
+      "objectId": "OFiptmRRyH",
+      "code": "+1-868",
+      "name": "Trinidad and Tobago",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.412Z",
+      "updatedAt": "2025-04-13T18:08:09.412Z"
+    },
+    {
+      "objectId": "LhmMYw1vgC",
+      "code": "+84",
+      "name": "Vietnam",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.413Z",
+      "updatedAt": "2025-04-13T18:08:09.413Z"
+    },
+    {
+      "objectId": "q7VcI4rdWt",
+      "code": "+971",
+      "name": "United Arab Emirates",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:09.379Z",
+      "updatedAt": "2025-06-27T04:36:33.419Z"
+    },
+    {
+      "objectId": "D5ABsWE368",
+      "code": "+1-284",
+      "name": "British Virgin Islands",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.547Z",
+      "updatedAt": "2025-04-13T18:08:09.547Z"
+    },
+    {
+      "objectId": "7zdTUMGFaQ",
+      "code": "+260",
+      "name": "Zambia",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.549Z",
+      "updatedAt": "2025-04-13T18:08:09.549Z"
+    },
+    {
+      "objectId": "6iN8ClgbIp",
+      "code": "+681",
+      "name": "Wallis and Futuna",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.548Z",
+      "updatedAt": "2025-04-13T18:08:09.548Z"
+    },
+    {
+      "objectId": "Lh5EbY1I83",
+      "code": "+263",
+      "name": "Zimbabwe",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.577Z",
+      "updatedAt": "2025-04-13T18:08:09.577Z"
+    },
+    {
+      "objectId": "WKtsoxrQkc",
+      "code": "+421",
+      "name": "Slovakia",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.570Z",
+      "updatedAt": "2025-04-13T18:08:09.570Z"
+    },
+    {
+      "objectId": "IP4ay8uXCd",
+      "code": "+34",
+      "name": "Spain",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.572Z",
+      "updatedAt": "2025-04-13T18:08:09.572Z"
+    },
+    {
+      "objectId": "cxjVf29gFz",
+      "code": "+221",
+      "name": "Senegal",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.574Z",
+      "updatedAt": "2025-04-13T18:08:09.574Z"
+    },
+    {
+      "objectId": "6ZnejQhgas",
+      "code": "+967",
+      "name": "Yemen",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:09.576Z",
+      "updatedAt": "2025-06-27T04:36:35.123Z"
+    },
+    {
+      "objectId": "bIxbRmQG6q",
+      "code": "+1",
+      "name": "United States",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.573Z",
+      "updatedAt": "2025-04-13T18:08:09.573Z"
+    },
+    {
+      "objectId": "bnZtxKjAOC",
+      "code": "+688",
+      "name": "Tuvalu",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.579Z",
+      "updatedAt": "2025-04-13T18:08:09.579Z"
+    },
+    {
+      "objectId": "zpdbdrEpqH",
+      "code": "+963",
+      "name": "Syria",
+      "region": "Middle Eastt",
+      "createdAt": "2025-04-13T18:08:09.580Z",
+      "updatedAt": "2025-06-27T04:36:31.992Z"
+    },
+    {
+      "objectId": "2CpnxGX41P",
+      "code": "+993",
+      "name": "Turkmenistan",
+      "region": "Asia",
+      "createdAt": "2025-04-13T18:08:09.573Z",
+      "updatedAt": "2025-04-13T18:08:09.573Z"
+    },
+    {
+      "objectId": "L44JGQwsyp",
+      "code": "+51",
+      "name": "Peru",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:09.578Z",
+      "updatedAt": "2025-04-13T18:08:09.578Z"
+    },
+    {
+      "objectId": "UVFMbKHvqF",
+      "code": "+678",
+      "name": "Vanuatu",
+      "region": "Oceania",
+      "createdAt": "2025-04-13T18:08:09.616Z",
+      "updatedAt": "2025-04-13T18:08:09.616Z"
+    },
+    {
+      "objectId": "mCh2UYpDxz",
+      "code": "+228",
+      "name": "Togo",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.616Z",
+      "updatedAt": "2025-04-13T18:08:09.616Z"
+    },
+    {
+      "objectId": "Jn4kH7dR1K",
+      "code": "+252",
+      "name": "Somalia",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.617Z",
+      "updatedAt": "2025-04-13T18:08:09.617Z"
+    },
+    {
+      "objectId": "eStjwzs1Gm",
+      "code": "+380",
+      "name": "Ukraine",
+      "region": "Europe",
+      "createdAt": "2025-04-13T18:08:09.618Z",
+      "updatedAt": "2025-04-13T18:08:09.618Z"
+    },
+    {
+      "objectId": "sVE5HDQKtb",
+      "code": "+248",
+      "name": "Seychelles",
+      "region": "Africa",
+      "createdAt": "2025-04-13T18:08:09.618Z",
+      "updatedAt": "2025-04-13T18:08:09.618Z"
+    },
+    {
+      "objectId": "yVBmhB3esw",
+      "code": "+597",
+      "name": "Suriname",
+      "region": "South America",
+      "createdAt": "2025-04-13T18:08:09.620Z",
+      "updatedAt": "2025-04-13T18:08:09.620Z"
+    },
+    {
+      "objectId": "Ed2xzyxBNp",
+      "code": "+1-784",
+      "name": "Saint Vincent and the Grenadines",
+      "region": "North America",
+      "createdAt": "2025-04-13T18:08:09.620Z",
+      "updatedAt": "2025-04-13T18:08:09.620Z"
+    }
+  ]
+}
