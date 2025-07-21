@@ -12,9 +12,10 @@ import { useSearchParams } from "next/navigation";
 import { ProposedTour } from "@/models/proposed-tour";
 import { ExperienceForm } from "./components/experience-form";
 import { useTours } from "@/hooks/use-experiences";
-import { OfferExperienceModal } from "./components/experience-library-modal";
+import { CreateLibraryItemModal } from "./components/create-library-item-modal";
 import ToursTable from "./components/tours-table";
 import MealsTable from "./components/meals-table";
+import { OfferExperienceModal } from "./components/experience-library-modal";
 
 const ExperiencesMainPage = () => {
   const [activeFilter, setActiveFilter] = useState("tours");
@@ -24,17 +25,11 @@ const ExperiencesMainPage = () => {
   const [country, setCountry] = useState("");
   const [showDishForm, setShowDishForm] = useState(false);
   const [showExperienceForm, setShowExperienceForm] = useState(false);
-  const [showExperienceModal, setShowExperienceModal] = useState(false);
-  const [experienceToEdit] = useState<ProposedTour | null>(
-    null
-  );
-  const { count } = useTours(
-    undefined,
-    true,
-    experienceId,
-    hostId,
-    country
-  );
+  const [showCreateLibraryModal, setShowCreateLibraryModal] = useState(false);
+  const [showOfferExperienceModal, setShowOfferExperienceModal] =
+    useState(false);
+  const [experienceToEdit] = useState<ProposedTour | null>(null);
+  const { count } = useTours(undefined, true, experienceId, hostId, country);
   const [activeTab, setActiveTab] = useState("experiences");
   const searchParams = useSearchParams();
 
@@ -112,7 +107,8 @@ const ExperiencesMainPage = () => {
               activeTab={activeTab}
               setActiveTab={setActiveTab}
               setShowDishForm={setShowDishForm}
-              setShowExperienceModal={setShowExperienceModal}
+              setShowCreateLibraryModal={setShowCreateLibraryModal}
+              setShowOfferExperienceModal={setShowOfferExperienceModal}
             />
 
             <div className="bg-white  drop-shadow-lg rounded-b-2xl rounded-tr-2xl px-16 py-4">
@@ -196,9 +192,13 @@ const ExperiencesMainPage = () => {
         />
       )}
 
+      <CreateLibraryItemModal
+        isOpen={showCreateLibraryModal}
+        onClose={() => setShowCreateLibraryModal(false)}
+      />
       <OfferExperienceModal
-        isOpen={showExperienceModal}
-        onClose={() => setShowExperienceModal(false)}
+        isOpen={showOfferExperienceModal}
+        onClose={() => setShowOfferExperienceModal(false)}
       />
     </>
   );

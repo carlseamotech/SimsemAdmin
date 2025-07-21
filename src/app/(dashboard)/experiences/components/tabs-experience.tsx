@@ -9,14 +9,16 @@ interface TabsExperienceProps {
   activeTab: string;
   setActiveTab: Dispatch<SetStateAction<string>>;
   setShowDishForm: Dispatch<SetStateAction<boolean>>;
-  setShowExperienceModal: Dispatch<SetStateAction<boolean>>;
+  setShowOfferExperienceModal: Dispatch<SetStateAction<boolean>>;
+  setShowCreateLibraryModal: Dispatch<SetStateAction<boolean>>;
 }
 
 const TabsExperiencePage: React.FC<TabsExperienceProps> = ({
   activeTab,
   setActiveTab,
   setShowDishForm,
-  setShowExperienceModal,
+  setShowOfferExperienceModal,
+  setShowCreateLibraryModal,
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -32,12 +34,24 @@ const TabsExperiencePage: React.FC<TabsExperienceProps> = ({
     if (activeTab === "dish-library") {
       setShowDishForm(true);
     } else if (activeTab === "experience-library") {
-      setShowExperienceModal(true);
+      setShowCreateLibraryModal(true);
+    } else if (activeTab === "experiences") {
+      setShowOfferExperienceModal(true);
     }
   };
 
-  const showButton =
-    activeTab === "dish-library" || activeTab === "experience-library";
+  const getButtonText = () => {
+    switch (activeTab) {
+      case "experiences":
+        return "Add new experience";
+      case "experience-library":
+        return "Add to Library";
+      case "dish-library":
+        return "Add a new dish";
+      default:
+        return "";
+    }
+  };
 
   return (
     <div className="flex items-center justify-between border-none">
@@ -70,16 +84,12 @@ const TabsExperiencePage: React.FC<TabsExperienceProps> = ({
         </TabsList>
       </Tabs>
 
-      {showButton && (
-        <Button
-          className="bg-[#FB8B24] hover:bg-orange-400 text-white text-[15px] cursor-pointer rounded-full"
-          onClick={handleButtonClick}
-        >
-          {activeTab === "dish-library"
-            ? "Add a new dish "
-            : "Add new experience"}
-        </Button>
-      )}
+      <Button
+        className="bg-[#FB8B24] hover:bg-orange-400 text-white text-[15px] cursor-pointer rounded-full"
+        onClick={handleButtonClick}
+      >
+        {getButtonText()}
+      </Button>
     </div>
   );
 };
