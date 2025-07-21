@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, X } from "lucide-react";
 import Header from "@/components/common/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,11 +13,19 @@ import { ProposedTour } from "@/models/proposed-tour";
 import { ExperienceForm } from "./components/experience-form";
 import { useTours } from "@/hooks/use-tours";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   useLibraryTours,
   useLibraryMeals,
   useLibraryDishes,
 } from "@/hooks/use-experiences";
 import { useDebounce } from "@/hooks/use-debounce";
+import { useCountries } from "@/hooks/use-countries";
 import { CreateLibraryItemModal } from "./components/create-library-item-modal";
 import ToursTable from "./components/tours-table";
 import MealsTable from "./components/meals-table";
@@ -36,6 +44,7 @@ const ExperiencesMainPage = () => {
     useState(false);
   const [experienceToEdit] = useState<ProposedTour | null>(null);
   const { count } = useTours(undefined, true, experienceId, hostId, country);
+  const { countries } = useCountries();
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const debouncedCountry = useDebounce(country, 500);
   const {
@@ -97,6 +106,24 @@ const ExperiencesMainPage = () => {
       inactive: "Inactive",
     };
     return labels[filter] || filter;
+  };
+
+  const getTotalCount = () => {
+    if (activeTab === "experience-library") {
+      if (activeFilter === "tours") {
+        return toursCount;
+      } else if (activeFilter === "meals") {
+        return mealsCount;
+      }
+    } else if (activeTab === "dish-library") {
+      return dishesCount;
+    }
+    return count;
+  };
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setCountry("");
   };
 
   const renderTabContent = () => {
@@ -215,7 +242,7 @@ const ExperiencesMainPage = () => {
                       </Button>
                     ))}
                     <p className="text-sm text-muted-foreground">
-                      Total: {count}
+                      Total: {getTotalCount()}
                     </p>
                   </div>
 
@@ -253,13 +280,40 @@ const ExperiencesMainPage = () => {
                     )}
                     {activeTab === "experience-library" ||
                       (activeTab === "dish-library" && (
-                        <Input
-                          placeholder="Country"
+                        <Select
                           value={country}
-                          onChange={(e) => setCountry(e.target.value)}
-                          className="w-48"
-                        />
+                          onValueChange={(value) =>
+                            setCountry(value === "all" ? "" : value)
+                          }
+                        >
+                          <SelectTrigger className="w-48">
+                            <SelectValue placeholder="Country" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="all">All Countries</SelectItem>
+                            {countries.map((country) => (
+                              <SelectItem
+                                key={country.objectId}
+                                value={country.name}
+                              >
+                                {country.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       ))}
+
+                    {(searchTerm || country) && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={clearFilters}
+                        className="flex items-center space-x-1"
+                      >
+                        <X className="w-4 h-4" />
+                        <span>Clear</span>
+                      </Button>
+                    )}
 
                     <div className="border-l border-[#D9D9DC] border h-9" />
 
