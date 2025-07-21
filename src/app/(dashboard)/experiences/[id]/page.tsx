@@ -20,23 +20,23 @@ import { Packages } from "./components/packages";
 import WhereToMeet from "./components/meet";
 import DateAndTime from "./components/dateandtime";
 import { ExperienceDetailsSkeleton } from "./components/experience-details-skeleton";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { updateCustomTour } from "@/services/experiences/custom-tour";
 import {
-  experienceSchema,
-  ExperienceFormData,
-} from "./components/experience-schema";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { AboutTourModal } from "./components/about-tour-modal";
+import { CoverPhotoModal } from "./components/cover-photo-modal";
+import { GalleryModal } from "./components/gallery-modal";
 import toast from "react-hot-toast";
-import { updateTour } from "@/services/experiences";
+
+const difficultyLevels = ["Basic", "Beginner", "Intermediate", "Advanced"];
 
 const ExperienceDetailsPage = () => {
   const router = useRouter();
@@ -44,39 +44,35 @@ const ExperienceDetailsPage = () => {
   const tab = searchParams.get("tab");
   const { id } = useParams();
   const { tour, isLoading, mutate } = useTour(id as string);
-  const [isEditing, setIsEditing] = useState(false);
-
-  const difficultyLevels = ["Beginner", "Intermediate", "Advanced"];
-  const form = useForm<ExperienceFormData>({
-    resolver: zodResolver(experienceSchema),
-    defaultValues: {
-      name: tour?.name,
-      description: tour?.description,
-      country: tour?.country,
-      city: tour?.city,
-      tourDuration: tour?.tourDuration,
-      difficultyLevel: difficultyLevels.includes(tour?.difficultyLevel as string)
-        ? (tour?.difficultyLevel as "Beginner" | "Intermediate" | "Advanced")
-        : undefined,
-      tourFeatures: tour?.tourFeatures,
-    },
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [isCoverPhotoModalOpen, setIsCoverPhotoModalOpen] = useState(false);
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
+  const [dialog, setDialog] = useState({
+    isOpen: false,
+    action: "",
   });
 
-  const {
-    handleSubmit,
-    register,
-    setValue,
-    formState: { isSubmitting },
-  } = form;
-
-  const onSubmit: SubmitHandler<ExperienceFormData> = async (data) => {
+  const handleApprove = async () => {
     try {
-      await updateTour(id as string, data);
+      await updateCustomTour(id as string, { isApproved: true });
       mutate();
-      setIsEditing(false);
-      toast.success("Experience updated successfully");
+      toast.success("Experience approved successfully");
     } catch {
-      toast.error("Failed to update experience");
+      toast.error("Failed to approve experience");
+    } finally {
+      setDialog({ isOpen: false, action: "" });
+    }
+  };
+
+  const handleDecline = async () => {
+    try {
+      await updateCustomTour(id as string, { isApproved: false });
+      mutate();
+      toast.success("Experience declined successfully");
+    } catch {
+      toast.error("Failed to decline experience");
+    } finally {
+      setDialog({ isOpen: false, action: "" });
     }
   };
 
@@ -97,7 +93,7 @@ const ExperienceDetailsPage = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       <div className="flex h-screen bg-gray-50">
         <div className="flex-1 flex flex-col">
           <Header
@@ -112,13 +108,25 @@ const ExperienceDetailsPage = () => {
               </div>
 
               <div className=" space-y-8 px-8 py-6">
-                {isEditing ? (
-                  <Input {...register("name")} className="text-3xl font-bold" />
-                ) : (
+                <div className="flex items-center gap-4">
                   <h1 className="text-[30px] text-[#0D2E61] capitalize">
                     {tour.name} Summary
                   </h1>
-                )}
+                  <Badge
+                    className={`${
+                      tour.isApproved ? "bg-green-500" : "bg-red-500"
+                    } text-white`}
+                  >
+                    {tour.isApproved ? "Approved" : "Not Approved"}
+                  </Badge>
+                  <Badge
+                    className={`${
+                      tour.isActive ? "bg-green-500" : "bg-red-500"
+                    } text-white`}
+                  >
+                    {tour.isActive ? "Active" : "Inactive"}
+                  </Badge>
+                </div>
 
                 <p className="text-[#000000B2] text-[17px] ">
                   Review all the Hosts details and click confirm
@@ -134,31 +142,38 @@ const ExperienceDetailsPage = () => {
                         : `TOUR NAME`}
                     </h1>
                     <p className="text-[#0D2E61] text-[30px] font-bold ">
-                      The Ultimate Breakfast at Istanbul
+                      {tour.name}
                     </p>
                   </div>
 
                   <Button className="h-[64px] bg-[#FB8B24] hover:bg-orange-400 font-bold text-white text-[22px] cursor-pointer rounded-full">
-                    $30.00/ Person
+                    ${tour.cost}/ Person
                   </Button>
                 </div>
 
                 <div className=" flex flex-col gap-8 ">
                   {/* about the toour */}
                   <div className=" rounded-2xl p-6  bg-[#3D3D3D0D]  flex flex-col gap-6">
-                    <div className="text-[24px] font-bold text-[#0D2E61]">
-                      About the tour
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        About the tour
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsAboutModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
                     </div>
 
-                    {isEditing ? (
-                      <Textarea {...register("description")} />
-                    ) : (
-                      <div>
-                        <p className="text-[#3D3D3D] text-[18px] ">
-                          {tour.description}
-                        </p>
-                      </div>
-                    )}
+                    <div>
+                      <p className="text-[#3D3D3D] text-[18px] ">
+                        {tour.description}
+                      </p>
+                    </div>
 
                     <div className="grid grid-cols-3 items-center w-full lg:w-1/2 h-[55px]">
                       <div className="border-y p-4 border-[#3D3D3D1A] flex flex-row items-center justify-center gap-2 h-full ">
@@ -169,16 +184,10 @@ const ExperienceDetailsPage = () => {
                         />
 
                         <span className="text-[#3D3D3D] font-bold text-[15px] capitalize truncate space-x-1">
-                          {isEditing ? (
-                            <Input {...register("tourDuration")} />
-                          ) : (
-                            <>
-                              <span> {tour.tourDuration} </span>
-                              <span className="text-[#3D3D3D] text-[15px] ">
-                                Duration
-                              </span>
-                            </>
-                          )}
+                          <span> {tour.tourDuration} </span>
+                          <span className="text-[#3D3D3D] text-[15px] ">
+                            Duration
+                          </span>
                         </span>
                       </div>
 
@@ -188,19 +197,9 @@ const ExperienceDetailsPage = () => {
                           alt="location icon"
                           className="object-contain"
                         />
-                        {isEditing ? (
-                          <>
-                            <Input {...register("city")} placeholder="City" />
-                            <Input
-                              {...register("country")}
-                              placeholder="Country"
-                            />
-                          </>
-                        ) : (
-                          <span className="font-bold text-[15px] truncate">
-                            {tour.city}, {tour.country}
-                          </span>
-                        )}
+                        <span className="font-bold text-[15px] truncate">
+                          {tour.city}, {tour.country}
+                        </span>
                       </div>
 
                       <div className="border-y p-4 border-[#3D3D3D1A] flex flex-row items-center justify-center gap-2  h-full ">
@@ -209,33 +208,9 @@ const ExperienceDetailsPage = () => {
                           alt="frame icon"
                           className="object-contain"
                         />
-
-                        {isEditing ? (
-                          <Select
-                            onValueChange={(value) =>
-                              setValue(
-                                "difficultyLevel",
-                                value as "Beginner" | "Intermediate" | "Advanced"
-                              )
-                            }
-                            defaultValue={tour.difficultyLevel}
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select difficulty" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="Beginner">Beginner</SelectItem>
-                              <SelectItem value="Intermediate">
-                                Intermediate
-                              </SelectItem>
-                              <SelectItem value="Advanced">Advanced</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        ) : (
-                          <span className="text-[#3D3D3D] font-bold text-[15px] truncate">
-                            {tour.difficultyLevel}
-                          </span>
-                        )}
+                        <span className="text-[#3D3D3D] font-bold text-[15px] truncate">
+                          {tour.difficultyLevel}
+                        </span>
                       </div>
                     </div>
 
@@ -252,10 +227,42 @@ const ExperienceDetailsPage = () => {
                   </div>
 
                   {/* coverr photo */}
-                  <CoverPhoto cover={tour.coverImageUrl} />
+                  <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        Cover Photo
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsCoverPhotoModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                    <CoverPhoto cover={tour.coverImageUrl} />
+                  </div>
 
                   {/* gallery */}
-                  <Gallery images={tour.galleryImageUrls || []} />
+                  <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        Gallery
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsGalleryModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                    <Gallery images={tour.galleryImageUrls || []} />
+                  </div>
 
                   {/* whats to expect */}
                   <div className="rounded-2xl p-6  bg-[#3D3D3D0D]  flex flex-col gap-6">
@@ -275,18 +282,21 @@ const ExperienceDetailsPage = () => {
 
                   <Packages packages={tour.tourPackages || []} />
 
-                  <WhereToMeet />
+                  <WhereToMeet meetingPoint={tour.meetingPoint} />
 
-                  <DateAndTime />
+                  <DateAndTime tourTimes={tour.tourTimes || []} />
 
                   {/* things to know */}
-                  <ThingsToKnow />
+                  <ThingsToKnow thingsToKnow={tour.thingsToKnow || []} />
 
                   {/* WhatsIncludedNot */}
-                  <WhatsIncludedNot />
+                  <WhatsIncludedNot
+                    inclusions={tour.inclusions || []}
+                    exclusions={tour.exclusions || []}
+                  />
 
                   {/* tour menu */}
-                  <TourMenu images={tour.galleryImageUrls || []} />
+                  <TourMenu courses={tour.courses || []} />
 
                   <Itinerary itinerary={tour.itinerary || []} />
                 </div>
@@ -296,68 +306,78 @@ const ExperienceDetailsPage = () => {
 
           {/* button */}
           <div className="flex justify-between p-8 border-t">
-            {!isEditing ? (
-              <>
-                <div className="space-x-3">
-                  <Button
-                    type="button"
-                    size="lg"
-                    variant="outline"
-                    onClick={() => router.back()}
-                    className="text-[17px] font-bold bg-[#9A031E] text-white"
-                  >
-                    Decline
-                  </Button>
-                </div>
-                <div className="space-x-3">
-                  <Button
-                    size="lg"
-                    type="button"
-                    variant="outline"
-                    onClick={() => setIsEditing(true)}
-                    className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    size="lg"
-                    type="button"
-                    className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
-                    // onClick={handleApprove}
-                  >
-                    Approve
-                  </Button>
-                </div>
-              </>
-            ) : (
-              <div className="flex justify-end w-full space-x-3">
-                <Button
-                  size="lg"
-                  type="button"
-                  variant="outline"
-                  onClick={() => {
-                    form.reset();
-                    setIsEditing(false);
-                  }}
-                  disabled={isSubmitting}
-                  className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  size="lg"
-                  type="submit"
-                  className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Saving..." : "Save"}
-                </Button>
-              </div>
-            )}
+            <div className="space-x-3">
+              <Button
+                type="button"
+                size="lg"
+                variant="outline"
+                onClick={() =>
+                  setDialog({ isOpen: true, action: "decline" })
+                }
+                className="text-[17px] font-bold bg-[#9A031E] text-white"
+              >
+                Decline
+              </Button>
+            </div>
+            <div className="space-x-3">
+              <Button
+                size="lg"
+                type="button"
+                className="text-[17px] font-bold bg-[#FB8B24] text-[#FFFFFF] hover:bg-orange-500"
+                onClick={() =>
+                  setDialog({ isOpen: true, action: "approve" })
+                }
+              >
+                Approve
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-    </form>
+      <AlertDialog
+        open={dialog.isOpen}
+        onOpenChange={(isOpen) => setDialog({ ...dialog, isOpen })}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              You are about to {dialog.action} this experience. This action
+              cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={
+                dialog.action === "approve" ? handleApprove : handleDecline
+              }
+            >
+              Confirm
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <AboutTourModal
+        tour={tour}
+        isOpen={isAboutModalOpen}
+        onClose={() => setIsAboutModalOpen(false)}
+        mutate={mutate}
+        difficultyLevels={difficultyLevels}
+      />
+      <CoverPhotoModal
+        tour={tour}
+        isOpen={isCoverPhotoModalOpen}
+        onClose={() => setIsCoverPhotoModalOpen(false)}
+        mutate={mutate}
+      />
+      <GalleryModal
+        tour={tour}
+        isOpen={isGalleryModalOpen}
+        onClose={() => setIsGalleryModalOpen(false)}
+        mutate={mutate}
+      />
+    </>
   );
 };
 

@@ -7,12 +7,13 @@ import { Button } from "@/components/ui/button";
 import { useForm, FormProvider } from "react-hook-form";
 
 // Import step components
-import Step1TourName from "./components/step1-tour-name";
-import Step2Description from "./components/step2-description";
-import Step4Inclusions from "./components/step4-inclusions";
-import Step6Summary from "./components/step6-summary";
-import Step3BasicInfo from "./components/step3-basic-info";
-import Step5CoverPhoto from "./components/step5-cover-photo";
+import Step1SelectHost from "./components/step1-select-host";
+import Step2TourName from "./components/step2-tour-name";
+import Step3Description from "./components/step3-description";
+import Step4BasicInfo from "./components/step4-basic-info";
+import Step5Inclusions from "./components/step5-inclusions";
+import Step6CoverPhoto from "./components/step6-cover-photo";
+import Step7Summary from "./components/step7-summary";
 
 import { FormData } from "./components/types";
 import { createCustomTour } from "@/services/experiences/custom-tour";
@@ -22,16 +23,15 @@ import toast from "react-hot-toast";
 const LocalLivingExperiencePage = () => {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 6;
+  const totalSteps = 7;
   const methods = useForm<FormData>({
     defaultValues: {
       country: "",
-      cost: "",
       city: "",
       difficultyLevel: "Basic",
       coverImageUrl: "",
       galleryImageUrls: [],
-      guideId: "kifpSShKKb", // Hardcoded for now
+      guideId: "",
       description: "",
       tourFeatures: [],
       cameraZoom: 15,
@@ -47,9 +47,10 @@ const LocalLivingExperiencePage = () => {
       tourDuration: "",
       inclusions: [],
       exclusions: [],
-      itinerary: {},
+      itinerary: [],
       thingsToKnow: [],
       whatToExpect: "",
+      tourPackages: [],
     },
   });
   const { watch, trigger, handleSubmit } = methods;
@@ -58,10 +59,17 @@ const LocalLivingExperiencePage = () => {
   const handleNext = async () => {
     let isValid = true;
     if (currentStep === 1) {
+      isValid = await trigger("guideId");
+    }
+    if (currentStep === 2) {
       isValid = await trigger("name");
     }
-    if (currentStep === 3) {
-      isValid = await trigger(["country", "cost", "tourDuration"]);
+    if (currentStep === 4) {
+      isValid = await trigger([
+        "country",
+        "tourDuration",
+        "tourPackages",
+      ]);
     }
 
     if (!isValid) {
@@ -74,13 +82,19 @@ const LocalLivingExperiencePage = () => {
     } else {
       handleSubmit(async (data) => {
         try {
+          console.log("Submitting data:", data);
           const uploadedImageUrls = await Promise.all(
             data.galleryImageUrls.map(async (url) => {
-              const response = await fetch(url);
-              const blob = await response.blob();
-              const file = new File([blob], "image.jpg", { type: "image/jpeg" });
-              const uploadedFile = await uploadFile(file);
-              return uploadedFile.url;
+              if (url.startsWith("blob:")) {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                const file = new File([blob], "image.jpg", {
+                  type: "image/jpeg",
+                });
+                const uploadedFile = await uploadFile(file);
+                return uploadedFile.url;
+              }
+              return url;
             })
           );
 
@@ -88,11 +102,17 @@ const LocalLivingExperiencePage = () => {
             ...data,
             coverImageUrl: uploadedImageUrls[0] || "",
             galleryImageUrls: uploadedImageUrls,
+            itinerary: data.itinerary.map((item) => JSON.stringify(item)),
+            thingsToKnow: data.thingsToKnow.map((item) => JSON.stringify(item)),
+            tourPackages: data.tourPackages.map((item) => JSON.stringify(item)),
           };
+          
+          console.log("Payload to be sent to API:", tourData);
           await createCustomTour(tourData);
           toast.success("Local living experience created successfully");
           router.push("/experiences?tab=experience-library");
-        } catch {
+        } catch (error) {
+          console.error("Failed to create local living experience:", error);
           toast.error("Failed to create local living experience");
         }
       })();
@@ -112,17 +132,19 @@ const LocalLivingExperiencePage = () => {
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <Step1TourName />;
+        return <Step1SelectHost />;
       case 2:
-        return <Step2Description />;
+        return <Step2TourName />;
       case 3:
-        return <Step3BasicInfo />;
+        return <Step3Description />;
       case 4:
-        return <Step4Inclusions />;
+        return <Step4BasicInfo />;
       case 5:
-        return <Step5CoverPhoto />;
+        return <Step5Inclusions />;
       case 6:
-        return <Step6Summary formData={formData} />;
+        return <Step6CoverPhoto />;
+      case 7:
+        return <Step7Summary formData={formData} />;
       default:
         return null;
     }

@@ -1,11 +1,10 @@
 export interface CreateCustomTourDTO {
   country: string;
-  cost: string;
   city: string;
   difficultyLevel: string;
   coverImageUrl: string;
   galleryImageUrls: string[];
-  galleryVideoUrls?: string[];
+  galleryVideoUrls?: { name: string; thumbnailUrl: string }[];
   guideId: string;
   description: string;
   tourFeatures: string[];
@@ -21,9 +20,10 @@ export interface CreateCustomTourDTO {
   meetingPointLong: number;
   tourTimes: string[];
   tourDuration: string;
-  itinerary: Record<string, { schedule: string; activity: string; description: string }[]>;
-  thingsToKnow: { guideline: string; description: string[] }[];
+  itinerary: string[];
+  thingsToKnow: string[];
   inclusions: string[];
   exclusions: string[];
   whatToExpect: string;
+  tourPackages: string[];
 }

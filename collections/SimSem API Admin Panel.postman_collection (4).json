@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a190cb73-f13b-44b3-8312-a571920a3bfa",
+		"_postman_id": "6f2cfb0e-03a2-499d-829e-c682020adad6",
 		"name": "SimSem API Admin Panel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "16647807",
-		"_collection_link": "https://ticketnation.postman.co/workspace/Ticketnation-Workspace~68c51374-3456-470b-ac73-23ccaaa248b5/collection/16647807-a190cb73-f13b-44b3-8312-a571920a3bfa?action=share&source=collection_link&creator=16647807"
+		"_exporter_id": "5563699"
 	},
 	"item": [
 		{
@@ -34,7 +33,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"country\": \"Egypt\",\n    \"cost\": \"15\",\n    \"city\": \"New Cairo\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/517bae13a5a9c12fc37453368b3dae13_1691104329990.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/0ef5cba52b5722606a5fb86800d431b1_1691104331973.jpeg\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/a0836c6471f2371bc4919af52d5cb936_1716193476323.jpeg\\\",\\\"name\\\":\\\"1716193419572_VID_20240410_211714.mp4\\\"}\"\n    ],\n    \"guideId\": \"oiwgJNXiWN\",\n    \"description\": \"description\",\n    \"tourFeatures\": [\n        \"Other\",\n        \"Outdoor\"\n    ],\n    \"cameraZoom\": 15,\n    \"maxGuest\": \"2\",\n    \"type\": \"custom\",\n    \"meetingPointLat\": 30.007801753600166,\n    \"otherTourFeature\": \"Activity\",\n    \"meetingPoint\": \"2G5P+859, New Cairo 1, Cairo Governorate 4760150, Egypt\",\n    \"phone\": \"+201019585743\",\n    \"countryCode\": \"+20\",\n    \"name\": \"Let's Get a Kayak Ride and Chill\",\n    \"meetingPointLong\": 31.535637639462944,\n    \"tourTimes\": [\n        \"{\\\"date\\\":\\\"Sat: 05 Aug, 2023 - Sat: 05 Aug, 2023\\\",\\\"isEnabled\\\":true,\\\"repetition\\\":\\\"\\\",\\\"time\\\":\\\"\\\",\\\"times\\\":[{\\\"end\\\":\\\"05:00 PM\\\",\\\"start\\\":\\\"04:00 PM\\\"},{\\\"end\\\":\\\"06:00 PM\\\",\\\"start\\\":\\\"05:00 PM\\\"}],\\\"yearMonth\\\":\\\"08/2023\\\"}\"\n    ],\n    \"tourDuration\": \"30 mins\",\n    \"itinerary\": {\n        \"Day 1\": [\n            {\n                \"schedule\": \"Day 1: 8:00 AM\",\n                \"activity\": \"Meetup & Breakfast\",\n                \"description\": \"I will pick you up!\"\n            },\n            {\n                \"schedule\": \"Day 1: 10:00 AM\",\n                \"activity\": \"City Tour\",\n                \"description\": \"Exploring the city's historical sites.\"\n            }\n        ],\n        \"Day 2\": [\n            {\n                \"schedule\": \"Day 2: 9:00 AM\",\n                \"activity\": \"Beach Visit\",\n                \"description\": \"Relaxing at the beach with some fun activities.\"\n            },\n            {\n                \"schedule\": \"Day 2: 12:00 PM\",\n                \"activity\": \"Lunch at Local Restaurant\",\n                \"description\": \"Enjoying local cuisine.\"\n            }\n        ]\n    },\n    \"thingsToKnow\": [\n        {\n            \"guideline\": \"What to bring\",\n            \"description\": [\n                \"Hiking shoes\",\n                \"Hat, caps or umbrella\",\n                \"Sunscreen\",\n                \"Water bottle\"\n            ]\n        },\n        {\n            \"guideline\": \"Important Notes\",\n            \"description\": [\n                \"Arrive 15 minutes early\",\n                \"Follow the guide’s instructions\",\n                \"Wear comfortable clothes\"\n            ]\n        }\n    ],\n    \"inclusions\": [\n        \"Lunch\",\n        \"Accomodation\"\n    ],\n    \"exclusions\": [\n        \"Tickets\",\n        \"Transportation\"\n    ],\n    \"whatToExpect\": \"what to expect details goes here.\"\n}",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\"hrhdhhd\\\",\\\"title\\\":\\\"bdbdh\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"city\": \"dhdh\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/34a29f0a0af0b083cc26cb75aefa6125_1752300721321.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/8100f2359d79353d28630ce5735cda45_1752300722355.jpeg\",\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a0c16250ad137c24aaeedefa318ff5ea_1752300722358.jpeg\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1752944846352_PXL_20250126_064713801.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/17745877565756a75f27e26b7391afff_1752944853668.jpeg\\\"}\"\n    ],\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"dbbd\",\n    \"exclusions\": [\n        \"hdhd\"\n    ],\n    \"itinerary\": [\n        \"{\\\"day\\\":\\\"Day 1\\\",\\\"description\\\":\\\"bdbdbbd\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Architecture\"\n    ],\n    \"cameraZoom\": 15,\n    \"type\": \"custom\",\n    \"whatToExpect\": \"nxnd\",\n    \"otherTourFeature\": \"\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"countryCode\": \"+90\",\n    \"meetingPointLong\": 90.4352742433548,\n    \"tourDuration\": \"1 hour\",\n    \"meetingPointLat\": 23.764437246189587,\n    \"phone\": \"+8801703464048\",\n    \"name\": \"custom \",\n    \"tourTimes\": [\n        \"12:00 AM\"\n    ],\n    \"inclusions\": [\n        \"bdbd\"\n    ],\n    \"tourPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"10\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"6\\\"}\",\n        \"{\\\"cost\\\":\\\"9\\\",\\\"fromPerson\\\":\\\"7\\\",\\\"toPerson\\\":\\\"9\\\"}\"\n    ],\n    \"isActive\": false,\n    \"isApproved\": false\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -72,7 +71,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"country\": \"Egypt\",\n    \"cost\": \"25\",\n    \"city\": \"New Cairo\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/517bae13a5a9c12fc37453368b3dae13_1691104329990.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/0ef5cba52b5722606a5fb86800d431b1_1691104331973.jpeg\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/a0836c6471f2371bc4919af52d5cb936_1716193476323.jpeg\\\",\\\"name\\\":\\\"1716193419572_VID_20240410_211714.mp4\\\"}\"\n    ],\n    \"description\": \"description\",\n    \"tourFeatures\": [\n        \"Other\",\n        \"Outdoor\"\n    ],\n    \"cameraZoom\": 15,\n    \"maxGuest\": \"2\",\n    \"meetingPointLat\": 30.007801753600166,\n    \"otherTourFeature\": \"Activity\",\n    \"meetingPoint\": \"2G5P+859, New Cairo 1, Cairo Governorate 4760150, Egypt\",\n    \"countryCode\": \"+20\",\n    \"name\": \"Let's Get a Kayak Ride and Chill\",\n    \"meetingPointLong\": 31.535637639462944,\n    \"tourTimes\": [\n        \"{\\\"date\\\":\\\"Sat: 05 Aug, 2023 - Sat: 05 Aug, 2023\\\",\\\"isEnabled\\\":true,\\\"repetition\\\":\\\"\\\",\\\"time\\\":\\\"\\\",\\\"times\\\":[{\\\"end\\\":\\\"05:00 PM\\\",\\\"start\\\":\\\"04:00 PM\\\"},{\\\"end\\\":\\\"06:00 PM\\\",\\\"start\\\":\\\"05:00 PM\\\"}],\\\"yearMonth\\\":\\\"08/2023\\\"}\"\n    ],\n    \"tourDuration\": \"30 mins\",\n    \"itinerary\": {\n        \"Day 1\": [\n            {\n                \"schedule\": \"Day 1: 8:00 AM\",\n                \"activity\": \"Meetup & Breakfast\",\n                \"description\": \"I will pick you up!\"\n            },\n            {\n                \"schedule\": \"Day 1: 10:00 AM\",\n                \"activity\": \"City Tour\",\n                \"description\": \"Exploring the city's historical sites.\"\n            }\n        ],\n        \"Day 2\": [\n            {\n                \"schedule\": \"Day 2: 9:00 AM\",\n                \"activity\": \"Beach Visit\",\n                \"description\": \"Relaxing at the beach with some fun activities.\"\n            },\n            {\n                \"schedule\": \"Day 2: 12:00 PM\",\n                \"activity\": \"Lunch at Local Restaurant\",\n                \"description\": \"Enjoying local cuisine.\"\n            }\n        ]\n    },\n    \"thingsToKnow\": [\n        {\n            \"guideline\": \"What to bring\",\n            \"description\": [\n                \"Hiking shoes\",\n                \"Hat, caps or umbrella\",\n                \"Sunscreen\",\n                \"Water bottle\"\n            ]\n        },\n        {\n            \"guideline\": \"Important Notes\",\n            \"description\": [\n                \"Arrive 15 minutes early\",\n                \"Follow the guide’s instructions\",\n                \"Wear comfortable clothes\"\n            ]\n        }\n    ],\n    \"inclusions\": [\n        \"Lunch\",\n        \"Accomodation\"\n    ],\n    \"exclusions\": [\n        \"Tickets\",\n        \"Transportation\"\n    ],\n    \"whatToExpect\": \"what to expect details goes here.\"\n}",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\"hrhdhhd\\\",\\\"title\\\":\\\"bdbdh\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"city\": \"dhdh\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/34a29f0a0af0b083cc26cb75aefa6125_1752300721321.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/8100f2359d79353d28630ce5735cda45_1752300722355.jpeg\",\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a0c16250ad137c24aaeedefa318ff5ea_1752300722358.jpeg\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1752944846352_PXL_20250126_064713801.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/17745877565756a75f27e26b7391afff_1752944853668.jpeg\\\"}\"\n    ],\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"dbbd\",\n    \"exclusions\": [\n        \"hdhd\"\n    ],\n    \"itinerary\": [\n        \"{\\\"day\\\":\\\"Day 1\\\",\\\"description\\\":\\\"bdbdbbd\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Architecture\"\n    ],\n    \"cameraZoom\": 15,\n    \"whatToExpect\": \"nxnd\",\n    \"otherTourFeature\": \"\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"countryCode\": \"+90\",\n    \"meetingPointLong\": 90.4352742433548,\n    \"tourDuration\": \"1 hour\",\n    \"meetingPointLat\": 23.764437246189587,\n    \"phone\": \"+8801703464048\",\n    \"name\": \"custom \",\n    \"tourTimes\": [\n        \"12:00 AM\"\n    ],\n    \"inclusions\": [\n        \"bdbd\"\n    ],\n    \"tourPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"10\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"6\\\"}\",\n        \"{\\\"cost\\\":\\\"9\\\",\\\"fromPerson\\\":\\\"7\\\",\\\"toPerson\\\":\\\"9\\\"}\"\n    ],\n    \"isActive\": false,\n    \"isApproved\": false\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -88,36 +87,6 @@
 												"classes",
 												"ProposedTour",
 												"5hIMtnBs6e"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Delete Custom Tour Experience",
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "X-Parse-Application-Id",
-												"value": "{{parseAppId}}",
-												"description": "(Required) Your Parse Application ID"
-											},
-											{
-												"key": "X-Parse-REST-API-Key",
-												"value": "{{parseApiKey}}",
-												"description": "(Required) Your REST Key"
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/classes/ProposedTour/VmHEjokyA9",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"classes",
-												"ProposedTour",
-												"VmHEjokyA9"
 											]
 										}
 									},
@@ -146,7 +115,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"country\": \"Turkey\",\n    \"city\": \"Istanbul update \",\n    \"difficultyLevel\": \"Advanced\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/00789cd18b356db58f0aecb548429231_1708236608400.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/f3dae75482787c23f372a1f094f2258c_1708236609840.jpeg\"\n    ],\n    \"guideId\": \"bAwSkJaYeQ\",\n    \"description\": \"description\",\n    \"tourPackages\": [\n        \"{\\\"actualCost\\\":\\\"\\\",\\\"cost\\\":\\\"100\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"actualCost\\\":\\\"\\\",\\\"cost\\\":\\\"50\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"8\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Culture\",\n        \"Photography\",\n        \"Other\",\n        \"History\"\n    ],\n    \"type\": \"getaway\",\n    \"otherTourFeature\": \"othe features\",\n    \"phone\": \"+12441132\",\n    \"countryCode\": \"+90\",\n    \"name\": \"test getaway update \",\n    \"tourDuration\": \"3 Day\",\n    \"pickupPoints\": [\n        \"{\\\"key\\\":\\\"locationPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"House: 07, Road: 10, Sector: 13, Rd No 10, ঢাকা 1230, Bangladesh\\\",\\\"pickupPointLat\\\":23.87205060663431,\\\"pickupPointLong\\\":90.38966227322817,\\\"pickupPointTitle\\\":\\\"Pick-up from a specific location\\\"}}\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1709361536764_PXL_20240225_104351534.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/8769a81712760dbe4cbf5dfb83d92e16_1709361539594.jpeg\\\"}\"\n    ],\n    \"itinerary\": {\n        \"Day 1\": [\n            {\n                \"schedule\": \"Day 1: 8:00 AM\",\n                \"activity\": \"Meetup & Breakfast\",\n                \"description\": \"I will pick you up!\"\n            },\n            {\n                \"schedule\": \"Day 1: 10:00 AM\",\n                \"activity\": \"City Tour\",\n                \"description\": \"Exploring the city's historical sites.\"\n            }\n        ],\n        \"Day 2\": [\n            {\n                \"schedule\": \"Day 2: 9:00 AM\",\n                \"activity\": \"Beach Visit\",\n                \"description\": \"Relaxing at the beach with some fun activities.\"\n            },\n            {\n                \"schedule\": \"Day 2: 12:00 PM\",\n                \"activity\": \"Lunch at Local Restaurant\",\n                \"description\": \"Enjoying local cuisine.\"\n            }\n        ]\n    },\n    \"thingsToKnow\": [\n        {\n            \"guideline\": \"What to bring\",\n            \"description\": [\n                \"Hiking shoes\",\n                \"Hat, caps or umbrella\",\n                \"Sunscreen\",\n                \"Water bottle\"\n            ]\n        },\n        {\n            \"guideline\": \"Important Notes\",\n            \"description\": [\n                \"Arrive 15 minutes early\",\n                \"Follow the guide’s instructions\",\n                \"Wear comfortable clothes\"\n            ]\n        }\n    ],\n    \"inclusions\": [\n        \"Lunch\",\n        \"Accomodation\"\n    ],\n    \"exclusions\": [\n        \"Tickets\",\n        \"Transportation\"\n    ],\n    \"whatToExpect\": \"what to expect details goes here.\"\n}",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\" d dbbd\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"pickupPoints\": [\n        \"{\\\"key\\\":\\\"locationPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\\\",\\\"pickupPointLat\\\":23.764418835305104,\\\"pickupPointLong\\\":90.43520417064428,\\\"pickupPointTitle\\\":\\\"Pick-up from a specific location\\\"}}\",\n        \"{\\\"key\\\":\\\"airportPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"PCV9+W95, Amtola Mosjider Goli Rd, Dhaka, Bangladesh\\\",\\\"pickupPointLat\\\":23.74491932622417,\\\"pickupPointLong\\\":90.41837867349386,\\\"pickupPointTitle\\\":\\\"Pickup from any airport\\\"}}\"\n    ],\n    \"city\": \"ue\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/1530f4f39824177d1ea6aef43e5fe612_1752330837460.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c0ace21cca8782e84182cdc1da20508b_1752330838181.jpeg\"\n    ],\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"jdjd the API \",\n    \"exclusions\": [\n        \"bsbs\"\n    ],\n    \"itinerary\": [\n        \"{\\\"day\\\":\\\"Day 1\\\",\\\"description\\\":\\\"bdbdb\\\",\\\"title\\\":\\\"hdhd\\\"}\"\n    ],\n    \"tourPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"10\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"6\\\"}\",\n        \"{\\\"cost\\\":\\\"9\\\",\\\"fromPerson\\\":\\\"7\\\",\\\"toPerson\\\":\\\"9\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Camping\",\n        \"Outdoor\"\n    ],\n    \"type\": \"getaway\",\n    \"whatToExpect\": \"djnd\",\n    \"otherTourFeature\": \"\",\n    \"phone\": \"+8801703464048\",\n    \"countryCode\": \"+90\",\n    \"name\": \"getaway \",\n    \"tourTimes\": [\n        \"08:00 AM\",\n        \"11:00 AM\"\n    ],\n    \"tourDuration\": \"2 Day\",\n    \"inclusions\": [\n        \"bsbs\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1752947468079_PXL_20250203_065751498.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/b00a0c981067abe4600d725b740333ef_1752947472713.jpeg\\\"}\"\n    ],\n    \"isActive\": false,\n    \"isApproved\": false\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -184,43 +153,13 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"country\": \"Turkey\",\n    \"city\": \"Istanbul update \",\n    \"difficultyLevel\": \"Advanced\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/00789cd18b356db58f0aecb548429231_1708236608400.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/f3dae75482787c23f372a1f094f2258c_1708236609840.jpeg\"\n    ],\n    \"description\": \"description\",\n    \"tourPackages\": [\n        \"{\\\"actualCost\\\":\\\"\\\",\\\"cost\\\":\\\"100\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"actualCost\\\":\\\"\\\",\\\"cost\\\":\\\"50\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"8\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Culture\",\n        \"Photography\",\n        \"Other\",\n        \"History\"\n    ],\n    \"otherTourFeature\": \"othe features\",\n    \"countryCode\": \"+90\",\n    \"name\": \"test getaway update 2\",\n    \"tourDuration\": \"3 Day\",\n    \"pickupPoints\": [\n        \"{\\\"key\\\":\\\"locationPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"House: 07, Road: 10, Sector: 13, Rd No 10, ঢাকা 1230, Bangladesh\\\",\\\"pickupPointLat\\\":23.87205060663431,\\\"pickupPointLong\\\":90.38966227322817,\\\"pickupPointTitle\\\":\\\"Pick-up from a specific location\\\"}}\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1709361536764_PXL_20240225_104351534.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/8769a81712760dbe4cbf5dfb83d92e16_1709361539594.jpeg\\\"}\"\n    ],\n    \"itinerary\": {\n        \"Day 1\": [\n            {\n                \"schedule\": \"Day 1: 8:00 AM\",\n                \"activity\": \"Meetup & Breakfast\",\n                \"description\": \"I will pick you up!\"\n            },\n            {\n                \"schedule\": \"Day 1: 10:00 AM\",\n                \"activity\": \"City Tour\",\n                \"description\": \"Exploring the city's historical sites.\"\n            }\n        ],\n        \"Day 2\": [\n            {\n                \"schedule\": \"Day 2: 9:00 AM\",\n                \"activity\": \"Beach Visit\",\n                \"description\": \"Relaxing at the beach with some fun activities.\"\n            },\n            {\n                \"schedule\": \"Day 2: 12:00 PM\",\n                \"activity\": \"Lunch at Local Restaurant\",\n                \"description\": \"Enjoying local cuisine.\"\n            }\n        ]\n    },\n    \"thingsToKnow\": [\n        {\n            \"guideline\": \"What to bring\",\n            \"description\": [\n                \"Hiking shoes\",\n                \"Hat, caps or umbrella\",\n                \"Sunscreen\",\n                \"Water bottle\"\n            ]\n        },\n        {\n            \"guideline\": \"Important Notes\",\n            \"description\": [\n                \"Arrive 15 minutes early\",\n                \"Follow the guide’s instructions\",\n                \"Wear comfortable clothes\"\n            ]\n        }\n    ],\n    \"inclusions\": [\n        \"Lunch\",\n        \"Accomodation\"\n    ],\n    \"exclusions\": [\n        \"Tickets\",\n        \"Transportation\"\n    ],\n    \"whatToExpect\": \"what to expect details goes here.\"\n}",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\" d dbbd\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"pickupPoints\": [\n        \"{\\\"key\\\":\\\"locationPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\\\",\\\"pickupPointLat\\\":23.764418835305104,\\\"pickupPointLong\\\":90.43520417064428,\\\"pickupPointTitle\\\":\\\"Pick-up from a specific location\\\"}}\",\n        \"{\\\"key\\\":\\\"airportPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"PCV9+W95, Amtola Mosjider Goli Rd, Dhaka, Bangladesh\\\",\\\"pickupPointLat\\\":23.74491932622417,\\\"pickupPointLong\\\":90.41837867349386,\\\"pickupPointTitle\\\":\\\"Pickup from any airport\\\"}}\"\n    ],\n    \"city\": \"ue\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/1530f4f39824177d1ea6aef43e5fe612_1752330837460.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c0ace21cca8782e84182cdc1da20508b_1752330838181.jpeg\"\n    ],\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"jdjd the API \",\n    \"exclusions\": [\n        \"bsbs\"\n    ],\n    \"itinerary\": [\n        \"{\\\"day\\\":\\\"Day 1\\\",\\\"description\\\":\\\"bdbdb\\\",\\\"title\\\":\\\"hdhd\\\"}\"\n    ],\n    \"tourPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"10\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"6\\\"}\",\n        \"{\\\"cost\\\":\\\"9\\\",\\\"fromPerson\\\":\\\"7\\\",\\\"toPerson\\\":\\\"9\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Camping\",\n        \"Outdoor\"\n    ],\n    \"whatToExpect\": \"djnd\",\n    \"otherTourFeature\": \"\",\n    \"phone\": \"+8801703464048\",\n    \"countryCode\": \"+90\",\n    \"name\": \"getaway \",\n    \"tourTimes\": [\n        \"08:00 AM\",\n        \"11:00 AM\"\n    ],\n    \"tourDuration\": \"2 Day\",\n    \"inclusions\": [\n        \"bsbs\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1752947468079_PXL_20250203_065751498.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/b00a0c981067abe4600d725b740333ef_1752947472713.jpeg\\\"}\"\n    ],\n    \"isActive\": false,\n    \"isApproved\": false\n}",
 											"options": {
 												"raw": {
 													"language": "json"
 												}
 											}
 										},
-										"url": {
-											"raw": "{{baseUrl}}/classes/ProposedTour/wOSr2QgL4z",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"classes",
-												"ProposedTour",
-												"wOSr2QgL4z"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Delete Getaway Tour Experience",
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "X-Parse-Application-Id",
-												"value": "{{parseAppId}}",
-												"description": "(Required) Your Parse Application ID"
-											},
-											{
-												"key": "X-Parse-REST-API-Key",
-												"value": "{{parseApiKey}}",
-												"description": "(Required) Your REST Key"
-											}
-										],
 										"url": {
 											"raw": "{{baseUrl}}/classes/ProposedTour/wOSr2QgL4z",
 											"host": [
@@ -258,7 +197,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"country\": \"Jordan\",\n    \"cost\": \"20\",\n    \"city\": \"Amman\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/2d0be05f12658f144740facd264e3475_Sunsetlit%20shisha.png\",\n    \"guideId\": \"bAwSkJaYeQ\",\n    \"description\": \"description\",\n    \"tourFeatures\": [\n        \"Feature 1\",\n        \"Feature 2\"\n    ],\n    \"cameraZoom\": 15,\n    \"type\": \"offered\",\n    \"meetingPointLat\": 30.58517080957843,\n    \"meetingPoint\": \"Jafr Sub-District, Jordan\",\n    \"phone\": \"+11111111\",\n    \"maxGuest\": \"2\",\n    \"countryCode\": \"+90\",\n    \"name\": \"Sunsetlit shisha\",\n    \"meetingPointLong\": 36.23841404914856,\n    \"tourTimes\": [\n        \"{\\\"date\\\":\\\"Tue: 10 Dec, 2024\\\",\\\"isEnabled\\\":true,\\\"repetition\\\":\\\"Daily\\\",\\\"time\\\":\\\"\\\",\\\"times\\\":[{\\\"end\\\":\\\"10:00 AM\\\",\\\"start\\\":\\\"08:00 AM\\\"}],\\\"yearMonth\\\":\\\"12/2024\\\"}\"\n    ],\n    \"tourDuration\": \"2-3 hours\",\n    \"offeredTourId\": \"i8JDcadMUI\",\n    \"isApproved\": true,\n    \"isNotified\": true,\n    \"isActive\": true\n}",
+											"raw": "{\n    \"country\": \"Turkey\",\n    \"cost\": \"20\",\n    \"city\": \"js\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/3dd8a0f31ba0712f1c435b303d5ca811_Hammam%20day.png\",\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"You’ve been travelling for some time now and have seen so much, it’s been great but you’re feeling like you could slow down a bit. You also feel like being pampered and indulging… and you’ve considered the famous Middle Estern hammams…but you don’t feel completely comfortable with the idea…I get it and I got your back. The Hammam is a ritual and you could use a friendly companion. I can recommend the best one in town! You’ll feel like a new human after the experience and you I guarantee you it won’t be your last time!  Please note: Price does not include food, drinks, tickets or transportation.\",\n    \"tourFeatures\": [\n        \"Knowing a local hammam that you visit regularly.\",\n        \"Being able to give guidance and advice to your host.\"\n    ],\n    \"cameraZoom\": 15,\n    \"type\": \"offered\",\n    \"meetingPointLat\": 23.764437246189587,\n    \"offeredTourId\": \"Sv7yJHLmXq\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"isNotified\": true,\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"646\",\n    \"countryCode\": \"+880\",\n    \"name\": \"Today Feels like a Hammam Day! \",\n    \"meetingPointLong\": 90.4352742433548,\n    \"tourTimes\": [\n        \"08:00 AM\",\n        \"10:00 AM\"\n    ],\n    \"tourDuration\": \"2 hours\",\n    \"isActive\": false,\n    \"isApproved\": false\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -296,43 +235,13 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"country\": \"Jordan\",\n    \"city\": \"Amman\",\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 30.58517080957843,\n    \"meetingPoint\": \"Jafr Sub-District, Jordan\",\n    \"maxGuest\": \"4\",\n    \"countryCode\": \"+90\",\n    \"meetingPointLong\": 36.23841404914856,\n    \"tourTimes\": [\n        \"{\\\"date\\\":\\\"Tue: 10 Dec, 2024\\\",\\\"isEnabled\\\":true,\\\"repetition\\\":\\\"Daily\\\",\\\"time\\\":\\\"\\\",\\\"times\\\":[{\\\"end\\\":\\\"10:00 AM\\\",\\\"start\\\":\\\"08:00 AM\\\"}],\\\"yearMonth\\\":\\\"12/2024\\\"}\"\n    ]\n}",
+											"raw": "{\n    \"country\": \"Turkey\",\n    \"cost\": \"20\",\n    \"city\": \"js\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/3dd8a0f31ba0712f1c435b303d5ca811_Hammam%20day.png\",\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"You’ve been travelling for some time now and have seen so much, it’s been great but you’re feeling like you could slow down a bit. You also feel like being pampered and indulging… and you’ve considered the famous Middle Estern hammams…but you don’t feel completely comfortable with the idea…I get it and I got your back. The Hammam is a ritual and you could use a friendly companion. I can recommend the best one in town! You’ll feel like a new human after the experience and you I guarantee you it won’t be your last time!  Please note: Price does not include food, drinks, tickets or transportation.\",\n    \"tourFeatures\": [\n        \"Knowing a local hammam that you visit regularly.\",\n        \"Being able to give guidance and advice to your host.\"\n    ],\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.764437246189587,\n    \"offeredTourId\": \"Sv7yJHLmXq\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"isNotified\": true,\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"646\",\n    \"countryCode\": \"+880\",\n    \"name\": \"Today Feels like a Hammam Day! \",\n    \"meetingPointLong\": 90.4352742433548,\n    \"tourTimes\": [\n        \"08:00 AM\",\n        \"10:00 AM\"\n    ],\n    \"tourDuration\": \"2 hours\",\n    \"isActive\": false,\n    \"isApproved\": false\n}",
 											"options": {
 												"raw": {
 													"language": "json"
 												}
 											}
 										},
-										"url": {
-											"raw": "{{baseUrl}}/classes/ProposedTour/upn59zK2oD",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"classes",
-												"ProposedTour",
-												"upn59zK2oD"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Delete Offered Tour Experience",
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "X-Parse-Application-Id",
-												"value": "{{parseAppId}}",
-												"description": "(Required) Your Parse Application ID"
-											},
-											{
-												"key": "X-Parse-REST-API-Key",
-												"value": "{{parseApiKey}}",
-												"description": "(Required) Your REST Key"
-											}
-										],
 										"url": {
 											"raw": "{{baseUrl}}/classes/ProposedTour/upn59zK2oD",
 											"host": [
@@ -353,7 +262,7 @@
 							"name": "Meal",
 							"item": [
 								{
-									"name": "Dining Experiences",
+									"name": "Meal Experiences",
 									"request": {
 										"method": "GET",
 										"header": [
@@ -369,7 +278,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/classes/SelectedMeal",
+											"raw": "{{baseUrl}}/classes/SelectedMeal?where={\"isCustomMeal\":false}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -386,13 +295,17 @@
 												},
 												{
 													"key": "where",
-													"value": "{\"country\":\"Egypt\",\"isActive\":true}",
-													"description": "Get active meals by country",
-													"disabled": true
+													"value": "{\"isCustomMeal\":false}",
+													"description": "Get active meals by country"
 												},
 												{
 													"key": "keys",
 													"value": "name,country",
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": "1",
 													"disabled": true
 												}
 											]
@@ -401,7 +314,7 @@
 									"response": []
 								},
 								{
-									"name": "Dining Experience Details",
+									"name": "Meal Experience Details",
 									"request": {
 										"method": "GET",
 										"header": [
@@ -438,7 +351,7 @@
 									"response": []
 								},
 								{
-									"name": "Create Dinning Experience",
+									"name": "Create Custom Meal Experience",
 									"request": {
 										"method": "POST",
 										"header": [
@@ -455,7 +368,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"country\": \"Egypt\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"starter\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"HPr4KqRAAM\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/78b9c08e7b979d3c8396952f79661733_Baba%20ganoush.png\\\",\\\"ingredients\\\":\\\"Large eggplants, Garlic cloves, Tahini, Lemon\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Baba ganoush\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Starter\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"zepLJuCb99\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d83cfe0f99dbc3a1ee9d9634714e2b8e_Hawawshi.png\\\",\\\"ingredients\\\":\\\"Marinated beef or lamb, Onion, A mix of herbs and spices (black pepper, cumin, paprika, turmeric, and more), Pita bread\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Hawawshi\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"O5gpnYdLAM\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1ae10b4b3eb3111dc2a1ecdbedff1832_Knafe.png\\\",\\\"ingredients\\\":\\\"Shredded phyllo dough, Unsalted butter melted, Fine semolina, Sugar, Crushed nuts\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Knafe/Kunafa/knafeh\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"cost\": \"50\",\n    \"kitchenTimes\": [\n        \"{\\\"date\\\":\\\"Fri: 29 Sep, 2023\\\",\\\"isEnabled\\\":true,\\\"repetition\\\":\\\"Weekly\\\",\\\"time\\\":\\\"\\\",\\\"times\\\":[{\\\"end\\\":\\\"09:00 PM\\\",\\\"start\\\":\\\"12:00 PM\\\"}],\\\"yearMonth\\\":\\\"09/2023\\\"}\"\n    ],\n    \"city\": \"Cairo\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9a383799e9bd1f20d4d9775e41ffb40f_1695903293966.jpeg\",\n    \"hostId\": \"AejeXbYKjL\",\n    \"cameraZoom\": 17.476025,\n    \"meetingPointLat\": 30.0606991261865,\n    \"meetingPoint\": \"366H+C3Q, Nile Corniche, Boulaq Num.5, Bulaq, Cairo Governorate 4311001, Egypt\",\n    \"phone\": \"+2001016023837\",\n    \"maxGuest\": \"2\",\n    \"name\": \"Lunch on Nile \",\n    \"mealDuration\": \"3 hours\",\n    \"meetingPointLong\": 31.22747328132391,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"9a383799e9bd1f20d4d9775e41ffb40f_1695903293966.jpeg\",\n        \"url\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9a383799e9bd1f20d4d9775e41ffb40f_1695903293966.jpeg\"\n    },\n    \"isCustomMeal\": true,\n    \"hostedAt\": \"Restaurant\",\n    \"description\": \"description goes here.\",\n    \"whatToExpect\": \"what to expect details goes here.\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/0ef5cba52b5722606a5fb86800d431b1_1691104331973.jpeg\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/a0836c6471f2371bc4919af52d5cb936_1716193476323.jpeg\\\",\\\"name\\\":\\\"1716193419572_VID_20240410_211714.mp4\\\"}\"\n    ],\n    \"inclusions\": [\n        \"Lunch\",\n        \"Accomodation\"\n    ],\n    \"exclusions\": [\n        \"Tickets\",\n        \"Transportation\"\n    ],\n    \"thingsToKnow\": [\n        {\n            \"guideline\": \"What to bring\",\n            \"description\": [\n                \"Hiking shoes\",\n                \"Hat, caps or umbrella\",\n                \"Sunscreen\",\n                \"Water bottle\"\n            ]\n        },\n        {\n            \"guideline\": \"Important Notes\",\n            \"description\": [\n                \"Arrive 15 minutes early\",\n                \"Follow the guide’s instructions\",\n                \"Wear comfortable clothes\"\n            ]\n        }\n    ]\n}",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\"bdbdh\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"starter\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"KN0zsXd9ss\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/944cba2568d6e7f9e1dbe016e967626d_Filo%20pastry%20cheese%20pie.png\\\",\\\"ingredients\\\":\\\"Filo pastry, Eggs, Cheese (ricotta, feta, or brie- ricotta, feta, or brie), A mix of fresh herbs (parsley, mint, dill, thyme, basil), Sesame seeds\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Filo pastry cheese pie\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Starter\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"pIHNFCBatz\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a104ebf79c37cb6b67a0b2c80884d17c_Fatteh.png\\\",\\\"ingredients\\\":\\\"Short-grain rice, Beef/lamb, Tomatoes, White vinegar, Pita bread, toasted\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Fatteh\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"qKUCENK2X3\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/fa3e97036c6fab8328aaea638f384dc6_Mahalabia.png\\\",\\\"ingredients\\\":\\\"Rice flour, Milk, Rose water, Crushed pistachios for garnish (optional)\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Mahalabia\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"city\": \"test\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\",\n    \"hostId\": \"kifpSShKKb\",\n    \"exclusions\": [\n        \"ehdb\"\n    ],\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.764438780429842,\n    \"whatToExpect\": \"ndjd\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"2\",\n    \"name\": \"hgy\",\n    \"mealDuration\": \"1 hour\",\n    \"meetingPointLong\": 90.43520450592041,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\"\n    },\n    \"isCustomMeal\": true,\n    \"inclusions\": [\n        \"hdhd\"\n    ],\n    \"isActive\": false,\n    \"kitchenTimes\": [\n        \"08:00 AM\",\n        \"10:00 AM\",\n        \"06:00 PM\"\n    ],\n    \"mealPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"12\\\",\\\"fromPerson\\\":\\\"3\\\",\\\"toPerson\\\":\\\"6\\\"}\"\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -476,7 +389,7 @@
 									"response": []
 								},
 								{
-									"name": "Update Dinning Experience",
+									"name": "Update Custom Meal Experience",
 									"request": {
 										"method": "PUT",
 										"header": [
@@ -493,7 +406,84 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"country\": \"Egypt\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"starter\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"HPr4KqRAAM\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/78b9c08e7b979d3c8396952f79661733_Baba%20ganoush.png\\\",\\\"ingredients\\\":\\\"Large eggplants, Garlic cloves, Tahini, Lemon\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Baba ganoush\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Starter\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"zepLJuCb99\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d83cfe0f99dbc3a1ee9d9634714e2b8e_Hawawshi.png\\\",\\\"ingredients\\\":\\\"Marinated beef or lamb, Onion, A mix of herbs and spices (black pepper, cumin, paprika, turmeric, and more), Pita bread\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Hawawshi\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"O5gpnYdLAM\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1ae10b4b3eb3111dc2a1ecdbedff1832_Knafe.png\\\",\\\"ingredients\\\":\\\"Shredded phyllo dough, Unsalted butter melted, Fine semolina, Sugar, Crushed nuts\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Knafe/Kunafa/knafeh\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"cost\": \"50\",\n    \"kitchenTimes\": [\n        \"{\\\"date\\\":\\\"Fri: 29 Sep, 2023\\\",\\\"isEnabled\\\":true,\\\"repetition\\\":\\\"Weekly\\\",\\\"time\\\":\\\"\\\",\\\"times\\\":[{\\\"end\\\":\\\"09:00 PM\\\",\\\"start\\\":\\\"12:00 PM\\\"}],\\\"yearMonth\\\":\\\"09/2023\\\"}\"\n    ],\n    \"city\": \"Cairo\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9a383799e9bd1f20d4d9775e41ffb40f_1695903293966.jpeg\",\n    \"hostId\": \"AejeXbYKjL\",\n    \"cameraZoom\": 17.476025,\n    \"meetingPointLat\": 30.0606991261865,\n    \"meetingPoint\": \"366H+C3Q, Nile Corniche, Boulaq Num.5, Bulaq, Cairo Governorate 4311001, Egypt\",\n    \"phone\": \"+2001016023837\",\n    \"maxGuest\": \"2\",\n    \"name\": \"Lunch on Nile \",\n    \"mealDuration\": \"3 hours\",\n    \"meetingPointLong\": 31.22747328132391,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"9a383799e9bd1f20d4d9775e41ffb40f_1695903293966.jpeg\",\n        \"url\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9a383799e9bd1f20d4d9775e41ffb40f_1695903293966.jpeg\"\n    },\n    \"isCustomMeal\": true,\n    \"hostedAt\": \"Restaurant\",\n    \"description\": \"description goes here.\",\n    \"whatToExpect\": \"what to expect details goes here.\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/0ef5cba52b5722606a5fb86800d431b1_1691104331973.jpeg\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/a0836c6471f2371bc4919af52d5cb936_1716193476323.jpeg\\\",\\\"name\\\":\\\"1716193419572_VID_20240410_211714.mp4\\\"}\"\n    ],\n    \"inclusions\": [\n        \"Lunch\",\n        \"Accomodation\"\n    ],\n    \"exclusions\": [\n        \"Tickets\",\n        \"Transportation\"\n    ],\n    \"thingsToKnow\": [\n        {\n            \"guideline\": \"What to bring\",\n            \"description\": [\n                \"Hiking shoes\",\n                \"Hat, caps or umbrella\",\n                \"Sunscreen\",\n                \"Water bottle\"\n            ]\n        },\n        {\n            \"guideline\": \"Important Notes\",\n            \"description\": [\n                \"Arrive 15 minutes early\",\n                \"Follow the guide’s instructions\",\n                \"Wear comfortable clothes\"\n            ]\n        }\n    ]\n}",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\"bdbdh\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"starter\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"KN0zsXd9ss\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/944cba2568d6e7f9e1dbe016e967626d_Filo%20pastry%20cheese%20pie.png\\\",\\\"ingredients\\\":\\\"Filo pastry, Eggs, Cheese (ricotta, feta, or brie- ricotta, feta, or brie), A mix of fresh herbs (parsley, mint, dill, thyme, basil), Sesame seeds\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Filo pastry cheese pie\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Starter\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"pIHNFCBatz\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a104ebf79c37cb6b67a0b2c80884d17c_Fatteh.png\\\",\\\"ingredients\\\":\\\"Short-grain rice, Beef/lamb, Tomatoes, White vinegar, Pita bread, toasted\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Fatteh\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"qKUCENK2X3\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/fa3e97036c6fab8328aaea638f384dc6_Mahalabia.png\\\",\\\"ingredients\\\":\\\"Rice flour, Milk, Rose water, Crushed pistachios for garnish (optional)\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Mahalabia\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"city\": \"test\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\",\n    \"hostId\": \"kifpSShKKb\",\n    \"exclusions\": [\n        \"ehdb\"\n    ],\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.764438780429842,\n    \"whatToExpect\": \"ndjd\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"2\",\n    \"name\": \"hgy\",\n    \"mealDuration\": \"1 hour\",\n    \"meetingPointLong\": 90.43520450592041,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\"\n    },\n    \"inclusions\": [\n        \"hdhd\"\n    ],\n    \"isActive\": false,\n    \"kitchenTimes\": [\n        \"08:00 AM\",\n        \"10:00 AM\",\n        \"06:00 PM\"\n    ],\n    \"mealPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"12\\\",\\\"fromPerson\\\":\\\"3\\\",\\\"toPerson\\\":\\\"6\\\"}\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/SelectedMeal/wOSr2QgL4z",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"SelectedMeal",
+												"wOSr2QgL4z"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Offered Meal Experience",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"country\": \"Turkey\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"2VWYX39IXA\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/03380a116fbfd65afee8aad8a95c290d_Maqluba.jpg\\\",\\\"ingredients\\\":\\\"Stewed meat, rice, and vegetables, spices\\\",\\\"isChecked\\\":false,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Maqluba\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"wHCx2QJX5F\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/7c39b8bc957f8c911834f03697ec80f3_Baklava.jpg\\\",\\\"ingredients\\\":\\\"Phyllo dough, nuts and honey\\\",\\\"isChecked\\\":false,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Baklava\\\",\\\"type\\\":\\\"Vegan\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"cost\": \"20\",\n    \"city\": \"dhaka\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\",\n    \"hostId\": \"kifpSShKKb\",\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.76443663249348,\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"2\",\n    \"name\": \"Lunch : Feed Your Mind\",\n    \"mealDuration\": \"1 hour\",\n    \"meetingPointLong\": 90.4352105408907,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\"\n    },\n    \"isCustomMeal\": false,\n    \"isActive\": true,\n    \"kitchenTimes\": [\n        \"10:00 AM\",\n        \"02:00 PM\",\n        \"05:00 PM\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/SelectedMeal",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"SelectedMeal"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Offered Meal Experience",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"country\": \"Turkey\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"2VWYX39IXA\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/03380a116fbfd65afee8aad8a95c290d_Maqluba.jpg\\\",\\\"ingredients\\\":\\\"Stewed meat, rice, and vegetables, spices\\\",\\\"isChecked\\\":false,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Maqluba\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"wHCx2QJX5F\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/7c39b8bc957f8c911834f03697ec80f3_Baklava.jpg\\\",\\\"ingredients\\\":\\\"Phyllo dough, nuts and honey\\\",\\\"isChecked\\\":false,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Baklava\\\",\\\"type\\\":\\\"Vegan\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"cost\": \"20\",\n    \"city\": \"dhaka\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\",\n    \"hostId\": \"kifpSShKKb\",\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.76443663249348,\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"2\",\n    \"name\": \"Lunch : Feed Your Mind\",\n    \"mealDuration\": \"1 hour\",\n    \"meetingPointLong\": 90.4352105408907,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\"\n    },\n    \"isActive\": true,\n    \"kitchenTimes\": [\n        \"10:00 AM\",\n        \"02:00 PM\",\n        \"05:00 PM\"\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -569,7 +559,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{baseUrl}}/classes/OfferedTour?limit=500",
+													"raw": "{{baseUrl}}/classes/OfferedTour?limit=10&skip=0&count=1",
 													"host": [
 														"{{baseUrl}}"
 													],
@@ -586,7 +576,15 @@
 														},
 														{
 															"key": "limit",
-															"value": "500"
+															"value": "10"
+														},
+														{
+															"key": "skip",
+															"value": "0"
+														},
+														{
+															"key": "count",
+															"value": "1"
 														}
 													]
 												}
@@ -695,6 +693,36 @@
 														"classes",
 														"OfferedTour",
 														"DhnqdC8DLQ"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete Library Tour",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedTour/VmHEjokyA9",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedTour",
+														"VmHEjokyA9"
 													]
 												}
 											},
@@ -852,6 +880,36 @@
 												}
 											},
 											"response": []
+										},
+										{
+											"name": "Delete Library Meal",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedMeal/VmHEjokyA9",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedMeal",
+														"VmHEjokyA9"
+													]
+												}
+											},
+											"response": []
 										}
 									]
 								},
@@ -1005,10 +1063,70 @@
 												}
 											},
 											"response": []
+										},
+										{
+											"name": "Delete Library Dish",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedDish/VmHEjokyA9",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedDish",
+														"VmHEjokyA9"
+													]
+												}
+											},
+											"response": []
 										}
 									]
 								}
 							]
+						},
+						{
+							"name": "Delete Tour Experience",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/ProposedTour/VmHEjokyA9",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"ProposedTour",
+										"VmHEjokyA9"
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "Tour Experiences",
@@ -1027,7 +1145,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/classes/ProposedTour?where={\"country\":\"Turkey\",\"type\":\"getaway\",\"isActive\":true,\"isApproved\":true}&keys=name,country,type&limit=1000",
+									"raw": "{{baseUrl}}/classes/ProposedTour?where={\"type\":\"offered\"}",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -1051,7 +1169,8 @@
 										{
 											"key": "where",
 											"value": "{\"country\":\"Turkey\",\"type\":\"getaway\",\"isActive\":true,\"isApproved\":true}",
-											"description": "Get all approved & active getaway experiences"
+											"description": "Get all approved & active getaway experiences",
+											"disabled": true
 										},
 										{
 											"key": "where",
@@ -1061,18 +1180,24 @@
 										},
 										{
 											"key": "where",
-											"value": "{\"country\":\"Turkey\",\"isActive\":true}",
-											"description": "Get approved & active getaway experiences by country",
-											"disabled": true
+											"value": "{\"type\":\"offered\"}",
+											"description": "Get approved & active getaway experiences by country"
 										},
 										{
 											"key": "keys",
-											"value": "name,country,type",
-											"description": "Get specific fields in result"
+											"value": "itinerary,thingsToKnow",
+											"description": "Get specific fields in result",
+											"disabled": true
 										},
 										{
 											"key": "limit",
-											"value": "1000"
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "count",
+											"value": "1",
+											"disabled": true
 										}
 									]
 								}
@@ -1469,7 +1594,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/classes/ServiceProvider?limit=10000",
+									"raw": "{{baseUrl}}/classes/ServiceProvider?keys=name,country,city,phone,email&where={\"phone\":\"%2B8801703464048\"}",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -1492,15 +1617,162 @@
 										},
 										{
 											"key": "keys",
-											"value": "name,country,city,phone,email",
-											"disabled": true
+											"value": "name,country,city,phone,email"
 										},
 										{
 											"key": "limit",
-											"value": "10000"
+											"value": "1000",
+											"disabled": true
+										},
+										{
+											"key": "where",
+											"value": "{\"objectId\":\"kifpSShKKb\"}",
+											"disabled": true
+										},
+										{
+											"key": "where",
+											"value": "{\"phone\":\"%2B8801703464048\"}"
 										}
 									]
 								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Other",
+					"item": [
+						{
+							"name": "Languages",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/Language",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"Language"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Countries",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/Country?limit=200",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"Country"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "200"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Dashboard Analytics",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/functions/getDashboardAnalytics",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"functions",
+										"getDashboardAnalytics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Image File Upload",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									},
+									{
+										"key": "Content-Type",
+										"value": "image/*"
+									}
+								],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": "/Users/bs660/Downloads/sample.jpg"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/files/test_image.jpg",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"test_image.jpg"
+									]
+								},
+								"description": "##### Note: Don't allow tourists to update their phone & email."
 							},
 							"response": []
 						}

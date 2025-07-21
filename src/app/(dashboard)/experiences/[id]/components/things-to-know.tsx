@@ -3,30 +3,19 @@
 import Image from "next/image";
 import InfoIcon from "../../../../../../public/hosts-icons/payment-icon.svg";
 
-const ThingsToKnow = () => {
-  const thingsToKnow = [
-    {
-      name: "Cancellation Policy",
-      description:
-        "Free cancellation up to 24 hours before the experience starts.",
-    },
-    {
-      name: "What to Bring",
-      description: "Comfortable walking shoes, water bottle, and camera.",
-    },
-    {
-      name: "What to Bring",
-      description: "Comfortable walking shoes, water bottle, and camera.",
-    },
-    {
-      name: "What to Bring",
-      description: "Comfortable walking shoes, water bottle, and camera.",
-    },
-    {
-      name: "What to Bring",
-      description: "Comfortable walking shoes, water bottle, and camera.",
-    },
-  ];
+interface ThingToKnow {
+  title: string;
+  description: string;
+}
+
+interface ThingsToKnowProps {
+  thingsToKnow: string[];
+}
+
+const ThingsToKnow: React.FC<ThingsToKnowProps> = ({ thingsToKnow }) => {
+  const parsedThingsToKnow: ThingToKnow[] = thingsToKnow.map((item) =>
+    JSON.parse(item)
+  );
 
   return (
     <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-6">
@@ -35,12 +24,12 @@ const ThingsToKnow = () => {
       </h3>
 
       <div className="relative">
-        {thingsToKnow.map((item, index) => {
-          const isLast = index === thingsToKnow.length - 1;
+        {parsedThingsToKnow.map((item, index) => {
+          const isLast = index === parsedThingsToKnow.length - 1;
 
           return (
             <div
-              key={`${item.name}-${index}`}
+              key={`${item.title}-${index}`}
               className="relative flex items-start pb-8 last:pb-0 gap-4"
             >
               {/* Timeline line (hide if last item) */}
@@ -56,7 +45,7 @@ const ThingsToKnow = () => {
               {/* Text content */}
               <div className="flex-1 min-w-0 space-y-2 pt-2">
                 <div className="text-[18px] font-bold text-[#3D3D3D]">
-                  {item.name}
+                  {item.title}
                 </div>
                 <div className="text-[18px] text-[#3D3D3D]">
                   {item.description}

@@ -31,6 +31,8 @@ export interface ProposedTour {
   maxGuest?: string;
   thingsToKnow?: string[];
   exclusions?: string[];
+  inclusions?: string[];
   itinerary?: string[];
   whatToExpect?: string;
+  courses?: string[];
 }

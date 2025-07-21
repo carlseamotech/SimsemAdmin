@@ -1,12 +1,9 @@
 "use client";
-import XCloseIcon from "../../../../../../public/experience/xclose-icon.svg";
-import Image from "next/image";
 
 interface Package {
   fromPerson: string;
   toPerson: string;
   cost: string;
-  actualCost: string;
 }
 
 interface PackagesProps {
@@ -32,18 +29,10 @@ export const Packages: React.FC<PackagesProps> = ({ packages }) => {
               <div className="text-[20px] text-[#0D2E61] font-bold">
                 {pkg.fromPerson}-{pkg.toPerson} People
               </div>
-
-              <Image
-                src={XCloseIcon}
-                alt="Close"
-                className="object-contain cursor-pointer"
-                width={20}
-                height={20}
-              />
             </div>
 
             <p className="text-[#3D3D3DB2] font-bold text-[19px]">
-              ${pkg.actualCost}/ person
+              ${pkg.cost}/ person
             </p>
           </div>
         ))}

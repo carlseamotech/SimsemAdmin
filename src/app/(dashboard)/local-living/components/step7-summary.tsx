@@ -41,9 +41,16 @@ const Step6Summary: React.FC<Step6SummaryProps> = ({ formData }) => {
             </p>
           </div>
 
-          <Button className="h-[64px] bg-[#FB8B24] hover:bg-orange-400 font-bold text-white text-[22px] cursor-pointer rounded-full">
-            ${formData.cost}/ Person
-          </Button>
+          <div className="flex flex-col gap-2">
+            {formData.tourPackages.map((pkg, index) => (
+              <Button
+                key={index}
+                className="h-[64px] bg-[#FB8B24] hover:bg-orange-400 font-bold text-white text-[22px] cursor-pointer rounded-full"
+              >
+                ${pkg.cost}/ Person ({pkg.fromPerson}-{pkg.toPerson} people)
+              </Button>
+            ))}
+          </div>
         </div>
 
         <div className=" flex flex-col gap-8 ">
