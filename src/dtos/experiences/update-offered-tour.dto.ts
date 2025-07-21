@@ -1,11 +1,6 @@
-export interface UpdateOfferedTourDTO {
-  country?: string;
-  city?: string;
-  cameraZoom?: number;
-  meetingPointLat?: number;
-  meetingPoint?: string;
-  maxGuest?: string;
-  countryCode?: string;
-  meetingPointLong?: number;
-  tourTimes?: string[];
-}
+import { z } from "zod";
+import { createOfferedTourSchema } from "./create-offered-tour.dto";
+
+export const updateOfferedTourSchema = createOfferedTourSchema.partial();
+
+export type UpdateOfferedTourDTO = z.infer<typeof updateOfferedTourSchema>;

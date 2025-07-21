@@ -25,7 +25,7 @@ export const useLibraryItem = () => {
 
   const { data, error, mutate } = useSWR(
     `/library/${id}?type=${type}`,
-    fetcher
+    fetcher as any
   );
 
   return {

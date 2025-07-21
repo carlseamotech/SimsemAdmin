@@ -4,6 +4,7 @@ import Header from "@/components/common/header";
 import { TourForm } from "./components/tour-form";
 import { MealForm } from "./components/meal-form";
 import { DishForm } from "./components/dish-form";
+import { GetawayTourForm } from "../components/getaway-tour-form";
 
 const CreateLibraryItemPage = () => {
   const searchParams = useSearchParams();
@@ -17,6 +18,8 @@ const CreateLibraryItemPage = () => {
         return <MealForm />;
       case "dish":
         return <DishForm />;
+      case "getaway":
+        return <GetawayTourForm />;
       default:
         return <div>Invalid type</div>;
     }

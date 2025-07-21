@@ -1,20 +1,18 @@
-export interface CreateGetawayTourDTO {
-  country: string;
-  city: string;
-  difficultyLevel: string;
-  coverImageUrl: string;
-  galleryImageUrls: string[];
-  guideId: string;
-  description: string;
-  tourPackages: string[];
-  tourFeatures: string[];
-  type: 'getaway';
-  otherTourFeature?: string;
-  phone: string;
-  countryCode: string;
-  name: string;
-  tourDuration: string;
-  pickupPoints: string[];
-  galleryVideoUrls: string[];
-  itinerary: Record<string, { schedule: string; activity: string; description: string }[]>;
-}
+import { z } from "zod";
+import { proposedTourSchema } from "./proposed-tour.dto";
+
+export const createGetawayTourSchema = proposedTourSchema.extend({
+  type: z.literal("getaway"),
+  pickupPoints: z.array(z.object({
+    key: z.string(),
+    value: z.object({
+      pickupPointTitle: z.string(),
+      pickupPoint: z.string(),
+      pickupPointLat: z.number(),
+      pickupPointLong: z.number(),
+      cameraZoom: z.number(),
+    }),
+  })),
+});
+
+export type CreateGetawayTourDTO = z.infer<typeof createGetawayTourSchema>;

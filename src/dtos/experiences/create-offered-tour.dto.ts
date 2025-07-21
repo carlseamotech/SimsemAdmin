@@ -1,24 +1,10 @@
-export interface CreateOfferedTourDTO {
-  country: string;
-  cost: string;
-  city: string;
-  coverImageUrl: string;
-  guideId: string;
-  description: string;
-  tourFeatures: string[];
-  cameraZoom: number;
-  type: 'offered';
-  meetingPointLat: number;
-  meetingPoint: string;
-  phone: string;
-  maxGuest: string;
-  countryCode: string;
-  name: string;
-  meetingPointLong: number;
-  tourTimes: string[];
-  tourDuration: string;
-  offeredTourId: string;
-  isApproved: boolean;
-  isNotified: boolean;
-  isActive: boolean;
-}
+import { z } from "zod";
+import { proposedTourSchema } from "./proposed-tour.dto";
+
+export const createOfferedTourSchema = proposedTourSchema.extend({
+  type: z.literal("offered"),
+  offeredTourId: z.string(),
+  maxGuest: z.string(),
+});
+
+export type CreateOfferedTourDTO = z.infer<typeof createOfferedTourSchema>;
