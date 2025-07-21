@@ -206,6 +206,7 @@ export const useLibraryTours = () => {
       mutate();
       return updatedTour;
     },
+    mutate,
   };
 };
 
@@ -249,6 +250,7 @@ export const useLibraryMeals = () => {
       mutate();
       return updatedMeal;
     },
+    mutate,
   };
 };
 
@@ -292,6 +294,7 @@ export const useLibraryDishes = () => {
       mutate();
       return updatedDish;
     },
+    mutate,
   };
 };
 

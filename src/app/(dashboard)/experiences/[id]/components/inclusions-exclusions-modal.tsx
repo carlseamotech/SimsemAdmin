@@ -18,8 +18,8 @@ import { z } from "zod";
 import { TrashIcon } from "lucide-react";
 
 const inclusionsExclusionsSchema = z.object({
-  inclusions: z.array(z.string().min(1, "Required")),
-  exclusions: z.array(z.string().min(1, "Required")),
+  inclusions: z.array(z.object({ value: z.string().min(1, "Required") })),
+  exclusions: z.array(z.object({ value: z.string().min(1, "Required") })),
 });
 
 type InclusionsExclusionsFormData = z.infer<
@@ -73,8 +73,8 @@ export const InclusionsExclusionsModal: React.FC<
   useEffect(() => {
     if (tour) {
       reset({
-        inclusions: tour.inclusions || [],
-        exclusions: tour.exclusions || [],
+        inclusions: tour.inclusions?.map((inc) => ({ value: inc })) || [],
+        exclusions: tour.exclusions?.map((exc) => ({ value: exc })) || [],
       });
     }
   }, [tour, reset]);
@@ -83,7 +83,12 @@ export const InclusionsExclusionsModal: React.FC<
     data
   ) => {
     try {
-      await updateCustomTour(tour.objectId, data);
+      const transformedData = {
+        ...data,
+        inclusions: data.inclusions.map((inc) => inc.value),
+        exclusions: data.exclusions.map((exc) => exc.value),
+      };
+      await updateCustomTour(tour.objectId, transformedData);
       mutate();
       onClose();
       toast.success("Inclusions & Exclusions updated successfully");
@@ -104,7 +109,7 @@ export const InclusionsExclusionsModal: React.FC<
             {inclusionFields.map((field, index) => (
               <div key={field.id} className="flex items-center gap-4">
                 <Input
-                  {...register(`inclusions.${index}`)}
+                  {...register(`inclusions.${index}.value`)}
                   placeholder="Inclusion"
                 />
                 <Button
@@ -116,7 +121,7 @@ export const InclusionsExclusionsModal: React.FC<
                 </Button>
               </div>
             ))}
-            <Button type="button" onClick={() => appendInclusion("")}>
+            <Button type="button" onClick={() => appendInclusion({ value: "" })}>
               Add Inclusion
             </Button>
           </div>
@@ -125,7 +130,7 @@ export const InclusionsExclusionsModal: React.FC<
             {exclusionFields.map((field, index) => (
               <div key={field.id} className="flex items-center gap-4">
                 <Input
-                  {...register(`exclusions.${index}`)}
+                  {...register(`exclusions.${index}.value`)}
                   placeholder="Exclusion"
                 />
                 <Button
@@ -137,7 +142,7 @@ export const InclusionsExclusionsModal: React.FC<
                 </Button>
               </div>
             ))}
-            <Button type="button" onClick={() => appendExclusion("")}>
+            <Button type="button" onClick={() => appendExclusion({ value: "" })}>
               Add Exclusion
             </Button>
           </div>
@@ -154,3 +159,4 @@ export const InclusionsExclusionsModal: React.FC<
     </Dialog>
   );
 };
+

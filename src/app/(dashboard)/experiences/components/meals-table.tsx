@@ -11,14 +11,43 @@ import {
 import { useLibraryMeals } from "@/hooks/use-library-meals";
 import ExperienceLibraryTableSkeleton from "./experience-library-table-skeleton";
 import { useRouter } from "next/navigation";
+import { deleteLibraryMeal } from "@/services/experiences/library";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface MealsTableProps {
   searchTerm: string;
 }
 
 const MealsTable: React.FC<MealsTableProps> = ({ searchTerm }) => {
-  const { meals, isLoading } = useLibraryMeals();
+  const { meals, isLoading, mutate } = useLibraryMeals();
   const router = useRouter();
+  const [dialog, setDialog] = useState({
+    isOpen: false,
+    id: "",
+  });
+
+  const handleDelete = async () => {
+    try {
+      await deleteLibraryMeal(dialog.id);
+      mutate();
+      toast.success("Meal deleted successfully");
+    } catch {
+      toast.error("Failed to delete meal");
+    } finally {
+      setDialog({ isOpen: false, id: "" });
+    }
+  };
 
   const getFilteredMeals = () => {
     return meals.filter(
@@ -58,7 +87,7 @@ const MealsTable: React.FC<MealsTableProps> = ({ searchTerm }) => {
               key={meal.objectId}
               onClick={() =>
                 router.push(
-                  `/experiences/${meal.objectId}?tab=experience-library`
+                  `/library/${meal.objectId}?type=meal`
                 )
               }
               className="hover:bg-gray-50 cursor-pointer"
@@ -76,7 +105,7 @@ const MealsTable: React.FC<MealsTableProps> = ({ searchTerm }) => {
                     onClick={(e) => {
                       e.stopPropagation();
                       router.push(
-                        `/experiences/${meal.objectId}?tab=experience-library`
+                        `/library/${meal.objectId}/edit?type=meal`
                       );
                     }}
                     className="bg-[#0D2E61] hover:bg-blue-900 text-[#FFFFFF] "
@@ -88,6 +117,7 @@ const MealsTable: React.FC<MealsTableProps> = ({ searchTerm }) => {
                     size="sm"
                     onClick={(e) => {
                       e.stopPropagation();
+                      setDialog({ isOpen: true, id: meal.objectId });
                     }}
                     variant="destructive"
                     className="bg-[#9A031E]"
@@ -100,6 +130,24 @@ const MealsTable: React.FC<MealsTableProps> = ({ searchTerm }) => {
           ))}
         </TableBody>
       </Table>
+      <AlertDialog
+        open={dialog.isOpen}
+        onOpenChange={() => setDialog({ isOpen: false, id: "" })}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the
+              meal.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

@@ -13,15 +13,44 @@ import { useLibraryDishes } from "@/hooks/use-experiences";
 import DishLibraryTableSkeleton from "./dish-library-table-skeleton";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { deleteLibraryDish } from "@/services/experiences/library";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface DishLibraryProps {
   searchTerm: string;
 }
 
 const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
-  const { libraryDishes, count, isLoading, page, limit, setPage } =
+  const { libraryDishes, count, isLoading, page, limit, setPage, mutate } =
     useLibraryDishes();
   const router = useRouter();
+  const [dialog, setDialog] = useState({
+    isOpen: false,
+    id: "",
+  });
+
+  const handleDelete = async () => {
+    try {
+      await deleteLibraryDish(dialog.id);
+      mutate();
+      toast.success("Dish deleted successfully");
+    } catch {
+      toast.error("Failed to delete dish");
+    } finally {
+      setDialog({ isOpen: false, id: "" });
+    }
+  };
 
   const getFilteredDishes = () => {
     if (!libraryDishes) return [];
@@ -67,7 +96,7 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
             <TableRow
               key={dish.objectId}
               onClick={() =>
-                router.push(`/experiences/${dish.objectId}?tab=dish-library`)
+                router.push(`/library/${dish.objectId}?type=dish`)
               }
               className="hover:bg-gray-50 cursor-pointer"
             >
@@ -99,7 +128,7 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
                     onClick={(e) => {
                       e.stopPropagation();
                       router.push(
-                        `/experiences/${dish.objectId}?tab=dish-library`
+                        `/library/${dish.objectId}/edit?type=dish`
                       );
                     }}
                     className="bg-[#0D2E61] hover:bg-blue-900 text-[#FFFFFF]"
@@ -109,8 +138,8 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
                   <Button
                     size="sm"
                     onClick={(e) => {
-                      // ✅ Prevent triggering the TableRow's onClick
                       e.stopPropagation();
+                      setDialog({ isOpen: true, id: dish.objectId });
                     }}
                     variant="destructive"
                     className="bg-[#9A031E]"
@@ -144,6 +173,24 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
           <ChevronRight className="w-4 h-4" />
         </Button>
       </div>
+      <AlertDialog
+        open={dialog.isOpen}
+        onOpenChange={() => setDialog({ isOpen: false, id: "" })}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the
+              dish.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

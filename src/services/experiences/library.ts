@@ -119,3 +119,15 @@ export const createLibraryDish = async (dish: CreateLibraryDishDTO): Promise<Lib
 export const updateLibraryDish = async (id: string, dish: UpdateLibraryDishDTO): Promise<LibraryDish> => {
   return await api.put<LibraryDish>(`${DISH_BASE_URL}/${id}`, dish as Record<string, unknown>);
 };
+
+export const deleteLibraryTour = async (id: string): Promise<void> => {
+  await api.delete(`${TOUR_BASE_URL}/${id}`);
+};
+
+export const deleteLibraryMeal = async (id: string): Promise<void> => {
+  await api.delete(`${MEAL_BASE_URL}/${id}`);
+};
+
+export const deleteLibraryDish = async (id: string): Promise<void> => {
+  await api.delete(`${DISH_BASE_URL}/${id}`);
+};

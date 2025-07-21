@@ -12,6 +12,19 @@ import { useLibraryTours } from "@/hooks/use-experiences";
 import ExperienceLibraryTableSkeleton from "./experience-library-table-skeleton";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { deleteLibraryTour } from "@/services/experiences/library";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface ToursTableProps {
   searchTerm: string;
@@ -25,8 +38,25 @@ const ToursTable: React.FC<ToursTableProps> = ({ searchTerm }) => {
     page,
     limit,
     setPage,
+    mutate,
   } = useLibraryTours();
   const router = useRouter();
+  const [dialog, setDialog] = useState({
+    isOpen: false,
+    id: "",
+  });
+
+  const handleDelete = async () => {
+    try {
+      await deleteLibraryTour(dialog.id);
+      mutate();
+      toast.success("Tour deleted successfully");
+    } catch {
+      toast.error("Failed to delete tour");
+    } finally {
+      setDialog({ isOpen: false, id: "" });
+    }
+  };
 
   const getFilteredTours = () => {
     return libraryTours.filter(
@@ -66,7 +96,7 @@ const ToursTable: React.FC<ToursTableProps> = ({ searchTerm }) => {
               key={tour.objectId}
               onClick={() =>
                 router.push(
-                  `/experiences/${tour.objectId}?tab=experience-library`
+                  `/library/${tour.objectId}?type=tour`
                 )
               }
               className="hover:bg-gray-50 cursor-pointer"
@@ -84,7 +114,7 @@ const ToursTable: React.FC<ToursTableProps> = ({ searchTerm }) => {
                     onClick={(e) => {
                       e.stopPropagation();
                       router.push(
-                        `/experiences/${tour.objectId}?tab=experience-library`
+                        `/library/${tour.objectId}/edit?type=tour`
                       );
                     }}
                     className="bg-[#0D2E61] hover:bg-blue-900 text-[#FFFFFF] "
@@ -96,6 +126,7 @@ const ToursTable: React.FC<ToursTableProps> = ({ searchTerm }) => {
                     size="sm"
                     onClick={(e) => {
                       e.stopPropagation();
+                      setDialog({ isOpen: true, id: tour.objectId });
                     }}
                     variant="destructive"
                     className="bg-[#9A031E]"
@@ -129,6 +160,24 @@ const ToursTable: React.FC<ToursTableProps> = ({ searchTerm }) => {
           <ChevronRight className="w-4 h-4" />
         </Button>
       </div>
+      <AlertDialog
+        open={dialog.isOpen}
+        onOpenChange={() => setDialog({ isOpen: false, id: "" })}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the
+              tour.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

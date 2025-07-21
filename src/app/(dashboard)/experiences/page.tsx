@@ -6,15 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import DishFormPage from "@/app/(dashboard)/experiences/components/dish-form";
 import DishLibraryPage from "@/app/(dashboard)/experiences/components/dish-library-table";
-import ToursTable from "@/app/(dashboard)/experiences/components/tours-table";
-import MealsTable from "@/app/(dashboard)/experiences/components/meals-table";
-import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-experience";
 import ExperiencesPage from "@/app/(dashboard)/experiences/components/experiences-table";
+import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-experience";
 import { useSearchParams } from "next/navigation";
 import { ProposedTour } from "@/models/proposed-tour";
 import { ExperienceForm } from "./components/experience-form";
 import { useTours } from "@/hooks/use-experiences";
 import { OfferExperienceModal } from "./components/experience-library-modal";
+import ToursTable from "./components/tours-table";
+import MealsTable from "./components/meals-table";
 
 const ExperiencesMainPage = () => {
   const [activeFilter, setActiveFilter] = useState("tours");

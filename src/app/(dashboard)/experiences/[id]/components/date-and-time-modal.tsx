@@ -18,7 +18,7 @@ import { z } from "zod";
 import { TrashIcon } from "lucide-react";
 
 const dateAndTimeSchema = z.object({
-  tourTimes: z.array(z.string().min(1, "Required")),
+  tourTimes: z.array(z.object({ value: z.string().min(1, "Required") })),
 });
 
 type DateAndTimeFormData = z.infer<typeof dateAndTimeSchema>;
@@ -59,14 +59,18 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
   useEffect(() => {
     if (tour) {
       reset({
-        tourTimes: tour.tourTimes || [],
+        tourTimes: tour.tourTimes?.map((time) => ({ value: time })) || [],
       });
     }
   }, [tour, reset]);
 
   const onSubmit: SubmitHandler<DateAndTimeFormData> = async (data) => {
     try {
-      await updateCustomTour(tour.objectId, data);
+      const transformedData = {
+        ...data,
+        tourTimes: data.tourTimes.map((time) => time.value),
+      };
+      await updateCustomTour(tour.objectId, transformedData);
       mutate();
       onClose();
       toast.success("Date & Time updated successfully");
@@ -84,7 +88,10 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {fields.map((field, index) => (
             <div key={field.id} className="flex items-center gap-4">
-              <Input {...register(`tourTimes.${index}`)} placeholder="Time" />
+              <Input
+                {...register(`tourTimes.${index}.value`)}
+                placeholder="Time"
+              />
               <Button
                 type="button"
                 variant="destructive"
@@ -94,7 +101,7 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
               </Button>
             </div>
           ))}
-          <Button type="button" onClick={() => append("")}>
+          <Button type="button" onClick={() => append({ value: "" })}>
             Add Time
           </Button>
           <DialogFooter>

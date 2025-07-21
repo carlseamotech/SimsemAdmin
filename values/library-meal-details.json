@@ -1,0 +1,21 @@
+{
+  "objectId": "18OcDgtHZX",
+  "dishIds": [
+    "0uwUFWVFsH",
+    "AaV3JFZvpA",
+    "Z2pLxfSWbh",
+    "mg5kKnLF5d",
+    "Wc8WzgC9Kl"
+  ],
+  "name": "Breakfast: National",
+  "coverImage": {
+    "__type": "File",
+    "name": "c3b88706b60b68ac3f6a12010d8a7195_Rectangle 3.png",
+    "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c3b88706b60b68ac3f6a12010d8a7195_Rectangle%203.png"
+  },
+  "country": "",
+  "description": "Served with Bread, homemade tea, coffee and water. ",
+  "cost": "14",
+  "createdAt": "2022-09-17T19:31:32.692Z",
+  "updatedAt": "2025-06-27T04:42:56.693Z"
+}

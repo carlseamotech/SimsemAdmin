@@ -1,0 +1,15 @@
+{
+  "objectId": "LBvwbEbrYr",
+  "type": "Vegetarian",
+  "name": "Tarhana Soup",
+  "ingredients": "Tomatoes, Tarhana powder - mixture of dried, fermented, and grounded vegetables (tomatoes, peppers, onions, chickpea) and yoghurt and herbs, tomato paste.",
+  "image": {
+    "__type": "File",
+    "name": "d4b054fe5159defa0e05bd817e18c884_Tarhana Soup.jpg",
+    "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/d4b054fe5159defa0e05bd817e18c884_Tarhana%20Soup.jpg"
+  },
+  "country": "Turkey",
+  "createdAt": "2021-11-21T12:56:05.722Z",
+  "updatedAt": "2022-02-15T15:44:35.307Z",
+  "course": "starter"
+}

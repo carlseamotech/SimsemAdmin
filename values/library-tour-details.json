@@ -1,0 +1,24 @@
+{
+  "objectId": "oNtLdLVKQB",
+  "requirements": [
+    "Know best and reputable food carts to taste local dishes(foul, kebda, and so)",
+    "Keep the travellers safe and protected from exploitation",
+    "Talk to the travellers and understand their preferences and suggest the right dish they can try.",
+    "Being able to explain the ingredients of dishes they will try"
+  ],
+  "name": "Adventurous Food Tour: Only for Those Who Dare",
+  "description": "You will never get hungry in Egypt. Why? Because you will find vendors, food carts, and more. They offer everything you can imagine. You want to taste all and discover what street food in Egypt is all about. We don’t blame you. The air is loaded with irresistible aroma and you want to partake in what locals eat every day. But what if you’re going out to explore only delicious street food to avoid any digestive problems and find out historical food trucks and worthy local small vendor, you need to be accompanied with a local. Please note: Price does not include food, drinks, tickets or transportation.",
+  "coverImage": {
+    "__type": "File",
+    "name": "a02c1980e4c19b2f50442f3d8a360af6_Adventurous Food Tour.png",
+    "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a02c1980e4c19b2f50442f3d8a360af6_Adventurous%20Food%20Tour.png"
+  },
+  "country": "Egypt",
+  "cost": 20,
+  "minDuration": 15,
+  "maxDuration": 30,
+  "feature": "Food",
+  "timeUnit": "minutes",
+  "createdAt": "2023-07-23T09:55:20.817Z",
+  "updatedAt": "2023-10-28T06:29:30.798Z"
+}
