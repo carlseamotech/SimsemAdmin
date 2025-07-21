@@ -34,6 +34,12 @@ import {
 import { AboutTourModal } from "./components/about-tour-modal";
 import { CoverPhotoModal } from "./components/cover-photo-modal";
 import { GalleryModal } from "./components/gallery-modal";
+import { WhatToExpectModal } from "./components/what-to-expect-modal";
+import { PackagesModal } from "./components/packages-modal";
+import { WhereToMeetModal } from "./components/where-to-meet-modal";
+import { DateAndTimeModal } from "./components/date-and-time-modal";
+import { InclusionsExclusionsModal } from "./components/inclusions-exclusions-modal";
+import { ThingsToKnowModal } from "./components/things-to-know-modal";
 import toast from "react-hot-toast";
 
 const difficultyLevels = ["Basic", "Beginner", "Intermediate", "Advanced"];
@@ -47,6 +53,15 @@ const ExperienceDetailsPage = () => {
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isCoverPhotoModalOpen, setIsCoverPhotoModalOpen] = useState(false);
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
+  const [isWhatToExpectModalOpen, setIsWhatToExpectModalOpen] = useState(false);
+  const [isPackagesModalOpen, setIsPackagesModalOpen] = useState(false);
+  const [isWhereToMeetModalOpen, setIsWhereToMeetModalOpen] = useState(false);
+  const [isDateAndTimeModalOpen, setIsDateAndTimeModalOpen] = useState(false);
+  const [
+    isInclusionsExclusionsModalOpen,
+    setIsInclusionsExclusionsModalOpen,
+  ] = useState(false);
+  const [isThingsToKnowModalOpen, setIsThingsToKnowModalOpen] = useState(false);
   const [dialog, setDialog] = useState({
     isOpen: false,
     action: "",
@@ -266,8 +281,19 @@ const ExperienceDetailsPage = () => {
 
                   {/* whats to expect */}
                   <div className="rounded-2xl p-6  bg-[#3D3D3D0D]  flex flex-col gap-6">
-                    <div className="text-[24px] font-bold text-[#0D2E61]">
-                      What to expect
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        What to expect
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsWhatToExpectModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
                     </div>
 
                     <div>
@@ -280,20 +306,100 @@ const ExperienceDetailsPage = () => {
                   {/* child policy & guest requirements */}
                   <ChildPollicyRequirements cost={tour.cost} />
 
-                  <Packages packages={tour.tourPackages || []} />
+                  <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        Pricing Package
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsPackagesModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                    <Packages packages={tour.tourPackages || []} />
+                  </div>
 
-                  <WhereToMeet meetingPoint={tour.meetingPoint} />
+                  <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        Where to Meet
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsWhereToMeetModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                    <WhereToMeet meetingPoint={tour.meetingPoint} />
+                  </div>
 
-                  <DateAndTime tourTimes={tour.tourTimes || []} />
+                  <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        Date & Time
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsDateAndTimeModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                    <DateAndTime tourTimes={tour.tourTimes || []} />
+                  </div>
 
                   {/* things to know */}
-                  <ThingsToKnow thingsToKnow={tour.thingsToKnow || []} />
+                  <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        Things to Know
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsThingsToKnowModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                    <ThingsToKnow thingsToKnow={tour.thingsToKnow || []} />
+                  </div>
 
                   {/* WhatsIncludedNot */}
-                  <WhatsIncludedNot
-                    inclusions={tour.inclusions || []}
-                    exclusions={tour.exclusions || []}
-                  />
+                  <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        What’s Included, What’s Not
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsInclusionsExclusionsModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                    <WhatsIncludedNot
+                      inclusions={tour.inclusions || []}
+                      exclusions={tour.exclusions || []}
+                    />
+                  </div>
 
                   {/* tour menu */}
                   <TourMenu courses={tour.courses || []} />
@@ -375,6 +481,42 @@ const ExperienceDetailsPage = () => {
         tour={tour}
         isOpen={isGalleryModalOpen}
         onClose={() => setIsGalleryModalOpen(false)}
+        mutate={mutate}
+      />
+      <WhatToExpectModal
+        tour={tour}
+        isOpen={isWhatToExpectModalOpen}
+        onClose={() => setIsWhatToExpectModalOpen(false)}
+        mutate={mutate}
+      />
+      <PackagesModal
+        tour={tour}
+        isOpen={isPackagesModalOpen}
+        onClose={() => setIsPackagesModalOpen(false)}
+        mutate={mutate}
+      />
+      <WhereToMeetModal
+        tour={tour}
+        isOpen={isWhereToMeetModalOpen}
+        onClose={() => setIsWhereToMeetModalOpen(false)}
+        mutate={mutate}
+      />
+      <DateAndTimeModal
+        tour={tour}
+        isOpen={isDateAndTimeModalOpen}
+        onClose={() => setIsDateAndTimeModalOpen(false)}
+        mutate={mutate}
+      />
+      <InclusionsExclusionsModal
+        tour={tour}
+        isOpen={isInclusionsExclusionsModalOpen}
+        onClose={() => setIsInclusionsExclusionsModalOpen(false)}
+        mutate={mutate}
+      />
+      <ThingsToKnowModal
+        tour={tour}
+        isOpen={isThingsToKnowModalOpen}
+        onClose={() => setIsThingsToKnowModalOpen(false)}
         mutate={mutate}
       />
     </>

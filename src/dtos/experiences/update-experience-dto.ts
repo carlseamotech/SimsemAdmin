@@ -10,4 +10,12 @@ export interface UpdateExperienceDTO {
   tourFeatures?: string[];
   coverImageUrl?: string;
   galleryImageUrls?: string[];
+  whatToExpect?: string;
+  cost?: string;
+  tourPackages?: string[];
+  meetingPoint?: string;
+  tourTimes?: string[];
+  inclusions?: string[];
+  exclusions?: string[];
+  thingsToKnow?: string[];
 }
