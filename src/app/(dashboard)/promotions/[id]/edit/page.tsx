@@ -1,7 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import { usePromoCode } from "@/hooks/use-promo-code";
-import PromotionFormPage from "@/app/(dashboard)/promotions/components/promotion-form";
+import PromotionForm from "@/app/(dashboard)/promotions/components/promotion-form";
 import { PromotionFormSkeleton } from "@/app/(dashboard)/promotions/components/promotion-form-skeleton";
 import Header from "@/components/common/header";
 
@@ -16,7 +16,7 @@ const EditPromotionPage = () => {
   return (
     <>
       <Header title="Edit Promotion" />
-      <PromotionFormPage promoToEdit={promoCode} />
+      <PromotionForm promoToEdit={promoCode} />
     </>
   );
 };

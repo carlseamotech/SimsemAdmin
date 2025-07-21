@@ -66,13 +66,13 @@ export const useMeal = (id: string) => {
 };
 
 // Library Tours
-export const useLibraryTours = () => {
+export const useLibraryTours = (searchTerm?: string, country?: string) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
   const { data, error, mutate } = useSWR(
-    ["/library-tours", page, limit],
-    () => getLibraryTours(undefined, limit, (page - 1) * limit)
+    ["/library-tours", page, limit, searchTerm, country],
+    () => getLibraryTours(searchTerm, country, limit, (page - 1) * limit)
   );
 
   return {
@@ -110,13 +110,13 @@ export const useLibraryTour = (id: string) => {
 };
 
 // Library Meals
-export const useLibraryMeals = () => {
+export const useLibraryMeals = (searchTerm?: string, country?: string) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
   const { data, error, mutate } = useSWR(
-    ["/library-meals", page, limit],
-    () => getLibraryMeals(undefined, limit, (page - 1) * limit)
+    ["/library-meals", page, limit, searchTerm, country],
+    () => getLibraryMeals(searchTerm, country, limit, (page - 1) * limit)
   );
 
   return {
@@ -154,13 +154,13 @@ export const useLibraryMeal = (id: string) => {
 };
 
 // Library Dishes
-export const useLibraryDishes = () => {
+export const useLibraryDishes = (searchTerm?: string, country?: string) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
   const { data, error, mutate } = useSWR(
-    ["/library-dishes", page, limit],
-    () => getLibraryDishes(undefined, limit, (page - 1) * limit)
+    ["/library-dishes", page, limit, searchTerm, country],
+    () => getLibraryDishes(searchTerm, country, limit, (page - 1) * limit)
   );
 
   return {

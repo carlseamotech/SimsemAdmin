@@ -9,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useLibraryDishes } from "@/hooks/use-experiences";
 import DishLibraryTableSkeleton from "./dish-library-table-skeleton";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -26,14 +25,28 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { LibraryDish } from "@/models/library";
 
 interface DishLibraryProps {
-  searchTerm: string;
+  dishes: LibraryDish[];
+  isLoading: boolean;
+  count: number;
+  page: number;
+  setPage: (page: number) => void;
+  limit: number;
+  setLimit: (limit: number) => void;
+  mutate: () => void;
 }
 
-const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
-  const { libraryDishes, count, isLoading, page, limit, setPage, mutate } =
-    useLibraryDishes();
+const DishLibraryPage: React.FC<DishLibraryProps> = ({
+  dishes,
+  isLoading,
+  count,
+  page,
+  setPage,
+  limit,
+  mutate,
+}) => {
   const router = useRouter();
   const [dialog, setDialog] = useState({
     isOpen: false,
@@ -50,15 +63,6 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
     } finally {
       setDialog({ isOpen: false, id: "" });
     }
-  };
-
-  const getFilteredDishes = () => {
-    if (!libraryDishes) return [];
-    return libraryDishes.filter(
-      (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.country.toLowerCase().includes(searchTerm.toLowerCase())
-    );
   };
 
   if (isLoading) {
@@ -92,7 +96,7 @@ const DishLibraryPage: React.FC<DishLibraryProps> = ({ searchTerm }) => {
         </TableHeader>
 
         <TableBody>
-          {getFilteredDishes().map((dish) => (
+          {dishes.map((dish) => (
             <TableRow
               key={dish.objectId}
               onClick={() =>

@@ -8,8 +8,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { Control, FieldValues, Path } from "react-hook-form";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface CountryDropdownProps<T extends FieldValues> {
   control: Control<T>;
@@ -28,13 +34,23 @@ export const CountryDropdown = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => {
+        if (isLoading) {
+          return (
+            <FormItem>
+              <Skeleton className="h-[59px] w-full rounded-xl" />
+              <FormMessage />
+            </FormItem>
+          );
+        }
+
+        const country = countries.find(
+          (c) => c.objectId === field.value || c.name === field.value
+        );
+        const value = country ? country.name : field.value;
+
         return (
           <FormItem>
-            <Select
-              onValueChange={field.onChange}
-              value={field.value}
-              disabled={isLoading}
-            >
+            <Select onValueChange={field.onChange} value={value}>
               <FormControl>
                 <SelectTrigger className="bg-white h-[59px] rounded-xl focus-visible:ring-0 w-full">
                   <SelectValue placeholder="Select a country" />
@@ -42,7 +58,7 @@ export const CountryDropdown = <T extends FieldValues>({
               </FormControl>
               <SelectContent>
                 {countries.map((country) => (
-                  <SelectItem key={country.name} value={country.name}>
+                  <SelectItem key={country.objectId} value={country.name}>
                     {country.name}
                   </SelectItem>
                 ))}

@@ -13,6 +13,7 @@ import { LibraryTour, LibraryMeal, LibraryDish } from "@/models/library";
 // Library Tours
 export const getLibraryTours = async (
   searchTerm?: string,
+  country?: string,
   limit: number = 10,
   skip: number = 0
 ): Promise<{ results: LibraryTour[]; count: number }> => {
@@ -23,13 +24,21 @@ export const getLibraryTours = async (
     skip: skip.toString(),
   };
 
+  const where: { name?: { $regex: string; $options: string }; country?: string } = {};
+
   if (searchTerm) {
-    params.where = JSON.stringify({
-      name: {
-        $regex: searchTerm,
-        $options: "i",
-      },
-    });
+    where.name = {
+      $regex: searchTerm,
+      $options: "i",
+    };
+  }
+
+  if (country) {
+    where.country = country;
+  }
+
+  if (Object.keys(where).length > 0) {
+    params.where = JSON.stringify(where);
   }
 
   const response = await api.get<{ results: LibraryTour[]; count: number }>(
@@ -71,6 +80,7 @@ export const deleteLibraryTour = async (id: string): Promise<void> => {
 // Library Meals
 export const getLibraryMeals = async (
   searchTerm?: string,
+  country?: string,
   limit: number = 10,
   skip: number = 0
 ): Promise<{ results: LibraryMeal[]; count: number }> => {
@@ -81,14 +91,23 @@ export const getLibraryMeals = async (
     skip: skip.toString(),
   };
 
+  const where: { name?: { $regex: string; $options: string }; country?: string } = {};
+
   if (searchTerm) {
-    params.where = JSON.stringify({
-      name: {
-        $regex: searchTerm,
-        $options: "i",
-      },
-    });
+    where.name = {
+      $regex: searchTerm,
+      $options: "i",
+    };
   }
+
+  if (country) {
+    where.country = country;
+  }
+
+  if (Object.keys(where).length > 0) {
+    params.where = JSON.stringify(where);
+  }
+
   const response = await api.get<{ results: LibraryMeal[]; count: number }>(
     "/classes/OfferedMeal",
     {
@@ -128,6 +147,7 @@ export const deleteLibraryMeal = async (id: string): Promise<void> => {
 // Library Dishes
 export const getLibraryDishes = async (
   searchTerm?: string,
+  country?: string,
   limit: number = 10,
   skip: number = 0
 ): Promise<{ results: LibraryDish[]; count: number }> => {
@@ -138,14 +158,23 @@ export const getLibraryDishes = async (
     skip: skip.toString(),
   };
 
+  const where: { name?: { $regex: string; $options: string }; country?: string } = {};
+
   if (searchTerm) {
-    params.where = JSON.stringify({
-      name: {
-        $regex: searchTerm,
-        $options: "i",
-      },
-    });
+    where.name = {
+      $regex: searchTerm,
+      $options: "i",
+    };
   }
+
+  if (country) {
+    where.country = country;
+  }
+
+  if (Object.keys(where).length > 0) {
+    params.where = JSON.stringify(where);
+  }
+
   const response = await api.get<{ results: LibraryDish[]; count: number }>(
     "/classes/OfferedDish",
     {

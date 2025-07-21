@@ -26,7 +26,7 @@ interface PromotionFormProps {
   promoToEdit?: PromoCode | null;
 }
 
-const PromotionFormPage: React.FC<PromotionFormProps> = ({
+const PromotionForm: React.FC<PromotionFormProps> = ({
   promoToEdit,
 }) => {
   const { createPromoCode, updatePromoCode } = usePromoCodes();
@@ -46,6 +46,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
   } = methods;
 
   useEffect(() => {
+    console.log("PromotionFormPage: promoToEdit", promoToEdit);
     if (isEditMode && promoToEdit) {
       reset({
         code: promoToEdit.code,
@@ -267,4 +268,4 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
   );
 };
 
-export default PromotionFormPage;
+export default PromotionForm;

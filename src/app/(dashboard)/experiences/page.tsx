@@ -15,7 +15,9 @@ import { useTours } from "@/hooks/use-tours";
 import {
   useLibraryTours,
   useLibraryMeals,
+  useLibraryDishes,
 } from "@/hooks/use-experiences";
+import { useDebounce } from "@/hooks/use-debounce";
 import { CreateLibraryItemModal } from "./components/create-library-item-modal";
 import ToursTable from "./components/tours-table";
 import MealsTable from "./components/meals-table";
@@ -34,6 +36,8 @@ const ExperiencesMainPage = () => {
     useState(false);
   const [experienceToEdit] = useState<ProposedTour | null>(null);
   const { count } = useTours(undefined, true, experienceId, hostId, country);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const debouncedCountry = useDebounce(country, 500);
   const {
     libraryTours,
     count: toursCount,
@@ -42,7 +46,7 @@ const ExperiencesMainPage = () => {
     setPage: setToursPage,
     limit: toursLimit,
     setLimit: setToursLimit,
-  } = useLibraryTours();
+  } = useLibraryTours(debouncedSearchTerm, debouncedCountry);
   const {
     libraryMeals,
     count: mealsCount,
@@ -51,7 +55,16 @@ const ExperiencesMainPage = () => {
     setPage: setMealsPage,
     limit: mealsLimit,
     setLimit: setMealsLimit,
-  } = useLibraryMeals();
+  } = useLibraryMeals(debouncedSearchTerm, debouncedCountry);
+  const {
+    libraryDishes,
+    count: dishesCount,
+    isLoading: dishesLoading,
+    page: dishesPage,
+    setPage: setDishesPage,
+    limit: dishesLimit,
+    setLimit: setDishesLimit,
+  } = useLibraryDishes(debouncedSearchTerm, debouncedCountry);
   const [activeTab, setActiveTab] = useState("experiences");
   const searchParams = useSearchParams();
 
@@ -135,7 +148,17 @@ const ExperiencesMainPage = () => {
             );
         }
       case "dish-library":
-        return <DishLibraryPage searchTerm={searchTerm} />;
+        return (
+          <DishLibraryPage
+            dishes={libraryDishes}
+            isLoading={dishesLoading}
+            count={dishesCount}
+            page={dishesPage}
+            setPage={setDishesPage}
+            limit={dishesLimit}
+            setLimit={setDishesLimit}
+          />
+        );
       default:
         return null;
     }
@@ -199,24 +222,37 @@ const ExperiencesMainPage = () => {
                         className="pl-10 w-48"
                       />
                     </div>
-                    <Input
-                      placeholder="Experience ID"
-                      value={experienceId}
-                      onChange={(e) => setExperienceId(e.target.value)}
-                      className="w-48"
-                    />
-                    <Input
-                      placeholder="Host ID"
-                      value={hostId}
-                      onChange={(e) => setHostId(e.target.value)}
-                      className="w-48"
-                    />
-                    <Input
-                      placeholder="Country"
-                      value={country}
-                      onChange={(e) => setCountry(e.target.value)}
-                      className="w-48"
-                    />
+                    {activeTab === "experiences" && (
+                      <>
+                        <Input
+                          placeholder="Experience ID"
+                          value={experienceId}
+                          onChange={(e) => setExperienceId(e.target.value)}
+                          className="w-48"
+                        />
+                        <Input
+                          placeholder="Host ID"
+                          value={hostId}
+                          onChange={(e) => setHostId(e.target.value)}
+                          className="w-48"
+                        />
+                        <Input
+                          placeholder="Country"
+                          value={country}
+                          onChange={(e) => setCountry(e.target.value)}
+                          className="w-48"
+                        />
+                      </>
+                    )}
+                    {activeTab === "experience-library" ||
+                      (activeTab === "dish-library" && (
+                        <Input
+                          placeholder="Country"
+                          value={country}
+                          onChange={(e) => setCountry(e.target.value)}
+                          className="w-48"
+                        />
+                      ))}
 
                     <div className="border-l border-[#D9D9DC] border h-9" />
 
