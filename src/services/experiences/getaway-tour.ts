@@ -1,8 +1,5 @@
-import { api } from "@/services/api";
-import {
-  CreateGetawayTourDTO,
-  UpdateGetawayTourDTO,
-} from "@/dtos/experiences";
+import api from "../api";
+import { CreateGetawayTourDTO, UpdateGetawayTourDTO } from "@/dtos";
 import { ProposedTour } from "@/models/proposed-tour";
 
 export const createGetawayTour = async (

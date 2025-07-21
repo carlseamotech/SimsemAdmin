@@ -1,12 +1,12 @@
-import { api } from "@/services/api";
+import api from "../api";
 import {
-  CreateLibraryTourDTO,
-  UpdateLibraryTourDTO,
-  CreateLibraryMealDTO,
-  UpdateLibraryMealDTO,
   CreateLibraryDishDTO,
+  CreateLibraryMealDTO,
+  CreateLibraryTourDTO,
   UpdateLibraryDishDTO,
-} from "@/dtos/experiences";
+  UpdateLibraryMealDTO,
+  UpdateLibraryTourDTO,
+} from "@/dtos";
 import { LibraryTour, LibraryMeal, LibraryDish } from "@/models/library";
 
 // Library Tours

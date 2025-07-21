@@ -1,15 +1,12 @@
 import { Country } from "@/models/country";
-import api from "@/services/api";
+import api from "./api";
 
-export interface CountriesResponse {
-  results: Country[];
-}
-
-export const getCountries = async (): Promise<CountriesResponse> => {
-  const response = await api.get<CountriesResponse>("/classes/Country", {
+export const getCountries = async (): Promise<{ results: Country[] }> => {
+  const response = await api.get("/classes/Country", {
     params: {
       limit: 200,
     },
   });
-  return response;
+  return response.data;
 };
+

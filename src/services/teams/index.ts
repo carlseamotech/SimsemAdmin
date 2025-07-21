@@ -4,6 +4,7 @@ import { TeamMember } from "@/models/team";
 import { Role } from "@/models/role";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase";
+import { AcceptInviteDTO, InviteTeamMemberDTO } from "@/dtos";
 
 export const getTeamMembers = async (): Promise<TeamMember[]> => {
   const teamCollection = collection(db, "team");
@@ -11,22 +12,21 @@ export const getTeamMembers = async (): Promise<TeamMember[]> => {
   return teamSnapshot.docs.map(doc => ({ objectId: doc.id, ...doc.data() } as TeamMember));
 };
 
-export const inviteTeamMember = async (email: string, role: Role): Promise<void> => {
+export const inviteTeamMember = async (data: InviteTeamMemberDTO): Promise<void> => {
   await fetch("/api/teams/invite", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, role }),
+    body: JSON.stringify(data),
   });
 };
 
 export const acceptInvite = async (
-  token: string,
-  password: string
+  data: AcceptInviteDTO
 ): Promise<void> => {
   const invitationsCollection = collection(db, "invitations");
-  const q = query(invitationsCollection, where("token", "==", token));
+  const q = query(invitationsCollection, where("token", "==", data.token));
   const querySnapshot = await getDocs(q);
 
   if (querySnapshot.empty) {
@@ -36,7 +36,11 @@ export const acceptInvite = async (
   const invitationDoc = querySnapshot.docs[0];
   const invitation = invitationDoc.data();
 
-  const userCredential = await createUserWithEmailAndPassword(auth, invitation.email, password);
+  if (!data.password) {
+    throw new Error("Password is required.");
+  }
+
+  const userCredential = await createUserWithEmailAndPassword(auth, invitation.email, data.password);
   const user = userCredential.user;
 
   const batch = writeBatch(db);
@@ -52,3 +56,4 @@ export const acceptInvite = async (
 
   await batch.commit();
 };
+

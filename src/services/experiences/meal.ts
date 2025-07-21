@@ -1,8 +1,8 @@
-import { api } from "@/services/api";
+import api from "../api";
 import {
   CreateDiningExperienceDTO,
   UpdateDiningExperienceDTO,
-} from "@/dtos/experiences";
+} from "@/dtos";
 import { Meal } from "@/models/meal";
 
 export const getMeals = async (

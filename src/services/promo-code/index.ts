@@ -1,6 +1,6 @@
 import api from "../api";
 import { PromoCode } from "@/models/promo-code";
-import { CreatePromoCodeDTO, UpdatePromoCodeDTO } from "@/dtos/promo-code";
+import { CreatePromoCodeDTO, UpdatePromoCodeDTO } from "@/dtos";
 
 const BASE_URL = "/classes/PromoCode";
 
@@ -8,32 +8,35 @@ export const getPromoCodes = async (
   limit: number,
   skip: number
 ): Promise<{ results: PromoCode[]; count: number }> => {
-  return await api.get(BASE_URL, {
+  const response = await api.get(BASE_URL, {
     params: {
       limit,
       skip,
       count: 1,
     },
   });
+  return response.data;
 };
 
 export const createPromoCode = async (
   promoCode: CreatePromoCodeDTO
 ): Promise<PromoCode> => {
-  return await api.post<PromoCode>(
+  const response = await api.post<PromoCode>(
     BASE_URL,
-    promoCode as unknown as Record<string, unknown>
+    promoCode as any
   );
+  return response.data;
 };
 
 export const updatePromoCode = async (
   id: string,
   promoCode: UpdatePromoCodeDTO
 ): Promise<PromoCode> => {
-  return await api.put<PromoCode>(
+  const response = await api.put<PromoCode>(
     `${BASE_URL}/${id}`,
-    promoCode as unknown as Record<string, unknown>
+    promoCode as any
   );
+  return response.data;
 };
 
 export const deletePromoCode = async (id: string): Promise<void> => {
