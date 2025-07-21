@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -20,18 +20,18 @@ import { usePromoCodes } from "@/hooks/use-promo-codes";
 import { CreatePromoCodeDTO, UpdatePromoCodeDTO } from "@/dtos/promo-code";
 import { PromoCode } from "@/models/promo-code";
 import { CountryDropdown } from "@/components/common/country-dropdown";
+import { useRouter } from "next/navigation";
 
 interface PromotionFormProps {
-  setShowForm: Dispatch<SetStateAction<boolean>>;
   promoToEdit?: PromoCode | null;
 }
 
 const PromotionFormPage: React.FC<PromotionFormProps> = ({
-  setShowForm,
   promoToEdit,
 }) => {
   const { createPromoCode, updatePromoCode } = usePromoCodes();
   const isEditMode = !!promoToEdit;
+  const router = useRouter();
 
   const methods = useForm<PromotionFormData>({
     resolver: zodResolver(promotionSchema),
@@ -88,7 +88,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
       const promoCodeData: CreatePromoCodeDTO = commonData;
       await createPromoCode(promoCodeData);
     }
-    setShowForm(false);
+    router.push("/promotions");
   };
 
   return (
@@ -121,7 +121,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
                   render={({ field }) => (
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      value={field.value}
                     >
                       <SelectTrigger className="bg-[#00000008] h-[59px] text-[19px] text-[#000000B2] rounded-xl p-6 border-0 focus-visible:ring-1">
                         <SelectValue placeholder="Select service type" />
@@ -147,6 +147,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
                   Country
                 </Label>
                 <CountryDropdown
+                  key={promoToEdit?.country}
                   control={control}
                   name="country"
                   label="Country"
@@ -217,7 +218,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
                   render={({ field }) => (
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      value={field.value}
                     >
                       <SelectTrigger className="bg-[#00000008] h-[59px] w-[120px] text-[19px] text-[#000000B2] rounded-xl p-6 border-0 focus-visible:ring-1">
                         <SelectValue placeholder="Type" />
@@ -246,7 +247,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
               type="button"
               variant="outline"
               size="lg"
-              onClick={() => setShowForm(false)}
+              onClick={() => router.back()}
               className="px-6 py-2 text-[16px] bg-[#3D3D3D80] hover:text-white hover:bg-gray-500 text-white h-[48px] rounded-xl"
             >
               Cancel

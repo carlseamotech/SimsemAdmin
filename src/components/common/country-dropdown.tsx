@@ -28,16 +28,11 @@ export const CountryDropdown = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => {
-        const country = countries.find(
-          (c) => c.objectId === field.value || c.name === field.value
-        );
-        const value = country ? country.name : field.value;
-
         return (
           <FormItem>
             <Select
               onValueChange={field.onChange}
-              value={value}
+              value={field.value}
               disabled={isLoading}
             >
               <FormControl>
@@ -47,7 +42,7 @@ export const CountryDropdown = <T extends FieldValues>({
               </FormControl>
               <SelectContent>
                 {countries.map((country) => (
-                  <SelectItem key={country.objectId} value={country.name}>
+                  <SelectItem key={country.name} value={country.name}>
                     {country.name}
                   </SelectItem>
                 ))}

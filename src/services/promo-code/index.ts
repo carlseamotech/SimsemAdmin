@@ -23,20 +23,20 @@ export const getPromoCodes = async (
 
 export const getPromoCode = async (id: string): Promise<PromoCode> => {
   return api.get<PromoCode>(`${BASE_URL}/${id}`);
-}
+};
 
 export const createPromoCode = async (
-  promoCode: CreatePromoCodeDTO
+  data: CreatePromoCodeDTO
 ): Promise<PromoCode> => {
-  const response = await api.post<PromoCode>(BASE_URL, promoCode);
+  const response = await api.post<PromoCode>(BASE_URL, data);
   return response;
 };
 
 export const updatePromoCode = async (
   id: string,
-  promoCode: UpdatePromoCodeDTO
+  data: UpdatePromoCodeDTO
 ): Promise<PromoCode> => {
-  await api.put<PromoCode>(`${BASE_URL}/${id}`, promoCode);
+  await api.put<PromoCode>(`${BASE_URL}/${id}`, data);
   return getPromoCode(id);
 };
 
