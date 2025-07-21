@@ -18,7 +18,11 @@ export interface LibraryTour {
   description: string;
   country: string;
   feature: string;
-  cost: string;
+  cost: number;
+  minDuration: number;
+  maxDuration: number;
+  timeUnit: string;
+  requirements: string[];
 }
 
 export interface LibraryMeal {
@@ -27,6 +31,7 @@ export interface LibraryMeal {
   description: string;
   country: string;
   cost: string;
+  dishIds: string[];
 }
 
 export interface LibraryDish {
