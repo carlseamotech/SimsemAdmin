@@ -140,7 +140,7 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
                 onValueChange={(value) =>
                   setValue(
                     "difficultyLevel",
-                    value as "Beginger" | "Intermediate" | "Advanced"
+                    value as "Beginner" | "Intermediate" | "Advanced"
                   )
                 }
                 defaultValue={tour.difficultyLevel}

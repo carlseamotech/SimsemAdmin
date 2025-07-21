@@ -46,6 +46,7 @@ const ExperiencesMainPage = () => {
     setPage: setToursPage,
     limit: toursLimit,
     setLimit: setToursLimit,
+    mutate: mutateTours,
   } = useLibraryTours(debouncedSearchTerm, debouncedCountry);
   const {
     libraryMeals,
@@ -55,6 +56,7 @@ const ExperiencesMainPage = () => {
     setPage: setMealsPage,
     limit: mealsLimit,
     setLimit: setMealsLimit,
+    mutate: mutateMeals,
   } = useLibraryMeals(debouncedSearchTerm, debouncedCountry);
   const {
     libraryDishes,
@@ -64,6 +66,7 @@ const ExperiencesMainPage = () => {
     setPage: setDishesPage,
     limit: dishesLimit,
     setLimit: setDishesLimit,
+    mutate: mutateDishes,
   } = useLibraryDishes(debouncedSearchTerm, debouncedCountry);
   const [activeTab, setActiveTab] = useState("experiences");
   const searchParams = useSearchParams();
@@ -120,6 +123,7 @@ const ExperiencesMainPage = () => {
                 setPage={setToursPage}
                 limit={toursLimit}
                 setLimit={setToursLimit}
+                mutate={mutateTours}
               />
             );
           case "meals":
@@ -132,6 +136,7 @@ const ExperiencesMainPage = () => {
                 setPage={setMealsPage}
                 limit={mealsLimit}
                 setLimit={setMealsLimit}
+                mutate={mutateMeals}
               />
             );
           default:
@@ -144,6 +149,7 @@ const ExperiencesMainPage = () => {
                 setPage={setToursPage}
                 limit={toursLimit}
                 setLimit={setToursLimit}
+                mutate={mutateTours}
               />
             );
         }
@@ -157,6 +163,7 @@ const ExperiencesMainPage = () => {
             setPage={setDishesPage}
             limit={dishesLimit}
             setLimit={setDishesLimit}
+            mutate={mutateDishes}
           />
         );
       default:

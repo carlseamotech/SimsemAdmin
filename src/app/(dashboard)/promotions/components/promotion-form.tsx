@@ -121,6 +121,7 @@ const PromotionForm: React.FC<PromotionFormProps> = ({
                   control={control}
                   render={({ field }) => (
                     <Select
+                      key={promoToEdit?.serviceType}
                       onValueChange={field.onChange}
                       value={field.value}
                     >
