@@ -1,6 +1,9 @@
-import { Role } from '@/models/role';
+import { z } from "zod";
+import { Role } from "@/models/role";
 
-export interface InviteTeamMemberDTO {
-  email: string;
-  role: Role;
-}
+export const inviteTeamMemberSchema = z.object({
+  email: z.string().email(),
+  role: z.nativeEnum(Role),
+});
+
+export type InviteTeamMemberDTO = z.infer<typeof inviteTeamMemberSchema>;

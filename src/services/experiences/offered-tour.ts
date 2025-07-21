@@ -1,20 +1,20 @@
 import { api } from "@/services/api";
 import {
-  CreateGetawayTourDTO,
-  UpdateGetawayTourDTO,
+  CreateOfferedTourDTO,
+  UpdateOfferedTourDTO,
 } from "@/dtos/experiences";
 import { ProposedTour } from "@/models/proposed-tour";
 
-export const createGetawayTour = async (
-  data: CreateGetawayTourDTO
+export const createOfferedTour = async (
+  data: CreateOfferedTourDTO
 ): Promise<ProposedTour> => {
   const response = await api.post("/classes/ProposedTour", data);
   return response.data;
 };
 
-export const updateGetawayTour = async (
+export const updateOfferedTour = async (
   id: string,
-  data: UpdateGetawayTourDTO
+  data: UpdateOfferedTourDTO
 ): Promise<ProposedTour> => {
   const response = await api.put(`/classes/ProposedTour/${id}`, data);
   return response.data;

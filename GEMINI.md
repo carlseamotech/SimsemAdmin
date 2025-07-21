@@ -33,7 +33,7 @@ For more detailed information on each layer, please refer to the `GEMINI.md` fil
 - **Backend:** The application communicates with a Parse Server backend, as detailed in `collections/admin-panel-collection.json`.
 - **API Client:** A central API client is located at `src/services/api.ts`. This client handles the `fetch` logic, including adding the necessary `X-Parse-Application-Id` and `X-Parse-REST-API-Key` headers to every request.
 - **Environment Variables:** API credentials and the base URL are managed through a `.env.local` file.
-- **Data Transfer Objects (DTOs):** All data sent to or received from the API should be typed using DTOs. These DTOs should be defined in the `src/dtos` directory and should be named with the `DTO` suffix (e.g., `CreateExperienceDTO`).
+- **Data Transfer Objects (DTOs):** All data sent to or received from the API is typed using `zod` schemas. These DTOs are defined in the `src/dtos` directory. For more details, see `src/dtos/GEMINI.md`.
 
 ## 4. State Management
 

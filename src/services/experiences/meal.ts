@@ -1,36 +1,41 @@
-import { CreateDiningExperienceDTO } from "@/dtos/experiences/create-dining-experience.dto";
-import api from "../api";
+import { api } from "@/services/api";
+import {
+  CreateDiningExperienceDTO,
+  UpdateDiningExperienceDTO,
+} from "@/dtos/experiences";
 import { Meal } from "@/models/meal";
 
-const BASE_URL = "/classes/SelectedMeal";
-
-export type UpdateMealDTO = Partial<Omit<Meal, "objectId" | "createdAt" | "updatedAt">>;
-
-export const getMeals = async (limit?: number): Promise<Meal[]> => {
-  const params: Record<string, unknown> = {
-    order: "-createdAt",
-  };
-  if (limit) {
-    params.limit = limit;
-  }
-  const response = await api.get<{ results: Meal[] }>(BASE_URL, { params });
-  return response.results;
+export const getMeals = async (
+  limit: number,
+  skip: number,
+  filter: any
+): Promise<{ results: Meal[]; count: number }> => {
+  const response = await api.get("/classes/SelectedMeal", {
+    params: { limit, skip, where: filter, count: 1 },
+  });
+  return response.data;
 };
 
 export const getMeal = async (id: string): Promise<Meal> => {
-  return await api.get<Meal>(`${BASE_URL}/${id}`);
+  const response = await api.get(`/classes/SelectedMeal/${id}`);
+  return response.data;
 };
 
 export const createDiningExperience = async (
-  meal: CreateDiningExperienceDTO
+  data: CreateDiningExperienceDTO
 ): Promise<Meal> => {
-  return await api.post<Meal>(BASE_URL, meal);
+  const response = await api.post("/classes/SelectedMeal", data);
+  return response.data;
 };
 
-export const updateMeal = async (id: string, meal: UpdateMealDTO): Promise<Meal> => {
-  return await api.put<Meal>(`${BASE_URL}/${id}`, meal as Record<string, unknown>);
+export const updateMeal = async (
+  id: string,
+  data: UpdateDiningExperienceDTO
+): Promise<Meal> => {
+  const response = await api.put(`/classes/SelectedMeal/${id}`, data);
+  return response.data;
 };
 
 export const deleteMeal = async (id: string): Promise<void> => {
-  await api.delete(`${BASE_URL}/${id}`);
+  await api.delete(`/classes/SelectedMeal/${id}`);
 };

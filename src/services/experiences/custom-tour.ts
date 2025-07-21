@@ -1,19 +1,21 @@
-import api from "@/services/api";
-import { CreateCustomTourDTO } from "@/dtos/experiences/create-custom-tour-dto";
+import { api } from "@/services/api";
+import {
+  CreateCustomTourDTO,
+  UpdateCustomTourDTO,
+} from "@/dtos/experiences";
 import { ProposedTour } from "@/models/proposed-tour";
-import { UpdateExperienceDTO } from "@/dtos/experiences/update-experience-dto";
-
-const BASE_URL = "/classes/ProposedTour";
 
 export const createCustomTour = async (
-  tour: CreateCustomTourDTO
+  data: CreateCustomTourDTO
 ): Promise<ProposedTour> => {
-  return await api.post<ProposedTour>(BASE_URL, tour);
+  const response = await api.post("/classes/ProposedTour", data);
+  return response.data;
 };
 
 export const updateCustomTour = async (
   id: string,
-  tour: UpdateExperienceDTO
+  data: UpdateCustomTourDTO
 ): Promise<ProposedTour> => {
-  return await api.put<ProposedTour>(`${BASE_URL}/${id}`, tour);
+  const response = await api.put(`/classes/ProposedTour/${id}`, data);
+  return response.data;
 };
