@@ -1,3 +1,4 @@
+"use client";
 import { useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useLibraryTours, useLibraryMeals } from "@/hooks/use-experiences";
+import { useLibraryTours } from "@/hooks/use-experiences";
+import { useLibraryMeals } from "@/hooks/use-library-meals";
 import {
   LibraryTour,
   LibraryMeal,
@@ -38,12 +40,8 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
     setPage: setToursPage,
   } = useLibraryTours();
   const {
-    libraryMeals,
-    count: mealsCount,
+    meals,
     isLoading: mealsLoading,
-    page: mealsPage,
-    limit: mealsLimit,
-    setPage: setMealsPage,
   } = useLibraryMeals();
   const router = useRouter();
   const allLibraryItems = useMemo(() => {
@@ -51,13 +49,13 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
       ...tour,
       itemType: "Tour",
     }));
-    const meals = libraryMeals?.map((meal) => ({
+    const mealsItems = meals?.map((meal) => ({
       ...meal,
-      itemType: "Meal",
+      itemType: "Dining",
     }));
 
-    return [...(tours || []), ...(meals || [])];
-  }, [libraryTours, libraryMeals]);
+    return [...(tours || []), ...(mealsItems || [])];
+  }, [libraryTours, meals]);
 
   const getFilteredLibrary = () => {
     let data: CombinedLibraryItem[] = allLibraryItems;
@@ -117,7 +115,7 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
                 <Badge
                   variant="secondary"
                   className={`rounded-full text-[16px] font-normal ${
-                    experience.itemType === "Meal"
+                    experience.itemType === "Dining"
                       ? "bg-[#0D2E6140] text-[#0D2E61]"
                       : "bg-[#FBB04040] text-[#F28E33]"
                   }`}
@@ -166,39 +164,21 @@ const ExperienceLibraryPage: React.FC<ExperienceLibraryProps> = ({
       </Table>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {activeFilter === "all" || activeFilter === "tour"
-            ? `${toursPage} of ${Math.ceil(toursCount / toursLimit)} pages`
-            : `${mealsPage} of ${Math.ceil(mealsCount / mealsLimit)} pages`}
+          {toursPage} of {Math.ceil(toursCount / toursLimit)} pages
         </div>
         <Button
           variant="outline"
           size="sm"
-          onClick={() =>
-            activeFilter === "all" || activeFilter === "tour"
-              ? setToursPage(toursPage - 1)
-              : setMealsPage(mealsPage - 1)
-          }
-          disabled={
-            activeFilter === "all" || activeFilter === "tour"
-              ? toursPage === 1
-              : mealsPage === 1
-          }
+          onClick={() => setToursPage(toursPage - 1)}
+          disabled={toursPage === 1}
         >
           <ChevronLeft className="w-4 h-4" />
         </Button>
         <Button
           variant="outline"
           size="sm"
-          onClick={() =>
-            activeFilter === "all" || activeFilter === "tour"
-              ? setToursPage(toursPage + 1)
-              : setMealsPage(mealsPage + 1)
-          }
-          disabled={
-            activeFilter === "all" || activeFilter === "tour"
-              ? toursPage === Math.ceil(toursCount / toursLimit)
-              : mealsPage === Math.ceil(mealsCount / mealsLimit)
-          }
+          onClick={() => setToursPage(toursPage + 1)}
+          disabled={toursPage === Math.ceil(toursCount / toursLimit)}
         >
           <ChevronRight className="w-4 h-4" />
         </Button>
