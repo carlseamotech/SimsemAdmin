@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import DishFormPage from "@/app/(dashboard)/experiences/components/dish-form";
 import DishLibraryPage from "@/app/(dashboard)/experiences/components/dish-library-table";
-import ExperiencesPage from "@/app/(dashboard)/experiences/components/experiences-table";
-import ExperienceLibraryPage from "@/app/(dashboard)/experiences/components/experience-library-table";
+import ToursTable from "@/app/(dashboard)/experiences/components/tours-table";
+import MealsTable from "@/app/(dashboard)/experiences/components/meals-table";
 import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-experience";
+import ExperiencesPage from "@/app/(dashboard)/experiences/components/experiences-table";
 import { useSearchParams } from "next/navigation";
 import { ProposedTour } from "@/models/proposed-tour";
 import { ExperienceForm } from "./components/experience-form";
@@ -16,7 +17,7 @@ import { useTours } from "@/hooks/use-experiences";
 import { OfferExperienceModal } from "./components/experience-library-modal";
 
 const ExperiencesMainPage = () => {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("tours");
   const [searchTerm, setSearchTerm] = useState("");
   const [experienceId, setExperienceId] = useState("");
   const [hostId, setHostId] = useState("");
@@ -48,7 +49,7 @@ const ExperiencesMainPage = () => {
     if (activeTab === "experiences") {
       return ["all", "for-approval", "active", "inactive"];
     } else if (activeTab === "experience-library") {
-      return ["all", "dining", "local-living"];
+      return ["tours", "meals"];
     }
     return [];
   };
@@ -56,8 +57,8 @@ const ExperiencesMainPage = () => {
   const getFilterLabel = (filter: string) => {
     const labels: { [key: string]: string } = {
       all: "All",
-      dining: "Dining",
-      "local-living": "Local Living",
+      tours: "Tours",
+      meals: "Meals",
       "for-approval": "For Approval",
       active: "Active",
       inactive: "Inactive",
@@ -78,12 +79,14 @@ const ExperiencesMainPage = () => {
           />
         );
       case "experience-library":
-        return (
-          <ExperienceLibraryPage
-            activeFilter={activeFilter}
-            searchTerm={searchTerm}
-          />
-        );
+        switch (activeFilter) {
+          case "tours":
+            return <ToursTable searchTerm={searchTerm} />;
+          case "meals":
+            return <MealsTable searchTerm={searchTerm} />;
+          default:
+            return <ToursTable searchTerm={searchTerm} />;
+        }
       case "dish-library":
         return <DishLibraryPage searchTerm={searchTerm} />;
       default:
