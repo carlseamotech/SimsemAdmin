@@ -72,7 +72,7 @@ export const useLibraryTours = () => {
 
   const { data, error, mutate } = useSWR(
     ["/library-tours", page, limit],
-    () => getLibraryTours(limit, (page - 1) * limit)
+    () => getLibraryTours(undefined, limit, (page - 1) * limit)
   );
 
   return {
@@ -116,7 +116,7 @@ export const useLibraryMeals = () => {
 
   const { data, error, mutate } = useSWR(
     ["/library-meals", page, limit],
-    () => getLibraryMeals(limit, (page - 1) * limit)
+    () => getLibraryMeals(undefined, limit, (page - 1) * limit)
   );
 
   return {
@@ -160,7 +160,7 @@ export const useLibraryDishes = () => {
 
   const { data, error, mutate } = useSWR(
     ["/library-dishes", page, limit],
-    () => getLibraryDishes(limit, (page - 1) * limit)
+    () => getLibraryDishes(undefined, limit, (page - 1) * limit)
   );
 
   return {

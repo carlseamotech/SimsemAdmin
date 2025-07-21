@@ -8,7 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useLibraryTours } from "@/hooks/use-experiences";
 import ExperienceLibraryTableSkeleton from "./experience-library-table-skeleton";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -25,21 +24,28 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { LibraryTour } from "@/models/library";
 
 interface ToursTableProps {
-  searchTerm: string;
+  tours: LibraryTour[];
+  isLoading: boolean;
+  count: number;
+  page: number;
+  setPage: (page: number) => void;
+  limit: number;
+  setLimit: (limit: number) => void;
+  mutate: () => void;
 }
 
-const ToursTable: React.FC<ToursTableProps> = ({ searchTerm }) => {
-  const {
-    libraryTours,
-    count,
-    isLoading,
-    page,
-    limit,
-    setPage,
-    mutate,
-  } = useLibraryTours();
+const ToursTable: React.FC<ToursTableProps> = ({
+  tours,
+  isLoading,
+  count,
+  page,
+  setPage,
+  limit,
+  mutate,
+}) => {
   const router = useRouter();
   const [dialog, setDialog] = useState({
     isOpen: false,
@@ -56,14 +62,6 @@ const ToursTable: React.FC<ToursTableProps> = ({ searchTerm }) => {
     } finally {
       setDialog({ isOpen: false, id: "" });
     }
-  };
-
-  const getFilteredTours = () => {
-    return libraryTours.filter(
-      (tour) =>
-        tour.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        tour.country.toLowerCase().includes(searchTerm.toLowerCase())
-    );
   };
 
   if (isLoading) {
@@ -91,7 +89,7 @@ const ToursTable: React.FC<ToursTableProps> = ({ searchTerm }) => {
         </TableHeader>
 
         <TableBody>
-          {getFilteredTours().map((tour) => (
+          {tours.map((tour) => (
             <TableRow
               key={tour.objectId}
               onClick={() =>

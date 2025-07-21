@@ -1,5 +1,5 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -25,7 +25,7 @@ type DishFormData = z.infer<typeof dishSchema>;
 
 export const DishForm = () => {
   const router = useRouter();
-  const form = useForm<DishFormData>({
+  const methods = useForm<DishFormData>({
     resolver: zodResolver(dishSchema),
   });
 
@@ -34,7 +34,7 @@ export const DishForm = () => {
     register,
     formState: { isSubmitting },
     control,
-  } = form;
+  } = methods;
 
   const onSubmit: SubmitHandler<DishFormData> = async (data) => {
     try {
@@ -57,34 +57,36 @@ export const DishForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <Label htmlFor="name">Name</Label>
-        <Input id="name" {...register("name")} />
-      </div>
-      <div>
-        <Label htmlFor="ingredients">Ingredients</Label>
-        <Textarea id="ingredients" {...register("ingredients")} />
-      </div>
-      <div>
-        <Label htmlFor="country">Country</Label>
-        <CountryDropdown control={control} name="country" label="Country" />
-      </div>
-      <div>
-        <Label htmlFor="type">Type</Label>
-        <Input id="type" {...register("type")} />
-      </div>
-      <div>
-        <Label htmlFor="course">Course</Label>
-        <Input id="course" {...register("course")} />
-      </div>
-      <div>
-        <Label htmlFor="image">Image</Label>
-        <Input id="image" type="file" {...register("image")} />
-      </div>
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Creating..." : "Create"}
-      </Button>
-    </form>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div>
+          <Label htmlFor="name">Name</Label>
+          <Input id="name" {...register("name")} />
+        </div>
+        <div>
+          <Label htmlFor="ingredients">Ingredients</Label>
+          <Textarea id="ingredients" {...register("ingredients")} />
+        </div>
+        <div>
+          <Label htmlFor="country">Country</Label>
+          <CountryDropdown control={control} name="country" label="Country" />
+        </div>
+        <div>
+          <Label htmlFor="type">Type</Label>
+          <Input id="type" {...register("type")} />
+        </div>
+        <div>
+          <Label htmlFor="course">Course</Label>
+          <Input id="course" {...register("course")} />
+        </div>
+        <div>
+          <Label htmlFor="image">Image</Label>
+          <Input id="image" type="file" {...register("image")} />
+        </div>
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Creating..." : "Create"}
+        </Button>
+      </form>
+    </FormProvider>
   );
 };

@@ -12,6 +12,10 @@ import { useSearchParams } from "next/navigation";
 import { ProposedTour } from "@/models/proposed-tour";
 import { ExperienceForm } from "./components/experience-form";
 import { useTours } from "@/hooks/use-tours";
+import {
+  useLibraryTours,
+  useLibraryMeals,
+} from "@/hooks/use-experiences";
 import { CreateLibraryItemModal } from "./components/create-library-item-modal";
 import ToursTable from "./components/tours-table";
 import MealsTable from "./components/meals-table";
@@ -30,6 +34,24 @@ const ExperiencesMainPage = () => {
     useState(false);
   const [experienceToEdit] = useState<ProposedTour | null>(null);
   const { count } = useTours(undefined, true, experienceId, hostId, country);
+  const {
+    libraryTours,
+    count: toursCount,
+    isLoading: toursLoading,
+    page: toursPage,
+    setPage: setToursPage,
+    limit: toursLimit,
+    setLimit: setToursLimit,
+  } = useLibraryTours();
+  const {
+    libraryMeals,
+    count: mealsCount,
+    isLoading: mealsLoading,
+    page: mealsPage,
+    setPage: setMealsPage,
+    limit: mealsLimit,
+    setLimit: setMealsLimit,
+  } = useLibraryMeals();
   const [activeTab, setActiveTab] = useState("experiences");
   const searchParams = useSearchParams();
 
@@ -76,11 +98,41 @@ const ExperiencesMainPage = () => {
       case "experience-library":
         switch (activeFilter) {
           case "tours":
-            return <ToursTable searchTerm={searchTerm} />;
+            return (
+              <ToursTable
+                tours={libraryTours}
+                isLoading={toursLoading}
+                count={toursCount}
+                page={toursPage}
+                setPage={setToursPage}
+                limit={toursLimit}
+                setLimit={setToursLimit}
+              />
+            );
           case "meals":
-            return <MealsTable searchTerm={searchTerm} />;
+            return (
+              <MealsTable
+                meals={libraryMeals}
+                isLoading={mealsLoading}
+                count={mealsCount}
+                page={mealsPage}
+                setPage={setMealsPage}
+                limit={mealsLimit}
+                setLimit={setMealsLimit}
+              />
+            );
           default:
-            return <ToursTable searchTerm={searchTerm} />;
+            return (
+              <ToursTable
+                tours={libraryTours}
+                isLoading={toursLoading}
+                count={toursCount}
+                page={toursPage}
+                setPage={setToursPage}
+                limit={toursLimit}
+                setLimit={setToursLimit}
+              />
+            );
         }
       case "dish-library":
         return <DishLibraryPage searchTerm={searchTerm} />;

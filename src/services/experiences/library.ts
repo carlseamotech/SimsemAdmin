@@ -12,11 +12,15 @@ import { LibraryTour, LibraryMeal, LibraryDish } from "@/models/library";
 
 // Library Tours
 export const getLibraryTours = async (
-  searchTerm?: string
+  searchTerm?: string,
+  limit: number = 10,
+  skip: number = 0
 ): Promise<{ results: LibraryTour[]; count: number }> => {
   const params: ParsedUrlQuery = {
     order: "-createdAt",
     count: "1",
+    limit: limit.toString(),
+    skip: skip.toString(),
   };
 
   if (searchTerm) {
@@ -66,11 +70,15 @@ export const deleteLibraryTour = async (id: string): Promise<void> => {
 
 // Library Meals
 export const getLibraryMeals = async (
-  searchTerm?: string
+  searchTerm?: string,
+  limit: number = 10,
+  skip: number = 0
 ): Promise<{ results: LibraryMeal[]; count: number }> => {
   const params: ParsedUrlQuery = {
     order: "-createdAt",
     count: "1",
+    limit: limit.toString(),
+    skip: skip.toString(),
   };
 
   if (searchTerm) {
@@ -119,11 +127,15 @@ export const deleteLibraryMeal = async (id: string): Promise<void> => {
 
 // Library Dishes
 export const getLibraryDishes = async (
-  searchTerm?: string
+  searchTerm?: string,
+  limit: number = 10,
+  skip: number = 0
 ): Promise<{ results: LibraryDish[]; count: number }> => {
   const params: ParsedUrlQuery = {
     order: "-createdAt",
     count: "1",
+    limit: limit.toString(),
+    skip: skip.toString(),
   };
 
   if (searchTerm) {

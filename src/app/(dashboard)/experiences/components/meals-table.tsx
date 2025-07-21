@@ -8,7 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useLibraryMeals } from "@/hooks/use-library-meals";
 import ExperienceLibraryTableSkeleton from "./experience-library-table-skeleton";
 import { useRouter } from "next/navigation";
 import { deleteLibraryMeal } from "@/services/experiences/library";
@@ -24,13 +23,29 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { LibraryMeal } from "@/models/library";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface MealsTableProps {
-  searchTerm: string;
+  meals: LibraryMeal[];
+  isLoading: boolean;
+  count: number;
+  page: number;
+  setPage: (page: number) => void;
+  limit: number;
+  setLimit: (limit: number) => void;
+  mutate: () => void;
 }
 
-const MealsTable: React.FC<MealsTableProps> = ({ searchTerm }) => {
-  const { meals, isLoading, mutate } = useLibraryMeals();
+const MealsTable: React.FC<MealsTableProps> = ({
+  meals,
+  isLoading,
+  count,
+  page,
+  setPage,
+  limit,
+  mutate,
+}) => {
   const router = useRouter();
   const [dialog, setDialog] = useState({
     isOpen: false,
@@ -47,14 +62,6 @@ const MealsTable: React.FC<MealsTableProps> = ({ searchTerm }) => {
     } finally {
       setDialog({ isOpen: false, id: "" });
     }
-  };
-
-  const getFilteredMeals = () => {
-    return meals.filter(
-      (meal) =>
-        meal.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        meal.country.toLowerCase().includes(searchTerm.toLowerCase())
-    );
   };
 
   if (isLoading) {
@@ -82,7 +89,7 @@ const MealsTable: React.FC<MealsTableProps> = ({ searchTerm }) => {
         </TableHeader>
 
         <TableBody>
-          {getFilteredMeals().map((meal) => (
+          {meals.map((meal) => (
             <TableRow
               key={meal.objectId}
               onClick={() =>
@@ -130,6 +137,27 @@ const MealsTable: React.FC<MealsTableProps> = ({ searchTerm }) => {
           ))}
         </TableBody>
       </Table>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex-1 text-sm text-muted-foreground">
+          {page} of {Math.ceil(count / limit)} pages
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(page - 1)}
+          disabled={page === 1}
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(page + 1)}
+          disabled={page === Math.ceil(count / limit)}
+        >
+          <ChevronRight className="w-4 h-4" />
+        </Button>
+      </div>
       <AlertDialog
         open={dialog.isOpen}
         onOpenChange={() => setDialog({ isOpen: false, id: "" })}

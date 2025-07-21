@@ -1,5 +1,5 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -26,7 +26,7 @@ type MealFormData = z.infer<typeof mealSchema>;
 export const MealForm = () => {
   const router = useRouter();
   const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
-  const form = useForm<MealFormData>({
+  const methods = useForm<MealFormData>({
     resolver: zodResolver(mealSchema),
   });
 
@@ -35,7 +35,7 @@ export const MealForm = () => {
     register,
     formState: { isSubmitting },
     control,
-  } = form;
+  } = methods;
 
   const onSubmit: SubmitHandler<MealFormData> = async (data) => {
     try {
@@ -61,35 +61,37 @@ export const MealForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <Label htmlFor="name">Name</Label>
-        <Input id="name" {...register("name")} />
-      </div>
-      <div>
-        <Label htmlFor="description">Description</Label>
-        <Textarea id="description" {...register("description")} />
-      </div>
-      <div>
-        <Label htmlFor="country">Country</Label>
-        <CountryDropdown control={control} name="country" label="Country" />
-      </div>
-      <div>
-        <Label htmlFor="cost">Cost</Label>
-        <Input id="cost" {...register("cost")} />
-      </div>
-      <div>
-        <Label htmlFor="coverImage">Cover Image</Label>
-        <Input
-          id="coverImage"
-          type="file"
-          onChange={(e) => setCoverImageFile(e.target.files?.[0] || null)}
-        />
-      </div>
-      {/* Add dishIds editing here */}
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Creating..." : "Create"}
-      </Button>
-    </form>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div>
+          <Label htmlFor="name">Name</Label>
+          <Input id="name" {...register("name")} />
+        </div>
+        <div>
+          <Label htmlFor="description">Description</Label>
+          <Textarea id="description" {...register("description")} />
+        </div>
+        <div>
+          <Label htmlFor="country">Country</Label>
+          <CountryDropdown control={control} name="country" label="Country" />
+        </div>
+        <div>
+          <Label htmlFor="cost">Cost</Label>
+          <Input id="cost" {...register("cost")} />
+        </div>
+        <div>
+          <Label htmlFor="coverImage">Cover Image</Label>
+          <Input
+            id="coverImage"
+            type="file"
+            onChange={(e) => setCoverImageFile(e.target.files?.[0] || null)}
+          />
+        </div>
+        {/* Add dishIds editing here */}
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Creating..." : "Create"}
+        </Button>
+      </form>
+    </FormProvider>
   );
 };

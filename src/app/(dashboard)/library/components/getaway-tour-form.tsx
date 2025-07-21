@@ -1,5 +1,10 @@
 "use client";
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import {
+  useForm,
+  SubmitHandler,
+  useFieldArray,
+  FormProvider,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   createGetawayTourSchema,
@@ -23,17 +28,19 @@ interface GetawayTourFormProps {
 
 export const GetawayTourForm: React.FC<GetawayTourFormProps> = ({ tour }) => {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    control,
-  } = useForm<CreateGetawayTourDTO | UpdateGetawayTourDTO>({
+  const methods = useForm<CreateGetawayTourDTO | UpdateGetawayTourDTO>({
     resolver: zodResolver(
       tour ? updateGetawayTourSchema : createGetawayTourSchema
     ),
     defaultValues: tour ? { ...tour, type: "getaway" } : { type: "getaway" },
   });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    control,
+  } = methods;
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -58,66 +65,68 @@ export const GetawayTourForm: React.FC<GetawayTourFormProps> = ({ tour }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <label htmlFor="name">Name</label>
-        <Input id="name" {...register("name")} />
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="description">Description</label>
-        <Input id="description" {...register("description")} />
-        {errors.description && (
-          <p className="text-red-500">{errors.description.message}</p>
-        )}
-      </div>
-      <div>
-        <label htmlFor="city">City</label>
-        <Input id="city" {...register("city")} />
-        {errors.city && <p className="text-red-500">{errors.city.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="country">Country</label>
-        <CountryDropdown control={control} name="country" label="Country" />
-        {errors.country && (
-          <p className="text-red-500">{errors.country.message}</p>
-        )}
-      </div>
-      <div>
-        <label>Tour Packages</label>
-        {fields.map((field, index) => (
-          <div key={field.id} className="flex items-center gap-4">
-            <Input
-              {...register(`tourPackages.${index}.fromPerson`)}
-              placeholder="From Person"
-            />
-            <Input
-              {...register(`tourPackages.${index}.toPerson`)}
-              placeholder="To Person"
-            />
-            <Input
-              {...register(`tourPackages.${index}.cost`)}
-              placeholder="Cost"
-            />
-            <Button
-              type="button"
-              variant="destructive"
-              onClick={() => remove(index)}
-            >
-              Remove
-            </Button>
-          </div>
-        ))}
-        <Button
-          type="button"
-          onClick={() => append({ fromPerson: "", toPerson: "", cost: "" })}
-        >
-          Add Package
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div>
+          <label htmlFor="name">Name</label>
+          <Input id="name" {...register("name")} />
+          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+        </div>
+        <div>
+          <label htmlFor="description">Description</label>
+          <Input id="description" {...register("description")} />
+          {errors.description && (
+            <p className="text-red-500">{errors.description.message}</p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="city">City</label>
+          <Input id="city" {...register("city")} />
+          {errors.city && <p className="text-red-500">{errors.city.message}</p>}
+        </div>
+        <div>
+          <label htmlFor="country">Country</label>
+          <CountryDropdown control={control} name="country" label="Country" />
+          {errors.country && (
+            <p className="text-red-500">{errors.country.message}</p>
+          )}
+        </div>
+        <div>
+          <label>Tour Packages</label>
+          {fields.map((field, index) => (
+            <div key={field.id} className="flex items-center gap-4">
+              <Input
+                {...register(`tourPackages.${index}.fromPerson`)}
+                placeholder="From Person"
+              />
+              <Input
+                {...register(`tourPackages.${index}.toPerson`)}
+                placeholder="To Person"
+              />
+              <Input
+                {...register(`tourPackages.${index}.cost`)}
+                placeholder="Cost"
+              />
+              <Button
+                type="button"
+                variant="destructive"
+                onClick={() => remove(index)}
+              >
+                Remove
+              </Button>
+            </div>
+          ))}
+          <Button
+            type="button"
+            onClick={() => append({ fromPerson: "", toPerson: "", cost: "" })}
+          >
+            Add Package
+          </Button>
+        </div>
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Saving..." : "Save"}
         </Button>
-      </div>
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Saving..." : "Save"}
-      </Button>
-    </form>
+      </form>
+    </FormProvider>
   );
 };

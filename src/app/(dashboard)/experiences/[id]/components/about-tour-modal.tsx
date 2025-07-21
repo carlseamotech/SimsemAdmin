@@ -1,5 +1,5 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   experienceSchema,
@@ -43,7 +43,7 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
   mutate,
   difficultyLevels,
 }) => {
-  const form = useForm<ExperienceFormData>({
+  const methods = useForm<ExperienceFormData>({
     resolver: zodResolver(experienceSchema),
     defaultValues: {
       name: "",
@@ -63,7 +63,7 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
     formState: { isSubmitting },
     reset,
     control,
-  } = form;
+  } = methods;
 
   useEffect(() => {
     if (tour) {
@@ -100,72 +100,74 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
         <DialogHeader>
           <DialogTitle>Edit About the Tour</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Name
-            </label>
-            <Input id="name" {...register("name")} />
-          </div>
-          <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-              Description
-            </label>
-            <Textarea id="description" {...register("description")} />
-          </div>
-          <div>
-            <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-              Country
-            </label>
-            <CountryDropdown control={control} name="country" label="Country" />
-          </div>
-          <div>
-            <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-              City
-            </label>
-            <Input id="city" {...register("city")} />
-          </div>
-          <div>
-            <label htmlFor="tourDuration" className="block text-sm font-medium text-gray-700">
-              Tour Duration
-            </label>
-            <Input id="tourDuration" {...register("tourDuration")} />
-          </div>
-          <div>
-            <label htmlFor="difficultyLevel" className="block text-sm font-medium text-gray-700">
-              Difficulty Level
-            </label>
-            <Select
-              onValueChange={(value) =>
-                setValue(
-                  "difficultyLevel",
-                  value as "Beginner" | "Intermediate" | "Advanced"
-                )
-              }
-              defaultValue={tour.difficultyLevel}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select difficulty" />
-              </SelectTrigger>
-              <SelectContent>
-                {difficultyLevels.map((level) => (
-                  <SelectItem key={level} value={level}>
-                    {level}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          {/* Add tour features editing here */}
-          <DialogFooter>
-            <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Save"}
-            </Button>
-          </DialogFooter>
-        </form>
+        <FormProvider {...methods}>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                Name
+              </label>
+              <Input id="name" {...register("name")} />
+            </div>
+            <div>
+              <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                Description
+              </label>
+              <Textarea id="description" {...register("description")} />
+            </div>
+            <div>
+              <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                Country
+              </label>
+              <CountryDropdown control={control} name="country" label="Country" />
+            </div>
+            <div>
+              <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                City
+              </label>
+              <Input id="city" {...register("city")} />
+            </div>
+            <div>
+              <label htmlFor="tourDuration" className="block text-sm font-medium text-gray-700">
+                Tour Duration
+              </label>
+              <Input id="tourDuration" {...register("tourDuration")} />
+            </div>
+            <div>
+              <label htmlFor="difficultyLevel" className="block text-sm font-medium text-gray-700">
+                Difficulty Level
+              </label>
+              <Select
+                onValueChange={(value) =>
+                  setValue(
+                    "difficultyLevel",
+                    value as "Beginger" | "Intermediate" | "Advanced"
+                  )
+                }
+                defaultValue={tour.difficultyLevel}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select difficulty" />
+                </SelectTrigger>
+                <SelectContent>
+                  {difficultyLevels.map((level) => (
+                    <SelectItem key={level} value={level}>
+                      {level}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            {/* Add tour features editing here */}
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Saving..." : "Save"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </FormProvider>
       </DialogContent>
     </Dialog>
   );
