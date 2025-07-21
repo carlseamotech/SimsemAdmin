@@ -6,10 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { LibraryDish } from "@/models/library";
-import { updateLibraryDish } from "@/services/experiences/library";
+import { updateLibraryDish } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
+import { CountryDropdown } from "@/components/common/country-dropdown";
 
 const dishSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -42,6 +43,7 @@ export const DishForm: React.FC<DishFormProps> = ({ dish }) => {
     handleSubmit,
     register,
     formState: { isSubmitting },
+    control,
   } = form;
 
   const onSubmit: SubmitHandler<DishFormData> = async (data) => {
@@ -66,7 +68,7 @@ export const DishForm: React.FC<DishFormProps> = ({ dish }) => {
       </div>
       <div>
         <Label htmlFor="country">Country</Label>
-        <Input id="country" {...register("country")} />
+        <CountryDropdown control={control} name="country" label="Country" />
       </div>
       <div>
         <Label htmlFor="type">Type</Label>

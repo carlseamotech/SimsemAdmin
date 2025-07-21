@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { CountryDropdown } from "@/components/common/country-dropdown";
 
 const mealSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -33,6 +34,7 @@ export const MealForm = () => {
     handleSubmit,
     register,
     formState: { isSubmitting },
+    control,
   } = form;
 
   const onSubmit: SubmitHandler<MealFormData> = async (data) => {
@@ -70,7 +72,7 @@ export const MealForm = () => {
       </div>
       <div>
         <Label htmlFor="country">Country</Label>
-        <Input id="country" {...register("country")} />
+        <CountryDropdown control={control} name="country" label="Country" />
       </div>
       <div>
         <Label htmlFor="cost">Cost</Label>

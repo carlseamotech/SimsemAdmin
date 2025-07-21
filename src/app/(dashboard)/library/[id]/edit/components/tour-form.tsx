@@ -6,10 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { LibraryTour } from "@/models/library";
-import { updateLibraryTour } from "@/services/experiences/library";
+import { updateLibraryTour } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
+import { CountryDropdown } from "@/components/common/country-dropdown";
 
 const tourSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -50,6 +51,7 @@ export const TourForm: React.FC<TourFormProps> = ({ tour }) => {
     handleSubmit,
     register,
     formState: { isSubmitting },
+    control,
   } = form;
 
   const onSubmit: SubmitHandler<TourFormData> = async (data) => {
@@ -74,7 +76,7 @@ export const TourForm: React.FC<TourFormProps> = ({ tour }) => {
       </div>
       <div>
         <Label htmlFor="country">Country</Label>
-        <Input id="country" {...register("country")} />
+        <CountryDropdown control={control} name="country" label="Country" />
       </div>
       <div>
         <Label htmlFor="cost">Cost</Label>

@@ -5,6 +5,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { ProposedTour } from "@/models/proposed-tour";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import { CountryDropdown } from "@/components/common/country-dropdown";
 
 const experienceSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -68,7 +69,7 @@ export const ExperienceForm: React.FC<ExperienceFormProps> = ({
 }) => {
   const isEditMode = !!experienceToEdit;
 
-  const { handleSubmit, reset } = useForm<ExperienceFormData>({
+  const { handleSubmit, reset, control } = useForm<ExperienceFormData>({
     resolver: zodResolver(experienceSchema),
   });
 
@@ -140,6 +141,7 @@ export const ExperienceForm: React.FC<ExperienceFormProps> = ({
         <div className="space-y-6 px-8 pb-8">
           <div className="text-[30px] text-[#0D2E61]">Experience Details</div>
           {/* Add form fields here */}
+          <CountryDropdown control={control} name="country" label="Country" />
         </div>
 
         <div className="flex justify-between space-x-4 pt-6 border-t border-gray-200 p-8">

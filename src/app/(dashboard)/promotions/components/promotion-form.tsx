@@ -19,6 +19,7 @@ import {
 import { usePromoCodes } from "@/hooks/use-promo-codes";
 import { CreatePromoCodeDTO, UpdatePromoCodeDTO } from "@/dtos/promo-code";
 import { PromoCode } from "@/models/promo-code";
+import { CountryDropdown } from "@/components/common/country-dropdown";
 
 interface PromotionFormProps {
   setShowForm: Dispatch<SetStateAction<boolean>>;
@@ -142,12 +143,7 @@ const PromotionFormPage: React.FC<PromotionFormProps> = ({
               >
                 Country
               </Label>
-              <Input
-                id="country"
-                {...register("country")}
-                placeholder="e.g. Egypt"
-                className="bg-[#00000008] h-[59px] text-[19px] text-[#000000B2] rounded-xl p-6 border-0 focus-visible:ring-1"
-              />
+              <CountryDropdown control={control} name="country" label="Country" />
               {errors.country && (
                 <p className="text-red-500 mt-1">{errors.country.message}</p>
               )}

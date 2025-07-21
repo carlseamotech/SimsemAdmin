@@ -23,9 +23,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
+import { updateCustomTour } from "@/services";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import { CountryDropdown } from "@/components/common/country-dropdown";
 
 interface AboutTourModalProps {
   tour: ProposedTour;
@@ -61,6 +62,7 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
     setValue,
     formState: { isSubmitting },
     reset,
+    control,
   } = form;
 
   useEffect(() => {
@@ -115,7 +117,7 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
             <label htmlFor="country" className="block text-sm font-medium text-gray-700">
               Country
             </label>
-            <Input id="country" {...register("country")} />
+            <CountryDropdown control={control} name="country" label="Country" />
           </div>
           <div>
             <label htmlFor="city" className="block text-sm font-medium text-gray-700">

@@ -15,6 +15,7 @@ import { ProposedTour } from "@/models/proposed-tour";
 import { createGetawayTour, updateGetawayTour } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { CountryDropdown } from "@/components/common/country-dropdown";
 
 interface GetawayTourFormProps {
   tour?: ProposedTour;
@@ -77,7 +78,7 @@ export const GetawayTourForm: React.FC<GetawayTourFormProps> = ({ tour }) => {
       </div>
       <div>
         <label htmlFor="country">Country</label>
-        <Input id="country" {...register("country")} />
+        <CountryDropdown control={control} name="country" label="Country" />
         {errors.country && (
           <p className="text-red-500">{errors.country.message}</p>
         )}
