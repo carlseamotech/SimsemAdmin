@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { getTour } from "@/services/experiences";
+import { getTour } from "@/services";
 
 export const useTour = (id: string) => {
   const { data, error, mutate } = useSWR(id ? `/tours/${id}` : null, () =>

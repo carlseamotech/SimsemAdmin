@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { getLibraryDishes } from "@/services/experiences/library";
+import { getLibraryDishes } from "@/services";
 
 export const useLibraryDishes = () => {
   const { data, error, mutate } = useSWR("/library/dishes", () =>

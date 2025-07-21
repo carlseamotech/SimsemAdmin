@@ -5,10 +5,11 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createLibraryTour } from "@/services/experiences/library";
+import { createLibraryTour, uploadFile } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
 const tourSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -19,13 +20,15 @@ const tourSchema = z.object({
   maxDuration: z.number().min(0, "Required"),
   feature: z.string().min(1, "Required"),
   timeUnit: z.string().min(1, "Required"),
-  requirements: z.array(z.string()).optional().default([]),
+  requirements: z.array(z.string()),
+  coverImage: z.any(),
 });
 
 type TourFormData = z.infer<typeof tourSchema>;
 
 export const TourForm = () => {
   const router = useRouter();
+  const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
   const form = useForm<TourFormData>({
     resolver: zodResolver(tourSchema),
   });
@@ -38,7 +41,20 @@ export const TourForm = () => {
 
   const onSubmit: SubmitHandler<TourFormData> = async (data) => {
     try {
-      await createLibraryTour(data);
+      let coverImageUrl = "";
+      if (coverImageFile) {
+        const uploadedFile = await uploadFile(coverImageFile);
+        coverImageUrl = uploadedFile.url;
+      }
+
+      await createLibraryTour({
+        ...data,
+        coverImage: {
+          __type: "File",
+          name: coverImageFile?.name || "",
+          url: coverImageUrl,
+        },
+      });
       toast.success("Tour created successfully");
       router.push("/experiences?tab=experience-library");
     } catch {
@@ -91,6 +107,14 @@ export const TourForm = () => {
       <div>
         <Label htmlFor="timeUnit">Time Unit</Label>
         <Input id="timeUnit" {...register("timeUnit")} />
+      </div>
+      <div>
+        <Label htmlFor="coverImage">Cover Image</Label>
+        <Input
+          id="coverImage"
+          type="file"
+          onChange={(e) => setCoverImageFile(e.target.files?.[0] || null)}
+        />
       </div>
       {/* Add requirements editing here */}
       <Button type="submit" disabled={isSubmitting}>

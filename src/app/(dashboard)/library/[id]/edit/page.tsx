@@ -34,7 +34,7 @@ const LibraryItemEditPage = () => {
       case "dish":
         return <DishForm dish={item as LibraryDish} />;
       case "getaway":
-        return <GetawayTourForm tour={item as ProposedTour} />;
+        return <GetawayTourForm tour={item as unknown as ProposedTour} />;
       default:
         return null;
     }

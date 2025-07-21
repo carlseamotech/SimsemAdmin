@@ -20,7 +20,7 @@ import { Packages } from "./components/packages";
 import WhereToMeet from "./components/meet";
 import DateAndTime from "./components/dateandtime";
 import { ExperienceDetailsSkeleton } from "./components/experience-details-skeleton";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
+import { updateCustomTour } from "@/services";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -230,7 +230,7 @@ const ExperienceDetailsPage = () => {
                     </div>
 
                     <div className="flex flex-wrap gap-2 ">
-                      {tour.tourFeatures?.map((feature) => (
+                      {tour.tourFeatures?.map((feature: string) => (
                         <Badge
                           key={feature}
                           className="text-[15px] text-[#3D3D3D] bg-[#0D2E610D] rounded-full px-4 py-1.5"

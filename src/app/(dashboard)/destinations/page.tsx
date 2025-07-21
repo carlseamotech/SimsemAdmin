@@ -1,4 +1,5 @@
 "use client";
+import { Destination } from "@/models/destination";
 import { useDestinations } from "@/hooks/use-destinations";
 import {
   Table,
@@ -36,10 +37,12 @@ export default function DestinationsPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {destinations?.map((destination) => (
+            {destinations?.results.map((destination: Destination) => (
               <TableRow
                 key={destination.objectId}
-                onClick={() => router.push(`/destinations/${destination.objectId}`)}
+                onClick={() =>
+                  router.push(`/destinations/${destination.objectId}`)
+                }
                 className="cursor-pointer"
               >
                 <TableCell>

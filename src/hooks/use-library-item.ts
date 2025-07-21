@@ -4,7 +4,7 @@ import {
   getLibraryTour,
   getLibraryMeal,
   getLibraryDish,
-} from "@/services/experiences/library";
+} from "@/services";
 import { useParams, useSearchParams } from "next/navigation";
 import { LibraryTour, LibraryMeal, LibraryDish } from "@/models/library";
 
@@ -25,7 +25,7 @@ export const useLibraryItem = () => {
 
   const { data, error, mutate } = useSWR(
     `/library/${id}?type=${type}`,
-    fetcher as any
+    fetcher
   );
 
   return {

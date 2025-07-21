@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "objectId": "18OcDgtHZX",
+      "dishIds": [
+        "0uwUFWVFsH",
+        "AaV3JFZvpA",
+        "Z2pLxfSWbh",
+        "mg5kKnLF5d",
+        "Wc8WzgC9Kl"
+      ],
+      "name": "Breakfast: National",
+      "coverImage": {
+        "__type": "File",
+        "name": "c3b88706b60b68ac3f6a12010d8a7195_Rectangle 3.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c3b88706b60b68ac3f6a12010d8a7195_Rectangle%203.png"
+      },
+      "country": "",
+      "description": "Served with Bread, homemade tea, coffee and water. ",
+      "cost": "14",
+      "createdAt": "2022-09-17T19:31:32.692Z",
+      "updatedAt": "2025-06-27T04:42:56.693Z"
+    },
+    {
+      "objectId": "nnS9vkzNZW",
+      "dishIds": [
+        "bgcNSaDQxR",
+        "1KPFoXaY5Y",
+        "6RNxa3TLa6",
+        "93xn2aeFkA",
+        "3nFQFlLmjH",
+        "HFf2ZYc3XU"
+      ],
+      "name": "Lunch in Istanbul",
+      "coverImage": {
+        "__type": "File",
+        "name": "cee90f89c0e62dfd9c0746e19f2940d3_images.jpeg",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/cee90f89c0e62dfd9c0746e19f2940d3_images.jpeg"
+      },
+      "country": "",
+      "description": "Tarhana Soup, Piyaz, Baklava, Bore, Imam Bayildi",
+      "createdAt": "2022-02-15T18:00:36.207Z",
+      "updatedAt": "2025-06-27T04:42:58.799Z",
+      "cost": "20"
+    },
+    {
+      "objectId": "Xift5zvpGP",
+      "dishIds": [
+        "2VWYX39IXA",
+        "wHCx2QJX5F"
+      ],
+      "name": "Lunch : Feed Your Mind",
+      "coverImage": {
+        "__type": "File",
+        "name": "6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg"
+      },
+      "country": "",
+      "description": "Served with Bread, homemade tea, coffee and water. ",
+      "cost": "20",
+      "createdAt": "2022-09-17T19:44:50.110Z",
+      "updatedAt": "2025-06-27T04:42:54.153Z"
+    }
+  ]
+}

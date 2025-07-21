@@ -8,35 +8,36 @@ export const getPromoCodes = async (
   limit: number,
   skip: number
 ): Promise<{ results: PromoCode[]; count: number }> => {
-  const response = await api.get(BASE_URL, {
-    params: {
-      limit,
-      skip,
-      count: 1,
-    },
-  });
-  return response.data;
+  const response = await api.get<{ results: PromoCode[]; count: number }>(
+    BASE_URL,
+    {
+      params: {
+        limit,
+        skip,
+        count: 1,
+      },
+    }
+  );
+  return response;
 };
+
+export const getPromoCode = async (id: string): Promise<PromoCode> => {
+  return api.get<PromoCode>(`${BASE_URL}/${id}`);
+}
 
 export const createPromoCode = async (
   promoCode: CreatePromoCodeDTO
 ): Promise<PromoCode> => {
-  const response = await api.post<PromoCode>(
-    BASE_URL,
-    promoCode as any
-  );
-  return response.data;
+  const response = await api.post<PromoCode>(BASE_URL, promoCode);
+  return response;
 };
 
 export const updatePromoCode = async (
   id: string,
   promoCode: UpdatePromoCodeDTO
 ): Promise<PromoCode> => {
-  const response = await api.put<PromoCode>(
-    `${BASE_URL}/${id}`,
-    promoCode as any
-  );
-  return response.data;
+  await api.put<PromoCode>(`${BASE_URL}/${id}`, promoCode);
+  return getPromoCode(id);
 };
 
 export const deletePromoCode = async (id: string): Promise<void> => {

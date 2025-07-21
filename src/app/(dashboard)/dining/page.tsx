@@ -11,6 +11,7 @@ import { uploadFile } from "@/services/files";
 import toast from "react-hot-toast";
 import Step1SelectHost from "./components/step1-select-host";
 import Step2MealName from "./components/step2-meal-name";
+import Step2Description from "./components/step2-description";
 import Step3BasicInfo from "./components/step3-basic-info";
 import Step4Menu from "./components/step4-menu";
 import Step5CoverPhoto from "./components/step5-cover-photo";
@@ -20,10 +21,11 @@ import Step7Summary from "./components/step7-summary";
 const CreateDiningExperiencePage = () => {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 7;
+  const totalSteps = 8;
   const methods = useForm<FormData>({
     defaultValues: {
       name: "",
+      description: "",
       country: "",
       city: "",
       hostId: "",
@@ -51,7 +53,9 @@ const CreateDiningExperiencePage = () => {
     let isValid = true;
     if (currentStep === 1) isValid = await trigger("hostId");
     if (currentStep === 2) isValid = await trigger("name");
-    if (currentStep === 3) isValid = await trigger(["country", "city", "mealDuration"]);
+    if (currentStep === 3) isValid = await trigger("description");
+    if (currentStep === 4)
+      isValid = await trigger(["country", "city", "mealDuration"]);
 
     if (!isValid) {
       toast.error("Please fill in all required fields");
@@ -69,7 +73,9 @@ const CreateDiningExperiencePage = () => {
           const coverImageUrl = coverImageFile
             ? (
                 await uploadFile(
-                  new File([coverImageFile], "cover.jpg", { type: "image/jpeg" })
+                  new File([coverImageFile], "cover.jpg", {
+                    type: "image/jpeg",
+                  })
                 )
               ).url
             : "";
@@ -77,8 +83,6 @@ const CreateDiningExperiencePage = () => {
           const diningData = {
             ...data,
             coverImageUrl,
-            thingsToKnow: data.thingsToKnow.map((item) => JSON.stringify(item)),
-            courses: data.courses.map((item) => JSON.stringify(item)),
           };
 
           await createDiningExperience(diningData);
@@ -109,14 +113,16 @@ const CreateDiningExperiencePage = () => {
       case 2:
         return <Step2MealName />;
       case 3:
-        return <Step3BasicInfo />;
+        return <Step2Description />;
       case 4:
-        return <Step4Menu />;
+        return <Step3BasicInfo />;
       case 5:
-        return <Step5CoverPhoto />;
+        return <Step4Menu />;
       case 6:
-        return <Step6ThingsToKnow />;
+        return <Step5CoverPhoto />;
       case 7:
+        return <Step6ThingsToKnow />;
+      case 8:
         return <Step7Summary formData={formData} />;
       default:
         return null;

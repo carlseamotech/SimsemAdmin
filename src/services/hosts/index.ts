@@ -10,7 +10,7 @@ export const getHosts = async (
   skip: number,
   filter?: { where: Record<string, unknown> }
 ): Promise<{ results: Host[]; count: number }> => {
-  const response = await api.get(BASE_URL, {
+  return api.get(BASE_URL, {
     params: {
       limit,
       skip,
@@ -19,44 +19,51 @@ export const getHosts = async (
       ...filter,
     },
   });
-  return response.data;
 };
 
 export const getHost = async (id: string): Promise<Host> => {
-  const response = await api.get<Host>(`${BASE_URL}/${id}`);
-  return response.data;
+  return api.get<Host>(`${BASE_URL}/${id}`);
 };
 
-export const updateHost = async (id: string, host: UpdateHostInfoDTO): Promise<Host> => {
-  const response = await api.put<Host>(`${BASE_URL}/${id}`, host as any);
-  return response.data;
+export const updateHost = async (
+  id: string,
+  host: UpdateHostInfoDTO
+): Promise<Host> => {
+  await api.put(`${BASE_URL}/${id}`, host);
+  return getHost(id);
 };
 
 export const deleteHost = async (phone: string): Promise<void> => {
-  await api.post("/functions/deleteUser", { phone, userType: "service_provider" });
+  await api.post("/functions/deleteUser", {
+    phone,
+    userType: "service_provider",
+  });
 };
 
-export const updateHostPayment = async (id: string, payment: UpdateHostPaymentDTO): Promise<HostPayment> => {
-  const response = await api.put<HostPayment>(`${PAYMENT_BASE_URL}/${id}`, payment as any);
-  return response.data;
+export const updateHostPayment = async (
+  id: string,
+  payment: UpdateHostPaymentDTO
+): Promise<HostPayment> => {
+  await api.put(`${PAYMENT_BASE_URL}/${id}`, payment);
+  return getHostPayment(id);
 };
 
 export const getHostPayment = async (id: string): Promise<HostPayment> => {
-  const response = await api.get<HostPayment>(`${PAYMENT_BASE_URL}/${id}`);
-  return response.data;
+  return api.get<HostPayment>(`${PAYMENT_BASE_URL}/${id}`);
 };
 
 export const approveHost = async (id: string): Promise<Host> => {
-  const response = await api.put<Host>(`${BASE_URL}/${id}`, {
+  await api.put(`${BASE_URL}/${id}`, {
     isVerified: true,
-  } as any);
-  return response.data;
+  });
+  return getHost(id);
 };
 
 export const declineHost = async (id: string): Promise<Host> => {
-  const response = await api.put<Host>(`${BASE_URL}/${id}`, {
+  await api.put(`${BASE_URL}/${id}`, {
     isVerified: false,
-  } as any);
-  return response.data;
+  });
+  return getHost(id);
 };
+
 

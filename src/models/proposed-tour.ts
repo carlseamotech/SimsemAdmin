@@ -23,16 +23,25 @@ export interface ProposedTour {
   isApproved: boolean;
   isNotified: boolean;
   isActive: boolean;
-  tourPackages: string[];
-  pickupPoints: string[];
+  tourPackages: { fromPerson: string; toPerson: string; cost: string }[];
+  pickupPoints: {
+    value: {
+      cameraZoom: number;
+      pickupPointTitle: string;
+      pickupPoint: string;
+      pickupPointLat: number;
+      pickupPointLong: number;
+    };
+    key: string;
+  }[];
   createdAt: string;
   updatedAt: string;
   offeredTourId?: string;
   maxGuest?: string;
-  thingsToKnow?: string[];
+  thingsToKnow?: { title: string; description: string }[];
   exclusions?: string[];
   inclusions?: string[];
-  itinerary?: string[];
+  itinerary?: { title: string; description: string; day: string }[];
   whatToExpect?: string;
   courses?: string[];
 }

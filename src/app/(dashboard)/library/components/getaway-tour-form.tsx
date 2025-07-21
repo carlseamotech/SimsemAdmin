@@ -1,5 +1,5 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   createGetawayTourSchema,
@@ -12,10 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ProposedTour } from "@/models/proposed-tour";
-import {
-  createGetawayTour,
-  updateGetawayTour,
-} from "@/services/experiences/getaway-tour";
+import { createGetawayTour, updateGetawayTour } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
@@ -29,11 +26,17 @@ export const GetawayTourForm: React.FC<GetawayTourFormProps> = ({ tour }) => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    control,
   } = useForm<CreateGetawayTourDTO | UpdateGetawayTourDTO>({
     resolver: zodResolver(
       tour ? updateGetawayTourSchema : createGetawayTourSchema
     ),
-    defaultValues: tour || {},
+    defaultValues: tour ? { ...tour, type: "getaway" } : { type: "getaway" },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "tourPackages",
   });
 
   const onSubmit: SubmitHandler<
@@ -48,7 +51,7 @@ export const GetawayTourForm: React.FC<GetawayTourFormProps> = ({ tour }) => {
         toast.success("Getaway tour created successfully");
       }
       router.push("/experiences?tab=experience-library");
-    } catch (error) {
+    } catch {
       toast.error("Failed to save getaway tour");
     }
   };
@@ -56,9 +59,9 @@ export const GetawayTourForm: React.FC<GetawayTourFormProps> = ({ tour }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <label htmlFor="title">Title</label>
-        <Input id="title" {...register("title")} />
-        {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+        <label htmlFor="name">Name</label>
+        <Input id="name" {...register("name")} />
+        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
       </div>
       <div>
         <label htmlFor="description">Description</label>
@@ -80,9 +83,36 @@ export const GetawayTourForm: React.FC<GetawayTourFormProps> = ({ tour }) => {
         )}
       </div>
       <div>
-        <label htmlFor="price">Price</label>
-        <Input id="price" type="number" {...register("price")} />
-        {errors.price && <p className="text-red-500">{errors.price.message}</p>}
+        <label>Tour Packages</label>
+        {fields.map((field, index) => (
+          <div key={field.id} className="flex items-center gap-4">
+            <Input
+              {...register(`tourPackages.${index}.fromPerson`)}
+              placeholder="From Person"
+            />
+            <Input
+              {...register(`tourPackages.${index}.toPerson`)}
+              placeholder="To Person"
+            />
+            <Input
+              {...register(`tourPackages.${index}.cost`)}
+              placeholder="Cost"
+            />
+            <Button
+              type="button"
+              variant="destructive"
+              onClick={() => remove(index)}
+            >
+              Remove
+            </Button>
+          </div>
+        ))}
+        <Button
+          type="button"
+          onClick={() => append({ fromPerson: "", toPerson: "", cost: "" })}
+        >
+          Add Package
+        </Button>
       </div>
       <Button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Saving..." : "Save"}

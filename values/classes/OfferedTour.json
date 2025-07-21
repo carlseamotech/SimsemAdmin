@@ -1,0 +1,233 @@
+{
+  "results": [
+    {
+      "objectId": "Sv7yJHLmXq",
+      "requirements": [
+        "Knowing a local hammam that you visit regularly.",
+        "Being able to give guidance and advice to your host."
+      ],
+      "name": "Today Feels like a Hammam Day! ",
+      "description": "You’ve been travelling for some time now and have seen so much, it’s been great but you’re feeling like you could slow down a bit. You also feel like being pampered and indulging… and you’ve considered the famous Middle Estern hammams…but you don’t feel completely comfortable with the idea…I get it and I got your back. The Hammam is a ritual and you could use a friendly companion. I can recommend the best one in town! You’ll feel like a new human after the experience and you I guarantee you it won’t be your last time!  Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "3dd8a0f31ba0712f1c435b303d5ca811_Hammam day.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/3dd8a0f31ba0712f1c435b303d5ca811_Hammam%20day.png"
+      },
+      "country": "",
+      "cost": 20,
+      "timeUnit": "hours",
+      "createdAt": "2023-01-02T05:43:30.624Z",
+      "updatedAt": "2023-10-28T06:49:05.303Z",
+      "minDuration": 2,
+      "feature": "Culture"
+    },
+    {
+      "objectId": "pKPBCPaQ86",
+      "requirements": [
+        "Knowledge of the shops that make Qatayef in the area you will visit",
+        "Knowledge of how it is  made to give a simple explanation",
+        "Agreeing with shop owners that visitors can taste the different varieties available"
+      ],
+      "name": "Visit Qatayef Bakeries",
+      "description": "The Qatayef dessert is one of the most important official sweets served during Ramadan. Almost every Jordanian household serves Qatayef for Ifatr during Ramadan. We will take you on a tour in the streets of Amman and we will visit the most famous bakeries that produce qatayef before Iftar. Qatayef production goes through  4 different stages: the first step consists of preparing the dough and baking it,  the second stage is stuffing the qatayef with different fillings (some like dates or nuts, while some prefer cheese or cream, and some, more recently, stuff the qatayef with Nutella). The third stage is that of frying the stuffed qatayef, while the final stage  is dipping the qatayef in honey. The final product is a true delight to the taste buds. You will see all these stages during your visit to the Qatayef shops in Ramadan, and you will taste the most delicious varieties of Qatayef. Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "fb77d9812a5b4ed146a4c39bcba61261_Qatayef Bakeries.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/fb77d9812a5b4ed146a4c39bcba61261_Qatayef%20Bakeries.png"
+      },
+      "country": "Jordan",
+      "cost": 20,
+      "timeUnit": "hours",
+      "minDuration": 2,
+      "createdAt": "2023-03-15T07:13:52.590Z",
+      "updatedAt": "2023-10-28T06:50:13.757Z",
+      "feature": "Ramadan"
+    },
+    {
+      "objectId": "r63GHBJKZ2",
+      "requirements": [
+        "Knowing a local hairdresser or barber shop where they know you well.",
+        "Translating for your host in case of need."
+      ],
+      "name": "Need a Haircut?",
+      "description": "You’ve all had a haircut before, many haircuts, in fact. But did you know that local hairdressers and barbershops have a totally different approach to that service you have so far which is considered very standard and almost uninteresting? Trust me on this. You will know as soon as you enter the place. Well if you need a haircut, or just a little trim, join me and I’ll take you to where I usually go! Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "379291bc731d38e67485830f03d6f3d6_Need a haircut.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/379291bc731d38e67485830f03d6f3d6_Need%20a%20haircut.png"
+      },
+      "country": "",
+      "cost": 15,
+      "timeUnit": "hours",
+      "createdAt": "2023-01-02T09:27:45.374Z",
+      "updatedAt": "2023-10-28T06:44:44.881Z",
+      "maxDuration": 2,
+      "minDuration": 1,
+      "feature": "Solo Travelers"
+    },
+    {
+      "objectId": "pZT4jRiy9F",
+      "requirements": [
+        "Know safe places that you can access with Toktok",
+        "Being able to talk in English to explain Egyptian daily activities in English",
+        "Help travelers to feel safe and sound and protect them from beggars."
+      ],
+      "name": "Fasten your seatbelt! Oh there is not any! It’s an Auto Rickshaw Tour!",
+      "description": "Do you think you have experienced the weirdest transportation? Please rethink again! In Egypt, you can find all types of modes, including horse and carriage, and donkey. Your experience will not be completed with auto rickshaw. It became the primary way to move between narrow lanes in the urban slums. You will want to record this moment and get access to local spots to explore the daily life of Egyptians. You will never get hungry in Egypt. Why? Because you will find vendors, food carts, and more. They offer everything you can imagine. You want to taste all and discover what street food in Egypt is all about. We don’t blame you. The air is loaded with irresistible aroma and you want to partake in what locals eat every day. But what if you’re going out to explore only delicious street food to avoid any digestive problems and find out historical food trucks and worthy local small vendor, you need to be accompanied with a local. Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "0da946032dc2f1652d04d4c4b5389529_Auto Rickshaw Tour.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0da946032dc2f1652d04d4c4b5389529_Auto%20Rickshaw%20Tour.png"
+      },
+      "country": "Egypt",
+      "cost": 5,
+      "minDuration": 0.25,
+      "maxDuration": 0.5,
+      "feature": "Tour",
+      "timeUnit": "hours",
+      "createdAt": "2023-07-23T10:01:29.684Z",
+      "updatedAt": "2023-10-28T06:33:48.480Z"
+    },
+    {
+      "objectId": "xS011caVGL",
+      "requirements": [
+        "Be a big fan of classic Egyptian movies",
+        "Know cinema schedule to choose the better movie with English subtitles",
+        "Being able to explain every cultural aspects in the movie and open critical discussions.",
+        "Invite travellers to have a cup of coffee to discuss what they have watched",
+        "Make sure that the cinema offers group discussions in the same time."
+      ],
+      "name": "Watch a Timeless Arabic Film: Cinema Zawya",
+      "description": "There is no better way to understand a country’s culture than watching movies. But it’s not just like any other movie theater. Cinema Zawya is a cultural center where you can find people from around the world who are fascinated about classic movies just like you. We are Egyptians and we know what you’d like to watch and what is considered time-wasting. All movies come with English subtitles. So, after watching a really good Arabic movie, you will join a group discussion to share with others what you think and strike questions to dig deeper in Egyptian culture, and know more about Egyptian superstars who framed the Arabic cinema scene. So, let’s have an authentic movie night in the heart of Cairo! Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "0f06c4404df0efef876233f981944b13_Arabic Film.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0f06c4404df0efef876233f981944b13_Arabic%20Film.png"
+      },
+      "country": "Egypt",
+      "cost": 20,
+      "minDuration": 2,
+      "maxDuration": 3,
+      "feature": "Culture",
+      "timeUnit": "hours",
+      "createdAt": "2023-07-23T10:33:58.762Z",
+      "updatedAt": "2023-10-28T06:50:58.753Z"
+    },
+    {
+      "objectId": "i8JDcadMUI",
+      "requirements": [
+        "Knowing a great local shisha place, where you are also known yourself because you are a regular guest",
+        "Being a shisha lover yourself and being able to make recommendations to the guest",
+        "Being social as you will be conversing over the shisha"
+      ],
+      "name": "Sunsetlit Shisha",
+      "description": "You do know that there is no better Shisha than in the Middle East. And the perk of course is that you can choose any flavor you want! Add to that an authentic cup of tea and you are in for a treat. But make no mistake, it’s the locals who know exactly where to go, they go to that specific place that gives every single detail its authentic touch for a truly marvelous experience! And the locals love their Shisha! Want to join on a beautiful evening? Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "2d0be05f12658f144740facd264e3475_Sunsetlit shisha.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/2d0be05f12658f144740facd264e3475_Sunsetlit%20shisha.png"
+      },
+      "country": "",
+      "cost": 20,
+      "timeUnit": "hours",
+      "createdAt": "2023-01-02T05:37:01.927Z",
+      "updatedAt": "2023-10-28T06:46:54.068Z",
+      "maxDuration": 3,
+      "minDuration": 2,
+      "feature": "Food"
+    },
+    {
+      "objectId": "CBkSHllsRi",
+      "requirements": [
+        "Knowing the historical buildings of Amman.",
+        "Knowing the history of the buildings you will be taking your guest to.",
+        "Being able to talk about the above in English."
+      ],
+      "name": "The Bells of the Old Churches",
+      "description": "We in the Middle East love to say that we are the cradle of the civilization, but let’s face it, our streets are really packed with historical monuments combining different cultural heritages. The churches in Amman are a proof and they are definitely hidden gems that do not get enough attention. Yet they should and I would like to take you on a tour to show you those temples and tell you their stories. Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "79356e924d2d7268a8d7b7c17001fb8a_The Bells of the Old Churches.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/79356e924d2d7268a8d7b7c17001fb8a_The%20Bells%20of%20the%20Old%20Churches.png"
+      },
+      "country": "",
+      "cost": 35,
+      "timeUnit": "hours",
+      "createdAt": "2023-01-03T04:28:52.480Z",
+      "updatedAt": "2023-10-28T06:48:03.140Z",
+      "maxDuration": 3,
+      "minDuration": 2,
+      "feature": "Culture"
+    },
+    {
+      "objectId": "fn09k4r3I8",
+      "requirements": [
+        "Have your favourite nearby qhwa.",
+        "Have friends who can communicate in English, funny, and friendly",
+        "Being able to explain games to play with travellers.",
+        "Offer a comfortable experience and invite travellers to taste local drinks, shisha, and so"
+      ],
+      "name": "My One and Only Place I Go Every Time Without Boring (A Normal Day of an Egyptian Guy)",
+      "description": "Let's venture to a Qahwa, a traditional café that is typically found on the streets of Egypt. Qahwas are considered the ultimate safe haven for Egyptian men. Whether they're looking to catch an important sports match, sip on a cup of coffee or tea, or simply enjoy a good laugh and quality time with their buddies, Qahwas are the go-to spot. Not just that, everyone has its preferred Qahwa and they can’t change it under any circumstances. What's more, Qahwas are one of the most affordable ways to enjoy oneself. Even if you don't order anything, no one will ask you to leave. You're cordially invited to partake in this authentic local experience, where you can witness firsthand how Egyptian men spend their evenings. Engage in a game of tables, one of the traditional games, or strike up a conversation with some of the humorous locals. Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "2c8a839a636093998ce2cd72c5700cd9_without Boring.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/2c8a839a636093998ce2cd72c5700cd9_without%20Boring.png"
+      },
+      "country": "Egypt",
+      "cost": 5,
+      "minDuration": 2,
+      "maxDuration": 3,
+      "feature": "Tour",
+      "timeUnit": "hours",
+      "createdAt": "2023-07-23T10:16:22.860Z",
+      "updatedAt": "2023-10-28T06:44:30.103Z"
+    },
+    {
+      "objectId": "NYyK9rqBnv",
+      "requirements": [
+        "Have visited Shorba before",
+        "Can guarantee  a decent place to enjoy their meals.",
+        "Offer the most authentic experience while enjoying the meal",
+        "Know the best time to get there to avoid crowds"
+      ],
+      "name": "Have Traditional Suhoor in Ramadan on The Most Popular Foul Cart in Egypt",
+      "description": "In Egypt’s Suhoor is an experience in itself. It’s the last meal Muslims eat during Ramadan, before the sunrise or Alfajr prayer. Since Ramadan is only month each year, Egyptians have their own rituals during the Suhoor. What’s more imagine you have this meal in one of the oldest districts in Cairo on the most popular foul cart in Egypt, Waheed Cart. You will get the most authentic Ramadan vibes around Cairo, eating traditional dishes, chatting, snapping away, and more. Exciting, right! Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "23541e0a7e70dd443c4cbd6d8bb833aa_The Most Popular Foul Cart in Egypt.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/23541e0a7e70dd443c4cbd6d8bb833aa_The%20Most%20Popular%20Foul%20Cart%20in%20Egypt.png"
+      },
+      "country": "Egypt",
+      "cost": 25,
+      "timeUnit": "hours",
+      "minDuration": 1,
+      "maxDuration": 2,
+      "feature": "Food",
+      "createdAt": "2023-07-23T16:48:47.458Z",
+      "updatedAt": "2023-10-28T06:36:59.136Z"
+    },
+    {
+      "objectId": "JSB5jv5p70",
+      "requirements": [
+        "Be muslim or have a good knowledge or understanding of the Islamic Culture",
+        "Have a good knowledge of Amman and the locations of the large mosques that perform Taraweeh prayers daily."
+      ],
+      "name": "Tarawih Prayer",
+      "description": "Tarawih prayer, one of the most important religious and spiritual rituals in the holy month of Ramadan, is something worth experiencing. Muslims perform Tarawih prayers immediately after the Isha (evening) prayer each day during the month of Ramadan.  They pray to God, ask forgiveness, recite the Qur'an, and connect to their Creator and to each other.  If you are a Muslim, you can perform this prayer with the worshipers in any of the mosques in Jordan. If you are not a Muslim, you can observe the praying crowd in the mosque. The energy of the place will captivate you, after all, we can all use a little meditation from time to time..  After the Tarawih prayer, on their way home, some people stop by the bustling markets to buy food, some  go to the cafes to stay up late and enjoy  the night, while  some go home to watch the Ramadan series…and some stay in the mosques and continue praying and reading the Qur’an. Please note: Price does not include food, drinks, tickets or transportation.",
+      "coverImage": {
+        "__type": "File",
+        "name": "6641c981f86ea4004d8d2b62e5e041b4_Tarawih prayer.png",
+        "url": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6641c981f86ea4004d8d2b62e5e041b4_Tarawih%20prayer.png"
+      },
+      "country": "Jordan",
+      "cost": 20,
+      "timeUnit": "hours",
+      "minDuration": 2,
+      "createdAt": "2023-03-15T07:15:58.642Z",
+      "updatedAt": "2023-10-28T06:47:15.549Z",
+      "feature": "Ramadan"
+    }
+  ],
+  "count": 40
+}

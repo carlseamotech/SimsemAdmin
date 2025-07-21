@@ -3,11 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { useTours } from "@/hooks/use-experiences";
-import {
-  CreateProposedTourDTO,
-  UpdateProposedTourDTO,
-} from "@/dtos/experiences";
 import { ProposedTour } from "@/models/proposed-tour";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
@@ -29,8 +24,29 @@ const experienceSchema = z.object({
   meetingPointLong: z.number(),
   cameraZoom: z.number(),
   tourTimes: z.array(z.string()).optional(),
-  tourPackages: z.array(z.string()).optional(),
-  pickupPoints: z.array(z.string()).optional(),
+  tourPackages: z
+    .array(
+      z.object({
+        fromPerson: z.string(),
+        toPerson: z.string(),
+        cost: z.string(),
+      })
+    )
+    .optional(),
+  pickupPoints: z
+    .array(
+      z.object({
+        value: z.object({
+          cameraZoom: z.number(),
+          pickupPointTitle: z.string(),
+          pickupPoint: z.string(),
+          pickupPointLat: z.number(),
+          pickupPointLong: z.number(),
+        }),
+        key: z.string(),
+      })
+    )
+    .optional(),
   isActive: z.boolean(),
   isApproved: z.boolean(),
   isNotified: z.boolean(),
@@ -50,7 +66,6 @@ export const ExperienceForm: React.FC<ExperienceFormProps> = ({
   setShowForm,
   experienceToEdit,
 }) => {
-  const { createTour, updateTour } = useTours([]);
   const isEditMode = !!experienceToEdit;
 
   const { handleSubmit, reset } = useForm<ExperienceFormData>({
@@ -91,22 +106,22 @@ export const ExperienceForm: React.FC<ExperienceFormProps> = ({
     }
   }, [isEditMode, experienceToEdit, reset]);
 
-  const handleFormSubmit = async (data: ExperienceFormData) => {
-    if (isEditMode && experienceToEdit) {
-      const tourData: UpdateProposedTourDTO = data;
-      await updateTour(experienceToEdit.objectId, tourData);
-    } else {
-      const tourData: CreateProposedTourDTO = {
-        ...data,
-        galleryImageUrls: data.galleryImageUrls || [],
-        tourFeatures: data.tourFeatures || [],
-        otherTourFeature: data.otherTourFeature || "",
-        tourTimes: data.tourTimes || [],
-        tourPackages: data.tourPackages || [],
-        pickupPoints: data.pickupPoints || [],
-      };
-      await createTour(tourData);
-    }
+  const handleFormSubmit = async () => {
+    // if (isEditMode && experienceToEdit) {
+    //   const tourData: UpdateCustomTourDTO = data;
+    //   await updateTour(experienceToEdit.objectId, tourData);
+    // } else {
+    //   const tourData: CreateCustomTourDTO = {
+    //     ...data,
+    //     galleryImageUrls: data.galleryImageUrls || [],
+    //     tourFeatures: data.tourFeatures || [],
+    //     otherTourFeature: data.otherTourFeature || "",
+    //     tourTimes: data.tourTimes || [],
+    //     tourPackages: data.tourPackages || [],
+    //     pickupPoints: data.pickupPoints || [],
+    //   };
+    //   await createTour(tourData);
+    // }
     setShowForm(false);
   };
 

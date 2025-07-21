@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "objectId": "B5yxNyTdjX",
+      "country": "Turkey",
+      "cost": "20",
+      "city": "test",
+      "coverImageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/3dd8a0f31ba0712f1c435b303d5ca811_Hammam%20day.png",
+      "guideId": "kifpSShKKb",
+      "description": "You’ve been travelling for some time now and have seen so much, it’s been great but you’re feeling like you could slow down a bit. You also feel like being pampered and indulging… and you’ve considered the famous Middle Estern hammams…but you don’t feel completely comfortable with the idea…I get it and I got your back. The Hammam is a ritual and you could use a friendly companion. I can recommend the best one in town! You’ll feel like a new human after the experience and you I guarantee you it won’t be your last time!  Please note: Price does not include food, drinks, tickets or transportation.",
+      "tourFeatures": [
+        "Knowing a local hammam that you visit regularly.",
+        "Being able to give guidance and advice to your host."
+      ],
+      "cameraZoom": 15,
+      "type": "offered",
+      "isActive": true,
+      "meetingPointLat": 23.740962174102634,
+      "offeredTourId": "Sv7yJHLmXq",
+      "meetingPoint": "PCRG+8J5 Shahjahanpur Rail Foot Over-bridges, Shahjahanpur Rail Overbridge, Dhaka, Bangladesh",
+      "isNotified": true,
+      "phone": "+8801703464048",
+      "maxGuest": "3",
+      "countryCode": "+880",
+      "name": "Today Feels like a Hammam Day! ",
+      "meetingPointLong": 90.42661942541599,
+      "tourTimes": [
+        "08:00 AM",
+        "11:00 AM"
+      ],
+      "isApproved": true,
+      "tourDuration": "2 hours",
+      "createdAt": "2025-07-12T06:07:16.932Z",
+      "updatedAt": "2025-07-21T10:25:23.567Z",
+      "tourPackages": [],
+      "thingsToKnow": [
+        "{\"title\":\"Test\",\"description\":\"Test\"}"
+      ],
+      "whatToExpect": "Test",
+      "inclusions": [
+        "Test",
+        "Test"
+      ],
+      "exclusions": [
+        "Test"
+      ]
+    }
+  ],
+  "count": 1
+}

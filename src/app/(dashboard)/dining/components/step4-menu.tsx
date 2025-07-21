@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { TrashIcon, XIcon } from "lucide-react";
 import { FormData, Dish } from "./types";
 import { useLibraryDishes } from "@/hooks/use-library-dishes";
+import { LibraryDish } from "@/models/library";
 import {
   Command,
   CommandEmpty,
@@ -24,10 +25,13 @@ const Step4Menu = () => {
   });
   const { dishes, isLoading } = useLibraryDishes();
 
-  const handleDishSelect = (courseIndex: number, dish: Dish) => {
+  const handleDishSelect = (courseIndex: number, dish: LibraryDish) => {
     const currentDishes = watch(`courses.${courseIndex}.dishes`) || [];
     if (!currentDishes.some((d: Dish) => d.objectId === dish.objectId)) {
-      setValue(`courses.${courseIndex}.dishes`, [...currentDishes, dish]);
+      setValue(`courses.${courseIndex}.dishes`, [
+        ...currentDishes,
+        { ...dish, id: dish.objectId, isSpecial: false, isChecked: false },
+      ]);
     }
   };
 

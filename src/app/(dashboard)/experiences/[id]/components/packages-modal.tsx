@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
+import { updateCustomTour } from "@/services";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
@@ -65,7 +65,9 @@ export const PackagesModal: React.FC<PackagesModalProps> = ({
   useEffect(() => {
     if (tour) {
       reset({
-        tourPackages: tour.tourPackages.map((pkg) => JSON.parse(pkg)),
+        tourPackages: tour.tourPackages.map((pkg) =>
+          typeof pkg === "string" ? JSON.parse(pkg) : pkg
+        ),
       });
     }
   }, [tour, reset]);
@@ -73,7 +75,7 @@ export const PackagesModal: React.FC<PackagesModalProps> = ({
   const onSubmit: SubmitHandler<PackagesFormData> = async (data) => {
     try {
       await updateCustomTour(tour.objectId, {
-        tourPackages: data.tourPackages.map((pkg) => JSON.stringify(pkg)),
+        tourPackages: data.tourPackages,
       });
       mutate();
       onClose();

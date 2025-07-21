@@ -23,6 +23,11 @@ export interface LibraryTour {
   maxDuration: number;
   timeUnit: string;
   requirements: string[];
+  coverImage: {
+    __type: "File";
+    name: string;
+    url: string;
+  };
 }
 
 export interface LibraryMeal {
@@ -37,6 +42,7 @@ export interface LibraryMeal {
 export interface LibraryDish {
   objectId: string;
   name: string;
+  description: string;
   ingredients: string;
   country: string;
   course: string;
@@ -46,4 +52,5 @@ export interface LibraryDish {
     name: string;
     url: string;
   };
+  imageUrl: string;
 }

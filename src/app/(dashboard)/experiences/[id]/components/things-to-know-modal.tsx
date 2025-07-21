@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
+import { updateCustomTour } from "@/services";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
@@ -64,7 +64,9 @@ export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
   useEffect(() => {
     if (tour) {
       reset({
-        thingsToKnow: (tour.thingsToKnow || []).map((item) => JSON.parse(item)),
+        thingsToKnow: (tour.thingsToKnow || []).map((item) =>
+          typeof item === "string" ? JSON.parse(item) : item
+        ),
       });
     }
   }, [tour, reset]);
@@ -72,7 +74,7 @@ export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
   const onSubmit: SubmitHandler<ThingsToKnowFormData> = async (data) => {
     try {
       await updateCustomTour(tour.objectId, {
-        thingsToKnow: data.thingsToKnow.map((item) => JSON.stringify(item)),
+        thingsToKnow: data.thingsToKnow,
       });
       mutate();
       onClose();

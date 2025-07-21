@@ -61,6 +61,8 @@ export interface Host {
     __type: "Date";
     iso: string;
   };
+  lastLat: number;
+  lastLong: number;
 }
 
 export interface HostPayment {

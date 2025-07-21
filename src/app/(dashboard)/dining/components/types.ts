@@ -1,13 +1,19 @@
 export interface Dish {
   objectId: string;
   name: string;
-  description?: string;
-  imageUrl?: string;
+  description: string;
+  imageUrl: string;
   type: string;
+  id: string;
+  ingredients: string;
+  course: string;
+  isSpecial: boolean;
+  isChecked: boolean;
 }
 
 export interface FormData {
   name: string;
+  description: string;
   country: string;
   city: string;
   hostId: string;

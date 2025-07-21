@@ -9,18 +9,14 @@ interface ThingToKnow {
 }
 
 interface ThingsToKnowProps {
-  thingsToKnow: string[];
+  thingsToKnow: ThingToKnow[];
 }
 
 const ThingsToKnow: React.FC<ThingsToKnowProps> = ({ thingsToKnow }) => {
-  const parsedThingsToKnow: ThingToKnow[] = (thingsToKnow || []).map((item) =>
-    JSON.parse(item)
-  );
-
   return (
     <div className="relative">
-      {parsedThingsToKnow.map((item, index) => {
-        const isLast = index === parsedThingsToKnow.length - 1;
+      {thingsToKnow.map((item, index) => {
+        const isLast = index === thingsToKnow.length - 1;
 
         return (
           <div

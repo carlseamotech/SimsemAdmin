@@ -21,13 +21,13 @@ import {
 import { useHost } from "@/hooks/use-hosts";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
-  UpdateHostDTO,
   approveHost,
   declineHost,
   deleteHost,
 } from "@/services/hosts";
 import { uploadFile } from "@/services/files";
 import toast from "react-hot-toast";
+import { UpdateHostInfoDTO } from "@/dtos";
 
 const HostSummaryPage = () => {
   const { id } = useParams();
@@ -55,7 +55,11 @@ const HostSummaryPage = () => {
         ...host,
         country: country ? country.objectId : "",
       };
-      const languageLevels: ("firstLanguageLevel" | "secondLanguageLevel" | "thirdLanguageLevel")[] = [
+      const languageLevels: (
+        | "firstLanguageLevel"
+        | "secondLanguageLevel"
+        | "thirdLanguageLevel"
+      )[] = [
         "firstLanguageLevel",
         "secondLanguageLevel",
         "thirdLanguageLevel",
@@ -97,41 +101,30 @@ const HostSummaryPage = () => {
   const handleSave = async (data: HostFormData) => {
     setIsSubmitting(true);
     try {
-      const countryName =
-        countries.find((c) => c.objectId === data.country)?.name || "";
-      const updateDto: UpdateHostDTO = {
-        name: data.name,
-        about: data.about,
+      const updateDto: UpdateHostInfoDTO = {
         city: data.city,
-        country: countryName,
-        email: data.email,
-        phone: data.phone,
-        firstLanguage: data.firstLanguage,
-        firstLanguageLevel: data.firstLanguageLevel,
-        secondLanguage: data.secondLanguage,
-        secondLanguageLevel: data.secondLanguageLevel,
-        thirdLanguage: data.thirdLanguage,
-        thirdLanguageLevel: data.thirdLanguageLevel,
+        bio: data.about,
+        languages: [
+          data.firstLanguage,
+          data.secondLanguage,
+          data.thirdLanguage,
+        ].filter((l): l is string => !!l),
       };
 
       if (profileImageFile) {
-        const uploadedProfileImage = await uploadFile(profileImageFile);
-        updateDto.imageUrl = uploadedProfileImage.url;
+        await uploadFile(profileImageFile);
       }
 
       if (frontImageFile) {
-        const uploadedFrontImage = await uploadFile(frontImageFile);
-        updateDto.idFrontFileUrl = uploadedFrontImage.url;
+        await uploadFile(frontImageFile);
       }
 
       if (backImageFile) {
-        const uploadedBackImage = await uploadFile(backImageFile);
-        updateDto.idBackFileUrl = uploadedBackImage.url;
+        await uploadFile(backImageFile);
       }
 
       if (certificateFile) {
-        const uploadedCertificate = await uploadFile(certificateFile);
-        updateDto.certificateFileUrl = uploadedCertificate.url;
+        await uploadFile(certificateFile);
       }
 
       await updateHost(updateDto);

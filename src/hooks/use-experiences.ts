@@ -1,169 +1,57 @@
 import {
-  createTour,
-  deleteTour,
-  getTours,
-  updateTour,
-} from "@/services/experiences";
-import {
-  CreateProposedTourDTO,
-  UpdateProposedTourDTO,
-} from "@/dtos/experiences";
-import toast from "react-hot-toast";
-import { ApiError } from "@/services/types";
-import {
-  getMeals,
-  getMeal,
-  updateMeal,
-  deleteMeal,
-  UpdateMealDTO,
   createDiningExperience,
-} from "@/services/experiences/meal";
-import { CreateDiningExperienceDTO } from "@/dtos/experiences/create-dining-experience.dto";
-import {
-  getLibraryTours,
-  getLibraryTour,
-  createLibraryTour,
-  updateLibraryTour,
-  CreateLibraryTourDTO,
-  UpdateLibraryTourDTO,
-  getLibraryMeals,
-  getLibraryMeal,
-  createLibraryMeal,
-  updateLibraryMeal,
-  CreateLibraryMealDTO,
-  UpdateLibraryMealDTO,
-  getLibraryDishes,
-  getLibraryDish,
   createLibraryDish,
+  createLibraryMeal,
+  createLibraryTour,
+  deleteMeal,
+  getLibraryDish,
+  getLibraryDishes,
+  getLibraryMeal,
+  getLibraryMeals,
+  getLibraryTour,
+  getLibraryTours,
+  getMeal,
+  getMeals,
+  updateMeal,
   updateLibraryDish,
+  updateLibraryMeal,
+  updateLibraryTour,
+} from "@/services";
+import {
+  CreateDiningExperienceDTO,
   CreateLibraryDishDTO,
+  CreateLibraryMealDTO,
+  CreateLibraryTourDTO,
+  UpdateDiningExperienceDTO,
   UpdateLibraryDishDTO,
-} from "@/services/experiences/library";
+  UpdateLibraryMealDTO,
+  UpdateLibraryTourDTO,
+} from "@/dtos";
 import { useState } from "react";
 import useSWR from "swr";
-
-export const useTours = (
-  types?: string[],
-  enabled: boolean = true,
-  experienceId?: string,
-  hostId?: string,
-  country?: string
-) => {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-
-  const swrKey = enabled
-    ? ["/tours", types?.join(","), page, limit, experienceId, hostId, country]
-    : null;
-
-  const fetcher = () => {
-    const filter: {
-      where: {
-        type?: { $in: string[] };
-        objectId?: string;
-        guideId?: string;
-        country?: string;
-      };
-    } = { where: {} };
-    if (types && types.length > 0) {
-      filter.where.type = { $in: types };
-    }
-    if (experienceId) {
-      filter.where.objectId = experienceId;
-    }
-    if (hostId) {
-      filter.where.guideId = hostId;
-    }
-    if (country) {
-      filter.where.country = country;
-    }
-    return getTours(limit, (page - 1) * limit, filter);
-  };
-
-  const { data, error, mutate } = useSWR(swrKey, fetcher);
-
-  const createTourHandler = async (tour: CreateProposedTourDTO) => {
-    try {
-      const newTour = await createTour(tour);
-      mutate();
-      toast.success("Experience created successfully");
-      return newTour;
-    } catch (error: unknown) {
-      const apiError = error as ApiError;
-      toast.error(apiError.message || "Failed to create experience");
-    }
-  };
-
-  const updateTourHandler = async (
-    id: string,
-    tour: UpdateProposedTourDTO
-  ) => {
-    try {
-      await updateTour(id, tour);
-      mutate();
-      toast.success("Experience updated successfully");
-    } catch (error: unknown) {
-      const apiError = error as ApiError;
-      toast.error(apiError.message || "Failed to update experience");
-    }
-  };
-
-  const deleteTourHandler = async (id: string) => {
-    try {
-      await deleteTour(id);
-      mutate();
-      toast.success("Experience deleted successfully");
-    } catch (error: unknown) {
-      const apiError = error as ApiError;
-      toast.error(apiError.message || "Failed to delete experience");
-    }
-  };
-
-  return {
-    tours: data?.results || [],
-    count: data?.count || 0,
-    isLoading: !error && !data,
-    isError: error,
-    page,
-    limit,
-    setPage,
-    setLimit,
-    createTour: createTourHandler,
-    updateTour: updateTourHandler,
-    deleteTour: deleteTourHandler,
-    mutate,
-  };
-};
 
 // Meals
 export const useMeals = (limit?: number) => {
   const { data, error, mutate } = useSWR(["/meals", limit], () =>
-    getMeals(limit)
+    getMeals(limit || 10, 0, {})
   );
   return {
-    meals: data,
+    meals: data?.results || [],
     isLoading: !error && !data,
     isError: error,
     createMeal: async (meal: CreateDiningExperienceDTO) => {
       const newMeal = await createDiningExperience(meal);
-      mutate((data) => (data ? [...data, newMeal] : [newMeal]), false);
+      mutate();
       return newMeal;
     },
-    updateMeal: async (id: string, meal: UpdateMealDTO) => {
+    updateMeal: async (id: string, meal: UpdateDiningExperienceDTO) => {
       const updatedMeal = await updateMeal(id, meal);
-      mutate(
-        (data) =>
-          data?.map((m) => (m.objectId === id ? { ...m, ...updatedMeal } : m)),
-        false
-      );
+      mutate();
       return updatedMeal;
     },
     deleteMeal: async (id: string) => {
       await deleteMeal(id);
-      mutate(
-        (data) => data?.filter((m) => m.objectId !== id),
-        false
-      );
+      mutate();
     },
   };
 };

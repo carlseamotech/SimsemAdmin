@@ -33,7 +33,7 @@ const AcceptInvitePage = () => {
     if (token) {
       setIsLoading(true);
       try {
-        await acceptInvite(token, data.password);
+        await acceptInvite({ token, password: data.password });
         toast.success("Invitation accepted successfully!");
         router.push("/");
       } catch (error) {

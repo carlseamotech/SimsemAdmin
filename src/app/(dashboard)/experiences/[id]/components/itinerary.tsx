@@ -9,17 +9,13 @@ interface ItineraryItem {
 }
 
 interface ItineraryProps {
-  itinerary: string[];
+  itinerary: ItineraryItem[];
 }
 
 export const Itinerary: React.FC<ItineraryProps> = ({ itinerary }) => {
   if (!itinerary || itinerary.length === 0) {
     return null;
   }
-
-  const parsedItinerary: ItineraryItem[] = itinerary.map((item) =>
-    JSON.parse(item)
-  );
 
   return (
     <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-6">
@@ -28,8 +24,8 @@ export const Itinerary: React.FC<ItineraryProps> = ({ itinerary }) => {
       </h3>
 
       <div className="relative">
-        {parsedItinerary.map((item, index) => {
-          const isLast = index === parsedItinerary.length - 1;
+        {itinerary.map((item, index) => {
+          const isLast = index === itinerary.length - 1;
 
           return (
             <div

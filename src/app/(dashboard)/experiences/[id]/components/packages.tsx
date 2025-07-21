@@ -7,17 +7,13 @@ interface Package {
 }
 
 interface PackagesProps {
-  packages: string[];
+  packages: Package[];
 }
 
 export const Packages: React.FC<PackagesProps> = ({ packages }) => {
-  const parsedPackages: Package[] = (packages || []).map((pkg) =>
-    JSON.parse(pkg)
-  );
-
   return (
     <div className="flex flex-row gap-6 flex-wrap">
-      {parsedPackages.map((pkg, index) => (
+      {packages.map((pkg, index) => (
         <div
           key={index}
           className="bg-white drop-shadow-xl p-6 rounded-2xl space-y-6 w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-12px)]"

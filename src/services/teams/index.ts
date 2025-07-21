@@ -1,7 +1,6 @@
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs, writeBatch, doc } from "firebase/firestore";
 import { TeamMember } from "@/models/team";
-import { Role } from "@/models/role";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { AcceptInviteDTO, InviteTeamMemberDTO } from "@/dtos";

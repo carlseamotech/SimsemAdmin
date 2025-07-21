@@ -3,3 +3,4 @@ export * from "./getaway-tour";
 export * from "./library";
 export * from "./meal";
 export * from "./offered-tour";
+export * from "./tour";

@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useTours } from "@/hooks/use-experiences";
+import { useTours } from "@/hooks/use-tours";
 import { ProposedTour } from "@/models/proposed-tour";
 import { useMemo, useState } from "react";
 import ExperiencesTableSkeleton from "./experiences-table-skeleton";

@@ -45,7 +45,7 @@ const InviteDialog: React.FC<InviteDialogProps> = ({ isOpen, onClose }) => {
 
   const onSubmit = async (data: { email: string; role: Role }) => {
     try {
-      await inviteTeamMember(data.email, data.role);
+      await inviteTeamMember(data);
       mutate("/classes/Team");
       toast.success("Invitation sent successfully!");
       onClose();

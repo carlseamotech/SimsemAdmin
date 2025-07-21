@@ -11,7 +11,7 @@ import TabsExperiencePage from "@/app/(dashboard)/experiences/components/tabs-ex
 import { useSearchParams } from "next/navigation";
 import { ProposedTour } from "@/models/proposed-tour";
 import { ExperienceForm } from "./components/experience-form";
-import { useTours } from "@/hooks/use-experiences";
+import { useTours } from "@/hooks/use-tours";
 import { CreateLibraryItemModal } from "./components/create-library-item-modal";
 import ToursTable from "./components/tours-table";
 import MealsTable from "./components/meals-table";

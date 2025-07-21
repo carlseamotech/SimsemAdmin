@@ -16,7 +16,7 @@ import Step6CoverPhoto from "./components/step6-cover-photo";
 import Step7Summary from "./components/step7-summary";
 
 import { FormData } from "./components/types";
-import { createCustomTour } from "@/services/experiences/custom-tour";
+import { createCustomTour } from "@/services";
 import { uploadFile } from "@/services/files";
 import toast from "react-hot-toast";
 
@@ -65,11 +65,7 @@ const LocalLivingExperiencePage = () => {
       isValid = await trigger("name");
     }
     if (currentStep === 4) {
-      isValid = await trigger([
-        "country",
-        "tourDuration",
-        "tourPackages",
-      ]);
+      isValid = await trigger(["country", "tourDuration", "tourPackages"]);
     }
 
     if (!isValid) {
@@ -102,11 +98,8 @@ const LocalLivingExperiencePage = () => {
             ...data,
             coverImageUrl: uploadedImageUrls[0] || "",
             galleryImageUrls: uploadedImageUrls,
-            itinerary: data.itinerary.map((item) => JSON.stringify(item)),
-            thingsToKnow: data.thingsToKnow.map((item) => JSON.stringify(item)),
-            tourPackages: data.tourPackages.map((item) => JSON.stringify(item)),
           };
-          
+
           console.log("Payload to be sent to API:", tourData);
           await createCustomTour(tourData);
           toast.success("Local living experience created successfully");

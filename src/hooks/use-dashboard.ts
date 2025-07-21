@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import * as dashboardService from "@/services/dashboard";
+import { getTours, getMeals} from "@/services";
 import { useState } from "react";
 
 export const useDashboard = () => {
@@ -10,12 +10,12 @@ export const useDashboard = () => {
 
   const { data: toursData, error: toursError } = useSWR(
     ["/classes/ProposedTour", toursPage, toursLimit],
-    () => dashboardService.getTours(toursLimit, (toursPage - 1) * toursLimit)
+    () => getTours(toursLimit, (toursPage - 1) * toursLimit, {})
   );
 
   const { data: mealsData, error: mealsError } = useSWR(
     ["/classes/SelectedMeal", mealsPage, mealsLimit],
-    () => dashboardService.getMeals(mealsLimit, (mealsPage - 1) * mealsLimit)
+    () => getMeals(mealsLimit, (mealsPage - 1) * mealsLimit, {})
   );
 
   return {

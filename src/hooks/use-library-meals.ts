@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { getLibraryMeals } from "@/services/experiences/library";
+import { getLibraryMeals } from "@/services";
 
 export const useLibraryMeals = () => {
   const { data, error, mutate } = useSWR("/library/meals", () =>
