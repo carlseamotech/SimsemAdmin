@@ -5,6 +5,7 @@ import { ExperienceDetailsSkeleton } from "@/app/(dashboard)/experiences/[id]/co
 import { TourForm } from "./components/tour-form";
 import { MealForm } from "./components/meal-form";
 import { DishForm } from "./components/dish-form";
+import { LibraryTour, LibraryMeal, LibraryDish } from "@/models/library";
 
 const LibraryItemEditPage = () => {
   const { item, isLoading, type } = useLibraryItem();
@@ -25,11 +26,11 @@ const LibraryItemEditPage = () => {
   const renderForm = () => {
     switch (type) {
       case "tour":
-        return <TourForm tour={item} />;
+        return <TourForm tour={item as LibraryTour} />;
       case "meal":
-        return <MealForm meal={item} />;
+        return <MealForm meal={item as LibraryMeal} />;
       case "dish":
-        return <DishForm dish={item} />;
+        return <DishForm dish={item as LibraryDish} />;
       default:
         return null;
     }

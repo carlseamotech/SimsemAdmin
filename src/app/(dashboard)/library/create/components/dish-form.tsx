@@ -9,6 +9,7 @@ import { createLibraryDish } from "@/services/experiences/library";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
+import { uploadFile } from "@/services/files";
 
 const dishSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -16,6 +17,7 @@ const dishSchema = z.object({
   country: z.string().min(1, "Required"),
   type: z.string().min(1, "Required"),
   course: z.string().min(1, "Required"),
+  image: z.any(),
 });
 
 type DishFormData = z.infer<typeof dishSchema>;
@@ -34,7 +36,17 @@ export const DishForm = () => {
 
   const onSubmit: SubmitHandler<DishFormData> = async (data) => {
     try {
-      await createLibraryDish(data);
+      const file = data.image[0];
+      const imageUrl = await uploadFile(file);
+      const dishData = {
+        ...data,
+        image: {
+          __type: "File" as const,
+          name: file.name,
+          url: imageUrl.url,
+        },
+      };
+      await createLibraryDish(dishData);
       toast.success("Dish created successfully");
       router.push("/experiences?tab=dish-library");
     } catch {
@@ -63,6 +75,10 @@ export const DishForm = () => {
       <div>
         <Label htmlFor="course">Course</Label>
         <Input id="course" {...register("course")} />
+      </div>
+      <div>
+        <Label htmlFor="image">Image</Label>
+        <Input id="image" type="file" {...register("image")} />
       </div>
       <Button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Creating..." : "Create"}

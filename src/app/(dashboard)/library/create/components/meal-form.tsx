@@ -15,7 +15,7 @@ const mealSchema = z.object({
   description: z.string().min(1, "Required"),
   country: z.string().min(1, "Required"),
   cost: z.string().min(1, "Required"),
-  dishIds: z.array(z.string()).optional(),
+  dishIds: z.array(z.string()).optional().default([]),
 });
 
 type MealFormData = z.infer<typeof mealSchema>;

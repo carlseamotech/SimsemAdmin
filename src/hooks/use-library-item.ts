@@ -6,13 +6,14 @@ import {
   getLibraryDish,
 } from "@/services/experiences/library";
 import { useParams, useSearchParams } from "next/navigation";
+import { LibraryTour, LibraryMeal, LibraryDish } from "@/models/library";
 
 export const useLibraryItem = () => {
   const { id } = useParams();
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
-  const fetcher = () => {
+  const fetcher = (): Promise<LibraryTour | LibraryMeal | LibraryDish> => {
     if (type === "meal") {
       return getLibraryMeal(id as string);
     }
@@ -22,7 +23,10 @@ export const useLibraryItem = () => {
     return getLibraryTour(id as string);
   };
 
-  const { data, error, mutate } = useSWR(`/library/${id}?type=${type}`, fetcher);
+  const { data, error, mutate } = useSWR(
+    `/library/${id}?type=${type}`,
+    fetcher
+  );
 
   return {
     item: data,

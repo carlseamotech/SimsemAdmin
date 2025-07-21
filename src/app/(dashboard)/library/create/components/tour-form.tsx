@@ -19,7 +19,7 @@ const tourSchema = z.object({
   maxDuration: z.number().min(0, "Required"),
   feature: z.string().min(1, "Required"),
   timeUnit: z.string().min(1, "Required"),
-  requirements: z.array(z.string()).optional(),
+  requirements: z.array(z.string()).optional().default([]),
 });
 
 type TourFormData = z.infer<typeof tourSchema>;
