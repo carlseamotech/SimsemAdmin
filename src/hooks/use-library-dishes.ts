@@ -1,14 +1,16 @@
-import useSWR from "swr";
+"use client";
 import { getLibraryDishes } from "@/services";
+import useSWR from "swr";
 
-export const useLibraryDishes = () => {
-  const { data, error, mutate } = useSWR("/library/dishes", () =>
-    getLibraryDishes(1000, 0)
+export const useLibraryDishes = (searchTerm?: string) => {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/library/dishes?search=${searchTerm}`,
+    () => getLibraryDishes(searchTerm)
   );
 
   return {
-    dishes: data?.results || [],
-    isLoading: !error && !data,
+    dishes: data?.results ?? [],
+    isLoading,
     isError: error,
     mutate,
   };

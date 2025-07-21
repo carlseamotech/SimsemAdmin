@@ -5,12 +5,12 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { LibraryTour } from "@/models/library";
-import { updateLibraryTour } from "@/services";
+import { createLibraryTour, uploadFile } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { CountryDropdown } from "@/components/common/country-dropdown";
+import { useState } from "react";
 
 const tourSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -22,28 +22,26 @@ const tourSchema = z.object({
   feature: z.string().min(1, "Required"),
   timeUnit: z.string().min(1, "Required"),
   requirements: z.array(z.string()).optional(),
+  coverImage: z.any(),
 });
 
 type TourFormData = z.infer<typeof tourSchema>;
 
-interface TourFormProps {
-  tour: LibraryTour;
-}
-
-export const TourForm: React.FC<TourFormProps> = ({ tour }) => {
+export const TourForm: React.FC = () => {
   const router = useRouter();
+  const [isUploading, setIsUploading] = useState(false);
   const form = useForm<TourFormData>({
     resolver: zodResolver(tourSchema),
     defaultValues: {
-      name: tour.name,
-      description: tour.description,
-      country: tour.country,
-      cost: tour.cost,
-      minDuration: tour.minDuration,
-      maxDuration: tour.maxDuration,
-      feature: tour.feature,
-      timeUnit: tour.timeUnit,
-      requirements: tour.requirements,
+      name: "",
+      description: "",
+      country: "",
+      cost: 0,
+      minDuration: 0,
+      maxDuration: 0,
+      feature: "",
+      timeUnit: "",
+      requirements: [],
     },
   });
 
@@ -56,11 +54,25 @@ export const TourForm: React.FC<TourFormProps> = ({ tour }) => {
 
   const onSubmit: SubmitHandler<TourFormData> = async (data) => {
     try {
-      await updateLibraryTour(tour.objectId, data);
-      toast.success("Tour updated successfully");
-      router.push("/experiences?tab=experience-library");
+      setIsUploading(true);
+      const imageFile = data.coverImage[0];
+      const uploadedImage = await uploadFile(imageFile);
+      setIsUploading(false);
+
+      await createLibraryTour({
+        ...data,
+        requirements: data.requirements || [],
+        coverImage: {
+          __type: "File",
+          name: uploadedImage.name,
+          url: uploadedImage.url,
+        },
+      });
+      toast.success("Tour created successfully");
+      router.push("/library?tab=tours");
     } catch {
-      toast.error("Failed to update tour");
+      setIsUploading(false);
+      toast.error("Failed to create tour");
     }
   };
 
@@ -77,7 +89,7 @@ export const TourForm: React.FC<TourFormProps> = ({ tour }) => {
         </div>
         <div>
           <Label htmlFor="country">Country</Label>
-          <CountryDropdown control={control} name="country" label="Country" />
+          <CountryDropdown control={control} name="country" />
         </div>
         <div>
           <Label htmlFor="cost">Cost</Label>
@@ -111,9 +123,13 @@ export const TourForm: React.FC<TourFormProps> = ({ tour }) => {
           <Label htmlFor="timeUnit">Time Unit</Label>
           <Input id="timeUnit" {...register("timeUnit")} />
         </div>
+        <div>
+          <Label htmlFor="coverImage">Cover Image</Label>
+          <Input id="coverImage" type="file" {...register("coverImage")} />
+        </div>
         {/* Add requirements editing here */}
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Saving..." : "Save"}
+        <Button type="submit" disabled={isSubmitting || isUploading}>
+          {isSubmitting || isUploading ? "Creating..." : "Create"}
         </Button>
       </form>
     </FormProvider>

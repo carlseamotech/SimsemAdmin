@@ -1,14 +1,16 @@
-import useSWR from "swr";
+"use client";
 import { getLibraryMeals } from "@/services";
+import useSWR from "swr";
 
-export const useLibraryMeals = () => {
-  const { data, error, mutate } = useSWR("/library/meals", () =>
-    getLibraryMeals(1000, 0)
+export const useLibraryMeals = (searchTerm?: string) => {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/library/meals?search=${searchTerm}`,
+    () => getLibraryMeals(searchTerm)
   );
 
   return {
-    meals: data?.results || [],
-    isLoading: !error && !data,
+    meals: data?.results ?? [],
+    isLoading,
     isError: error,
     mutate,
   };

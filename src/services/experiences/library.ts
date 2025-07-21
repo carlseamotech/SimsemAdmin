@@ -1,3 +1,4 @@
+import { ParsedUrlQuery } from "querystring";
 import api from "../api";
 import {
   CreateLibraryDishDTO,
@@ -11,13 +12,26 @@ import { LibraryTour, LibraryMeal, LibraryDish } from "@/models/library";
 
 // Library Tours
 export const getLibraryTours = async (
-  limit: number,
-  skip: number
+  searchTerm?: string
 ): Promise<{ results: LibraryTour[]; count: number }> => {
+  const params: ParsedUrlQuery = {
+    order: "-createdAt",
+    count: "1",
+  };
+
+  if (searchTerm) {
+    params.where = JSON.stringify({
+      name: {
+        $regex: searchTerm,
+        $options: "i",
+      },
+    });
+  }
+
   const response = await api.get<{ results: LibraryTour[]; count: number }>(
     "/classes/OfferedTour",
     {
-      params: { limit, skip, count: 1 },
+      params,
     }
   );
   return response;
@@ -52,13 +66,25 @@ export const deleteLibraryTour = async (id: string): Promise<void> => {
 
 // Library Meals
 export const getLibraryMeals = async (
-  limit: number,
-  skip: number
+  searchTerm?: string
 ): Promise<{ results: LibraryMeal[]; count: number }> => {
+  const params: ParsedUrlQuery = {
+    order: "-createdAt",
+    count: "1",
+  };
+
+  if (searchTerm) {
+    params.where = JSON.stringify({
+      name: {
+        $regex: searchTerm,
+        $options: "i",
+      },
+    });
+  }
   const response = await api.get<{ results: LibraryMeal[]; count: number }>(
     "/classes/OfferedMeal",
     {
-      params: { limit, skip, count: 1 },
+      params,
     }
   );
   return response;
@@ -93,13 +119,25 @@ export const deleteLibraryMeal = async (id: string): Promise<void> => {
 
 // Library Dishes
 export const getLibraryDishes = async (
-  limit: number,
-  skip: number
+  searchTerm?: string
 ): Promise<{ results: LibraryDish[]; count: number }> => {
+  const params: ParsedUrlQuery = {
+    order: "-createdAt",
+    count: "1",
+  };
+
+  if (searchTerm) {
+    params.where = JSON.stringify({
+      name: {
+        $regex: searchTerm,
+        $options: "i",
+      },
+    });
+  }
   const response = await api.get<{ results: LibraryDish[]; count: number }>(
     "/classes/OfferedDish",
     {
-      params: { limit, skip, count: 1 },
+      params,
     }
   );
   return response;

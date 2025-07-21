@@ -8,19 +8,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Control, FieldValues, Path } from "react-hook-form";
 
 interface CountryDropdownProps<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
-  label: string;
+  label?: string;
 }
 
 export const CountryDropdown = <T extends FieldValues>({
   control,
   name,
-  label,
 }: CountryDropdownProps<T>) => {
   const { countries, isLoading } = useCountries();
 
@@ -32,11 +31,10 @@ export const CountryDropdown = <T extends FieldValues>({
         const country = countries.find(
           (c) => c.objectId === field.value || c.name === field.value
         );
-        const value = country ? country.objectId : field.value;
+        const value = country ? country.name : field.value;
 
         return (
           <FormItem>
-            {label && <FormLabel>{label}</FormLabel>}
             <Select
               onValueChange={field.onChange}
               value={value}
@@ -49,7 +47,7 @@ export const CountryDropdown = <T extends FieldValues>({
               </FormControl>
               <SelectContent>
                 {countries.map((country) => (
-                  <SelectItem key={country.objectId} value={country.objectId}>
+                  <SelectItem key={country.objectId} value={country.name}>
                     {country.name}
                   </SelectItem>
                 ))}

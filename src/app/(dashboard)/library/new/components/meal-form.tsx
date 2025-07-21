@@ -5,12 +5,12 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { LibraryMeal } from "@/models/library";
-import { updateLibraryMeal } from "@/services";
+import { createLibraryMeal, uploadFile } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { CountryDropdown } from "@/components/common/country-dropdown";
+import { useState } from "react";
 
 const mealSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -18,24 +18,22 @@ const mealSchema = z.object({
   country: z.string().min(1, "Required"),
   cost: z.string().min(1, "Required"),
   dishIds: z.array(z.string()).optional(),
+  coverImage: z.any(),
 });
 
 type MealFormData = z.infer<typeof mealSchema>;
 
-interface MealFormProps {
-  meal: LibraryMeal;
-}
-
-export const MealForm: React.FC<MealFormProps> = ({ meal }) => {
+export const MealForm: React.FC = () => {
   const router = useRouter();
+  const [isUploading, setIsUploading] = useState(false);
   const form = useForm<MealFormData>({
     resolver: zodResolver(mealSchema),
     defaultValues: {
-      name: meal.name,
-      description: meal.description,
-      country: meal.country,
-      cost: meal.cost,
-      dishIds: meal.dishIds,
+      name: "",
+      description: "",
+      country: "",
+      cost: "",
+      dishIds: [],
     },
   });
 
@@ -48,11 +46,25 @@ export const MealForm: React.FC<MealFormProps> = ({ meal }) => {
 
   const onSubmit: SubmitHandler<MealFormData> = async (data) => {
     try {
-      await updateLibraryMeal(meal.objectId, data);
-      toast.success("Meal updated successfully");
-      router.push("/experiences?tab=experience-library");
+      setIsUploading(true);
+      const imageFile = data.coverImage[0];
+      const uploadedImage = await uploadFile(imageFile);
+      setIsUploading(false);
+
+      await createLibraryMeal({
+        ...data,
+        dishIds: data.dishIds || [],
+        coverImage: {
+          __type: "File",
+          name: uploadedImage.name,
+          url: uploadedImage.url,
+        },
+      });
+      toast.success("Meal created successfully");
+      router.push("/library?tab=meals");
     } catch {
-      toast.error("Failed to update meal");
+      setIsUploading(false);
+      toast.error("Failed to create meal");
     }
   };
 
@@ -69,15 +81,19 @@ export const MealForm: React.FC<MealFormProps> = ({ meal }) => {
         </div>
         <div>
           <Label htmlFor="country">Country</Label>
-          <CountryDropdown control={control} name="country" label="Country" />
+          <CountryDropdown control={control} name="country" />
         </div>
         <div>
           <Label htmlFor="cost">Cost</Label>
           <Input id="cost" {...register("cost")} />
         </div>
+        <div>
+          <Label htmlFor="coverImage">Cover Image</Label>
+          <Input id="coverImage" type="file" {...register("coverImage")} />
+        </div>
         {/* Add dishIds editing here */}
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Saving..." : "Save"}
+        <Button type="submit" disabled={isSubmitting || isUploading}>
+          {isSubmitting || isUploading ? "Creating..." : "Create"}
         </Button>
       </form>
     </FormProvider>
