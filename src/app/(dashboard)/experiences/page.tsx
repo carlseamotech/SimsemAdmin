@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Search, Filter, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import Header from "@/components/common/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,6 +30,8 @@ import { CreateLibraryItemModal } from "./components/create-library-item-modal";
 import ToursTable from "./components/tours-table";
 import MealsTable from "./components/meals-table";
 import { OfferExperienceModal } from "./components/experience-library-modal";
+import { ExperiencesFilterSheet } from "./components/experiences-filter-sheet";
+import { ActiveFilters } from "./components/active-filters";
 
 const ExperiencesMainPage = () => {
   const [activeFilter, setActiveFilter] = useState("tours");
@@ -43,10 +45,21 @@ const ExperiencesMainPage = () => {
   const [showOfferExperienceModal, setShowOfferExperienceModal] =
     useState(false);
   const [experienceToEdit] = useState<ProposedTour | null>(null);
-  const { count } = useTours(undefined, true, experienceId, hostId, country);
-  const { countries } = useCountries();
+
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const debouncedExperienceId = useDebounce(experienceId, 500);
+  const debouncedHostId = useDebounce(hostId, 500);
   const debouncedCountry = useDebounce(country, 500);
+
+  const { count } = useTours(
+    undefined,
+    true,
+    debouncedExperienceId,
+    debouncedHostId,
+    debouncedCountry
+  );
+  const { countries } = useCountries();
+
   const {
     libraryTours,
     count: toursCount,
@@ -124,6 +137,16 @@ const ExperiencesMainPage = () => {
   const clearFilters = () => {
     setSearchTerm("");
     setCountry("");
+    setExperienceId("");
+    setHostId("");
+  };
+
+  const handleClearFilter = (
+    filterName: "experienceId" | "hostId" | "country"
+  ) => {
+    if (filterName === "experienceId") setExperienceId("");
+    if (filterName === "hostId") setHostId("");
+    if (filterName === "country") setCountry("");
   };
 
   const renderTabContent = () => {
@@ -132,10 +155,10 @@ const ExperiencesMainPage = () => {
         return (
           <ExperiencesPage
             activeFilter={activeFilter}
-            searchTerm={searchTerm}
-            experienceId={experienceId}
-            hostId={hostId}
-            country={country}
+            searchTerm={debouncedSearchTerm}
+            experienceId={debouncedExperienceId}
+            hostId={debouncedHostId}
+            country={debouncedCountry}
           />
         );
       case "experience-library":
@@ -256,28 +279,6 @@ const ExperiencesMainPage = () => {
                         className="pl-10 w-48"
                       />
                     </div>
-                    {activeTab === "experiences" && (
-                      <>
-                        <Input
-                          placeholder="Experience ID"
-                          value={experienceId}
-                          onChange={(e) => setExperienceId(e.target.value)}
-                          className="w-48"
-                        />
-                        <Input
-                          placeholder="Host ID"
-                          value={hostId}
-                          onChange={(e) => setHostId(e.target.value)}
-                          className="w-48"
-                        />
-                        <Input
-                          placeholder="Country"
-                          value={country}
-                          onChange={(e) => setCountry(e.target.value)}
-                          className="w-48"
-                        />
-                      </>
-                    )}
                     {activeTab === "experience-library" ||
                       (activeTab === "dish-library" && (
                         <Select
@@ -303,7 +304,10 @@ const ExperiencesMainPage = () => {
                         </Select>
                       ))}
 
-                    {(searchTerm || country) && (
+                    {(searchTerm ||
+                      country ||
+                      experienceId ||
+                      hostId) && (
                       <Button
                         variant="ghost"
                         size="sm"
@@ -317,15 +321,25 @@ const ExperiencesMainPage = () => {
 
                     <div className="border-l border-[#D9D9DC] border h-9" />
 
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="w-8 h-8 bg-transparent border-none"
-                    >
-                      <Filter className="w-4 h-4" />
-                    </Button>
+                    <ExperiencesFilterSheet
+                      experienceId={experienceId}
+                      setExperienceId={setExperienceId}
+                      hostId={hostId}
+                      setHostId={setHostId}
+                      country={country}
+                      setCountry={setCountry}
+                      countries={countries}
+                      onApply={() => {}}
+                      onClear={clearFilters}
+                    />
                   </div>
                 </div>
+                {activeTab === "experiences" && (
+                  <ActiveFilters
+                    filters={{ experienceId, hostId, country }}
+                    onClear={handleClearFilter}
+                  />
+                )}
               </div>
 
               {renderTabContent()}

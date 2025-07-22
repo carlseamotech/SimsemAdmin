@@ -9,7 +9,13 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { ProposedTour } from "@/models/proposed-tour";
 import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
@@ -30,6 +36,14 @@ interface DateAndTimeModalProps {
   mutate: () => void;
 }
 
+const timeSlots = Array.from({ length: 25 }, (_, i) => {
+  const hour = Math.floor(i / 2) + 8;
+  const minute = i % 2 === 0 ? "00" : "30";
+  const period = hour < 12 ? "AM" : "PM";
+  const displayHour = hour > 12 ? hour - 12 : hour;
+  return `${displayHour}:${minute} ${period}`;
+});
+
 export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
   tour,
   isOpen,
@@ -46,7 +60,6 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
   const {
     control,
     handleSubmit,
-    register,
     formState: { isSubmitting },
     reset,
   } = form;
@@ -81,17 +94,30 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className="max-w-4xl">
         <DialogHeader>
           <DialogTitle>Edit Date & Time</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {fields.map((field, index) => (
             <div key={field.id} className="flex items-center gap-4">
-              <Input
-                {...register(`tourTimes.${index}.value`)}
-                placeholder="Time"
-              />
+              <Select
+                onValueChange={(value) => {
+                  form.setValue(`tourTimes.${index}.value`, value);
+                }}
+                defaultValue={field.value}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a time" />
+                </SelectTrigger>
+                <SelectContent>
+                  {timeSlots.map((time) => (
+                    <SelectItem key={time} value={time}>
+                      {time}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <Button
                 type="button"
                 variant="destructive"
@@ -101,7 +127,11 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
               </Button>
             </div>
           ))}
-          <Button type="button" onClick={() => append({ value: "" })}>
+          <Button
+            type="button"
+            onClick={() => append({ value: "" })}
+            className="w-full"
+          >
             Add Time
           </Button>
           <DialogFooter>

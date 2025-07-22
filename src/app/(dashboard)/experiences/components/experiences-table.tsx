@@ -138,6 +138,9 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
               Host
             </TableHead>
             <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+              Host ID
+            </TableHead>
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Actions
             </TableHead>
           </TableRow>
@@ -201,6 +204,9 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
 
               <TableCell className="text-gray-600">
                 {experience.hostName}
+              </TableCell>
+              <TableCell className="text-gray-600">
+                {experience.guideId}
               </TableCell>
 
               <TableCell>

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { ProposedTour } from "@/models/proposed-tour";
 import { updateCustomTour } from "@/services";
 import toast from "react-hot-toast";
@@ -97,7 +98,7 @@ export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
                 {...register(`thingsToKnow.${index}.title`)}
                 placeholder="Title"
               />
-              <Input
+              <Textarea
                 {...register(`thingsToKnow.${index}.description`)}
                 placeholder="Description"
               />

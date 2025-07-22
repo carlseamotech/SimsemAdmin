@@ -103,10 +103,16 @@ export const GetawayTourForm: React.FC<GetawayTourFormProps> = ({ tour }) => {
                 {...register(`tourPackages.${index}.toPerson`)}
                 placeholder="To Person"
               />
-              <Input
-                {...register(`tourPackages.${index}.cost`)}
-                placeholder="Cost"
-              />
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                  $
+                </span>
+                <Input
+                  {...register(`tourPackages.${index}.cost`)}
+                  placeholder="Cost"
+                  className="pl-7"
+                />
+              </div>
               <Button
                 type="button"
                 variant="destructive"

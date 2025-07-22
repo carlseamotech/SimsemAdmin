@@ -1,10 +1,30 @@
 "use client";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 interface WhereToMeetProps {
   meetingPoint: string;
+  lat: number;
+  lng: number;
 }
 
-const WhereToMeet: React.FC<WhereToMeetProps> = ({ meetingPoint }) => {
+const containerStyle = {
+  width: "100%",
+  height: "400px",
+};
+
+const WhereToMeet: React.FC<WhereToMeetProps> = ({
+  meetingPoint,
+  lat,
+  lng,
+}) => {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
+  });
+
+  const center = {
+    lat,
+    lng,
+  };
   return (
     <div className="flex flex-col gap-3 flex-wrap">
       <div className="flex w-full  items-center gap-4 mb-3">
@@ -14,6 +34,11 @@ const WhereToMeet: React.FC<WhereToMeetProps> = ({ meetingPoint }) => {
           {meetingPoint}
         </div>
       </div>
+      {isLoaded && (
+        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={15}>
+          <Marker position={center} />
+        </GoogleMap>
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 "use client";
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -65,7 +66,7 @@ export const PackagesModal: React.FC<PackagesModalProps> = ({
   useEffect(() => {
     if (tour) {
       reset({
-        tourPackages: tour.tourPackages.map((pkg) =>
+        tourPackages: (tour.tourPackages || []).map((pkg) =>
           typeof pkg === "string" ? JSON.parse(pkg) : pkg
         ),
       });
@@ -87,34 +88,64 @@ export const PackagesModal: React.FC<PackagesModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Edit Pricing Packages</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {fields.map((field, index) => (
-            <div key={field.id} className="flex items-center gap-4">
-              <Input
-                {...register(`tourPackages.${index}.fromPerson`)}
-                placeholder="From Person"
-              />
-              <Input
-                {...register(`tourPackages.${index}.toPerson`)}
-                placeholder="To Person"
-              />
-              <Input
-                {...register(`tourPackages.${index}.cost`)}
-                placeholder="Cost"
-              />
-              <Button
-                type="button"
-                variant="destructive"
-                onClick={() => remove(index)}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+            {fields.map((field, index) => (
+              <div
+                key={field.id}
+                className="flex items-end gap-4 p-4 border rounded-lg"
               >
-                <TrashIcon className="h-4 w-4" />
-              </Button>
-            </div>
-          ))}
+                <div className="grid grid-cols-2 gap-4 flex-grow">
+                  <div>
+                    <Label htmlFor={`tourPackages.${index}.fromPerson`}>
+                      From (pax)
+                    </Label>
+                    <Input
+                      id={`tourPackages.${index}.fromPerson`}
+                      {...register(`tourPackages.${index}.fromPerson`)}
+                      placeholder="e.g., 1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor={`tourPackages.${index}.toPerson`}>
+                      To (pax)
+                    </Label>
+                    <Input
+                      id={`tourPackages.${index}.toPerson`}
+                      {...register(`tourPackages.${index}.toPerson`)}
+                      placeholder="e.g., 4"
+                    />
+                  </div>
+                  <div className="col-span-2">
+                    <Label htmlFor={`tourPackages.${index}.cost`}>Cost</Label>
+                    <div className="relative">
+                      <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                        $
+                      </span>
+                      <Input
+                        id={`tourPackages.${index}.cost`}
+                        {...register(`tourPackages.${index}.cost`)}
+                        placeholder="e.g., 100"
+                        className="pl-7"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <Button
+                  type="button"
+                  variant="destructive"
+                  size="icon"
+                  onClick={() => remove(index)}
+                >
+                  <TrashIcon className="h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+          </div>
           <Button
             type="button"
             onClick={() => append({ fromPerson: "", toPerson: "", cost: "" })}

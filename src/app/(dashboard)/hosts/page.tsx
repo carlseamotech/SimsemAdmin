@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
-import { Search, Filter } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useHosts } from "@/hooks/use-hosts";
 import Header from "@/components/common/header";
 import { HostsTable } from "@/app/(dashboard)/hosts/components/hosts-table";
+import { HostsFilterSheet } from "@/app/(dashboard)/hosts/components/hosts-filter-sheet";
+import { Badge } from "@/components/ui/badge";
 
 const HostDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,6 +27,43 @@ const HostDashboard = () => {
       approved: "Approved",
     };
     return labels[filter] || filter;
+  };
+
+  const handleApplyFilters = () => {
+    // The useHosts hook automatically re-fetches when state changes
+  };
+
+  const handleClearFilters = () => {
+    setSearchTerm("");
+    setHostId("");
+    setEmail("");
+    setCountry("");
+  };
+
+  const filters = {
+    "Search Term": searchTerm,
+    "Host ID": hostId,
+    Email: email,
+    Country: country,
+  };
+
+  const activeFilters = Object.entries(filters).filter(([, value]) => value);
+
+  const clearFilter = (filterName: string) => {
+    switch (filterName) {
+      case "Search Term":
+        setSearchTerm("");
+        break;
+      case "Host ID":
+        setHostId("");
+        break;
+      case "Email":
+        setEmail("");
+        break;
+      case "Country":
+        setCountry("");
+        break;
+    }
   };
 
   return (
@@ -67,36 +106,49 @@ const HostDashboard = () => {
                       className="pl-10 w-48"
                     />
                   </div>
-                  <Input
-                    placeholder="Host ID"
-                    value={hostId}
-                    onChange={(e) => setHostId(e.target.value)}
-                    className="w-48"
-                  />
-                  <Input
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-48"
-                  />
-                  <Input
-                    placeholder="Country"
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                    className="w-48"
-                  />
-
                   <div className="border-l border-[#D9D9DC] h-10" />
-
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="w-8 h-8 bg-transparent border-none"
-                  >
-                    <Filter className="w-4 h-4" />
-                  </Button>
+                  <HostsFilterSheet
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
+                    hostId={hostId}
+                    setHostId={setHostId}
+                    email={email}
+                    setEmail={setEmail}
+                    country={country}
+                    setCountry={setCountry}
+                    onApply={handleApplyFilters}
+                    onClear={handleClearFilters}
+                  />
                 </div>
               </div>
+              {activeFilters.length > 0 && (
+                <div className="flex items-center gap-2 mt-4">
+                  <p className="text-sm font-medium">Active Filters:</p>
+                  {activeFilters.map(([key, value]) => (
+                    <Badge
+                      key={key}
+                      variant="secondary"
+                      className="flex items-center gap-1"
+                    >
+                      {key}: {value}
+                      <button
+                        onClick={() => clearFilter(key)}
+                        className="ml-1"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </Badge>
+                  ))}
+                  <Button
+                    variant="link"
+                    size="sm"
+                    onClick={handleClearFilters}
+                    className="text-red-500"
+                  >
+                    Clear All
+                  </Button>
+                </div>
+              )}
             </div>
             <HostsTable
               searchTerm={searchTerm}

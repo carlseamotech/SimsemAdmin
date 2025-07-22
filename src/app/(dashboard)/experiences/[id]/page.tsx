@@ -339,7 +339,11 @@ const ExperienceDetailsPage = () => {
                         Edit
                       </Button>
                     </div>
-                    <WhereToMeet meetingPoint={tour.meetingPoint} />
+                    <WhereToMeet
+                      meetingPoint={tour.meetingPoint}
+                      lat={tour.meetingPointLat}
+                      lng={tour.meetingPointLong}
+                    />
                   </div>
 
                   <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
