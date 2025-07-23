@@ -108,9 +108,7 @@ const Header = ({ title, showBackButton = false, onBack }: HeaderProps) => {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => router.push("/profile")}>
-                Profile
-              </DropdownMenuItem>
+              
               <DropdownMenuItem onClick={() => router.push("/settings")}>
                 Settings
               </DropdownMenuItem>
