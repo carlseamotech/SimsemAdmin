@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
-import { DocumentUploadSection } from "@/app/(dashboard)/hosts/components/document-section";
 import { ContactLanguageSection } from "@/app/(dashboard)/hosts/components/contact-section";
 import { PaymentInfoDisplaySection } from "@/app/(dashboard)/hosts/components/payment-display-section";
 import { DeleteHostDialog } from "@/app/(dashboard)/hosts/components/delete-host-dialog";
@@ -20,23 +19,26 @@ import {
 } from "@/app/(dashboard)/hosts/components/host-scema";
 import { useHost } from "@/hooks/use-hosts";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  approveHost,
-  declineHost,
-  deleteHost,
-} from "@/services/hosts";
+import { approveHost, declineHost, deleteHost } from "@/services/hosts";
 import { uploadFile } from "@/services/files";
 import toast from "react-hot-toast";
 import { UpdateHostInfoDTO } from "@/dtos";
+import { SingleDocumentModal } from "@/app/(dashboard)/hosts/components/single-document-modal";
+
+type EditingDocument = {
+  type: keyof UpdateHostInfoDTO;
+  label: string;
+  url?: string;
+};
 
 const HostSummaryPage = () => {
   const { id } = useParams();
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [frontImageFile, setFrontImageFile] = useState<File | null>(null);
-  const [backImageFile, setBackImageFile] = useState<File | null>(null);
-  const [certificateFile, setCertificateFile] = useState<File | null>(null);
+  const [editingDocument, setEditingDocument] = useState<EditingDocument | null>(
+    null
+  );
   const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
 
   const { host, hostPayment, isLoading, updateHost, mutate } = useHost(
@@ -101,7 +103,7 @@ const HostSummaryPage = () => {
   const handleSave = async (data: HostFormData) => {
     setIsSubmitting(true);
     try {
-      const updateDto: UpdateHostInfoDTO = {
+      const updateDto: Partial<UpdateHostInfoDTO> = {
         city: data.city,
         bio: data.about,
         languages: [
@@ -112,19 +114,10 @@ const HostSummaryPage = () => {
       };
 
       if (profileImageFile) {
-        await uploadFile(profileImageFile);
-      }
-
-      if (frontImageFile) {
-        await uploadFile(frontImageFile);
-      }
-
-      if (backImageFile) {
-        await uploadFile(backImageFile);
-      }
-
-      if (certificateFile) {
-        await uploadFile(certificateFile);
+        const token = localStorage.getItem("sessionToken");
+        if (!token) throw new Error("No session token found");
+        const uploadedFile = await uploadFile(profileImageFile, token);
+        updateDto.imageUrl = uploadedFile.url;
       }
 
       await updateHost(updateDto);
@@ -372,14 +365,86 @@ const HostSummaryPage = () => {
                 </Card>
 
                 {/* Document */}
-                <DocumentUploadSection
-                  isEditing={isEditing}
-                  idBackFileUrl={host.idBackFileUrl}
-                  idFrontFileUrl={host.idFrontFileUrl}
-                  onFrontFileChange={setFrontImageFile}
-                  onBackFileChange={setBackImageFile}
-                  onCertificateFileChange={setCertificateFile}
-                />
+                <Card className={`bg-[#3D3D3D0D]  border-none p-0 `}>
+                  <CardContent className="p-6 ">
+                    <h3 className="text-[24px] font-bold text-[#0D2E61] mb-5">
+                      Documents
+                    </h3>
+                    <div className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {[
+                          {
+                            label: "ID Front",
+                            type: "idFrontFileUrl",
+                            url: host.idFrontFileUrl,
+                          },
+                          {
+                            label: "ID Back",
+                            type: "idBackFileUrl",
+                            url: host.idBackFileUrl,
+                          },
+                        ].map((doc) => (
+                          <div key={doc.type} className="space-y-2">
+                            <p className="text-[#3D3D3DCC] text-[15px]">
+                              {doc.label}
+                            </p>
+                            <div className="relative w-full aspect-[4/2]">
+                              <Image
+                                src={doc.url || ProfileImage}
+                                alt={doc.label}
+                                fill
+                                className="rounded-lg border object-cover"
+                              />
+                            </div>
+                            {isEditing && (
+                              <Button
+                                type="button"
+                                variant="link"
+                                onClick={() =>
+                                  setEditingDocument({
+                                    type: doc.type as keyof UpdateHostInfoDTO,
+                                    label: doc.label,
+                                    url: doc.url,
+                                  })
+                                }
+                              >
+                                Change {doc.label}
+                              </Button>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="space-y-2">
+                        <p className="text-[#3D3D3DCC] text-[15px]">
+                          Certificate
+                        </p>
+                        <div className="relative w-full aspect-[4/2]">
+                          <Image
+                            src={host.certificateFileUrl || ProfileImage}
+                            alt="Certificate"
+                            fill
+                            className="rounded-lg border object-cover"
+                          />
+                        </div>
+                        {isEditing && (
+                          <Button
+                            type="button"
+                            variant="link"
+                            onClick={() =>
+                              setEditingDocument({
+                                type: "certificateFileUrl",
+                                label: "Certificate",
+                                url: host.certificateFileUrl,
+                              })
+                            }
+                          >
+                            Change Certificate
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
                 {/* Contact & Language */}
                 <ContactLanguageSection form={form} isEditing={isEditing} />
@@ -466,6 +531,16 @@ const HostSummaryPage = () => {
           </div>
         </div>
       </div>
+      {editingDocument && (
+        <SingleDocumentModal
+          hostId={id as string}
+          isOpen={!!editingDocument}
+          onClose={() => setEditingDocument(null)}
+          documentType={editingDocument.type}
+          documentLabel={editingDocument.label}
+          currentUrl={editingDocument.url}
+        />
+      )}
     </>
   );
 };

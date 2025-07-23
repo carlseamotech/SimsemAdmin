@@ -10,11 +10,13 @@ import UploadIcon from "../../../public/common/upload-cloud-icon.svg";
 interface MultiImageUploaderProps {
   name: string;
   label: string;
+  maxFiles?: number;
 }
 
 const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
   name,
   label,
+  maxFiles = 10,
 }) => {
   const { control } = useFormContext();
   const {
@@ -27,6 +29,10 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
   ) => {
     const files = event.target.files;
     if (files) {
+      if (imageUrls.length + files.length > maxFiles) {
+        toast.error(`You can only upload a maximum of ${maxFiles} images.`);
+        return;
+      }
       setIsUploading(true);
       try {
         const token = localStorage.getItem("sessionToken");
@@ -73,36 +79,38 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
             </button>
           </div>
         ))}
-        <div className="relative border-2 border-dashed bg-[#00000008] rounded-lg h-40 text-center flex items-center justify-center">
-          <input
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleFileUpload}
-            className="hidden"
-            id={`photo-upload-${name}`}
-            disabled={isUploading}
-          />
-          <label
-            htmlFor={`photo-upload-${name}`}
-            className={`cursor-pointer flex flex-col justify-center items-center gap-4 ${
-              isUploading ? "opacity-50" : ""
-            }`}
-          >
-            {isUploading ? (
-              <Loader2 className="w-12 h-12 animate-spin" />
-            ) : (
-              <Image
-                src={UploadIcon}
-                alt="Upload Icon"
-                className="w-[46px] h-[46px]"
-              />
-            )}
-            <p className="text-[#3D3D3D] text-[15px] font-bold">
-              {isUploading ? "Uploading..." : "Upload or drag photos here"}
-            </p>
-          </label>
-        </div>
+        {imageUrls.length < maxFiles && (
+          <div className="relative border-2 border-dashed bg-[#00000008] rounded-lg h-40 text-center flex items-center justify-center">
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleFileUpload}
+              className="hidden"
+              id={`photo-upload-${name}`}
+              disabled={isUploading}
+            />
+            <label
+              htmlFor={`photo-upload-${name}`}
+              className={`cursor-pointer flex flex-col justify-center items-center gap-4 ${
+                isUploading ? "opacity-50" : ""
+              }`}
+            >
+              {isUploading ? (
+                <Loader2 className="w-12 h-12 animate-spin" />
+              ) : (
+                <Image
+                  src={UploadIcon}
+                  alt="Upload Icon"
+                  className="w-[46px] h-[46px]"
+                />
+              )}
+              <p className="text-[#3D3D3D] text-[15px] font-bold">
+                {isUploading ? "Uploading..." : "Upload or drag photos here"}
+              </p>
+            </label>
+          </div>
+        )}
       </div>
     </div>
   );
