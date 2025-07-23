@@ -5,81 +5,58 @@ import {
   useContext,
   useState,
   useEffect,
-  useMemo,
   type ReactNode,
 } from "react";
-import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
 import * as authService from "@/services/auth";
-import { auth, db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import { User } from "@/models/user";
-import { TeamMember } from "@/models/team";
 import { useRouter } from "next/navigation";
+import { LoginDTO } from "@/dtos/auth";
 
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
-  signIn: (email: string, password: string) => Promise<void>;
+  signIn: (credentials: LoginDTO) => Promise<void>;
   signOut: () => Promise<void>;
 }
-
-interface AuthService {
-  onAuthStateChanged: (callback: (user: FirebaseUser | null) => void) => () => void;
-  signIn: (email: string, password: string) => Promise<User>;
-  signOut: () => Promise<void>;
-}
-
-const defaultAuthService: AuthService = {
-  onAuthStateChanged: (callback) => onAuthStateChanged(auth, callback),
-  signIn: authService.signIn,
-  signOut: authService.signOut,
-};
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({
-  children,
-  authService: providedAuthService,
-}: {
-  children: ReactNode;
-  authService?: Partial<AuthService>;
-}) {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  const authServiceInstance = useMemo(
-    () => ({ ...defaultAuthService, ...providedAuthService }),
-    [providedAuthService]
-  );
-
   useEffect(() => {
-    const unsubscribe = authServiceInstance.onAuthStateChanged(async (firebaseUser) => {
-      if (firebaseUser) {
-        const teamMemberRef = doc(db, "team", firebaseUser.uid);
-        const teamMemberSnap = await getDoc(teamMemberRef);
-
-        if (teamMemberSnap.exists()) {
-          const teamMember = teamMemberSnap.data() as TeamMember;
-          setUser({ ...firebaseUser, ...teamMember });
-        } else {
-          setUser(firebaseUser as User);
+    const loadUser = async () => {
+      const token = localStorage.getItem("sessionToken");
+      if (token) {
+        try {
+          const currentUser = await authService.getCurrentUser(token);
+          setUser(currentUser);
+        } catch (error) {
+          console.error("Failed to fetch user", error);
+          localStorage.removeItem("sessionToken");
         }
-      } else {
-        setUser(null);
       }
       setIsLoading(false);
-    });
+    };
 
-    return () => unsubscribe();
-  }, [authServiceInstance]);
+    loadUser();
+  }, []);
 
-  const signIn = async (email: string, password: string) => {
-    await authServiceInstance.signIn(email, password);
+  const signIn = async (credentials: LoginDTO) => {
+    const loginResponse = await authService.signIn(credentials);
+    localStorage.setItem("sessionToken", loginResponse.sessionToken);
+    const currentUser = await authService.getCurrentUser(
+      loginResponse.sessionToken
+    );
+    setUser(currentUser);
   };
 
   const signOut = async () => {
-    await authServiceInstance.signOut();
+    await authService.signOut();
+    localStorage.removeItem("sessionToken");
+    setUser(null);
     router.push("/auth");
   };
 

@@ -24,7 +24,7 @@ const handleResponse = async (response: Response) => {
 const apiClient: ApiClient = {
   get: async <T>(
     endpoint: string,
-    config?: { params?: Record<string, unknown> }
+    config?: { params?: Record<string, unknown>; headers?: Record<string, string> }
   ): Promise<T> => {
     const url = new URL(`${BASE_URL}${endpoint}`);
     if (config?.params) {
@@ -42,13 +42,18 @@ const apiClient: ApiClient = {
       headers: {
         "X-Parse-Application-Id": APP_ID,
         "X-Parse-REST-API-Key": API_KEY,
+        ...config?.headers,
       },
     });
 
     return handleResponse(response);
   },
 
-  post: async <T>(endpoint: string, data: unknown): Promise<T> => {
+  post: async <T>(
+    endpoint: string,
+    data: unknown,
+    config?: { headers?: Record<string, string> }
+  ): Promise<T> => {
     const isFile = data instanceof File;
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: "POST",
@@ -56,6 +61,7 @@ const apiClient: ApiClient = {
         "X-Parse-Application-Id": APP_ID,
         "X-Parse-REST-API-Key": API_KEY,
         ...(isFile ? {} : { "Content-Type": "application/json" }),
+        ...config?.headers,
       },
       body: isFile ? (data as BodyInit) : JSON.stringify(data),
     });
@@ -63,13 +69,18 @@ const apiClient: ApiClient = {
     return handleResponse(response);
   },
 
-  put: async <T>(endpoint: string, data: unknown): Promise<T> => {
+  put: async <T>(
+    endpoint: string,
+    data: unknown,
+    config?: { headers?: Record<string, string> }
+  ): Promise<T> => {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: "PUT",
       headers: {
         "X-Parse-Application-Id": APP_ID,
         "X-Parse-REST-API-Key": API_KEY,
         "Content-Type": "application/json",
+        ...config?.headers,
       },
       body: JSON.stringify(data),
     });
@@ -77,12 +88,16 @@ const apiClient: ApiClient = {
     return handleResponse(response);
   },
 
-  delete: async <T>(endpoint: string): Promise<T> => {
+  delete: async <T>(
+    endpoint: string,
+    config?: { headers?: Record<string, string> }
+  ): Promise<T> => {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: "DELETE",
       headers: {
         "X-Parse-Application-Id": APP_ID,
         "X-Parse-REST-API-Key": API_KEY,
+        ...config?.headers,
       },
     });
 

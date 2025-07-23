@@ -1,0 +1,1890 @@
+{
+	"info": {
+		"_postman_id": "6f2cfb0e-03a2-499d-829e-c682020adad6",
+		"name": "SimSem API Admin Panel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5563699"
+	},
+	"item": [
+		{
+			"name": "Endpoints",
+			"item": [
+				{
+					"name": "Experiences",
+					"item": [
+						{
+							"name": "Custom Tour",
+							"item": [
+								{
+									"name": "Create Custom Tour Experience",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\"hrhdhhd\\\",\\\"title\\\":\\\"bdbdh\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"city\": \"dhdh\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/34a29f0a0af0b083cc26cb75aefa6125_1752300721321.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/8100f2359d79353d28630ce5735cda45_1752300722355.jpeg\",\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a0c16250ad137c24aaeedefa318ff5ea_1752300722358.jpeg\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1752944846352_PXL_20250126_064713801.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/17745877565756a75f27e26b7391afff_1752944853668.jpeg\\\"}\"\n    ],\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"dbbd\",\n    \"exclusions\": [\n        \"hdhd\"\n    ],\n    \"itinerary\": [\n        \"{\\\"day\\\":\\\"Day 1\\\",\\\"description\\\":\\\"bdbdbbd\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Architecture\"\n    ],\n    \"cameraZoom\": 15,\n    \"type\": \"custom\",\n    \"whatToExpect\": \"nxnd\",\n    \"otherTourFeature\": \"\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"countryCode\": \"+90\",\n    \"meetingPointLong\": 90.4352742433548,\n    \"tourDuration\": \"1 hour\",\n    \"meetingPointLat\": 23.764437246189587,\n    \"phone\": \"+8801703464048\",\n    \"name\": \"custom \",\n    \"tourTimes\": [\n        \"12:00 AM\"\n    ],\n    \"inclusions\": [\n        \"bdbd\"\n    ],\n    \"tourPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"10\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"6\\\"}\",\n        \"{\\\"cost\\\":\\\"9\\\",\\\"fromPerson\\\":\\\"7\\\",\\\"toPerson\\\":\\\"9\\\"}\"\n    ],\n    \"isActive\": false,\n    \"isApproved\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/ProposedTour",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"ProposedTour"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Custom Tour Experience",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\"hrhdhhd\\\",\\\"title\\\":\\\"bdbdh\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"city\": \"dhdh\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/34a29f0a0af0b083cc26cb75aefa6125_1752300721321.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/8100f2359d79353d28630ce5735cda45_1752300722355.jpeg\",\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a0c16250ad137c24aaeedefa318ff5ea_1752300722358.jpeg\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1752944846352_PXL_20250126_064713801.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/17745877565756a75f27e26b7391afff_1752944853668.jpeg\\\"}\"\n    ],\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"dbbd\",\n    \"exclusions\": [\n        \"hdhd\"\n    ],\n    \"itinerary\": [\n        \"{\\\"day\\\":\\\"Day 1\\\",\\\"description\\\":\\\"bdbdbbd\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Architecture\"\n    ],\n    \"cameraZoom\": 15,\n    \"whatToExpect\": \"nxnd\",\n    \"otherTourFeature\": \"\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"countryCode\": \"+90\",\n    \"meetingPointLong\": 90.4352742433548,\n    \"tourDuration\": \"1 hour\",\n    \"meetingPointLat\": 23.764437246189587,\n    \"phone\": \"+8801703464048\",\n    \"name\": \"custom \",\n    \"tourTimes\": [\n        \"12:00 AM\"\n    ],\n    \"inclusions\": [\n        \"bdbd\"\n    ],\n    \"tourPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"10\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"6\\\"}\",\n        \"{\\\"cost\\\":\\\"9\\\",\\\"fromPerson\\\":\\\"7\\\",\\\"toPerson\\\":\\\"9\\\"}\"\n    ],\n    \"isActive\": false,\n    \"isApproved\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/ProposedTour/5hIMtnBs6e",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"ProposedTour",
+												"5hIMtnBs6e"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Getaway Tour",
+							"item": [
+								{
+									"name": "Create Getaway Tour Experience",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\" d dbbd\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"pickupPoints\": [\n        \"{\\\"key\\\":\\\"locationPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\\\",\\\"pickupPointLat\\\":23.764418835305104,\\\"pickupPointLong\\\":90.43520417064428,\\\"pickupPointTitle\\\":\\\"Pick-up from a specific location\\\"}}\",\n        \"{\\\"key\\\":\\\"airportPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"PCV9+W95, Amtola Mosjider Goli Rd, Dhaka, Bangladesh\\\",\\\"pickupPointLat\\\":23.74491932622417,\\\"pickupPointLong\\\":90.41837867349386,\\\"pickupPointTitle\\\":\\\"Pickup from any airport\\\"}}\"\n    ],\n    \"city\": \"ue\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/1530f4f39824177d1ea6aef43e5fe612_1752330837460.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c0ace21cca8782e84182cdc1da20508b_1752330838181.jpeg\"\n    ],\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"jdjd the API \",\n    \"exclusions\": [\n        \"bsbs\"\n    ],\n    \"itinerary\": [\n        \"{\\\"day\\\":\\\"Day 1\\\",\\\"description\\\":\\\"bdbdb\\\",\\\"title\\\":\\\"hdhd\\\"}\"\n    ],\n    \"tourPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"10\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"6\\\"}\",\n        \"{\\\"cost\\\":\\\"9\\\",\\\"fromPerson\\\":\\\"7\\\",\\\"toPerson\\\":\\\"9\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Camping\",\n        \"Outdoor\"\n    ],\n    \"type\": \"getaway\",\n    \"whatToExpect\": \"djnd\",\n    \"otherTourFeature\": \"\",\n    \"phone\": \"+8801703464048\",\n    \"countryCode\": \"+90\",\n    \"name\": \"getaway \",\n    \"tourTimes\": [\n        \"08:00 AM\",\n        \"11:00 AM\"\n    ],\n    \"tourDuration\": \"2 Day\",\n    \"inclusions\": [\n        \"bsbs\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1752947468079_PXL_20250203_065751498.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/b00a0c981067abe4600d725b740333ef_1752947472713.jpeg\\\"}\"\n    ],\n    \"isActive\": false,\n    \"isApproved\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/ProposedTour",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"ProposedTour"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Getaway Tour Experience",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\" d dbbd\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"pickupPoints\": [\n        \"{\\\"key\\\":\\\"locationPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\\\",\\\"pickupPointLat\\\":23.764418835305104,\\\"pickupPointLong\\\":90.43520417064428,\\\"pickupPointTitle\\\":\\\"Pick-up from a specific location\\\"}}\",\n        \"{\\\"key\\\":\\\"airportPickup\\\",\\\"value\\\":{\\\"cameraZoom\\\":15.0,\\\"pickupPoint\\\":\\\"PCV9+W95, Amtola Mosjider Goli Rd, Dhaka, Bangladesh\\\",\\\"pickupPointLat\\\":23.74491932622417,\\\"pickupPointLong\\\":90.41837867349386,\\\"pickupPointTitle\\\":\\\"Pickup from any airport\\\"}}\"\n    ],\n    \"city\": \"ue\",\n    \"difficultyLevel\": \"Basic\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/1530f4f39824177d1ea6aef43e5fe612_1752330837460.jpeg\",\n    \"galleryImageUrls\": [\n        \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c0ace21cca8782e84182cdc1da20508b_1752330838181.jpeg\"\n    ],\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"jdjd the API \",\n    \"exclusions\": [\n        \"bsbs\"\n    ],\n    \"itinerary\": [\n        \"{\\\"day\\\":\\\"Day 1\\\",\\\"description\\\":\\\"bdbdb\\\",\\\"title\\\":\\\"hdhd\\\"}\"\n    ],\n    \"tourPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"10\\\",\\\"fromPerson\\\":\\\"4\\\",\\\"toPerson\\\":\\\"6\\\"}\",\n        \"{\\\"cost\\\":\\\"9\\\",\\\"fromPerson\\\":\\\"7\\\",\\\"toPerson\\\":\\\"9\\\"}\"\n    ],\n    \"tourFeatures\": [\n        \"Camping\",\n        \"Outdoor\"\n    ],\n    \"whatToExpect\": \"djnd\",\n    \"otherTourFeature\": \"\",\n    \"phone\": \"+8801703464048\",\n    \"countryCode\": \"+90\",\n    \"name\": \"getaway \",\n    \"tourTimes\": [\n        \"08:00 AM\",\n        \"11:00 AM\"\n    ],\n    \"tourDuration\": \"2 Day\",\n    \"inclusions\": [\n        \"bsbs\"\n    ],\n    \"galleryVideoUrls\": [\n        \"{\\\"name\\\":\\\"1752947468079_PXL_20250203_065751498.TS.mp4\\\",\\\"thumbnailUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/b00a0c981067abe4600d725b740333ef_1752947472713.jpeg\\\"}\"\n    ],\n    \"isActive\": false,\n    \"isApproved\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/ProposedTour/wOSr2QgL4z",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"ProposedTour",
+												"wOSr2QgL4z"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Offered Tour",
+							"item": [
+								{
+									"name": "Create Offered Tour Experience",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"country\": \"Turkey\",\n    \"cost\": \"20\",\n    \"city\": \"js\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/3dd8a0f31ba0712f1c435b303d5ca811_Hammam%20day.png\",\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"You’ve been travelling for some time now and have seen so much, it’s been great but you’re feeling like you could slow down a bit. You also feel like being pampered and indulging… and you’ve considered the famous Middle Estern hammams…but you don’t feel completely comfortable with the idea…I get it and I got your back. The Hammam is a ritual and you could use a friendly companion. I can recommend the best one in town! You’ll feel like a new human after the experience and you I guarantee you it won’t be your last time!  Please note: Price does not include food, drinks, tickets or transportation.\",\n    \"tourFeatures\": [\n        \"Knowing a local hammam that you visit regularly.\",\n        \"Being able to give guidance and advice to your host.\"\n    ],\n    \"cameraZoom\": 15,\n    \"type\": \"offered\",\n    \"meetingPointLat\": 23.764437246189587,\n    \"offeredTourId\": \"Sv7yJHLmXq\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"isNotified\": true,\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"646\",\n    \"countryCode\": \"+880\",\n    \"name\": \"Today Feels like a Hammam Day! \",\n    \"meetingPointLong\": 90.4352742433548,\n    \"tourTimes\": [\n        \"08:00 AM\",\n        \"10:00 AM\"\n    ],\n    \"tourDuration\": \"2 hours\",\n    \"isActive\": false,\n    \"isApproved\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/ProposedTour",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"ProposedTour"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Offered Tour Experience",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"country\": \"Turkey\",\n    \"cost\": \"20\",\n    \"city\": \"js\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/3dd8a0f31ba0712f1c435b303d5ca811_Hammam%20day.png\",\n    \"guideId\": \"kifpSShKKb\",\n    \"description\": \"You’ve been travelling for some time now and have seen so much, it’s been great but you’re feeling like you could slow down a bit. You also feel like being pampered and indulging… and you’ve considered the famous Middle Estern hammams…but you don’t feel completely comfortable with the idea…I get it and I got your back. The Hammam is a ritual and you could use a friendly companion. I can recommend the best one in town! You’ll feel like a new human after the experience and you I guarantee you it won’t be your last time!  Please note: Price does not include food, drinks, tickets or transportation.\",\n    \"tourFeatures\": [\n        \"Knowing a local hammam that you visit regularly.\",\n        \"Being able to give guidance and advice to your host.\"\n    ],\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.764437246189587,\n    \"offeredTourId\": \"Sv7yJHLmXq\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"isNotified\": true,\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"646\",\n    \"countryCode\": \"+880\",\n    \"name\": \"Today Feels like a Hammam Day! \",\n    \"meetingPointLong\": 90.4352742433548,\n    \"tourTimes\": [\n        \"08:00 AM\",\n        \"10:00 AM\"\n    ],\n    \"tourDuration\": \"2 hours\",\n    \"isActive\": false,\n    \"isApproved\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/ProposedTour/upn59zK2oD",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"ProposedTour",
+												"upn59zK2oD"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Meal",
+							"item": [
+								{
+									"name": "Meal Experiences",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/classes/SelectedMeal?where={\"isCustomMeal\":false}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"SelectedMeal"
+											],
+											"query": [
+												{
+													"key": "where",
+													"value": "{\"isActive\":true}",
+													"description": "Get all activie meals",
+													"disabled": true
+												},
+												{
+													"key": "where",
+													"value": "{\"isCustomMeal\":false}",
+													"description": "Get active meals by country"
+												},
+												{
+													"key": "keys",
+													"value": "name,country",
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Meal Experience Details",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/classes/SelectedMeal/h4iX4npghU",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"SelectedMeal",
+												"h4iX4npghU"
+											],
+											"query": [
+												{
+													"key": "keys",
+													"value": "name,country",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Custom Meal Experience",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\"bdbdh\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"starter\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"KN0zsXd9ss\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/944cba2568d6e7f9e1dbe016e967626d_Filo%20pastry%20cheese%20pie.png\\\",\\\"ingredients\\\":\\\"Filo pastry, Eggs, Cheese (ricotta, feta, or brie- ricotta, feta, or brie), A mix of fresh herbs (parsley, mint, dill, thyme, basil), Sesame seeds\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Filo pastry cheese pie\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Starter\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"pIHNFCBatz\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a104ebf79c37cb6b67a0b2c80884d17c_Fatteh.png\\\",\\\"ingredients\\\":\\\"Short-grain rice, Beef/lamb, Tomatoes, White vinegar, Pita bread, toasted\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Fatteh\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"qKUCENK2X3\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/fa3e97036c6fab8328aaea638f384dc6_Mahalabia.png\\\",\\\"ingredients\\\":\\\"Rice flour, Milk, Rose water, Crushed pistachios for garnish (optional)\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Mahalabia\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"city\": \"test\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\",\n    \"hostId\": \"kifpSShKKb\",\n    \"exclusions\": [\n        \"ehdb\"\n    ],\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.764438780429842,\n    \"whatToExpect\": \"ndjd\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"2\",\n    \"name\": \"hgy\",\n    \"mealDuration\": \"1 hour\",\n    \"meetingPointLong\": 90.43520450592041,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\"\n    },\n    \"isCustomMeal\": true,\n    \"inclusions\": [\n        \"hdhd\"\n    ],\n    \"isActive\": false,\n    \"kitchenTimes\": [\n        \"08:00 AM\",\n        \"10:00 AM\",\n        \"06:00 PM\"\n    ],\n    \"mealPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"12\\\",\\\"fromPerson\\\":\\\"3\\\",\\\"toPerson\\\":\\\"6\\\"}\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/SelectedMeal",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"SelectedMeal"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Custom Meal Experience",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"thingsToKnow\": [\n        \"{\\\"description\\\":\\\"bdbdh\\\",\\\"title\\\":\\\"bdbd\\\"}\"\n    ],\n    \"country\": \"Turkey\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"starter\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"KN0zsXd9ss\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/944cba2568d6e7f9e1dbe016e967626d_Filo%20pastry%20cheese%20pie.png\\\",\\\"ingredients\\\":\\\"Filo pastry, Eggs, Cheese (ricotta, feta, or brie- ricotta, feta, or brie), A mix of fresh herbs (parsley, mint, dill, thyme, basil), Sesame seeds\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Filo pastry cheese pie\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Starter\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"pIHNFCBatz\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a104ebf79c37cb6b67a0b2c80884d17c_Fatteh.png\\\",\\\"ingredients\\\":\\\"Short-grain rice, Beef/lamb, Tomatoes, White vinegar, Pita bread, toasted\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Fatteh\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"qKUCENK2X3\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/fa3e97036c6fab8328aaea638f384dc6_Mahalabia.png\\\",\\\"ingredients\\\":\\\"Rice flour, Milk, Rose water, Crushed pistachios for garnish (optional)\\\",\\\"isChecked\\\":true,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Mahalabia\\\",\\\"type\\\":\\\"Vegetarian\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"city\": \"test\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\",\n    \"hostId\": \"kifpSShKKb\",\n    \"exclusions\": [\n        \"ehdb\"\n    ],\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.764438780429842,\n    \"whatToExpect\": \"ndjd\",\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"2\",\n    \"name\": \"hgy\",\n    \"mealDuration\": \"1 hour\",\n    \"meetingPointLong\": 90.43520450592041,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/0a67e0a67693f5321b1d0bfcb082ebe2_1751000319986.jpeg\"\n    },\n    \"inclusions\": [\n        \"hdhd\"\n    ],\n    \"isActive\": false,\n    \"kitchenTimes\": [\n        \"08:00 AM\",\n        \"10:00 AM\",\n        \"06:00 PM\"\n    ],\n    \"mealPackages\": [\n        \"{\\\"cost\\\":\\\"15\\\",\\\"fromPerson\\\":\\\"1\\\",\\\"toPerson\\\":\\\"3\\\"}\",\n        \"{\\\"cost\\\":\\\"12\\\",\\\"fromPerson\\\":\\\"3\\\",\\\"toPerson\\\":\\\"6\\\"}\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/SelectedMeal/wOSr2QgL4z",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"SelectedMeal",
+												"wOSr2QgL4z"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Offered Meal Experience",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"country\": \"Turkey\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"2VWYX39IXA\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/03380a116fbfd65afee8aad8a95c290d_Maqluba.jpg\\\",\\\"ingredients\\\":\\\"Stewed meat, rice, and vegetables, spices\\\",\\\"isChecked\\\":false,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Maqluba\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"wHCx2QJX5F\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/7c39b8bc957f8c911834f03697ec80f3_Baklava.jpg\\\",\\\"ingredients\\\":\\\"Phyllo dough, nuts and honey\\\",\\\"isChecked\\\":false,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Baklava\\\",\\\"type\\\":\\\"Vegan\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"cost\": \"20\",\n    \"city\": \"dhaka\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\",\n    \"hostId\": \"kifpSShKKb\",\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.76443663249348,\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"2\",\n    \"name\": \"Lunch : Feed Your Mind\",\n    \"mealDuration\": \"1 hour\",\n    \"meetingPointLong\": 90.4352105408907,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\"\n    },\n    \"isCustomMeal\": false,\n    \"isActive\": true,\n    \"kitchenTimes\": [\n        \"10:00 AM\",\n        \"02:00 PM\",\n        \"05:00 PM\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/SelectedMeal",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"SelectedMeal"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Offered Meal Experience",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"country\": \"Turkey\",\n    \"courses\": [\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"main\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"2VWYX39IXA\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/03380a116fbfd65afee8aad8a95c290d_Maqluba.jpg\\\",\\\"ingredients\\\":\\\"Stewed meat, rice, and vegetables, spices\\\",\\\"isChecked\\\":false,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Maqluba\\\",\\\"type\\\":\\\"Meat\\\"}],\\\"name\\\":\\\"Main Dish\\\"}\",\n        \"{\\\"dishes\\\":[{\\\"course\\\":\\\"dessert\\\",\\\"description\\\":\\\"\\\",\\\"id\\\":\\\"wHCx2QJX5F\\\",\\\"imageUrl\\\":\\\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/7c39b8bc957f8c911834f03697ec80f3_Baklava.jpg\\\",\\\"ingredients\\\":\\\"Phyllo dough, nuts and honey\\\",\\\"isChecked\\\":false,\\\"isSpecial\\\":false,\\\"name\\\":\\\"Baklava\\\",\\\"type\\\":\\\"Vegan\\\"}],\\\"name\\\":\\\"Dessert\\\"}\"\n    ],\n    \"cost\": \"20\",\n    \"city\": \"dhaka\",\n    \"coverImageUrl\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\",\n    \"hostId\": \"kifpSShKKb\",\n    \"cameraZoom\": 15,\n    \"meetingPointLat\": 23.76443663249348,\n    \"meetingPoint\": \"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\n    \"phone\": \"+8801703464048\",\n    \"maxGuest\": \"2\",\n    \"name\": \"Lunch : Feed Your Mind\",\n    \"mealDuration\": \"1 hour\",\n    \"meetingPointLong\": 90.4352105408907,\n    \"coverImageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/6d974618e135a7faffe24ec7dea49028_maqluba-2400x1350.jpg\"\n    },\n    \"isActive\": true,\n    \"kitchenTimes\": [\n        \"10:00 AM\",\n        \"02:00 PM\",\n        \"05:00 PM\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/classes/SelectedMeal/wOSr2QgL4z",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"SelectedMeal",
+												"wOSr2QgL4z"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Dinning Experience",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "X-Parse-Application-Id",
+												"value": "{{parseAppId}}",
+												"description": "(Required) Your Parse Application ID"
+											},
+											{
+												"key": "X-Parse-REST-API-Key",
+												"value": "{{parseApiKey}}",
+												"description": "(Required) Your REST Key"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/classes/SelectedMeal/wOSr2QgL4z",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												"SelectedMeal",
+												"wOSr2QgL4z"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Library",
+							"item": [
+								{
+									"name": "Tours",
+									"item": [
+										{
+											"name": "Library Tours",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedTour?limit=10&skip=0&count=1",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedTour"
+													],
+													"query": [
+														{
+															"key": "where",
+															"value": "{\"country\":\"Egypt\"}",
+															"description": "Get library experiences by country",
+															"disabled": true
+														},
+														{
+															"key": "limit",
+															"value": "10"
+														},
+														{
+															"key": "skip",
+															"value": "0"
+														},
+														{
+															"key": "count",
+															"value": "1"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Library Tour Details",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedTour/oNtLdLVKQB",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedTour",
+														"oNtLdLVKQB"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create Library Tour",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"requirements\": [\n        \"Know best and reputable food carts to taste local dishes(foul, kebda, and so)\",\n        \"Keep the travellers safe and protected from exploitation\",\n        \"Talk to the travellers and understand their preferences and suggest the right dish they can try.\",\n        \"Being able to explain the ingredients of dishes they will try\"\n    ],\n    \"name\": \"Adventurous Food Tour: Only for Those Who Dare\",\n    \"description\": \"You will never get hungry in Egypt. Why? Because you will find vendors, food carts, and more. They offer everything you can imagine. You want to taste all and discover what street food in Egypt is all about. We don’t blame you. The air is loaded with irresistible aroma and you want to partake in what locals eat every day. But what if you’re going out to explore only delicious street food to avoid any digestive problems and find out historical food trucks and worthy local small vendor, you need to be accompanied with a local. Please note: Price does not include food, drinks, tickets or transportation.\",\n    \"coverImage\": {\n        \"__type\": \"File\",\n        \"name\": \"a02c1980e4c19b2f50442f3d8a360af6_Adventurous Food Tour.png\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a02c1980e4c19b2f50442f3d8a360af6_Adventurous%20Food%20Tour.png\"\n    },\n    \"country\": \"Egypt\",\n    \"cost\": 20,\n    \"minDuration\": 15,\n    \"maxDuration\": 30,\n    \"feature\": \"Food\",\n    \"timeUnit\": \"minutes\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedTour",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedTour"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Update Library Tour",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"requirements\": [\n        \"Know best and reputable food carts to taste local dishes(foul, kebda, and so)\",\n        \"Keep the travellers safe and protected from exploitation\",\n        \"Talk to the travellers and understand their preferences and suggest the right dish they can try.\",\n        \"Being able to explain the ingredients of dishes they will try\"\n    ],\n    \"name\": \"Adventurous Food Tour: Only for Those Who Dare 2\",\n    \"description\": \"You will never get hungry in Egypt. Why? Because you will find vendors, food carts, and more. They offer everything you can imagine. You want to taste all and discover what street food in Egypt is all about. We don’t blame you. The air is loaded with irresistible aroma and you want to partake in what locals eat every day. But what if you’re going out to explore only delicious street food to avoid any digestive problems and find out historical food trucks and worthy local small vendor, you need to be accompanied with a local. Please note: Price does not include food, drinks, tickets or transportation.\",\n    \"coverImage\": {\n        \"__type\": \"File\",\n        \"name\": \"a02c1980e4c19b2f50442f3d8a360af6_Adventurous Food Tour.png\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a02c1980e4c19b2f50442f3d8a360af6_Adventurous%20Food%20Tour.png\"\n    },\n    \"country\": \"Egypt\",\n    \"cost\": 20,\n    \"minDuration\": 15,\n    \"maxDuration\": 30,\n    \"feature\": \"Food\",\n    \"timeUnit\": \"minutes\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedTour/DhnqdC8DLQ",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedTour",
+														"DhnqdC8DLQ"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete Library Tour",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedTour/VmHEjokyA9",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedTour",
+														"VmHEjokyA9"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Meals",
+									"item": [
+										{
+											"name": "Library Meals",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedMeal?limit=500",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedMeal"
+													],
+													"query": [
+														{
+															"key": "where",
+															"value": "{\"country\":\"Egypt\"}",
+															"description": "Get library meals by country",
+															"disabled": true
+														},
+														{
+															"key": "limit",
+															"value": "500"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Library Meal Details",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedMeal/18OcDgtHZX",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedMeal",
+														"18OcDgtHZX"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create Library Meal",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"dishIds\": [\n        \"0uwUFWVFsH\",\n        \"AaV3JFZvpA\",\n        \"Z2pLxfSWbh\",\n        \"mg5kKnLF5d\",\n        \"Wc8WzgC9Kl\"\n    ],\n    \"name\": \"Breakfast: National\",\n    \"coverImage\": {\n        \"__type\": \"File\",\n        \"name\": \"c3b88706b60b68ac3f6a12010d8a7195_Rectangle 3.png\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c3b88706b60b68ac3f6a12010d8a7195_Rectangle%203.png\"\n    },\n    \"country\": \"Jordan\",\n    \"description\": \"Served with Bread, homemade tea, coffee and water. \",\n    \"cost\": \"14\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedMeal",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedMeal"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Update Library Meal",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"dishIds\": [\n        \"0uwUFWVFsH\",\n        \"AaV3JFZvpA\",\n        \"Z2pLxfSWbh\",\n        \"mg5kKnLF5d\",\n        \"Wc8WzgC9Kl\"\n    ],\n    \"name\": \"Breakfast: National 2\",\n    \"coverImage\": {\n        \"__type\": \"File\",\n        \"name\": \"c3b88706b60b68ac3f6a12010d8a7195_Rectangle 3.png\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c3b88706b60b68ac3f6a12010d8a7195_Rectangle%203.png\"\n    },\n    \"country\": \"Jordan\",\n    \"description\": \"Served with Bread, homemade tea, coffee and water. \",\n    \"cost\": \"14\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedMeal/gU3wJhW42H",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedMeal",
+														"gU3wJhW42H"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete Library Meal",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedMeal/VmHEjokyA9",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedMeal",
+														"VmHEjokyA9"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Dishes",
+									"item": [
+										{
+											"name": "Library Dishes",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedDish?limit=500",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedDish"
+													],
+													"query": [
+														{
+															"key": "where",
+															"value": "{\"country\":\"Egypt\"}",
+															"description": "Get library meals by country",
+															"disabled": true
+														},
+														{
+															"key": "limit",
+															"value": "500"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Library Dish Details",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedDish/LBvwbEbrYr",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedDish",
+														"LBvwbEbrYr"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create Library Dish",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"type\": \"Vegetarian\",\n    \"name\": \"Tarhana Soup\",\n    \"ingredients\": \"Tomatoes, Tarhana powder - mixture of dried, fermented, and grounded vegetables (tomatoes, peppers, onions, chickpea) and yoghurt and herbs, tomato paste.\",\n    \"image\": {\n        \"__type\": \"File\",\n        \"name\": \"d4b054fe5159defa0e05bd817e18c884_Tarhana Soup.jpg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/d4b054fe5159defa0e05bd817e18c884_Tarhana%20Soup.jpg\"\n    },\n    \"country\": \"Turkey\",\n    \"course\": \"starter\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedDish",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedDish"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Update Library Dish",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"type\": \"Vegetarian\",\n    \"name\": \"Tarhana Soup 2\",\n    \"ingredients\": \"Tomatoes, Tarhana powder - mixture of dried, fermented, and grounded vegetables (tomatoes, peppers, onions, chickpea) and yoghurt and herbs, tomato paste.\",\n    \"image\": {\n        \"__type\": \"File\",\n        \"name\": \"d4b054fe5159defa0e05bd817e18c884_Tarhana Soup.jpg\",\n        \"url\": \"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/d4b054fe5159defa0e05bd817e18c884_Tarhana%20Soup.jpg\"\n    },\n    \"country\": \"Turkey\",\n    \"course\": \"starter\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedDish/vAgS3GUt3R",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedDish",
+														"vAgS3GUt3R"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete Library Dish",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "X-Parse-Application-Id",
+														"value": "{{parseAppId}}",
+														"description": "(Required) Your Parse Application ID"
+													},
+													{
+														"key": "X-Parse-REST-API-Key",
+														"value": "{{parseApiKey}}",
+														"description": "(Required) Your REST Key"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/classes/OfferedDish/VmHEjokyA9",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"classes",
+														"OfferedDish",
+														"VmHEjokyA9"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Delete Tour Experience",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/ProposedTour/VmHEjokyA9",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"ProposedTour",
+										"VmHEjokyA9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tour Experiences",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/ProposedTour?where={\"type\":\"offered\"}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"ProposedTour"
+									],
+									"query": [
+										{
+											"key": "where",
+											"value": "{\"isActive\":true,\"isApproved\":true}",
+											"description": "Get all approved & active experiences",
+											"disabled": true
+										},
+										{
+											"key": "where",
+											"value": "{\"type\":{\"$in\":[\"custom\",\"offered\"]},\"isActive\":true,\"isApproved\":true}",
+											"description": "Get all approved & active local living experiences",
+											"disabled": true
+										},
+										{
+											"key": "where",
+											"value": "{\"country\":\"Turkey\",\"type\":\"getaway\",\"isActive\":true,\"isApproved\":true}",
+											"description": "Get all approved & active getaway experiences",
+											"disabled": true
+										},
+										{
+											"key": "where",
+											"value": "{\"country\":\"Egypt\",\"type\":{\"$in\":[\"custom\",\"offered\"]},\"isActive\":true,\"isApproved\":true}",
+											"description": "Get approved & active local living experiences by country",
+											"disabled": true
+										},
+										{
+											"key": "where",
+											"value": "{\"type\":\"offered\"}",
+											"description": "Get approved & active getaway experiences by country"
+										},
+										{
+											"key": "keys",
+											"value": "itinerary,thingsToKnow",
+											"description": "Get specific fields in result",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "count",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Experience Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/ProposedTour/cWqz1dDCjZ",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"ProposedTour",
+										"cWqz1dDCjZ"
+									],
+									"query": [
+										{
+											"key": "keys",
+											"value": "name,country,type",
+											"description": "Get specific fields in result",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Experience Features",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/TourFeature",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"TourFeature"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Promo Code",
+					"item": [
+						{
+							"name": "Promo Code",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/PromoCode",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"PromoCode"
+									],
+									"query": [
+										{
+											"key": "where",
+											"value": "{\"code\": \"welcome_Tours\", \"isActive\": true}",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Promo Code",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "       {\n            \"expiryDate\": {\n                \"__type\": \"Date\",\n                \"iso\": \"2025-03-15T15:21:00.000Z\"\n            },\n            \"code\": \"Kids_Welcome\",\n            \"discount\": 12,\n            \"discountType\": \"amount\",\n            \"country\": \"Egypt\",\n            \"serviceType\": \"tour\",\n            \"isActive\": true\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/classes/PromoCode",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"PromoCode"
+									],
+									"query": [
+										{
+											"key": "where",
+											"value": "{\"code\": \"welcome_Tours\", \"isActive\": true}",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Promo Code",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "       {\n            \"expiryDate\": {\n                \"__type\": \"Date\",\n                \"iso\": \"2025-03-15T15:21:00.000Z\"\n            },\n            \"code\": \"Kids_Welcome\",\n            \"discount\": 12,\n            \"discountType\": \"amount\",\n            \"country\": \"Egypt\",\n            \"serviceType\": \"tour\",\n            \"isActive\": false\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/classes/PromoCode/7sfkNHZtrb",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"PromoCode",
+										"7sfkNHZtrb"
+									],
+									"query": [
+										{
+											"key": "where",
+											"value": "{\"code\": \"welcome_Tours\", \"isActive\": true}",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Local Host",
+					"item": [
+						{
+							"name": "Update Local Host Payment",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"IBAN\",\n    \"fullName\": \"Local Host Name\",\n    \"address\": \"Giza, Egypt\",\n    \"bankName\": \"Bank Name\",\n    \"iban\": \"IBAN Number\",\n    \"swiftOrBic\": \"Swift Code\",\n    \"bankAddress\": \"Bank Address\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/classes/ServiceProviderPayment/QDCO7ETdez",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"ServiceProviderPayment",
+										"QDCO7ETdez"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Local Host Info Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"city\": \"giza updated\",\n    \"about\": \"First of all it's pleasure to me to introduce myself my name's Gamil updated\",\n    \"firstLanguage\": \"English\",\n    \"firstLanguageLevel\": \"Advanced\",\n    \"secondLanguage\": \"Arabic\",\n    \"secondLanguageLevel\": \"Basic\",\n    \"thirdLanguage\": \"Bangla\",\n    \"thirdLanguageLevel\": \"Intermediate\",\n    \"imageUrl\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/144efffff64dd6b5d6954b19b148720d_1729032581648.jpeg\",\n    \"imageFile\": {\n        \"__type\": \"File\",\n        \"name\": \"144efffff64dd6b5d6954b19b148720d_1729032581648.jpeg\",\n        \"url\": \"https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/144efffff64dd6b5d6954b19b148720d_1729032581648.jpeg\"\n    }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/classes/ServiceProvider/QDCO7ETdez",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"ServiceProvider",
+										"QDCO7ETdez"
+									]
+								},
+								"description": "##### Note: Don't allow tourists to update their phone & email."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Local Host",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone\": \"+123456\",\n    \"userType\": \"service_provider\"\n}\n",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/functions/deleteUser",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"functions",
+										"deleteUser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Local Host Info",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/ServiceProvider/QDCO7ETdez",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"ServiceProvider",
+										"QDCO7ETdez"
+									],
+									"query": [
+										{
+											"key": "keys",
+											"value": "name,country",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Local Hosts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/ServiceProvider?keys=name,country,city,phone,email&where={\"phone\":\"%2B8801703464048\"}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"ServiceProvider"
+									],
+									"query": [
+										{
+											"key": "where",
+											"value": "{\"isVerified\":true}",
+											"description": "Get all verified local hosts",
+											"disabled": true
+										},
+										{
+											"key": "where",
+											"value": "{\"country\":\"Jordan\",\"isVerified\":true}",
+											"description": "Get verified local hosts by country",
+											"disabled": true
+										},
+										{
+											"key": "keys",
+											"value": "name,country,city,phone,email"
+										},
+										{
+											"key": "limit",
+											"value": "1000",
+											"disabled": true
+										},
+										{
+											"key": "where",
+											"value": "{\"objectId\":\"kifpSShKKb\"}",
+											"disabled": true
+										},
+										{
+											"key": "where",
+											"value": "{\"phone\":\"%2B8801703464048\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Other",
+					"item": [
+						{
+							"name": "Languages",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/Language",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"Language"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Countries",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/Country?limit=200",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"Country"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "200"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Dashboard Analytics",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/functions/getDashboardAnalytics",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"functions",
+										"getDashboardAnalytics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Image File Upload",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}",
+										"description": "(Required) Your Parse Application ID"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}",
+										"description": "(Required) Your REST Key"
+									},
+									{
+										"key": "Content-Type",
+										"value": "image/*"
+									},
+									{
+										"key": "X-Parse-Session-Token",
+										"value": "r:97ef23a6b47d3930394674d435bd8ebc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": "/Users/bs660/Downloads/sample.jpg"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/files/test_image.jpg",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"test_image.jpg"
+									]
+								},
+								"description": "##### Note: Don't allow tourists to update their phone & email."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "User Login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"admin-user\",\n    \"password\": \"Kx85$&t&6OpL^xCi\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/parse/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"parse",
+										"login"
+									]
+								},
+								"description": "Generated from cURL: curl -X POST \\\n  -H \"X-Parse-Application-Id: ${APPLICATION_ID}\" \\\n  -H \"X-Parse-REST-API-Key: ${REST_API_KEY}\" \\\n  -H \"X-Parse-Revocable-Session: 1\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"username\":\"cooldude6\",\"password\":\"p_n7!-e8\"}' \\\n  https://YOUR.PARSE-SERVER.HERE/parse/login\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Login Session",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Parse-Application-Id",
+										"value": "{{parseAppId}}"
+									},
+									{
+										"key": "X-Parse-REST-API-Key",
+										"value": "{{parseApiKey}}"
+									},
+									{
+										"key": "X-Parse-Session-Token",
+										"value": "r:65ac6639a6a017f0198f7199a4c222b9"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/parse/users/me",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"parse",
+										"users",
+										"me"
+									]
+								},
+								"description": "Generated from cURL: curl -X GET \\\n  -H \"X-Parse-Application-Id: ${APPLICATION_ID}\" \\\n  -H \"X-Parse-REST-API-Key: ${REST_API_KEY}\" \\\n  -H \"X-Parse-Session-Token: r:pnktnjyb996sj4p156gjtp4im\" \\\n  https://YOUR.PARSE-SERVER.HERE/parse/users/me\n"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

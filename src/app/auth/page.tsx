@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useAuth } from "@/context/auth";
-import { signInSchema, type SignInFormData } from "@/lib/auth-validation";
+import { loginSchema, LoginDTO } from "@/dtos/auth";
 import Image from "next/image";
 import SimsemLogo from "../../../public/simsem-logo.svg";
 
@@ -30,19 +30,19 @@ export default function SignInPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInFormData>({
-    resolver: zodResolver(signInSchema),
+  } = useForm<LoginDTO>({
+    resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: SignInFormData) => {
+  const onSubmit = async (data: LoginDTO) => {
     setIsLoading(true);
     setError("");
 
     try {
-      await signIn(data.email, data.password);
+      await signIn(data);
       router.push("/");
     } catch (error) {
-      const signInError = error as { code: string; message: string };
+      const signInError = error as { message: string };
       setError(signInError.message);
     } finally {
       setIsLoading(false);
@@ -69,20 +69,20 @@ export default function SignInPage() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-2">
                 <Label
-                  htmlFor="email"
+                  htmlFor="username"
                   className="text-sm font-medium text-gray-700"
                 >
-                  Email Address
+                  Username
                 </Label>
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="admin@simsem.com"
+                  id="username"
+                  type="text"
+                  placeholder="admin-user"
                   className="h-12 bg-gray-50 border-gray-200"
-                  {...register("email")}
+                  {...register("username")}
                 />
-                {errors.email && (
-                  <p className="text-sm text-red-600">{errors.email.message}</p>
+                {errors.username && (
+                  <p className="text-sm text-red-600">{errors.username.message}</p>
                 )}
               </div>
 
@@ -149,9 +149,9 @@ export default function SignInPage() {
                 Demo Credentials:
               </p>
               <p className="text-sm text-blue-700">
-                Email: superadmin@simsem.com
+                Username: admin-user
               </p>
-              <p className="text-sm text-blue-700">Password: password</p>
+              <p className="text-sm text-blue-700">Password: Kx85$&t&6OpL^xCi</p>
             </div>
           </CardContent>
         </Card>

@@ -1,4 +1,9 @@
-import { User as FirebaseUser } from "firebase/auth";
-import { TeamMember } from "./team";
+import { Role } from "./role";
 
-export interface User extends FirebaseUser, Omit<TeamMember, "objectId" | "email" | "status"> {}
+export interface User {
+  uid: string;
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
+  role?: Role;
+}
