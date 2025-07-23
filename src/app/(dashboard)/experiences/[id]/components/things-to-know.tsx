@@ -9,14 +9,26 @@ interface ThingToKnow {
 }
 
 interface ThingsToKnowProps {
-  thingsToKnow: ThingToKnow[];
+  thingsToKnow: (string | ThingToKnow)[];
 }
 
-const ThingsToKnow: React.FC<ThingsToKnowProps> = ({ thingsToKnow }) => {
+const ThingsToKnow: React.FC<ThingsToKnowProps> = ({ thingsToKnow = [] }) => {
+  const parsedThingsToKnow = thingsToKnow.map((item) => {
+    if (typeof item === "string") {
+      try {
+        return JSON.parse(item);
+      } catch (error) {
+        console.error("Failed to parse thing to know:", error);
+        return { title: "Invalid Data", description: "Could not parse item" };
+      }
+    }
+    return item;
+  });
+
   return (
     <div className="relative">
-      {thingsToKnow.map((item, index) => {
-        const isLast = index === thingsToKnow.length - 1;
+      {parsedThingsToKnow.map((item, index) => {
+        const isLast = index === parsedThingsToKnow.length - 1;
 
         return (
           <div
