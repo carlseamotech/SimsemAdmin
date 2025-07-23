@@ -7,13 +7,25 @@ interface Package {
 }
 
 interface PackagesProps {
-  packages: Package[];
+  packages: (string | Package)[];
 }
 
-export const Packages: React.FC<PackagesProps> = ({ packages }) => {
+export const Packages: React.FC<PackagesProps> = ({ packages = [] }) => {
+  const parsedPackages = packages.map((pkg) => {
+    if (typeof pkg === "string") {
+      try {
+        return JSON.parse(pkg);
+      } catch (error) {
+        console.error("Failed to parse package:", error);
+        return { fromPerson: "Invalid", toPerson: "Data", cost: "0" };
+      }
+    }
+    return pkg;
+  });
+
   return (
     <div className="flex flex-row gap-6 flex-wrap">
-      {packages.map((pkg, index) => (
+      {parsedPackages.map((pkg, index) => (
         <div
           key={index}
           className="bg-white drop-shadow-xl p-6 rounded-2xl space-y-6 w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-12px)]"
