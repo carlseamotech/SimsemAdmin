@@ -1,5 +1,10 @@
 "use client";
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import {
+  useForm,
+  SubmitHandler,
+  useFieldArray,
+  FormProvider,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
@@ -22,7 +27,12 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
 import { TrashIcon } from "lucide-react";
-import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
+import {
+  FormField,
+  FormItem,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 
 const dateAndTimeSchema = z.object({
   tourTimes: z.array(z.object({ value: z.string().min(1, "Required") })),
@@ -37,11 +47,12 @@ interface DateAndTimeModalProps {
   mutate: () => void;
 }
 
+// Generate a pre-sorted list of time slots from 8:00 AM to 8:00 PM
 const timeSlots = Array.from({ length: 25 }, (_, i) => {
   const hour = Math.floor(i / 2) + 8;
   const minute = i % 2 === 0 ? "00" : "30";
-  const period = hour < 12 ? "AM" : "PM";
-  const displayHour = hour > 12 ? hour - 12 : hour;
+  const period = hour >= 12 ? "PM" : "AM";
+  const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
   return `${displayHour}:${minute} ${period}`;
 });
 
@@ -51,7 +62,7 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
   onClose,
   mutate,
 }) => {
-  const form = useForm<DateAndTimeFormData>({
+  const methods = useForm<DateAndTimeFormData>({
     resolver: zodResolver(dateAndTimeSchema),
     defaultValues: {
       tourTimes: [],
@@ -63,29 +74,35 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
     handleSubmit,
     formState: { isSubmitting },
     reset,
-  } = form;
+    watch,
+  } = methods;
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "tourTimes",
   });
 
+  const selectedValues = watch("tourTimes");
+
   useEffect(() => {
-    if (tour) {
+    if (isOpen && tour?.tourTimes) {
       reset({
-        tourTimes: tour.tourTimes?.map((time) => ({ value: time })) || [],
+        tourTimes: tour.tourTimes.map((time) => ({ value: time })),
       });
+    } else if (isOpen) {
+      reset({ tourTimes: [] });
     }
-  }, [tour, reset]);
+  }, [isOpen, tour, reset]);
 
   const onSubmit: SubmitHandler<DateAndTimeFormData> = async (data) => {
     try {
       const token = localStorage.getItem("sessionToken");
       if (!token) throw new Error("No session token found");
+
       const transformedData = {
-        ...data,
         tourTimes: data.tourTimes.map((time) => time.value),
       };
+
       await updateCustomTour(tour.objectId, transformedData, token);
       mutate();
       onClose();
@@ -101,60 +118,73 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
         <DialogHeader>
           <DialogTitle>Edit Date & Time</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {fields.map((field, index) => (
-            <div key={field.id} className="flex items-center gap-4">
-              <FormField
-                control={control}
-                name={`tourTimes.${index}.value`}
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a time" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {timeSlots.map((time) => (
-                          <SelectItem key={time} value={time}>
-                            {time}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button
-                type="button"
-                variant="destructive"
-                onClick={() => remove(index)}
-              >
-                <TrashIcon className="h-4 w-4" />
+        <FormProvider {...methods}>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {fields.map((field, index) => {
+              // Filter out times selected in *other* fields
+              const availableTimeSlots = timeSlots.filter(
+                (time) =>
+                  !selectedValues
+                    .filter((_, i) => i !== index)
+                    .map((item) => item.value)
+                    .includes(time)
+              );
+
+              return (
+                <div key={field.id} className="flex items-center gap-4">
+                  <FormField
+                    control={control}
+                    name={`tourTimes.${index}.value`}
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a time" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {availableTimeSlots.map((time) => (
+                              <SelectItem key={time} value={time}>
+                                {time}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    onClick={() => remove(index)}
+                  >
+                    <TrashIcon className="h-4 w-4" />
+                  </Button>
+                </div>
+              );
+            })}
+            <Button
+              type="button"
+              onClick={() => append({ value: "" })}
+              className="w-full"
+            >
+              Add Time
+            </Button>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={onClose}>
+                Cancel
               </Button>
-            </div>
-          ))}
-          <Button
-            type="button"
-            onClick={() => append({ value: "" })}
-            className="w-full"
-          >
-            Add Time
-          </Button>
-          <DialogFooter>
-            <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Save"}
-            </Button>
-          </DialogFooter>
-        </form>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Saving..." : "Save"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </FormProvider>
       </DialogContent>
     </Dialog>
   );
