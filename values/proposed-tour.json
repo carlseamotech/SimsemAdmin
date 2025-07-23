@@ -1,141 +1,55 @@
 {
-  "results": [
-    {
-      "objectId": "B5yxNyTdjX",
-      "country": "Turkey",
-      "cost": "20",
-      "city": "js",
-      "coverImageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/3dd8a0f31ba0712f1c435b303d5ca811_Hammam%20day.png",
-      "guideId": "kifpSShKKb",
-      "description": "You’ve been travelling for some time now and have seen so much, it’s been great but you’re feeling like you could slow down a bit. You also feel like being pampered and indulging… and you’ve considered the famous Middle Estern hammams…but you don’t feel completely comfortable with the idea…I get it and I got your back. The Hammam is a ritual and you could use a friendly companion. I can recommend the best one in town! You’ll feel like a new human after the experience and you I guarantee you it won’t be your last time!  Please note: Price does not include food, drinks, tickets or transportation.",
-      "tourFeatures": [
-        "Knowing a local hammam that you visit regularly.",
-        "Being able to give guidance and advice to your host."
-      ],
-      "cameraZoom": 15,
-      "type": "offered",
-      "isActive": true,
-      "meetingPointLat": 23.764437246189587,
-      "offeredTourId": "Sv7yJHLmXq",
-      "meetingPoint": "Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh",
-      "isNotified": true,
-      "phone": "+8801703464048",
-      "maxGuest": "646",
-      "countryCode": "+880",
-      "name": "Today Feels like a Hammam Day! ",
-      "meetingPointLong": 90.4352742433548,
-      "tourTimes": [
-        "08:00 AM",
-        "10:00 AM"
-      ],
-      "isApproved": true,
-      "tourDuration": "2 hours",
-      "createdAt": "2025-07-12T06:07:16.932Z",
-      "updatedAt": "2025-07-13T18:19:56.540Z",
-      "tourPackages": [
-        "{\"cost\":\"15\",\"fromPerson\":\"1\",\"toPerson\":\"3\"}",
-        "{\"cost\":\"10\",\"fromPerson\":\"4\",\"toPerson\":\"6\"}",
-        "{\"cost\":\"9\",\"fromPerson\":\"7\",\"toPerson\":\"9\"}"
-      ]
-    },
-    {
-      "objectId": "3TVd5avbYZ",
-      "thingsToKnow": [
-        "{\"description\":\"hrhdhhd\",\"title\":\"bdbdh\"}"
-      ],
-      "country": "Turkey",
-      "city": "dhdh",
-      "difficultyLevel": "Basic",
-      "coverImageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/34a29f0a0af0b083cc26cb75aefa6125_1752300721321.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/8100f2359d79353d28630ce5735cda45_1752300722355.jpeg",
-        "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a0c16250ad137c24aaeedefa318ff5ea_1752300722358.jpeg"
-      ],
-      "guideId": "kifpSShKKb",
-      "description": "dbbd",
-      "exclusions": [
-        "hdhd"
-      ],
-      "itinerary": [
-        "{\"day\":\"Day 1\",\"description\":\"bdbdbbd\",\"title\":\"bdbd\"}"
-      ],
-      "tourFeatures": [
-        "Architecture"
-      ],
-      "cameraZoom": 15,
-      "type": "custom",
-      "whatToExpect": "nxnd",
-      "otherTourFeature": "",
-      "meetingPoint": "Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh",
-      "countryCode": "+90",
-      "meetingPointLong": 90.4352742433548,
-      "tourDuration": "1 hour",
-      "cost": "25",
-      "meetingPointLat": 23.764437246189587,
-      "phone": "+8801703464048",
-      "name": "custom ",
-      "tourTimes": [
-        "12:00 AM"
-      ],
-      "inclusions": [
-        "bdbd"
-      ],
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2025-07-12T06:12:04.063Z",
-      "updatedAt": "2025-07-13T18:20:24.739Z",
-      "tourPackages": []
-    },
-    {
-      "objectId": "tGIzOH7rUh",
-      "thingsToKnow": [
-        "{\"description\":\" d dbbd\",\"title\":\"bdbd\"}"
-      ],
-      "country": "Turkey",
-      "pickupPoints": [
-        "{\"key\":\"locationPickup\",\"value\":{\"cameraZoom\":15.0,\"pickupPoint\":\"Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh\",\"pickupPointLat\":23.764418835305104,\"pickupPointLong\":90.43520417064428,\"pickupPointTitle\":\"Pick-up from a specific location\"}}"
-      ],
-      "city": "ue",
-      "difficultyLevel": "Basic",
-      "coverImageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/1530f4f39824177d1ea6aef43e5fe612_1752330837460.jpeg",
-      "galleryImageUrls": [
-        "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/c0ace21cca8782e84182cdc1da20508b_1752330838181.jpeg"
-      ],
-      "guideId": "kifpSShKKb",
-      "description": "jdjd the API ",
-      "exclusions": [
-        "bsbs"
-      ],
-      "itinerary": [
-        "{\"day\":\"Day 1\",\"description\":\"bdbdb\",\"title\":\"hdhd\"}"
-      ],
-      "tourPackages": ["{\"actualCost\":\"\",\"cost\":\"2\",\"fromPerson\":\"\>10\",\"toPerson\":\"\"}"
-      ],
-      "tourFeatures": [
-        "Camping",
-        "Outdoor"
-      ],
-      "type": "getaway",
-      "whatToExpect": "djnd",
-      "otherTourFeature": "",
-      "phone": "+8801703464048",
-      "countryCode": "+90",
-      "name": "test",
-      "tourTimes": [
-        "08:00 AM",
-        "11:00 AM"
-      ],
-      "tourDuration": "2 Day",
-      "inclusions": [
-        "bsbs"
-      ],
-      "isApproved": true,
-      "isNotified": true,
-      "isActive": true,
-      "createdAt": "2025-07-12T14:33:58.700Z",
-      "updatedAt": "2025-07-13T15:08:26.569Z"
-    }
+  "objectId": "vdwK9IESQ5",
+  "thingsToKnow": [
+    "{\"description\":\"hrhdhhd\",\"title\":\"bdbdh\"}"
   ],
-  "count": 3
+  "country": "Turkey",
+  "city": "dhdh",
+  "difficultyLevel": "Basic",
+  "coverImageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/34a29f0a0af0b083cc26cb75aefa6125_1752300721321.jpeg",
+  "galleryImageUrls": [
+    "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/8100f2359d79353d28630ce5735cda45_1752300722355.jpeg",
+    "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a0c16250ad137c24aaeedefa318ff5ea_1752300722358.jpeg"
+  ],
+  "galleryVideoUrls": [
+    "{\"name\":\"1752944846352_PXL_20250126_064713801.TS.mp4\",\"thumbnailUrl\":\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/17745877565756a75f27e26b7391afff_1752944853668.jpeg\"}"
+  ],
+  "guideId": "kifpSShKKb",
+  "description": "dbbd",
+  "exclusions": [
+    "hdhd"
+  ],
+  "itinerary": [
+    "{\"day\":\"Day 1\",\"description\":\"bdbdbbd\",\"title\":\"bdbd\"}"
+  ],
+  "tourFeatures": [
+    "Architecture"
+  ],
+  "cameraZoom": 15,
+  "type": "custom",
+  "whatToExpect": "nxnd",
+  "otherTourFeature": "",
+  "meetingPoint": "Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh",
+  "countryCode": "+90",
+  "meetingPointLong": 90.4352742433548,
+  "tourDuration": "1 hour",
+  "meetingPointLat": 23.764437246189587,
+  "phone": "+8801703464048",
+  "name": "custom ",
+  "tourTimes": [
+    "12:00 AM"
+  ],
+  "inclusions": [
+    "bdbd"
+  ],
+  "tourPackages": [
+    "{\"cost\":\"15\",\"fromPerson\":\"1\",\"toPerson\":\"3\"}",
+    "{\"cost\":\"10\",\"fromPerson\":\"4\",\"toPerson\":\"6\"}",
+    "{\"cost\":\"9\",\"fromPerson\":\"7\",\"toPerson\":\"9\"}"
+  ],
+  "isActive": false,
+  "isApproved": false,
+  "isNotified": false,
+  "createdAt": "2025-07-23T09:16:37.741Z",
+  "updatedAt": "2025-07-23T09:16:37.741Z"
 }

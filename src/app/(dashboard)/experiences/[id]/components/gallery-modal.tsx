@@ -1,5 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
   DialogContent,
@@ -8,23 +10,11 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ProposedTour } from "@/models/proposed-tour";
 import { updateCustomTour } from "@/services/experiences/custom-tour";
-import { uploadFile } from "@/services/files";
 import toast from "react-hot-toast";
-import Image from "next/image";
-import { TrashIcon } from "lucide-react";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+import { GalleryFormData, gallerySchema } from "./experience-schema";
+import MultiImageUploader from "@/components/common/multi-image-uploader";
 
 interface GalleryModalProps {
   tour: ProposedTour;
@@ -39,117 +29,60 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
   onClose,
   mutate,
 }) => {
-  const [files, setFiles] = useState<File[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [imageToDelete, setImageToDelete] = useState<string | null>(null);
+  const methods = useForm<GalleryFormData>({
+    resolver: zodResolver(gallerySchema),
+    defaultValues: {
+      galleryImageUrls: tour.galleryImageUrls || [],
+    },
+  });
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFiles(Array.from(e.target.files));
-    }
-  };
+  const {
+    handleSubmit,
+    reset,
+    formState: { isSubmitting },
+  } = methods;
 
-  const handleUpload = async () => {
-    if (files.length === 0) {
-      toast.error("Please select at least one file to upload.");
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      const uploadedUrls = await Promise.all(
-        files.map((file) => uploadFile(file).then((res) => res.url))
-      );
-      await updateCustomTour(tour.objectId, {
-        galleryImageUrls: [...tour.galleryImageUrls, ...uploadedUrls],
+  useEffect(() => {
+    if (isOpen) {
+      reset({
+        galleryImageUrls: tour.galleryImageUrls || [],
       });
-      mutate();
-      setFiles([]);
-      toast.success("Images uploaded successfully");
-    } catch {
-      toast.error("Failed to upload images");
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  }, [isOpen, reset, tour.galleryImageUrls]);
 
-  const handleDelete = async () => {
-    if (!imageToDelete) return;
-
+  const onSubmit = async (data: GalleryFormData) => {
     try {
-      const updatedUrls = tour.galleryImageUrls.filter(
-        (url) => url !== imageToDelete
-      );
-      await updateCustomTour(tour.objectId, {
-        galleryImageUrls: updatedUrls,
-      });
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      await updateCustomTour(tour.objectId, data, token);
       mutate();
-      setImageToDelete(null);
-      toast.success("Image deleted successfully");
+      toast.success("Gallery updated successfully");
+      onClose();
     } catch {
-      toast.error("Failed to delete image");
+      toast.error("Failed to update gallery");
     }
   };
 
   return (
-    <>
-      <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Edit Gallery</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <div className="grid grid-cols-3 gap-4">
-              {(tour.galleryImageUrls || []).map((url) => (
-                <div key={url} className="relative">
-                  <Image
-                    src={url}
-                    alt="Gallery image"
-                    width={150}
-                    height={150}
-                    className="rounded-md"
-                  />
-                  <Button
-                    variant="destructive"
-                    size="icon"
-                    className="absolute top-1 right-1"
-                    onClick={() => setImageToDelete(url)}
-                  >
-                    <TrashIcon className="h-4 w-4" />
-                  </Button>
-                </div>
-              ))}
-            </div>
-            <Input type="file" multiple onChange={handleFileChange} />
-          </div>
-          <DialogFooter>
-            <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button onClick={handleUpload} disabled={isSubmitting}>
-              {isSubmitting ? "Uploading..." : "Upload"}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-      <AlertDialog
-        open={!!imageToDelete}
-        onOpenChange={() => setImageToDelete(null)}
-      >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the
-              image.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    </>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Edit Gallery</DialogTitle>
+        </DialogHeader>
+        <FormProvider {...methods}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <MultiImageUploader name="galleryImageUrls" label="Gallery Images" />
+            <DialogFooter className="mt-4">
+              <Button type="button" variant="outline" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Saving..." : "Save"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </FormProvider>
+      </DialogContent>
+    </Dialog>
   );
 };

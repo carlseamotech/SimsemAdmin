@@ -23,10 +23,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services";
+import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { CountryDropdown } from "@/components/common/country-dropdown";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 
 interface AboutTourModalProps {
   tour: ProposedTour;
@@ -58,11 +59,9 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
 
   const {
     handleSubmit,
-    register,
-    setValue,
-    formState: { isSubmitting },
-    reset,
     control,
+    reset,
+    formState: { isSubmitting },
   } = methods;
 
   useEffect(() => {
@@ -76,7 +75,7 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
         difficultyLevel: difficultyLevels.includes(
           tour.difficultyLevel as string
         )
-          ? (tour.difficultyLevel as "Beginner" | "Intermediate" | "Advanced")
+          ? (tour.difficultyLevel as "Basic" | "Intermediate" | "Advanced")
           : undefined,
         tourFeatures: tour.tourFeatures,
       });
@@ -85,7 +84,9 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
 
   const onSubmit: SubmitHandler<ExperienceFormData> = async (data) => {
     try {
-      await updateCustomTour(tour.objectId, data);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      await updateCustomTour(tour.objectId, data, token);
       mutate();
       onClose();
       toast.success("Experience updated successfully");
@@ -102,62 +103,86 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
         </DialogHeader>
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <Input id="name" {...register("name")} />
-            </div>
-            <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                Description
-              </label>
-              <Textarea id="description" {...register("description")} />
-            </div>
-            <div>
-              <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                Country
-              </label>
-              <CountryDropdown control={control} name="country" label="Country" />
-            </div>
-            <div>
-              <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                City
-              </label>
-              <Input id="city" {...register("city")} />
-            </div>
-            <div>
-              <label htmlFor="tourDuration" className="block text-sm font-medium text-gray-700">
-                Tour Duration
-              </label>
-              <Input id="tourDuration" {...register("tourDuration")} />
-            </div>
-            <div>
-              <label htmlFor="difficultyLevel" className="block text-sm font-medium text-gray-700">
-                Difficulty Level
-              </label>
-              <Select
-                onValueChange={(value) =>
-                  setValue(
-                    "difficultyLevel",
-                    value as "Beginner" | "Intermediate" | "Advanced"
-                  )
-                }
-                defaultValue={tour.difficultyLevel}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select difficulty" />
-                </SelectTrigger>
-                <SelectContent>
-                  {difficultyLevels.map((level) => (
-                    <SelectItem key={level} value={level}>
-                      {level}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            {/* Add tour features editing here */}
+            <FormField
+              control={control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <CountryDropdown control={control} name="country" label="Country" />
+            <FormField
+              control={control}
+              name="city"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>City</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name="tourDuration"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tour Duration</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name="difficultyLevel"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Difficulty Level</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select difficulty" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {difficultyLevels.map((level) => (
+                        <SelectItem key={level} value={level}>
+                          {level}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <DialogFooter>
               <Button type="button" variant="outline" onClick={onClose}>
                 Cancel

@@ -22,6 +22,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
 import { TrashIcon } from "lucide-react";
+import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 
 const dateAndTimeSchema = z.object({
   tourTimes: z.array(z.object({ value: z.string().min(1, "Required") })),
@@ -79,11 +80,13 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
 
   const onSubmit: SubmitHandler<DateAndTimeFormData> = async (data) => {
     try {
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
       const transformedData = {
         ...data,
         tourTimes: data.tourTimes.map((time) => time.value),
       };
-      await updateCustomTour(tour.objectId, transformedData);
+      await updateCustomTour(tour.objectId, transformedData, token);
       mutate();
       onClose();
       toast.success("Date & Time updated successfully");
@@ -101,23 +104,32 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {fields.map((field, index) => (
             <div key={field.id} className="flex items-center gap-4">
-              <Select
-                onValueChange={(value) => {
-                  form.setValue(`tourTimes.${index}.value`, value);
-                }}
-                defaultValue={field.value}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a time" />
-                </SelectTrigger>
-                <SelectContent>
-                  {timeSlots.map((time) => (
-                    <SelectItem key={time} value={time}>
-                      {time}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <FormField
+                control={control}
+                name={`tourTimes.${index}.value`}
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a time" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {timeSlots.map((time) => (
+                          <SelectItem key={time} value={time}>
+                            {time}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <Button
                 type="button"
                 variant="destructive"

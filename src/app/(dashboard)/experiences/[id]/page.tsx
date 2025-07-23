@@ -42,7 +42,7 @@ import { InclusionsExclusionsModal } from "./components/inclusions-exclusions-mo
 import { ThingsToKnowModal } from "./components/things-to-know-modal";
 import toast from "react-hot-toast";
 
-const difficultyLevels = ["Basic", "Beginner", "Intermediate", "Advanced"];
+const difficultyLevels = ["Basic", "Intermediate", "Advanced"];
 
 const ExperienceDetailsPage = () => {
   const router = useRouter();

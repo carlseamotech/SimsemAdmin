@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
 import { TrashIcon } from "lucide-react";
+import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 
 const inclusionsExclusionsSchema = z.object({
   inclusions: z.array(z.object({ value: z.string().min(1, "Required") })),
@@ -47,7 +48,6 @@ export const InclusionsExclusionsModal: React.FC<
   const {
     control,
     handleSubmit,
-    register,
     formState: { isSubmitting },
     reset,
   } = form;
@@ -83,12 +83,14 @@ export const InclusionsExclusionsModal: React.FC<
     data
   ) => {
     try {
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
       const transformedData = {
         ...data,
         inclusions: data.inclusions.map((inc) => inc.value),
         exclusions: data.exclusions.map((exc) => exc.value),
       };
-      await updateCustomTour(tour.objectId, transformedData);
+      await updateCustomTour(tour.objectId, transformedData, token);
       mutate();
       onClose();
       toast.success("Inclusions & Exclusions updated successfully");
@@ -108,9 +110,17 @@ export const InclusionsExclusionsModal: React.FC<
             <h3 className="text-lg font-medium">Inclusions</h3>
             {inclusionFields.map((field, index) => (
               <div key={field.id} className="flex items-center gap-4">
-                <Input
-                  {...register(`inclusions.${index}.value`)}
-                  placeholder="Inclusion"
+                <FormField
+                  control={control}
+                  name={`inclusions.${index}.value`}
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormControl>
+                        <Input {...field} placeholder="Inclusion" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
                 <Button
                   type="button"
@@ -129,9 +139,17 @@ export const InclusionsExclusionsModal: React.FC<
             <h3 className="text-lg font-medium">Exclusions</h3>
             {exclusionFields.map((field, index) => (
               <div key={field.id} className="flex items-center gap-4">
-                <Input
-                  {...register(`exclusions.${index}.value`)}
-                  placeholder="Exclusion"
+                <FormField
+                  control={control}
+                  name={`exclusions.${index}.value`}
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormControl>
+                        <Input {...field} placeholder="Exclusion" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
                 <Button
                   type="button"
@@ -159,4 +177,3 @@ export const InclusionsExclusionsModal: React.FC<
     </Dialog>
   );
 };
-

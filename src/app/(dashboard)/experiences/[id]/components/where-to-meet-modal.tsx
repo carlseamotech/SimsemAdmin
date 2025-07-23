@@ -1,5 +1,5 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 
 const whereToMeetSchema = z.object({
   meetingPoint: z.string().min(1, "Meeting point is required"),
@@ -52,7 +53,7 @@ export const WhereToMeetModal: React.FC<WhereToMeetModalProps> = ({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
   });
 
-  const form = useForm<WhereToMeetFormData>({
+  const methods = useForm<WhereToMeetFormData>({
     resolver: zodResolver(whereToMeetSchema),
     defaultValues: {
       meetingPoint: "",
@@ -63,11 +64,11 @@ export const WhereToMeetModal: React.FC<WhereToMeetModalProps> = ({
 
   const {
     handleSubmit,
-    register,
-    formState: { isSubmitting },
+    control,
     reset,
     setValue,
-  } = form;
+    formState: { isSubmitting },
+  } = methods;
 
   useEffect(() => {
     if (tour) {
@@ -97,7 +98,9 @@ export const WhereToMeetModal: React.FC<WhereToMeetModalProps> = ({
 
   const onSubmit: SubmitHandler<WhereToMeetFormData> = async (data) => {
     try {
-      await updateCustomTour(tour.objectId, data);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      await updateCustomTour(tour.objectId, data, token);
       mutate();
       onClose();
       toast.success("Meeting point updated successfully");
@@ -112,35 +115,46 @@ export const WhereToMeetModal: React.FC<WhereToMeetModalProps> = ({
         <DialogHeader>
           <DialogTitle>Edit Where to Meet</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input
-            {...register("meetingPoint")}
-            placeholder="Meeting Point Address"
-          />
-          {isLoaded && (
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={
-                markerPosition || {
-                  lat: tour.meetingPointLat || 0,
-                  lng: tour.meetingPointLong || 0,
+        <FormProvider {...methods}>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={control}
+              name="meetingPoint"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Meeting Point Address</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {isLoaded && (
+              <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={
+                  markerPosition || {
+                    lat: tour.meetingPointLat || 0,
+                    lng: tour.meetingPointLong || 0,
+                  }
                 }
-              }
-              zoom={15}
-              onClick={handleMapClick}
-            >
-              {markerPosition && <Marker position={markerPosition} />}
-            </GoogleMap>
-          )}
-          <DialogFooter>
-            <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Save"}
-            </Button>
-          </DialogFooter>
-        </form>
+                zoom={15}
+                onClick={handleMapClick}
+              >
+                {markerPosition && <Marker position={markerPosition} />}
+              </GoogleMap>
+            )}
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Saving..." : "Save"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </FormProvider>
       </DialogContent>
     </Dialog>
   );

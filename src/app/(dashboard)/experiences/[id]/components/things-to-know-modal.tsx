@@ -1,5 +1,10 @@
 "use client";
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import {
+  useForm,
+  SubmitHandler,
+  useFieldArray,
+  FormProvider,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
@@ -12,11 +17,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services";
+import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
 import { TrashIcon } from "lucide-react";
+import {
+  FormField,
+  FormItem,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 
 const thingToKnowSchema = z.object({
   title: z.string().min(1, "Required"),
@@ -42,7 +53,7 @@ export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
   onClose,
   mutate,
 }) => {
-  const form = useForm<ThingsToKnowFormData>({
+  const methods = useForm<ThingsToKnowFormData>({
     resolver: zodResolver(thingsToKnowSchema),
     defaultValues: {
       thingsToKnow: [],
@@ -52,10 +63,9 @@ export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
   const {
     control,
     handleSubmit,
-    register,
     formState: { isSubmitting },
     reset,
-  } = form;
+  } = methods;
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -63,20 +73,41 @@ export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
   });
 
   useEffect(() => {
-    if (tour) {
-      reset({
-        thingsToKnow: (tour.thingsToKnow || []).map((item) =>
-          typeof item === "string" ? JSON.parse(item) : item
-        ),
-      });
+    if (isOpen && tour?.thingsToKnow) {
+      try {
+        const parsedThingsToKnow = tour.thingsToKnow
+          .map((item) => {
+            if (typeof item === "string") {
+              try {
+                return JSON.parse(item);
+              } catch (error) {
+                console.error("Failed to parse thing to know:", error);
+                return null;
+              }
+            }
+            return item;
+          })
+          .filter(Boolean);
+        reset({ thingsToKnow: parsedThingsToKnow });
+      } catch (error) {
+        console.error("Failed to process things to know:", error);
+        reset({ thingsToKnow: [] });
+      }
+    } else if (isOpen) {
+      reset({ thingsToKnow: [] });
     }
-  }, [tour, reset]);
+  }, [isOpen, tour, reset]);
 
   const onSubmit: SubmitHandler<ThingsToKnowFormData> = async (data) => {
     try {
-      await updateCustomTour(tour.objectId, {
-        thingsToKnow: data.thingsToKnow,
-      });
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+
+      const transformedData = {
+        thingsToKnow: data.thingsToKnow.map((item) => JSON.stringify(item)),
+      };
+
+      await updateCustomTour(tour.objectId, transformedData, token);
       mutate();
       onClose();
       toast.success("Things to Know updated successfully");
@@ -91,41 +122,59 @@ export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
         <DialogHeader>
           <DialogTitle>Edit Things to Know</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {fields.map((field, index) => (
-            <div key={field.id} className="flex items-center gap-4">
-              <Input
-                {...register(`thingsToKnow.${index}.title`)}
-                placeholder="Title"
-              />
-              <Textarea
-                {...register(`thingsToKnow.${index}.description`)}
-                placeholder="Description"
-              />
-              <Button
-                type="button"
-                variant="destructive"
-                onClick={() => remove(index)}
-              >
-                <TrashIcon className="h-4 w-4" />
+        <FormProvider {...methods}>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {fields.map((field, index) => (
+              <div key={field.id} className="flex items-start gap-4">
+                <FormField
+                  control={control}
+                  name={`thingsToKnow.${index}.title`}
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormControl>
+                        <Input {...field} placeholder="Title" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name={`thingsToKnow.${index}.description`}
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormControl>
+                        <Textarea {...field} placeholder="Description" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="button"
+                  variant="destructive"
+                  onClick={() => remove(index)}
+                >
+                  <TrashIcon className="h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+            <Button
+              type="button"
+              onClick={() => append({ title: "", description: "" })}
+            >
+              Add Item
+            </Button>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={onClose}>
+                Cancel
               </Button>
-            </div>
-          ))}
-          <Button
-            type="button"
-            onClick={() => append({ title: "", description: "" })}
-          >
-            Add Item
-          </Button>
-          <DialogFooter>
-            <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Save"}
-            </Button>
-          </DialogFooter>
-        </form>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Saving..." : "Save"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </FormProvider>
       </DialogContent>
     </Dialog>
   );

@@ -4,7 +4,7 @@ import Header from "@/components/common/header";
 import { useRouter } from "next/navigation";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
 // Import step components
 import Step1SelectHost from "./components/step1-select-host";
@@ -17,7 +17,6 @@ import Step7Summary from "./components/step7-summary";
 
 import { FormData } from "./components/types";
 import { createCustomTour } from "@/services";
-import { uploadFile } from "@/services/files";
 import toast from "react-hot-toast";
 
 const LocalLivingExperiencePage = () => {
@@ -56,6 +55,25 @@ const LocalLivingExperiencePage = () => {
   const { watch, trigger, handleSubmit } = methods;
   const formData = watch();
 
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      const transformedData = {
+        ...data,
+        thingsToKnow: data.thingsToKnow.map((item) => JSON.stringify(item)),
+        itinerary: data.itinerary.map((item) => JSON.stringify(item)),
+        tourPackages: data.tourPackages.map((pkg) => JSON.stringify(pkg)),
+        galleryVideoUrls: data.galleryVideoUrls?.map((vid) => JSON.stringify(vid)),
+      };
+      await createCustomTour(transformedData, token);
+      toast.success("Local living experience created successfully");
+      router.push("/experiences");
+    } catch {
+      toast.error("Failed to create local living experience");
+    }
+  };
+
   const handleNext = async () => {
     let isValid = true;
     if (currentStep === 1) {
@@ -76,39 +94,7 @@ const LocalLivingExperiencePage = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     } else {
-      handleSubmit(async (data) => {
-        try {
-          console.log("Submitting data:", data);
-          const uploadedImageUrls = await Promise.all(
-            data.galleryImageUrls.map(async (url) => {
-              if (url.startsWith("blob:")) {
-                const response = await fetch(url);
-                const blob = await response.blob();
-                const file = new File([blob], "image.jpg", {
-                  type: "image/jpeg",
-                });
-                const uploadedFile = await uploadFile(file);
-                return uploadedFile.url;
-              }
-              return url;
-            })
-          );
-
-          const tourData = {
-            ...data,
-            coverImageUrl: uploadedImageUrls[0] || "",
-            galleryImageUrls: uploadedImageUrls,
-          };
-
-          console.log("Payload to be sent to API:", tourData);
-          await createCustomTour(tourData);
-          toast.success("Local living experience created successfully");
-          router.push("/experiences?tab=experience-library");
-        } catch (error) {
-          console.error("Failed to create local living experience:", error);
-          toast.error("Failed to create local living experience");
-        }
-      })();
+      handleSubmit(onSubmit)();
     }
   };
 
