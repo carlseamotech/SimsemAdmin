@@ -116,6 +116,9 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
               Tour Name
             </TableHead>
             <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+              Experience ID
+            </TableHead>
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Experience Type
             </TableHead>
             <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
@@ -161,6 +164,9 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
                 }
               >
                 {experience.name}
+              </TableCell>
+              <TableCell className="text-gray-600">
+                {experience.objectId}
               </TableCell>
               <TableCell className="text-gray-600">
                 {experience.type}

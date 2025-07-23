@@ -159,6 +159,9 @@ const ExperienceDetailsPage = () => {
                     <p className="text-[#0D2E61] text-[30px] font-bold ">
                       {tour.name}
                     </p>
+                    <p className="text-sm text-gray-500">
+                      Experience ID: {tour.objectId}
+                    </p>
                   </div>
 
                   <Button className="h-[64px] bg-[#FB8B24] hover:bg-orange-400 font-bold text-white text-[22px] cursor-pointer rounded-full">
