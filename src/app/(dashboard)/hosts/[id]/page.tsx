@@ -24,6 +24,7 @@ import { uploadFile } from "@/services/files";
 import toast from "react-hot-toast";
 import { UpdateHostInfoDTO } from "@/dtos";
 import { SingleDocumentModal } from "@/app/(dashboard)/hosts/components/single-document-modal";
+import { useLanguages } from "@/hooks/use-languages";
 
 type EditingDocument = {
   type: keyof UpdateHostInfoDTO;
@@ -45,6 +46,7 @@ const HostSummaryPage = () => {
     id as string
   );
   const { countries } = useCountries();
+  const { languages: languageOptions } = useLanguages();
 
   const form = useForm<HostFormData>({
     resolver: zodResolver(hostSchema),
@@ -103,14 +105,24 @@ const HostSummaryPage = () => {
   const handleSave = async (data: HostFormData) => {
     setIsSubmitting(true);
     try {
+      const getLangName = (id: string) =>
+        languageOptions.find((l) => l.objectId === id)?.name || id;
+
       const updateDto: Partial<UpdateHostInfoDTO> = {
         city: data.city,
         bio: data.about,
-        languages: [
-          data.firstLanguage,
-          data.secondLanguage,
-          data.thirdLanguage,
-        ].filter((l): l is string => !!l),
+        firstLanguage: data.firstLanguage
+          ? getLangName(data.firstLanguage)
+          : undefined,
+        secondLanguage: data.secondLanguage
+          ? getLangName(data.secondLanguage)
+          : undefined,
+        thirdLanguage: data.thirdLanguage
+          ? getLangName(data.thirdLanguage)
+          : undefined,
+        firstLanguageLevel: data.firstLanguageLevel,
+        secondLanguageLevel: data.secondLanguageLevel,
+        thirdLanguageLevel: data.thirdLanguageLevel,
       };
 
       if (profileImageFile) {

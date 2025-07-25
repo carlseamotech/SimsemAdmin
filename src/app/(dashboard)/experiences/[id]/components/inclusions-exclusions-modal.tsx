@@ -16,7 +16,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
@@ -27,6 +26,8 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import { useTour } from "@/hooks/use-tour";
+import logger from "@/lib/logger";
 
 const inclusionsExclusionsSchema = z.object({
   inclusions: z.array(z.object({ value: z.string().min(1, "Required") })),
@@ -41,12 +42,12 @@ interface InclusionsExclusionsModalProps {
   tour: ProposedTour;
   isOpen: boolean;
   onClose: () => void;
-  mutate: () => void;
 }
 
 export const InclusionsExclusionsModal: React.FC<
   InclusionsExclusionsModalProps
-> = ({ tour, isOpen, onClose, mutate }) => {
+> = ({ tour, isOpen, onClose }) => {
+  const { updateTour, mutate } = useTour(tour.objectId);
   const methods = useForm<InclusionsExclusionsFormData>({
     resolver: zodResolver(inclusionsExclusionsSchema),
     defaultValues: {
@@ -89,21 +90,25 @@ export const InclusionsExclusionsModal: React.FC<
     }
   }, [isOpen, tour, reset]);
 
+  const onFormError = (errors: any) => {
+    logger.warn("Form validation errors:", errors);
+  };
+
   const onSubmit: SubmitHandler<InclusionsExclusionsFormData> = async (
     data
   ) => {
+    logger.info("Submitting form data:", data);
     try {
-      const token = localStorage.getItem("sessionToken");
-      if (!token) throw new Error("No session token found");
       const transformedData = {
         inclusions: data.inclusions.map((inc) => inc.value),
         exclusions: data.exclusions.map((exc) => exc.value),
       };
-      await updateCustomTour(tour.objectId, transformedData, token);
+      await updateTour({ ...transformedData, type: tour.type });
       mutate();
       onClose();
       toast.success("Inclusions & Exclusions updated successfully");
-    } catch {
+    } catch (error) {
+      logger.error("API submission failed:", error);
       toast.error("Failed to update Inclusions & Exclusions");
     }
   };
@@ -115,7 +120,7 @@ export const InclusionsExclusionsModal: React.FC<
           <DialogTitle>Edit Inclusions & Exclusions</DialogTitle>
         </DialogHeader>
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit, onFormError)} className="space-y-6">
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Inclusions</h3>
               <div className="space-y-2">

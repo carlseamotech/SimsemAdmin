@@ -17,7 +17,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
@@ -28,6 +27,8 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import { useTour } from "@/hooks/use-tour";
+import logger from "@/lib/logger";
 
 const thingToKnowSchema = z.object({
   title: z.string().min(1, "Required"),
@@ -44,15 +45,14 @@ interface ThingsToKnowModalProps {
   tour: ProposedTour;
   isOpen: boolean;
   onClose: () => void;
-  mutate: () => void;
 }
 
 export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
   tour,
   isOpen,
   onClose,
-  mutate,
 }) => {
+  const { updateTour, mutate } = useTour(tour.objectId);
   const methods = useForm<ThingsToKnowFormData>({
     resolver: zodResolver(thingsToKnowSchema),
     defaultValues: {
@@ -98,20 +98,23 @@ export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
     }
   }, [isOpen, tour, reset]);
 
-  const onSubmit: SubmitHandler<ThingsToKnowFormData> = async (data) => {
-    try {
-      const token = localStorage.getItem("sessionToken");
-      if (!token) throw new Error("No session token found");
+  const onFormError = (errors: any) => {
+    logger.warn("Form validation errors:", errors);
+  };
 
+  const onSubmit: SubmitHandler<ThingsToKnowFormData> = async (data) => {
+    logger.info("Submitting form data:", data);
+    try {
       const transformedData = {
         thingsToKnow: data.thingsToKnow.map((item) => JSON.stringify(item)),
       };
 
-      await updateCustomTour(tour.objectId, transformedData, token);
+      await updateTour({ ...transformedData, type: tour.type });
       mutate();
       onClose();
       toast.success("Things to Know updated successfully");
-    } catch {
+    } catch (error) {
+      logger.error("API submission failed:", error);
       toast.error("Failed to update Things to Know");
     }
   };
@@ -123,7 +126,7 @@ export const ThingsToKnowModal: React.FC<ThingsToKnowModalProps> = ({
           <DialogTitle>Edit Things to Know</DialogTitle>
         </DialogHeader>
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit, onFormError)} className="space-y-4">
             {fields.map((field, index) => (
               <div key={field.id} className="flex items-start gap-4">
                 <FormField

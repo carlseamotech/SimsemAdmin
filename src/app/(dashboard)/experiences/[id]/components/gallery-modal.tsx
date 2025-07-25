@@ -11,24 +11,24 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import { GalleryFormData, gallerySchema } from "./experience-schema";
 import MultiImageUploader from "@/components/common/multi-image-uploader";
+import { useTour } from "@/hooks/use-tour";
+import logger from "@/lib/logger";
 
 interface GalleryModalProps {
   tour: ProposedTour;
   isOpen: boolean;
   onClose: () => void;
-  mutate: () => void;
 }
 
 export const GalleryModal: React.FC<GalleryModalProps> = ({
   tour,
   isOpen,
   onClose,
-  mutate,
 }) => {
+  const { updateTour, mutate } = useTour(tour.objectId);
   const methods = useForm<GalleryFormData>({
     resolver: zodResolver(gallerySchema),
     defaultValues: {
@@ -50,15 +50,18 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
     }
   }, [isOpen, reset, tour.galleryImageUrls]);
 
+  const onFormError = (errors: any) => {
+    logger.warn("Form validation errors:", errors);
+  };
+
   const onSubmit = async (data: GalleryFormData) => {
+    logger.info("Submitting form data:", data);
     try {
-      const token = localStorage.getItem("sessionToken");
-      if (!token) throw new Error("No session token found");
-      await updateCustomTour(tour.objectId, data, token);
-      mutate();
+      await updateTour({ ...data, type: tour.type });
       toast.success("Gallery updated successfully");
       onClose();
-    } catch {
+    } catch (error) {
+      logger.error("API submission failed:", error);
       toast.error("Failed to update gallery");
     }
   };
@@ -70,7 +73,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
           <DialogTitle>Edit Gallery</DialogTitle>
         </DialogHeader>
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit, onFormError)}>
             <MultiImageUploader name="galleryImageUrls" label="Gallery Images" />
             <DialogFooter className="mt-4">
               <Button type="button" variant="outline" onClick={onClose}>

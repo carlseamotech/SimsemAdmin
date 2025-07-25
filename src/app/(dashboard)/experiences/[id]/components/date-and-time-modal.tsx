@@ -22,7 +22,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
@@ -33,6 +32,8 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import { useTour } from "@/hooks/use-tour";
+import logger from "@/lib/logger";
 
 const dateAndTimeSchema = z.object({
   tourTimes: z.array(z.object({ value: z.string().min(1, "Required") })),
@@ -44,7 +45,6 @@ interface DateAndTimeModalProps {
   tour: ProposedTour;
   isOpen: boolean;
   onClose: () => void;
-  mutate: () => void;
 }
 
 // Generate a pre-sorted list of time slots from 8:00 AM to 8:00 PM
@@ -60,8 +60,8 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
   tour,
   isOpen,
   onClose,
-  mutate,
 }) => {
+  const { updateTour, mutate } = useTour(tour.objectId);
   const methods = useForm<DateAndTimeFormData>({
     resolver: zodResolver(dateAndTimeSchema),
     defaultValues: {
@@ -94,20 +94,23 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
     }
   }, [isOpen, tour, reset]);
 
-  const onSubmit: SubmitHandler<DateAndTimeFormData> = async (data) => {
-    try {
-      const token = localStorage.getItem("sessionToken");
-      if (!token) throw new Error("No session token found");
+  const onFormError = (errors: any) => {
+    logger.warn("Form validation errors:", errors);
+  };
 
+  const onSubmit: SubmitHandler<DateAndTimeFormData> = async (data) => {
+    logger.info("Submitting form data:", data);
+    try {
       const transformedData = {
         tourTimes: data.tourTimes.map((time) => time.value),
       };
 
-      await updateCustomTour(tour.objectId, transformedData, token);
+      await updateTour({ ...transformedData, type: tour.type });
       mutate();
       onClose();
       toast.success("Date & Time updated successfully");
-    } catch {
+    } catch (error) {
+      logger.error("API submission failed:", error);
       toast.error("Failed to update Date & Time");
     }
   };
@@ -119,7 +122,7 @@ export const DateAndTimeModal: React.FC<DateAndTimeModalProps> = ({
           <DialogTitle>Edit Date & Time</DialogTitle>
         </DialogHeader>
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit, onFormError)} className="space-y-4">
             {fields.map((field, index) => {
               // Filter out times selected in *other* fields
               const availableTimeSlots = timeSlots.filter(

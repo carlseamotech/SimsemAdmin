@@ -20,7 +20,7 @@ import { Packages } from "./components/packages";
 import WhereToMeet from "./components/meet";
 import DateAndTime from "./components/dateandtime";
 import { ExperienceDetailsSkeleton } from "./components/experience-details-skeleton";
-import { updateCustomTour } from "@/services";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -49,7 +49,7 @@ const ExperienceDetailsPage = () => {
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
   const { id } = useParams();
-  const { tour, isLoading, mutate } = useTour(id as string);
+  const { tour, isLoading, mutate, updateTour } = useTour(id as string);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isCoverPhotoModalOpen, setIsCoverPhotoModalOpen] = useState(false);
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
@@ -69,8 +69,7 @@ const ExperienceDetailsPage = () => {
 
   const handleApprove = async () => {
     try {
-      await updateCustomTour(id as string, { isApproved: true });
-      mutate();
+      await updateTour({ isApproved: true, type: tour.type });
       toast.success("Experience approved successfully");
     } catch {
       toast.error("Failed to approve experience");
@@ -81,8 +80,7 @@ const ExperienceDetailsPage = () => {
 
   const handleDecline = async () => {
     try {
-      await updateCustomTour(id as string, { isApproved: false });
-      mutate();
+      await updateTour({ isApproved: false, type: tour.type });
       toast.success("Experience declined successfully");
     } catch {
       toast.error("Failed to decline experience");

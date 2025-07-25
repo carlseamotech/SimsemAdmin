@@ -11,10 +11,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
+import { useTour } from "@/hooks/use-tour";
+import logger from "@/lib/logger";
 
 const whatToExpectSchema = z.object({
   whatToExpect: z.string().min(1, "What to expect is required"),
@@ -26,15 +27,14 @@ interface WhatToExpectModalProps {
   tour: ProposedTour;
   isOpen: boolean;
   onClose: () => void;
-  mutate: () => void;
 }
 
 export const WhatToExpectModal: React.FC<WhatToExpectModalProps> = ({
   tour,
   isOpen,
   onClose,
-  mutate,
 }) => {
+  const { updateTour, mutate } = useTour(tour.objectId);
   const form = useForm<WhatToExpectFormData>({
     resolver: zodResolver(whatToExpectSchema),
     defaultValues: {
@@ -57,13 +57,19 @@ export const WhatToExpectModal: React.FC<WhatToExpectModalProps> = ({
     }
   }, [tour, reset]);
 
+  const onFormError = (errors: any) => {
+    logger.warn("Form validation errors:", errors);
+  };
+
   const onSubmit: SubmitHandler<WhatToExpectFormData> = async (data) => {
+    logger.info("Submitting form data:", data);
     try {
-      await updateCustomTour(tour.objectId, data);
+      await updateTour({ ...data, type: tour.type });
       mutate();
       onClose();
       toast.success("What to expect updated successfully");
-    } catch {
+    } catch (error) {
+      logger.error("API submission failed:", error);
       toast.error("Failed to update what to expect");
     }
   };
@@ -74,7 +80,7 @@ export const WhatToExpectModal: React.FC<WhatToExpectModalProps> = ({
         <DialogHeader>
           <DialogTitle>Edit What to Expect</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit, onFormError)} className="space-y-4">
           <Textarea {...register("whatToExpect")} />
           <DialogFooter>
             <Button type="button" variant="outline" onClick={onClose}>

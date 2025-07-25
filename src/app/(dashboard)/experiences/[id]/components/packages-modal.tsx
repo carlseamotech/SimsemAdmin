@@ -17,7 +17,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { z } from "zod";
@@ -28,6 +27,8 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import { useTour } from "@/hooks/use-tour";
+import logger from "@/lib/logger";
 
 const packageSchema = z.object({
   fromPerson: z.string().min(1, "Required"),
@@ -45,15 +46,14 @@ interface PackagesModalProps {
   tour: ProposedTour;
   isOpen: boolean;
   onClose: () => void;
-  mutate: () => void;
 }
 
 export const PackagesModal: React.FC<PackagesModalProps> = ({
   tour,
   isOpen,
   onClose,
-  mutate,
 }) => {
+  const { updateTour, mutate } = useTour(tour.objectId);
   const methods = useForm<PackagesFormData>({
     resolver: zodResolver(packagesSchema),
     defaultValues: {
@@ -99,20 +99,23 @@ export const PackagesModal: React.FC<PackagesModalProps> = ({
     }
   }, [isOpen, tour, reset]);
 
-  const onSubmit: SubmitHandler<PackagesFormData> = async (data) => {
-    try {
-      const token = localStorage.getItem("sessionToken");
-      if (!token) throw new Error("No session token found");
+  const onFormError = (errors: any) => {
+    logger.warn("Form validation errors:", errors);
+  };
 
+  const onSubmit: SubmitHandler<PackagesFormData> = async (data) => {
+    logger.info("Submitting form data:", data);
+    try {
       const transformedData = {
         tourPackages: data.tourPackages.map((pkg) => JSON.stringify(pkg)),
       };
 
-      await updateCustomTour(tour.objectId, transformedData, token);
+      await updateTour({ ...transformedData, type: tour.type });
       mutate();
       onClose();
       toast.success("Packages updated successfully");
-    } catch {
+    } catch (error) {
+      logger.error("API submission failed:", error);
       toast.error("Failed to update packages");
     }
   };
@@ -124,7 +127,7 @@ export const PackagesModal: React.FC<PackagesModalProps> = ({
           <DialogTitle>Edit Pricing Packages</DialogTitle>
         </DialogHeader>
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit, onFormError)} className="space-y-6">
             <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
               {fields.map((field, index) => (
                 <div

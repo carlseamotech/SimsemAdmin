@@ -47,7 +47,9 @@ export const useTours = (
 
   const deleteTourHandler = async (id: string) => {
     try {
-      await deleteTour(id);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      await deleteTour(id, token);
       mutate();
       toast.success("Experience deleted successfully");
     } catch (error: unknown) {

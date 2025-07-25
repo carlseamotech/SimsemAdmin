@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import {
   CoverPhotoFormData,
@@ -19,20 +18,21 @@ import {
 } from "./experience-schema";
 import SingleImageUploader from "@/components/common/single-image-uploader";
 import { Form } from "@/components/ui/form";
+import { useTour } from "@/hooks/use-tour";
+import logger from "@/lib/logger";
 
 interface CoverPhotoModalProps {
   tour: ProposedTour;
   isOpen: boolean;
   onClose: () => void;
-  mutate: () => void;
 }
 
 export const CoverPhotoModal: React.FC<CoverPhotoModalProps> = ({
   tour,
   isOpen,
   onClose,
-  mutate,
 }) => {
+  const { updateTour, mutate } = useTour(tour.objectId);
   const form = useForm<CoverPhotoFormData>({
     resolver: zodResolver(coverPhotoSchema),
     defaultValues: {
@@ -54,15 +54,18 @@ export const CoverPhotoModal: React.FC<CoverPhotoModalProps> = ({
     }
   }, [isOpen, reset, tour.coverImageUrl]);
 
+  const onFormError = (errors: any) => {
+    logger.warn("Form validation errors:", errors);
+  };
+
   const onSubmit = async (data: CoverPhotoFormData) => {
+    logger.info("Submitting form data:", data);
     try {
-      const token = localStorage.getItem("sessionToken");
-      if (!token) throw new Error("No session token found");
-      await updateCustomTour(tour.objectId, data, token);
-      mutate();
+      await updateTour({ ...data, type: tour.type });
       toast.success("Cover photo updated successfully");
       onClose();
-    } catch {
+    } catch (error) {
+      logger.error("API submission failed:", error);
       toast.error("Failed to update cover photo");
     }
   };
@@ -74,7 +77,7 @@ export const CoverPhotoModal: React.FC<CoverPhotoModalProps> = ({
           <DialogTitle>Edit Cover Photo</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit, onFormError)}>
             <SingleImageUploader name="coverImageUrl" label="Cover Photo" />
             <DialogFooter className="mt-4">
               <Button type="button" variant="outline" onClick={onClose}>

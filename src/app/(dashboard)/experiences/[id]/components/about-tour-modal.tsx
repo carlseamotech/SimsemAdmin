@@ -23,17 +23,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ProposedTour } from "@/models/proposed-tour";
-import { updateCustomTour } from "@/services/experiences/custom-tour";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { CountryDropdown } from "@/components/common/country-dropdown";
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { useTour } from "@/hooks/use-tour";
+import logger from "@/lib/logger";
 
 interface AboutTourModalProps {
   tour: ProposedTour;
   isOpen: boolean;
   onClose: () => void;
-  mutate: () => void;
   difficultyLevels: string[];
 }
 
@@ -41,9 +41,9 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
   tour,
   isOpen,
   onClose,
-  mutate,
   difficultyLevels,
 }) => {
+  const { updateTour, mutate } = useTour(tour.objectId);
   const methods = useForm<ExperienceFormData>({
     resolver: zodResolver(experienceSchema),
     defaultValues: {
@@ -82,15 +82,19 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
     }
   }, [tour, reset, difficultyLevels]);
 
+  const onFormError = (errors: any) => {
+    logger.warn("Form validation errors:", errors);
+  };
+
   const onSubmit: SubmitHandler<ExperienceFormData> = async (data) => {
+    logger.info("Submitting form data:", data);
     try {
-      const token = localStorage.getItem("sessionToken");
-      if (!token) throw new Error("No session token found");
-      await updateCustomTour(tour.objectId, data, token);
+      await updateTour({ ...data, type: tour.type });
       mutate();
       onClose();
       toast.success("Experience updated successfully");
-    } catch {
+    } catch (error) {
+      logger.error("API submission failed:", error);
       toast.error("Failed to update experience");
     }
   };
@@ -102,7 +106,7 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
           <DialogTitle>Edit About the Tour</DialogTitle>
         </DialogHeader>
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit, onFormError)} className="space-y-4">
             <FormField
               control={control}
               name="name"

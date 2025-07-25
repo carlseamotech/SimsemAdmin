@@ -40,12 +40,16 @@ export const useMeals = (limit?: number) => {
     isLoading: !error && !data,
     isError: error,
     createMeal: async (meal: CreateDiningExperienceDTO) => {
-      const newMeal = await createDiningExperience(meal);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      const newMeal = await createDiningExperience(meal, token);
       mutate();
       return newMeal;
     },
     updateMeal: async (id: string, meal: UpdateDiningExperienceDTO) => {
-      const updatedMeal = await updateMeal(id, meal);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      const updatedMeal = await updateMeal(id, meal, token);
       mutate();
       return updatedMeal;
     },
@@ -85,12 +89,16 @@ export const useLibraryTours = (searchTerm?: string, country?: string) => {
     setPage,
     setLimit,
     createLibraryTour: async (tour: CreateLibraryTourDTO) => {
-      const newTour = await createLibraryTour(tour);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      const newTour = await createLibraryTour(tour, token);
       mutate();
       return newTour;
     },
     updateLibraryTour: async (id: string, tour: UpdateLibraryTourDTO) => {
-      const updatedTour = await updateLibraryTour(id, tour);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      const updatedTour = await updateLibraryTour(id, tour, token);
       mutate();
       return updatedTour;
     },
@@ -129,12 +137,16 @@ export const useLibraryMeals = (searchTerm?: string, country?: string) => {
     setPage,
     setLimit,
     createLibraryMeal: async (meal: CreateLibraryMealDTO) => {
-      const newMeal = await createLibraryMeal(meal);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      const newMeal = await createLibraryMeal(meal, token);
       mutate();
       return newMeal;
     },
     updateLibraryMeal: async (id: string, meal: UpdateLibraryMealDTO) => {
-      const updatedMeal = await updateLibraryMeal(id, meal);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      const updatedMeal = await updateLibraryMeal(id, meal, token);
       mutate();
       return updatedMeal;
     },
@@ -173,12 +185,16 @@ export const useLibraryDishes = (searchTerm?: string, country?: string) => {
     setPage,
     setLimit,
     createLibraryDish: async (dish: CreateLibraryDishDTO) => {
-      const newDish = await createLibraryDish(dish);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      const newDish = await createLibraryDish(dish, token);
       mutate();
       return newDish;
     },
     updateLibraryDish: async (id: string, dish: UpdateLibraryDishDTO) => {
-      const updatedDish = await updateLibraryDish(id, dish);
+      const token = localStorage.getItem("sessionToken");
+      if (!token) throw new Error("No session token found");
+      const updatedDish = await updateLibraryDish(id, dish, token);
       mutate();
       return updatedDish;
     },

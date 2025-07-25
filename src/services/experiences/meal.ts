@@ -4,6 +4,7 @@ import {
   UpdateDiningExperienceDTO,
 } from "@/dtos";
 import { Meal } from "@/models/meal";
+import logger from "@/lib/logger";
 
 export interface GetMealsFilter {
   where?: {
@@ -19,35 +20,84 @@ export const getMeals = async (
   skip: number,
   filter: GetMealsFilter
 ): Promise<{ results: Meal[]; count: number }> => {
-  const response = await api.get<{ results: Meal[]; count: number }>(
-    "/classes/SelectedMeal",
-    {
-      params: { limit, skip, where: filter, count: 1 },
-    }
-  );
-  return response;
+  logger.debug("Attempting to get meals", { limit, skip, filter });
+  try {
+    const response = await api.get<{ results: Meal[]; count: number }>(
+      "/classes/SelectedMeal",
+      {
+        params: { limit, skip, where: filter, count: 1 },
+      }
+    );
+    logger.info("Successfully got meals", response);
+    return response;
+  } catch (error) {
+    logger.error("Failed to get meals", error);
+    throw error;
+  }
 };
 
 export const getMeal = async (id: string): Promise<Meal> => {
-  const response = await api.get<Meal>(`/classes/SelectedMeal/${id}`);
-  return response;
+  logger.debug(`Attempting to get meal with id: ${id}`);
+  try {
+    const response = await api.get<Meal>(`/classes/SelectedMeal/${id}`);
+    logger.info(`Successfully got meal with id: ${id}`, response);
+    return response;
+  } catch (error) {
+    logger.error(`Failed to get meal with id: ${id}`, error);
+    throw error;
+  }
 };
 
 export const createDiningExperience = async (
-  data: CreateDiningExperienceDTO
+  data: CreateDiningExperienceDTO,
+  sessionToken?: string
 ): Promise<Meal> => {
-  const response = await api.post<Meal>("/classes/SelectedMeal", data);
-  return response;
+  logger.debug("Attempting to create dining experience", data);
+  const headers: Record<string, string> = {};
+  if (sessionToken) {
+    headers["X-Parse-Session-Token"] = sessionToken;
+  }
+  try {
+    const response = await api.post<Meal>("/classes/SelectedMeal", data, {
+      headers,
+    });
+    logger.info("Successfully created dining experience", response);
+    return response;
+  } catch (error) {
+    logger.error("Failed to create dining experience", error);
+    throw error;
+  }
 };
 
 export const updateMeal = async (
   id: string,
-  data: UpdateDiningExperienceDTO
+  data: UpdateDiningExperienceDTO,
+  sessionToken?: string
 ): Promise<Meal> => {
-  const response = await api.put<Meal>(`/classes/SelectedMeal/${id}`, data);
-  return response;
+  logger.debug(`Attempting to update meal with id: ${id}`, data);
+  const headers: Record<string, string> = {};
+  if (sessionToken) {
+    headers["X-Parse-Session-Token"] = sessionToken;
+  }
+  try {
+    const response = await api.put<Meal>(`/classes/SelectedMeal/${id}`, data, {
+      headers,
+    });
+    logger.info(`Successfully updated meal with id: ${id}`, response);
+    return response;
+  } catch (error) {
+    logger.error(`Failed to update meal with id: ${id}`, error);
+    throw error;
+  }
 };
 
 export const deleteMeal = async (id: string): Promise<void> => {
-  await api.delete(`/classes/SelectedMeal/${id}`);
+  logger.debug(`Attempting to delete meal with id: ${id}`);
+  try {
+    await api.delete(`/classes/SelectedMeal/${id}`);
+    logger.info(`Successfully deleted meal with id: ${id}`);
+  } catch (error) {
+    logger.error(`Failed to delete meal with id: ${id}`, error);
+    throw error;
+  }
 };
