@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { FieldErrors, useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
@@ -28,7 +28,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const { updateTour, mutate } = useTour(tour.objectId);
+  const { updateTour } = useTour(tour.objectId);
   const methods = useForm<GalleryFormData>({
     resolver: zodResolver(gallerySchema),
     defaultValues: {
@@ -50,7 +50,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
     }
   }, [isOpen, reset, tour.galleryImageUrls]);
 
-  const onFormError = (errors: any) => {
+  const onFormError = (errors: FieldErrors<GalleryFormData>) => {
     logger.warn("Form validation errors:", errors);
   };
 

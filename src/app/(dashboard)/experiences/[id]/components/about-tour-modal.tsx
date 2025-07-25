@@ -1,5 +1,5 @@
 "use client";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { useForm, SubmitHandler, FormProvider, FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   experienceSchema,
@@ -82,7 +82,7 @@ export const AboutTourModal: React.FC<AboutTourModalProps> = ({
     }
   }, [tour, reset, difficultyLevels]);
 
-  const onFormError = (errors: any) => {
+  const onFormError = (errors: FieldErrors<ExperienceFormData>) => {
     logger.warn("Form validation errors:", errors);
   };
 

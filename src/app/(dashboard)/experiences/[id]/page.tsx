@@ -49,7 +49,7 @@ const ExperienceDetailsPage = () => {
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
   const { id } = useParams();
-  const { tour, isLoading, mutate, updateTour } = useTour(id as string);
+  const { tour, isLoading, updateTour } = useTour(id as string);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isCoverPhotoModalOpen, setIsCoverPhotoModalOpen] = useState(false);
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
@@ -68,6 +68,7 @@ const ExperienceDetailsPage = () => {
   });
 
   const handleApprove = async () => {
+    if (!tour) return;
     try {
       await updateTour({ isApproved: true, type: tour.type });
       toast.success("Experience approved successfully");
@@ -79,6 +80,7 @@ const ExperienceDetailsPage = () => {
   };
 
   const handleDecline = async () => {
+    if (!tour) return;
     try {
       await updateTour({ isApproved: false, type: tour.type });
       toast.success("Experience declined successfully");
@@ -473,56 +475,47 @@ const ExperienceDetailsPage = () => {
         tour={tour}
         isOpen={isAboutModalOpen}
         onClose={() => setIsAboutModalOpen(false)}
-        mutate={mutate}
         difficultyLevels={difficultyLevels}
       />
       <CoverPhotoModal
         tour={tour}
         isOpen={isCoverPhotoModalOpen}
         onClose={() => setIsCoverPhotoModalOpen(false)}
-        mutate={mutate}
       />
       <GalleryModal
         tour={tour}
         isOpen={isGalleryModalOpen}
         onClose={() => setIsGalleryModalOpen(false)}
-        mutate={mutate}
       />
       <WhatToExpectModal
         tour={tour}
         isOpen={isWhatToExpectModalOpen}
         onClose={() => setIsWhatToExpectModalOpen(false)}
-        mutate={mutate}
       />
       <PackagesModal
         tour={tour}
         isOpen={isPackagesModalOpen}
         onClose={() => setIsPackagesModalOpen(false)}
-        mutate={mutate}
       />
       <WhereToMeetModal
         tour={tour}
         isOpen={isWhereToMeetModalOpen}
         onClose={() => setIsWhereToMeetModalOpen(false)}
-        mutate={mutate}
       />
       <DateAndTimeModal
         tour={tour}
         isOpen={isDateAndTimeModalOpen}
         onClose={() => setIsDateAndTimeModalOpen(false)}
-        mutate={mutate}
       />
       <InclusionsExclusionsModal
         tour={tour}
         isOpen={isInclusionsExclusionsModalOpen}
         onClose={() => setIsInclusionsExclusionsModalOpen(false)}
-        mutate={mutate}
       />
       <ThingsToKnowModal
         tour={tour}
         isOpen={isThingsToKnowModalOpen}
         onClose={() => setIsThingsToKnowModalOpen(false)}
-        mutate={mutate}
       />
     </>
   );

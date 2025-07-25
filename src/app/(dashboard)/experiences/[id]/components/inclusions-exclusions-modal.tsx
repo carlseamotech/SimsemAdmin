@@ -4,6 +4,7 @@ import {
   SubmitHandler,
   useFieldArray,
   FormProvider,
+  FieldErrors,
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -90,7 +91,7 @@ export const InclusionsExclusionsModal: React.FC<
     }
   }, [isOpen, tour, reset]);
 
-  const onFormError = (errors: any) => {
+  const onFormError = (errors: FieldErrors<InclusionsExclusionsFormData>) => {
     logger.warn("Form validation errors:", errors);
   };
 

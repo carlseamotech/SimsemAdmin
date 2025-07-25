@@ -1,5 +1,5 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
@@ -57,7 +57,7 @@ export const WhatToExpectModal: React.FC<WhatToExpectModalProps> = ({
     }
   }, [tour, reset]);
 
-  const onFormError = (errors: any) => {
+  const onFormError = (errors: FieldErrors<WhatToExpectFormData>) => {
     logger.warn("Form validation errors:", errors);
   };
 

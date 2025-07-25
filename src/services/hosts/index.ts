@@ -13,7 +13,7 @@ export const getHosts = async (
 ): Promise<{ results: Host[]; count: number }> => {
   logger.debug("Attempting to get hosts", { limit, skip, filter });
   try {
-    const response = await api.get(BASE_URL, {
+    const response = await api.get<{ results: Host[]; count: number }>(BASE_URL, {
       params: {
         limit,
         skip,

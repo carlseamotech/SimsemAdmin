@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { FieldErrors, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
@@ -32,7 +32,7 @@ export const CoverPhotoModal: React.FC<CoverPhotoModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const { updateTour, mutate } = useTour(tour.objectId);
+  const { updateTour } = useTour(tour.objectId);
   const form = useForm<CoverPhotoFormData>({
     resolver: zodResolver(coverPhotoSchema),
     defaultValues: {
@@ -54,7 +54,7 @@ export const CoverPhotoModal: React.FC<CoverPhotoModalProps> = ({
     }
   }, [isOpen, reset, tour.coverImageUrl]);
 
-  const onFormError = (errors: any) => {
+  const onFormError = (errors: FieldErrors<CoverPhotoFormData>) => {
     logger.warn("Form validation errors:", errors);
   };
 

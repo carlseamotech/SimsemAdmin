@@ -4,6 +4,7 @@ import {
   SubmitHandler,
   useFieldArray,
   FormProvider,
+  FieldErrors,
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
@@ -99,7 +100,7 @@ export const PackagesModal: React.FC<PackagesModalProps> = ({
     }
   }, [isOpen, tour, reset]);
 
-  const onFormError = (errors: any) => {
+  const onFormError = (errors: FieldErrors<PackagesFormData>) => {
     logger.warn("Form validation errors:", errors);
   };
 
