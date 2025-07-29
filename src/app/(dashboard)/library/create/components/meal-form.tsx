@@ -5,12 +5,12 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createLibraryMeal, uploadFile } from "@/services";
+import { createLibraryMeal } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
 import { CountryDropdown } from "@/components/common/country-dropdown";
+import SingleFileUploader from "@/components/common/single-file-uploader";
 
 const mealSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -18,14 +18,13 @@ const mealSchema = z.object({
   country: z.string().min(1, "Required"),
   cost: z.string().min(1, "Required"),
   dishIds: z.array(z.string()),
-  coverImage: z.any(),
+  coverImageUrl: z.string().min(1, "Cover image is required"),
 });
 
 type MealFormData = z.infer<typeof mealSchema>;
 
 export const MealForm = () => {
   const router = useRouter();
-  const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
   const methods = useForm<MealFormData>({
     resolver: zodResolver(mealSchema),
   });
@@ -39,18 +38,12 @@ export const MealForm = () => {
 
   const onSubmit: SubmitHandler<MealFormData> = async (data) => {
     try {
-      let coverImageUrl = "";
-      if (coverImageFile) {
-        const uploadedFile = await uploadFile(coverImageFile);
-        coverImageUrl = uploadedFile.url;
-      }
-
       await createLibraryMeal({
         ...data,
         coverImage: {
           __type: "File",
-          name: coverImageFile?.name || "",
-          url: coverImageUrl,
+          name: "cover.jpg",
+          url: data.coverImageUrl,
         },
       });
       toast.success("Meal created successfully");
@@ -72,21 +65,13 @@ export const MealForm = () => {
           <Textarea id="description" {...register("description")} />
         </div>
         <div>
-          <Label htmlFor="country">Country</Label>
           <CountryDropdown control={control} name="country" label="Country" />
         </div>
         <div>
           <Label htmlFor="cost">Cost</Label>
           <Input id="cost" {...register("cost")} />
         </div>
-        <div>
-          <Label htmlFor="coverImage">Cover Image</Label>
-          <Input
-            id="coverImage"
-            type="file"
-            onChange={(e) => setCoverImageFile(e.target.files?.[0] || null)}
-          />
-        </div>
+        <SingleFileUploader name="coverImageUrl" label="Cover Image" />
         {/* Add dishIds editing here */}
         <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Creating..." : "Create"}

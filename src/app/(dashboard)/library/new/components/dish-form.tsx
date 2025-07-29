@@ -5,12 +5,12 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createLibraryDish, uploadFile } from "@/services";
+import { createLibraryDish } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { CountryDropdown } from "@/components/common/country-dropdown";
-import { useState } from "react";
+import SingleFileUploader from "@/components/common/single-file-uploader";
 
 const dishSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -18,14 +18,13 @@ const dishSchema = z.object({
   country: z.string().min(1, "Required"),
   type: z.string().min(1, "Required"),
   course: z.string().min(1, "Required"),
-  image: z.any(),
+  imageUrl: z.string().min(1, "Image is required"),
 });
 
 type DishFormData = z.infer<typeof dishSchema>;
 
 export const DishForm: React.FC = () => {
   const router = useRouter();
-  const [isUploading, setIsUploading] = useState(false);
   const form = useForm<DishFormData>({
     resolver: zodResolver(dishSchema),
     defaultValues: {
@@ -46,23 +45,17 @@ export const DishForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<DishFormData> = async (data) => {
     try {
-      setIsUploading(true);
-      const imageFile = data.image[0];
-      const uploadedImage = await uploadFile(imageFile);
-      setIsUploading(false);
-
       await createLibraryDish({
         ...data,
         image: {
           __type: "File",
-          name: uploadedImage.name,
-          url: uploadedImage.url,
+          name: "image.jpg",
+          url: data.imageUrl,
         },
       });
       toast.success("Dish created successfully");
       router.push("/library?tab=dishes");
     } catch {
-      setIsUploading(false);
       toast.error("Failed to create dish");
     }
   };
@@ -79,7 +72,6 @@ export const DishForm: React.FC = () => {
           <Textarea id="ingredients" {...register("ingredients")} />
         </div>
         <div>
-          <Label htmlFor="country">Country</Label>
           <CountryDropdown control={control} name="country" />
         </div>
         <div>
@@ -90,12 +82,9 @@ export const DishForm: React.FC = () => {
           <Label htmlFor="course">Course</Label>
           <Input id="course" {...register("course")} />
         </div>
-        <div>
-          <Label htmlFor="image">Image</Label>
-          <Input id="image" type="file" {...register("image")} />
-        </div>
-        <Button type="submit" disabled={isSubmitting || isUploading}>
-          {isSubmitting || isUploading ? "Creating..." : "Create"}
+        <SingleFileUploader name="imageUrl" label="Image" />
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Creating..." : "Create"}
         </Button>
       </form>
     </FormProvider>

@@ -5,12 +5,12 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createLibraryTour, uploadFile } from "@/services";
+import { createLibraryTour } from "@/services";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { CountryDropdown } from "@/components/common/country-dropdown";
-import { useState } from "react";
+import SingleFileUploader from "@/components/common/single-file-uploader";
 
 const tourSchema = z.object({
   name: z.string().min(1, "Required"),
@@ -22,14 +22,13 @@ const tourSchema = z.object({
   feature: z.string().min(1, "Required"),
   timeUnit: z.string().min(1, "Required"),
   requirements: z.array(z.string()).optional(),
-  coverImage: z.any(),
+  coverImageUrl: z.string().min(1, "Cover image is required"),
 });
 
 type TourFormData = z.infer<typeof tourSchema>;
 
 export const TourForm: React.FC = () => {
   const router = useRouter();
-  const [isUploading, setIsUploading] = useState(false);
   const form = useForm<TourFormData>({
     resolver: zodResolver(tourSchema),
     defaultValues: {
@@ -54,24 +53,18 @@ export const TourForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<TourFormData> = async (data) => {
     try {
-      setIsUploading(true);
-      const imageFile = data.coverImage[0];
-      const uploadedImage = await uploadFile(imageFile);
-      setIsUploading(false);
-
       await createLibraryTour({
         ...data,
         requirements: data.requirements || [],
         coverImage: {
           __type: "File",
-          name: uploadedImage.name,
-          url: uploadedImage.url,
+          name: "cover.jpg",
+          url: data.coverImageUrl,
         },
       });
       toast.success("Tour created successfully");
       router.push("/library?tab=tours");
     } catch {
-      setIsUploading(false);
       toast.error("Failed to create tour");
     }
   };
@@ -88,7 +81,6 @@ export const TourForm: React.FC = () => {
           <Textarea id="description" {...register("description")} />
         </div>
         <div>
-          <Label htmlFor="country">Country</Label>
           <CountryDropdown control={control} name="country" />
         </div>
         <div>
@@ -123,13 +115,10 @@ export const TourForm: React.FC = () => {
           <Label htmlFor="timeUnit">Time Unit</Label>
           <Input id="timeUnit" {...register("timeUnit")} />
         </div>
-        <div>
-          <Label htmlFor="coverImage">Cover Image</Label>
-          <Input id="coverImage" type="file" {...register("coverImage")} />
-        </div>
+        <SingleFileUploader name="coverImageUrl" label="Cover Image" />
         {/* Add requirements editing here */}
-        <Button type="submit" disabled={isSubmitting || isUploading}>
-          {isSubmitting || isUploading ? "Creating..." : "Create"}
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Creating..." : "Create"}
         </Button>
       </form>
     </FormProvider>

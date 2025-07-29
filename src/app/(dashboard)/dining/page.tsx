@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { useForm, FormProvider } from "react-hook-form";
 import { FormData } from "./components/types";
 import { createDiningExperience } from "@/services/experiences/meal";
-import { uploadFile } from "@/services/files";
 import toast from "react-hot-toast";
 import Step1SelectHost from "./components/step1-select-host";
 import Step2MealName from "./components/step2-meal-name";
@@ -67,25 +66,7 @@ const CreateDiningExperiencePage = () => {
     } else {
       handleSubmit(async (data) => {
         try {
-          const coverImageFile = data.coverImageUrl
-            ? await (await fetch(data.coverImageUrl)).blob()
-            : null;
-          const coverImageUrl = coverImageFile
-            ? (
-                await uploadFile(
-                  new File([coverImageFile], "cover.jpg", {
-                    type: "image/jpeg",
-                  })
-                )
-              ).url
-            : "";
-
-          const diningData = {
-            ...data,
-            coverImageUrl,
-          };
-
-          await createDiningExperience(diningData);
+          await createDiningExperience(data);
           toast.success("Dining experience created successfully");
           router.push("/experiences?tab=experience-library");
         } catch (error) {

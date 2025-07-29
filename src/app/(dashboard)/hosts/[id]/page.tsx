@@ -20,9 +20,9 @@ import {
 import { useHost } from "@/hooks/use-hosts";
 import { Skeleton } from "@/components/ui/skeleton";
 import { approveHost, declineHost, deleteHost } from "@/services/hosts";
-import { uploadFile } from "@/services/files";
 import toast from "react-hot-toast";
 import { UpdateHostInfoDTO } from "@/dtos";
+import SingleFileUploader from "@/components/common/single-file-uploader";
 import { SingleDocumentModal } from "@/app/(dashboard)/hosts/components/single-document-modal";
 import { useLanguages } from "@/hooks/use-languages";
 
@@ -40,7 +40,6 @@ const HostSummaryPage = () => {
   const [editingDocument, setEditingDocument] = useState<EditingDocument | null>(
     null
   );
-  const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
 
   const { host, hostPayment, isLoading, updateHost, mutate } = useHost(
     id as string
@@ -123,14 +122,8 @@ const HostSummaryPage = () => {
         firstLanguageLevel: data.firstLanguageLevel,
         secondLanguageLevel: data.secondLanguageLevel,
         thirdLanguageLevel: data.thirdLanguageLevel,
+        imageUrl: data.imageUrl,
       };
-
-      if (profileImageFile) {
-        const token = localStorage.getItem("sessionToken");
-        if (!token) throw new Error("No session token found");
-        const uploadedFile = await uploadFile(profileImageFile, token);
-        updateDto.imageUrl = uploadedFile.url;
-      }
 
       await updateHost(updateDto);
       setIsEditing(false);
@@ -219,37 +212,16 @@ const HostSummaryPage = () => {
                   <CardContent>
                     <div className="flex flex-col items-start gap-8">
                       <div className="flex flex-row items-center gap-6">
-                        <Image
-                          src={
-                            profileImageFile
-                              ? URL.createObjectURL(profileImageFile)
-                              : host.imageUrl || ProfileImage
-                          }
-                          alt="Host Avatar"
-                          width={80}
-                          height={80}
-                          className="rounded-full border object-cover"
-                        />
-
-                        {isEditing && (
-                          <Button
-                            asChild
-                            variant="default"
-                            className="text-[#FFFFFF] flex items-center justify-center w-[132px] h-[30px] text-[13px] bg-[#5F0F40] rounded-full"
-                          >
-                            <label>
-                              CHANGE PHOTO
-                              <input
-                                type="file"
-                                className="hidden"
-                                onChange={(e) =>
-                                  setProfileImageFile(
-                                    e.target.files?.[0] || null
-                                  )
-                                }
-                              />
-                            </label>
-                          </Button>
+                        {isEditing ? (
+                          <SingleFileUploader name="imageUrl" label="" />
+                        ) : (
+                          <Image
+                            src={host.imageUrl || ProfileImage}
+                            alt="Host Avatar"
+                            width={80}
+                            height={80}
+                            className="rounded-full border object-cover"
+                          />
                         )}
                       </div>
 
