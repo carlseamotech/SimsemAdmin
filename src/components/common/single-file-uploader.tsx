@@ -4,24 +4,27 @@ import { useController, useFormContext } from "react-hook-form";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { uploadFile } from "@/services/files";
+import { uploadToBunny } from "@/services/bunny";
 import toast from "react-hot-toast";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import ProfileImage from "../../../public/common/profile-image.svg";
 
-interface SingleImageUploaderProps {
+interface SingleFileUploaderProps {
   name: string;
   label: string;
+  accept?: string;
 }
 
-const SingleImageUploader: React.FC<SingleImageUploaderProps> = ({
+const SingleFileUploader: React.FC<SingleFileUploaderProps> = ({
   name,
   label,
+  accept = "image/*",
 }) => {
   const { control } = useFormContext();
   const {
-    field: { value: imageUrl, onChange },
+    field: { value: fileUrl, onChange },
   } = useController({ name, control });
   const [isUploading, setIsUploading] = useState(false);
 
@@ -35,16 +38,26 @@ const SingleImageUploader: React.FC<SingleImageUploaderProps> = ({
         const token = localStorage.getItem("sessionToken");
         if (!token) throw new Error("No session token found");
 
-        const uploadedFile = await uploadFile(file, token);
+        let uploadedFile;
+        if (file.type.startsWith("video/")) {
+          uploadedFile = await uploadToBunny(file);
+        } else {
+          uploadedFile = await uploadFile(file, token);
+        }
+        
         onChange(uploadedFile.url);
-        toast.success("Image uploaded successfully!");
+        toast.success("File uploaded successfully!");
       } catch (error) {
-        toast.error("Failed to upload image.");
+        toast.error("Failed to upload file.");
         console.error("Error uploading file:", error);
       } finally {
         setIsUploading(false);
       }
     }
+  };
+  
+  const isVideo = (url: string) => {
+    return url.endsWith(".mp4") || url.endsWith(".webm") || url.endsWith(".ogg");
   };
 
   return (
@@ -54,9 +67,11 @@ const SingleImageUploader: React.FC<SingleImageUploaderProps> = ({
           <div className="flex items-center justify-center h-full w-full">
             <Loader2 className="w-12 h-12 animate-spin" />
           </div>
+        ) : fileUrl && isVideo(fileUrl) ? (
+            <video src={fileUrl} className="w-full h-full rounded-full object-cover" />
         ) : (
           <Image
-            src={imageUrl || ProfileImage}
+            src={fileUrl || ProfileImage}
             alt="Profile"
             width={96}
             height={96}
@@ -68,11 +83,11 @@ const SingleImageUploader: React.FC<SingleImageUploaderProps> = ({
         </AvatarFallback>
       </Avatar>
       <div className="flex flex-col space-y-2">
-        <Label htmlFor={`photo-upload-${name}`}>{label}</Label>
+        <Label htmlFor={`file-upload-${name}`}>{label}</Label>
         <Input
-          id={`photo-upload-${name}`}
+          id={`file-upload-${name}`}
           type="file"
-          accept="image/*"
+          accept={accept}
           onChange={handleFileUpload}
           disabled={isUploading}
         />
@@ -81,4 +96,4 @@ const SingleImageUploader: React.FC<SingleImageUploaderProps> = ({
   );
 };
 
-export default SingleImageUploader;
+export default SingleFileUploader;

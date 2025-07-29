@@ -16,7 +16,7 @@ import {
   CoverPhotoFormData,
   coverPhotoSchema,
 } from "./experience-schema";
-import SingleImageUploader from "@/components/common/single-image-uploader";
+import SingleFileUploader from "@/components/common/single-file-uploader";
 import { Form } from "@/components/ui/form";
 import { useTour } from "@/hooks/use-tour";
 import logger from "@/lib/logger";
@@ -78,7 +78,7 @@ export const CoverPhotoModal: React.FC<CoverPhotoModalProps> = ({
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit, onFormError)}>
-            <SingleImageUploader name="coverImageUrl" label="Cover Photo" />
+            <SingleFileUploader name="coverImageUrl" label="Cover Photo" />
             <DialogFooter className="mt-4">
               <Button type="button" variant="outline" onClick={onClose}>
                 Cancel

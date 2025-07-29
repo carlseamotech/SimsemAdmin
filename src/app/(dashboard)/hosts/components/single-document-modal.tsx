@@ -10,7 +10,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import MultiImageUploader from "@/components/common/multi-image-uploader";
+import MultiFileUploader from "@/components/common/multi-file-uploader";
 import { useHost } from "@/hooks/use-hosts";
 import toast from "react-hot-toast";
 import { UpdateHostInfoDTO } from "@/dtos";
@@ -79,7 +79,7 @@ export const SingleDocumentModal: React.FC<SingleDocumentModalProps> = ({
         </DialogHeader>
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <MultiImageUploader
+            <MultiFileUploader
               name="documentUrl"
               label=""
               maxFiles={1}

@@ -1,26 +1,30 @@
+
 "use client";
 import React, { useState } from "react";
 import { useController, useFormContext } from "react-hook-form";
 import Image from "next/image";
 import { X, Loader2 } from "lucide-react";
 import { uploadFile } from "@/services/files";
+import { uploadToBunny } from "@/services/bunny";
 import toast from "react-hot-toast";
 import UploadIcon from "../../../public/common/upload-cloud-icon.svg";
 
-interface MultiImageUploaderProps {
+interface MultiFileUploaderProps {
   name: string;
   label: string;
   maxFiles?: number;
+  accept?: string;
 }
 
-const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
+const MultiFileUploader: React.FC<MultiFileUploaderProps> = ({
   name,
   label,
   maxFiles = 10,
+  accept = "image/*",
 }) => {
   const { control } = useFormContext();
   const {
-    field: { value: imageUrls = [], onChange },
+    field: { value: fileUrls = [], onChange },
   } = useController({ name, control });
   const [isUploading, setIsUploading] = useState(false);
 
@@ -29,8 +33,8 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
   ) => {
     const files = event.target.files;
     if (files) {
-      if (imageUrls.length + files.length > maxFiles) {
-        toast.error(`You can only upload a maximum of ${maxFiles} images.`);
+      if (fileUrls.length + files.length > maxFiles) {
+        toast.error(`You can only upload a maximum of ${maxFiles} files.`);
         return;
       }
       setIsUploading(true);
@@ -38,15 +42,20 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
         const token = localStorage.getItem("sessionToken");
         if (!token) throw new Error("No session token found");
 
-        const uploadPromises = Array.from(files).map((file) =>
-          uploadFile(file, token)
-        );
+        const uploadPromises = Array.from(files).map((file) => {
+          if (file.type.startsWith("video/")) {
+            return uploadToBunny(file);
+          } else {
+            return uploadFile(file, token);
+          }
+        });
+
         const uploadedFiles = await Promise.all(uploadPromises);
-        const newImageUrls = uploadedFiles.map((file) => file.url);
-        onChange([...imageUrls, ...newImageUrls]);
-        toast.success("Images uploaded successfully!");
+        const newFileUrls = uploadedFiles.map((file) => file.url);
+        onChange([...fileUrls, ...newFileUrls]);
+        toast.success("Files uploaded successfully!");
       } catch (error) {
-        toast.error("Failed to upload images.");
+        toast.error("Failed to upload files.");
         console.error("Error uploading files:", error);
       } finally {
         setIsUploading(false);
@@ -55,22 +64,30 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
   };
 
   const handleRemovePhoto = (urlToRemove: string) => {
-    const newImageUrls = imageUrls.filter((url: string) => url !== urlToRemove);
-    onChange(newImageUrls);
+    const newFileUrls = fileUrls.filter((url: string) => url !== urlToRemove);
+    onChange(newFileUrls);
+  };
+
+  const isVideo = (url: string) => {
+    return url.endsWith(".mp4") || url.endsWith(".webm") || url.endsWith(".ogg");
   };
 
   return (
     <div className="space-y-6">
       <div className="text-[30px] text-[#0D2E61]">{label}</div>
       <div className="grid grid-cols-3 gap-4">
-        {imageUrls.map((url: string, index: number) => (
+        {fileUrls.map((url: string, index: number) => (
           <div key={index} className="relative h-40 rounded-lg overflow-hidden">
-            <Image
-              src={url}
-              alt={`Preview ${index}`}
-              fill
-              className="object-cover"
-            />
+            {isVideo(url) ? (
+              <video src={url} controls className="w-full h-full object-cover" />
+            ) : (
+              <Image
+                src={url}
+                alt={`Preview ${index}`}
+                fill
+                className="object-cover"
+              />
+            )}
             <button
               onClick={() => handleRemovePhoto(url)}
               className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 hover:bg-red-700"
@@ -79,19 +96,19 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
             </button>
           </div>
         ))}
-        {imageUrls.length < maxFiles && (
+        {fileUrls.length < maxFiles && (
           <div className="relative border-2 border-dashed bg-[#00000008] rounded-lg h-40 text-center flex items-center justify-center">
             <input
               type="file"
-              accept="image/*"
+              accept={accept}
               multiple
               onChange={handleFileUpload}
               className="hidden"
-              id={`photo-upload-${name}`}
+              id={`file-upload-${name}`}
               disabled={isUploading}
             />
             <label
-              htmlFor={`photo-upload-${name}`}
+              htmlFor={`file-upload-${name}`}
               className={`cursor-pointer flex flex-col justify-center items-center gap-4 ${
                 isUploading ? "opacity-50" : ""
               }`}
@@ -106,7 +123,7 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
                 />
               )}
               <p className="text-[#3D3D3D] text-[15px] font-bold">
-                {isUploading ? "Uploading..." : "Upload or drag photos here"}
+                {isUploading ? "Uploading..." : "Upload or drag files here"}
               </p>
             </label>
           </div>
@@ -116,4 +133,4 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
   );
 };
 
-export default MultiImageUploader;
+export default MultiFileUploader;

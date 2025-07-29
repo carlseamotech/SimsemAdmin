@@ -40,6 +40,7 @@ import { WhereToMeetModal } from "./components/where-to-meet-modal";
 import { DateAndTimeModal } from "./components/date-and-time-modal";
 import { InclusionsExclusionsModal } from "./components/inclusions-exclusions-modal";
 import { ThingsToKnowModal } from "./components/things-to-know-modal";
+import { ItineraryModal } from "./components/itinerary-modal";
 import toast from "react-hot-toast";
 
 const difficultyLevels = ["Basic", "Intermediate", "Advanced"];
@@ -62,6 +63,7 @@ const ExperienceDetailsPage = () => {
     setIsInclusionsExclusionsModalOpen,
   ] = useState(false);
   const [isThingsToKnowModalOpen, setIsThingsToKnowModalOpen] = useState(false);
+  const [isItineraryModalOpen, setIsItineraryModalOpen] = useState(false);
   const [dialog, setDialog] = useState({
     isOpen: false,
     action: "",
@@ -411,7 +413,23 @@ const ExperienceDetailsPage = () => {
                   {/* tour menu */}
                   <TourMenu courses={tour.courses || []} />
 
-                  <Itinerary itinerary={tour.itinerary || []} />
+                  <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[24px] font-bold text-[#0D2E61]">
+                        Our Detailed Itinerary
+                      </div>
+                      <Button
+                        size="lg"
+                        type="button"
+                        variant="outline"
+                        onClick={() => setIsItineraryModalOpen(true)}
+                        className="text-[17px] font-bold bg-[#3D3D3D4D] text-[#000000B2]"
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                    <Itinerary itinerary={tour.itinerary || []} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -516,6 +534,11 @@ const ExperienceDetailsPage = () => {
         tour={tour}
         isOpen={isThingsToKnowModalOpen}
         onClose={() => setIsThingsToKnowModalOpen(false)}
+      />
+      <ItineraryModal
+        tour={tour}
+        isOpen={isItineraryModalOpen}
+        onClose={() => setIsItineraryModalOpen(false)}
       />
     </>
   );

@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { ProposedTour } from "@/models/proposed-tour";
 import toast from "react-hot-toast";
 import { GalleryFormData, gallerySchema } from "./experience-schema";
-import MultiImageUploader from "@/components/common/multi-image-uploader";
+import MultiFileUploader from "@/components/common/multi-file-uploader";
 import { useTour } from "@/hooks/use-tour";
 import logger from "@/lib/logger";
 
@@ -74,7 +74,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
         </DialogHeader>
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit, onFormError)}>
-            <MultiImageUploader name="galleryImageUrls" label="Gallery Images" />
+            <MultiFileUploader name="galleryImageUrls" label="Gallery Images" />
             <DialogFooter className="mt-4">
               <Button type="button" variant="outline" onClick={onClose}>
                 Cancel

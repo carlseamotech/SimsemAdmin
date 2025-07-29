@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import MultiImageUploader from "@/components/common/multi-image-uploader";
+import MultiFileUploader from "@/components/common/multi-file-uploader";
 
 const Step5CoverPhoto: React.FC = () => {
   return (
-    <MultiImageUploader name="galleryImageUrls" label="Add Photos" />
+    <MultiFileUploader name="galleryImageUrls" label="Add Photos" />
   );
 };
 
