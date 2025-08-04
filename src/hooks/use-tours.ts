@@ -10,13 +10,23 @@ export const useTours = (
   enabled: boolean = true,
   experienceId?: string,
   hostId?: string,
-  country?: string
+  country?: string,
+  status?: string
 ) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
   const swrKey = enabled
-    ? ["/tours", types?.join(","), page, limit, experienceId, hostId, country]
+    ? [
+        "/tours",
+        types?.join(","),
+        page,
+        limit,
+        experienceId,
+        hostId,
+        country,
+        status,
+      ]
     : null;
 
   const fetcher = () => {
@@ -26,6 +36,7 @@ export const useTours = (
         objectId?: string;
         guideId?: string;
         country?: string;
+        isApproved?: boolean;
       };
     } = { where: {} };
     if (types && types.length > 0) {
@@ -39,6 +50,9 @@ export const useTours = (
     }
     if (country) {
       filter.where.country = country;
+    }
+    if (status && status !== "all") {
+      filter.where.isApproved = status === "approved";
     }
     return getTours(limit, (page - 1) * limit, filter);
   };

@@ -16,7 +16,7 @@ const HostDashboard = () => {
   const [country, setCountry] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
 
-  const { count } = useHosts(searchTerm, hostId, email, country);
+  const { count } = useHosts(searchTerm, hostId, email, country, activeFilter);
 
   const getFilterButtons = () => ["all", "for-approval", "approved"];
 

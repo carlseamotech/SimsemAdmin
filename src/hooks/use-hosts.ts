@@ -15,12 +15,13 @@ export const useHosts = (
   name?: string,
   hostId?: string,
   email?: string,
-  country?: string
+  country?: string,
+  status?: string
 ) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-  const swrKey = ["/hosts", page, limit, name, hostId, email, country];
+  const swrKey = ["/hosts", page, limit, name, hostId, email, country, status];
 
   const fetcher = () => {
     const filter: {
@@ -29,6 +30,7 @@ export const useHosts = (
         objectId?: string;
         email?: string;
         country?: string;
+        isVerified?: boolean;
       };
     } = { where: {} };
     if (name) {
@@ -42,6 +44,11 @@ export const useHosts = (
     }
     if (country) {
       filter.where.country = country;
+    }
+    if (status === "approved") {
+      filter.where.isVerified = true;
+    } else if (status === "for-approval") {
+      filter.where.isVerified = false;
     }
     return getHosts(limit, (page - 1) * limit, filter);
   };

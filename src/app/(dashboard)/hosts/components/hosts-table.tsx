@@ -1,5 +1,5 @@
 "use client";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Copy, Edit } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ import { useHosts } from "@/hooks/use-hosts";
 import { Host } from "@/models/host";
 import { useRouter } from "next/navigation";
 import { HostsTableSkeleton } from "@/app/(dashboard)/hosts/components/hosts-table-skeleton";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
 
 interface HostsTableProps {
   searchTerm: string;
@@ -35,16 +36,10 @@ export const HostsTable: React.FC<HostsTableProps> = ({
     searchTerm,
     hostId,
     email,
-    country
+    country,
+    activeFilter
   );
   const router = useRouter();
-
-  const filteredHosts = hosts?.filter((host: Host) => {
-    if (activeFilter === "all") return true;
-    if (activeFilter === "for-approval") return !host.isVerified;
-    if (activeFilter === "approved") return host.isVerified;
-    return true;
-  });
 
   if (isLoading) {
     return <HostsTableSkeleton />;
@@ -73,15 +68,17 @@ export const HostsTable: React.FC<HostsTableProps> = ({
             <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
               Status
             </TableHead>
+            <TableHead className="font-semibold text-[16px] text-[#101018] p-3.5">
+              Actions
+            </TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
-          {filteredHosts?.map((host: Host) => (
+          {hosts?.map((host: Host) => (
             <TableRow
               key={host.objectId}
-              className="hover:bg-gray-50 cursor-pointer"
-              onClick={() => router.push(`/hosts/${host.objectId}`)}
+              className="hover:bg-gray-50"
             >
               <TableCell>
                 <div className="flex items-center space-x-3">
@@ -96,8 +93,36 @@ export const HostsTable: React.FC<HostsTableProps> = ({
                 </div>
               </TableCell>
               <TableCell>{host.phone}</TableCell>
-              <TableCell>{host.email}</TableCell>
-              <TableCell>{host.objectId}</TableCell>
+              <TableCell>
+                <div className="flex items-center space-x-2">
+                  <span>{host.email}</span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      copyToClipboard(host.email, "Email");
+                    }}
+                  >
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="flex items-center space-x-2">
+                  <span>{host.objectId}</span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      copyToClipboard(host.objectId, "Host ID");
+                    }}
+                  >
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
+              </TableCell>
               <TableCell>{host.country}</TableCell>
               <TableCell>
                 <Badge
@@ -110,6 +135,19 @@ export const HostsTable: React.FC<HostsTableProps> = ({
                 >
                   {host.isVerified ? "Approved" : "For Approval"}
                 </Badge>
+              </TableCell>
+              <TableCell>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    router.push(`/hosts/${host.objectId}`);
+                  }}
+                >
+                  <Edit className="h-4 w-4 mr-2" />
+                  Edit
+                </Button>
               </TableCell>
             </TableRow>
           ))}

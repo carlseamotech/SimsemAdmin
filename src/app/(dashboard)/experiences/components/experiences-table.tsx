@@ -15,9 +15,10 @@ import { ProposedTour } from "@/models/proposed-tour";
 import { useMemo, useState } from "react";
 import ExperiencesTableSkeleton from "./experiences-table-skeleton";
 import { useRouter } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Copy } from "lucide-react";
 import { useHosts } from "@/hooks/use-hosts";
 import { ConfirmationDialog } from "@/components/common/confirmation-dialog";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
 
 interface ExperienceProps {
   activeFilter: string;
@@ -35,7 +36,7 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
   country,
 }) => {
   const { tours, count, isLoading, page, limit, setPage, deleteTour } =
-    useTours(undefined, true, experienceId, hostId, country);
+    useTours(undefined, true, experienceId, hostId, country, activeFilter);
   const { hosts } = useHosts();
   const router = useRouter();
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -71,20 +72,10 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
   }, [tours, hosts]);
 
   const getFilteredExperiences = () => {
-    let data: (ProposedTour & {
+    const data: (ProposedTour & {
       hostName: string;
       experienceType: string;
     })[] = allExperiences || [];
-
-    if (activeFilter === "for-approval") {
-      data = data.filter((item) => "isApproved" in item && !item.isApproved);
-    } else if (activeFilter === "active" || activeFilter === "inactive") {
-      data = data.filter(
-        (item) =>
-          "isActive" in item &&
-          (activeFilter === "active" ? item.isActive : !item.isActive)
-      );
-    }
 
     return data.filter(
       (item) =>
@@ -166,7 +157,19 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
                 {experience.name}
               </TableCell>
               <TableCell className="text-gray-600">
-                {experience.objectId}
+                <div className="flex items-center space-x-2">
+                  <span>{experience.objectId}</span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      copyToClipboard(experience.objectId, "Experience ID");
+                    }}
+                  >
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
               </TableCell>
               <TableCell className="text-gray-600">
                 {experience.type}
@@ -212,7 +215,19 @@ const ExperiencesPage: React.FC<ExperienceProps> = ({
                 {experience.hostName}
               </TableCell>
               <TableCell className="text-gray-600">
-                {experience.guideId}
+                <div className="flex items-center space-x-2">
+                  <span>{experience.guideId}</span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      copyToClipboard(experience.guideId, "Host ID");
+                    }}
+                  >
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
               </TableCell>
 
               <TableCell>

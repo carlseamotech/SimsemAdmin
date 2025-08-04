@@ -25,6 +25,9 @@ import { UpdateHostInfoDTO } from "@/dtos";
 import SingleFileUploader from "@/components/common/single-file-uploader";
 import { SingleDocumentModal } from "@/app/(dashboard)/hosts/components/single-document-modal";
 import { useLanguages } from "@/hooks/use-languages";
+import { Copy } from "lucide-react";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
+import { Badge } from "@/components/ui/badge";
 
 type EditingDocument = {
   type: keyof UpdateHostInfoDTO;
@@ -229,9 +232,38 @@ const HostSummaryPage = () => {
                         <p className="text-[#3D3D3DCC] text-[15px]">
                           Host Name
                         </p>
-                        <p className="text-[30px] font-bold text-[#0D2E61]">
-                          {name}
-                        </p>
+                        <div className="flex items-center space-x-4">
+                          <p className="text-[30px] font-bold text-[#0D2E61]">
+                            {name}
+                          </p>
+                          <Badge
+                            variant={
+                              host.isVerified ? "default" : "secondary"
+                            }
+                            className={`rounded-full text-[16px] font-normal ${
+                              host.isVerified
+                                ? "bg-[#C9E8E8] text-[#105352] hover:bg-teal-100"
+                                : "bg-[#FFF3DD] text-[#AA8345] hover:bg-orange-100"
+                            }`}
+                          >
+                            {host.isVerified ? "Approved" : "For Approval"}
+                          </Badge>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <p className="text-sm text-gray-500">
+                            ID: {host.objectId}
+                          </p>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              copyToClipboard(host.objectId, "Host ID");
+                            }}
+                          >
+                            <Copy className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
