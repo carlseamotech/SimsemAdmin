@@ -100,6 +100,14 @@ const ExperiencesMainPage = () => {
     }
   }, [searchParams, activeTab]);
 
+  useEffect(() => {
+    if (activeTab === "experiences") {
+      setActiveFilter("all");
+    } else if (activeTab === "experience-library") {
+      setActiveFilter("tours");
+    }
+  }, [activeTab]);
+
   const getFilterButtons = () => {
     if (activeTab === "experiences") {
       return ["all", "for-approval", "active", "inactive"];

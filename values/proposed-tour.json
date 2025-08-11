@@ -1,55 +1,403 @@
 {
-  "objectId": "vdwK9IESQ5",
-  "thingsToKnow": [
-    "{\"description\":\"hrhdhhd\",\"title\":\"bdbdh\"}"
+  "results": [
+    {
+      "objectId": "RDTskS2Q7f",
+      "country": "Jordan",
+      "cost": "30",
+      "city": "Amman ",
+      "difficultyLevel": "Intermediate",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/288bcea61b7ff552b278606aff0e2546_1682282279311.jpeg",
+      "galleryImageUrls": [
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/8bc08126469554780951becbc3c63969_1682282281930.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/8969d995c02d2c916403fb5e85b19ba9_1682282281965.jpeg"
+      ],
+      "guideId": "Y39lfqEtvj",
+      "description": "Join me for an immersive Amman walking tour through the vibrant old and new markets of Downtown Amman. We’ll explore lively spots like Al-Bukhari Market, the Fruit and Vegetable Market, and the Tailor’s Market, offering you a true Downtown Amman walking tour experience.\n\nYou’ll experience the authentic rhythm of daily Jordanian life, while savoring traditional Arabic flavors during this unique food tour Amman. Enjoy tastings of baklava, kunafa, and local nuts as I share stories behind these beloved treats.\n\nThis Amman culture walking tour also reveals local customs, traditions, and deep insights into the real history of the Middle East. Highlights include visits to the Gold Market, the historic Path of the Nymphs, and even a lesson on how to cross Amman’s streets like a local!\n\nWhether you’re passionate about street life, sweets, or social stories, this Amman historical market tour is your perfect gateway to the city’s hidden charm. This Amman city tour goes beyond the guidebooks and connects you with the true soul of the capital.\n\nNote: Minimum 2 participants required. Price excludes food, drinks, tickets, and transportation.\n",
+      "tourFeatures": [
+        "Culture",
+        "History",
+        "Other"
+      ],
+      "cameraZoom": 15,
+      "type": "custom",
+      "meetingPointLat": 31.951787010087155,
+      "otherTourFeature": "food ",
+      "meetingPoint": "ش. الهاشمي 48، عمّان، الأردن",
+      "phone": "+962799717165",
+      "countryCode": "+962",
+      "name": "Amman Walking Tour with Simsem Local Guide",
+      "meetingPointLong": 35.93746114522219,
+      "tourTimes": [],
+      "tourDuration": "2 hours",
+      "isApproved": true,
+      "isNotified": true,
+      "isActive": true,
+      "createdAt": "2023-04-23T20:38:04.244Z",
+      "updatedAt": "2025-08-04T09:24:57.756Z",
+      "tourPackages": [],
+      "pickupPoints": [],
+      "whatToExpect": "Ibrahim will lead you for an enriching Amman walking tour where you’ll explore the best of Downtown Amman walking tour spots. He’ll guide you through the most vibrant markets, including Al-Bukhari Market, the Fruit and Vegetable Market, and the Tailor’s Market, each offering a taste of daily Jordanian life.\n\nAs part of this cultural experience, you’ll enjoy a food tour Amman style with tastings of baklava, kunafa, and a variety of traditional nuts. Ibrahim will share the history and stories behind each treat, connecting them to broader Arabic culture.\n\nDuring this Amman culture walking tour, you’ll also gain a deeper understanding of Arabic traditions and the authentic history of the Middle East, beyond what’s in the textbooks. This experience doubles as an Amman historical market tour, perfect for those seeking cultural immersion.\n\nWhether you're a curious traveler or a foodie, this Amman city tour offers the chance to experience Amman through the eyes of a local guide.",
+      "galleryVideoUrls": [],
+      "thingsToKnow": [],
+      "inclusions": [],
+      "exclusions": [],
+      "itinerary": [],
+      "reviews": [],
+      "guideName": "ibrahim  Alodeh "
+    },
+    {
+      "objectId": "73JYYYdDn4",
+      "country": "Jordan",
+      "pickupPoints": [
+        "{\"key\":\"hotelPickup\",\"value\":{\"cameraZoom\":16.735859,\"pickupPoint\":\"XV34+PGX, Prs. Sumayah St., Amman, Jordan\",\"pickupPointLat\":31.954294948752263,\"pickupPointLong\":35.85638903081417,\"pickupPointTitle\":\"Pickup from any hotel in\"}}",
+        "{\"key\":\"airportPickup\",\"value\":{\"cameraZoom\":15.032928,\"pickupPoint\":\"PXFJ+2H7, Amman, Jordan\",\"pickupPointLat\":31.721905171431832,\"pickupPointLong\":35.981829576194286,\"pickupPointTitle\":\"Pickup from any airport\"}}",
+        "{\"key\":\"locationPickup\",\"value\":{\"cameraZoom\":16.027367,\"pickupPoint\":\"XV34+PGX, Prs. Sumayah St., Amman, Jordan\",\"pickupPointLat\":31.95442950387096,\"pickupPointLong\":35.85628844797611,\"pickupPointTitle\":\"Pick-up from a specific location\"}}"
+      ],
+      "city": "ajloun ",
+      "difficultyLevel": "Intermediate",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/05f834ad3f372c1987a2ee89f311e6d8_1683454094399.jpeg",
+      "galleryImageUrls": [
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/e57399050c1fb198a5603b45e86eb8f7_1683454100525.jpeg"
+      ],
+      "guideId": "G1ZJVgZ95C",
+      "description": "We will go camping in Ajloun, in the Barqash forest, where the picturesque nature is, and we will spend a night in the middle of nature. The camping trip will include camping equipment, dinner, breakfast, and transportation.",
+      "tourPackages": [
+        "{\"actualCost\":\"\",\"cost\":\"60\",\"fromPerson\":\"1\",\"toPerson\":\"9\"}",
+        "{\"actualCost\":\"\",\"cost\":\"100\",\"fromPerson\":\"1\",\"toPerson\":\"5\"}"
+      ],
+      "tourFeatures": [
+        "Camping"
+      ],
+      "type": "getaway",
+      "otherTourFeature": "",
+      "phone": "+9620792814014",
+      "countryCode": "+962",
+      "name": "camping in ajloun",
+      "tourDuration": "1 Day",
+      "isApproved": true,
+      "isNotified": true,
+      "isActive": true,
+      "createdAt": "2023-05-07T10:08:23.919Z",
+      "updatedAt": "2025-08-03T05:37:05.351Z",
+      "tourTimes": [],
+      "guideName": "Mohammed Ahmed"
+    },
+    {
+      "objectId": "ge3u4OBo12",
+      "country": "Jordan",
+      "pickupPoints": [
+        "{\"key\":\"hotelPickup\",\"value\":{\"cameraZoom\":17.734829,\"pickupPoint\":\"Basman St 3, Amman, Jordan\",\"pickupPointLat\":31.95000558102924,\"pickupPointLong\":35.934443324804306,\"pickupPointTitle\":\"Pickup from any hotel in\"}}",
+        "{\"key\":\"locationPickup\",\"value\":{\"cameraZoom\":17.322992,\"pickupPoint\":\"K. Talal St. 8, Amman, Jordan\",\"pickupPointLat\":31.95012051297865,\"pickupPointLong\":35.93449126929045,\"pickupPointTitle\":\"Pick-up from a specific location\"}}"
+      ],
+      "city": "amman ",
+      "difficultyLevel": "Basic",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/1263ab410b8ee79c45bcb60e638200dd_1683454537861.jpeg",
+      "galleryImageUrls": [
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/124643259ca0a91e0d7530cd6de20c51_1683454540981.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/0bb7778b109074dcfdfcb0f1f4e481ac_1683454540931.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/415af51ae9a716e6a34dfdf44e1b280e_1683454540969.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d72f7411d275a524625cc535ac4f9b73_1683454540952.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/7ca0d28c60cd51db20381498b2faf16a_1683454540962.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/e5c0bb5140f1bce9465f920110a8b698_1683454540976.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/eabdcb0c400d110f947949ffd303fae0_1683454540987.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/b0739d42e5bd087d9e2dd5169f7ed2be_1683454540942.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d978263a70dce635ee48e1e569204fe6_1683454540994.jpeg"
+      ],
+      "guideId": "G1ZJVgZ95C",
+      "description": "We will go on a tour to the center of the country and visit the Jordan Museum, the Roman amphitheater and the Citadel Mountain, drink coffee together, have lunch and taste the most famous Kunafa of all, Kunafa Habiba. Please note: Price does not include food, drinks, tickets or transportation.",
+      "tourPackages": [
+        "{\"actualCost\":\"\",\"cost\":\"70\",\"fromPerson\":\"1\",\"toPerson\":\"2\"}"
+      ],
+      "tourFeatures": [
+        "History",
+        "Culture"
+      ],
+      "type": "getaway",
+      "otherTourFeature": "",
+      "phone": "+9620792814014",
+      "countryCode": "+962",
+      "name": "Downtown tour",
+      "tourDuration": "1 Day",
+      "isApproved": true,
+      "isNotified": true,
+      "isActive": true,
+      "createdAt": "2023-05-07T10:15:49.228Z",
+      "updatedAt": "2025-08-03T05:37:09.100Z",
+      "tourTimes": [],
+      "guideName": "Mohammed Ahmed"
+    },
+    {
+      "objectId": "LchVjL7ZYC",
+      "country": "Jordan",
+      "pickupPoints": [
+        "{\"key\":\"hotelPickup\",\"value\":{\"cameraZoom\":14.522227,\"pickupPoint\":\"Zahran St 133, Amman, Jordan\",\"pickupPointLat\":31.960686241429887,\"pickupPointLong\":35.8810418844223,\"pickupPointTitle\":\"Pickup from any hotel in\"}}",
+        "{\"key\":\"airportPickup\",\"value\":{\"cameraZoom\":13.126459,\"pickupPoint\":\"Main Terminal - QAIA, PXCP+G8V، طريق المطار، عمّان، Jordan\",\"pickupPointLat\":31.721547543388986,\"pickupPointLong\":35.98553102463484,\"pickupPointTitle\":\"Pickup from any airport\"}}"
+      ],
+      "city": "Amman",
+      "difficultyLevel": "Basic",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/da027d2ecfa4c92883b55bbca15c323f_1684000769991.jpeg",
+      "galleryImageUrls": [
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/94751ee9fbfe7930a8c6487407e2e7f9_1684000771662.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/c1131ec9ce207ca0afe59efc2d59344c_1684000771673.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/90386abd42cf9801199ad7c8b4f1eaf5_1684000771665.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/354527765925bc0052d6d81b04726e64_1684000771664.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/9f15e8178ece903d7b40217ee76e571e_1684000771668.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/44bddf3532a344ff591f00b12f86fcb2_1684000771679.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/a004115637da4025dd8a8afebc4e54a2_1684336562277.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/0a0c2863cbc922ec8a58685c0312d8e6_1684336562287.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/8a0933769f2296ce19708da9f4aebbb8_1694813504732.jpeg"
+      ],
+      "guideId": "VwRqvroR0G",
+      "description": "1st day: amman tour: This will cover The Royal Automobile Museum, then The Jordan Museum, then Amman Citadel, then Roman theater, then King Abdullah mosque(optional) 2nd day: North tour: This will cover Ajloun Castle, then the Jerash historical site, then take lunch and go back to the hotel3rd day: South tour: This will cover Madaba (Mount Nebo+St George's Greek Orthodox Church), then to Petra, have a tour there and stay night there 4th day: South tour: This will cover Wadi rum (jeep tour) and stay night there5th day: from wadi Rum to   dead sea stay night there6th day: going to The Baptismal Site of Jesus Christ and then to airport.Note: 1. Price is not including accommodation because it depends on what kind of hotel u prefer. But will help u with that issue once u booked with me.2. Price is not including entrance fees for the sites.3. this program is flexible can be change it as u wish.4. There will be stops on the way for having lunch or dinner and antiques shops. Please note: Price does not include food, drinks, tickets or transportation.",
+      "tourPackages": [
+        "{\"actualCost\":\"\",\"cost\":\"650\",\"fromPerson\":\"1\",\"toPerson\":\"1\"}",
+        "{\"actualCost\":\"\",\"cost\":\"350\",\"fromPerson\":\"2\",\"toPerson\":\"2\"}"
+      ],
+      "tourFeatures": [
+        "History",
+        "Culture",
+        "Architecture",
+        "Camping",
+        "Nature",
+        "Outdoor"
+      ],
+      "type": "getaway",
+      "otherTourFeature": "",
+      "phone": "+962777714441",
+      "countryCode": "+962",
+      "name": "Jordan 6 Days Tour ",
+      "tourDuration": "6 Day",
+      "isApproved": true,
+      "isNotified": true,
+      "isActive": true,
+      "createdAt": "2023-05-13T17:59:35.621Z",
+      "updatedAt": "2025-08-03T05:37:13.062Z",
+      "tourTimes": [],
+      "guideName": "iyad alqaryouti "
+    },
+    {
+      "objectId": "xiTcGl67JD",
+      "country": "Jordan",
+      "pickupPoints": [
+        "{\"key\":\"hotelPickup\",\"value\":{\"cameraZoom\":15.45333,\"pickupPoint\":\"Zahran St 133, Amman, Jordan\",\"pickupPointLat\":31.960659218474266,\"pickupPointLong\":35.88100366294384,\"pickupPointTitle\":\"Pickup from any hotel in\"}}",
+        "{\"key\":\"airportPickup\",\"value\":{\"cameraZoom\":15.0,\"pickupPoint\":\"Queen Alia International Airport, Alpha Building, 2nd Floor، Airport Rd., Amman, Jordan\",\"pickupPointLat\":31.721699834925182,\"pickupPointLong\":35.996252819895744,\"pickupPointTitle\":\"Pickup from any airport\"}}"
+      ],
+      "city": "Amman",
+      "difficultyLevel": "Basic",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/dc8099a11ca41c0ab8351d1e719e6afe_1684336247994.jpeg",
+      "galleryImageUrls": [
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/52a81667c3f60e29f5fff0dcb70d6750_1684336249182.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/7c3afe42e201ae7ca26fa739cc57c57f_1684336249184.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/426d3a91e346376f3eebf0e720e5db8b_1684336249193.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/64ed1471d2cdf9c8f548eb37bb257e56_1684694028156.jpeg",
+        "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/d6e83a13ebd7e267cbc10d7cef0d4be0_1684694028168.jpeg"
+      ],
+      "guideId": "VwRqvroR0G",
+      "description": "1st day: pick up from the airport to your hotel in Amman 2nd day: tour in Amman Explore the city's highlights, such as the Citadel, which offers panoramic views of Amman, and the Roman Theater, an impressive ancient amphitheater. Then heading to Petra on the way will take the dead sea road take some nice photos there then arrive Petra stay night there.3rd day: Petra one of the most famous archaeological sites in the world. wake up early morning exploring the ancient Nabatean city, known for its intricate rock-cut architecture. Highlights include the Treasury (Al-Khazneh), the Monastery (Ad Deir), and the Siq, a narrow gorge leading to the city. afternoon move to wadi rum watch the sunset while Roaming in the desert by jeep 4th day : after breakfast move from wadi rum to Amman or airport Note: Please note that the price does not include (airplane tickets, entrance to the sites, hotels, meals, Jeep tour, Camel rides) but can help you to find the best price. :) ",
+      "tourPackages": [
+        "{\"actualCost\":\"\",\"cost\":\"450\",\"fromPerson\":\"1\",\"toPerson\":\"1\"}",
+        "{\"actualCost\":\"\",\"cost\":\"250\",\"fromPerson\":\"2\",\"toPerson\":\"2\"}"
+      ],
+      "tourFeatures": [
+        "History",
+        "Culture",
+        "Architecture",
+        "Nature",
+        "Camping",
+        "Outdoor"
+      ],
+      "type": "getaway",
+      "otherTourFeature": "",
+      "phone": "+962777714441",
+      "countryCode": "+962",
+      "name": "Jordan 4 Days Tour ",
+      "tourDuration": "4 Day",
+      "isApproved": true,
+      "isNotified": true,
+      "isActive": true,
+      "createdAt": "2023-05-17T15:10:53.231Z",
+      "updatedAt": "2025-08-03T05:37:16.816Z",
+      "tourTimes": [],
+      "guideName": "iyad alqaryouti "
+    },
+    {
+      "objectId": "hfwugWdPU7",
+      "country": "Egypt",
+      "cost": "35",
+      "city": "old Cairo ",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/79356e924d2d7268a8d7b7c17001fb8a_The%20Bells%20of%20the%20Old%20Churches.png",
+      "guideId": "jCDy8bGBAv",
+      "description": "We in the Middle East love to say that we are the cradle of the civilization, but let’s face it, our streets are really packed with historical monuments combining different cultural heritages. The churches in Amman are a proof and they are definitely hidden gems that do not get enough attention. Yet they should and I would like to take you on a tour to show you those temples and tell you their stories. Please note: Price does not include food, drinks, tickets or transportation.",
+      "tourFeatures": [
+        "Knowing the historical buildings of Amman.",
+        "Knowing the history of the buildings you will be taking your guest to.",
+        "Being able to talk about the above in English."
+      ],
+      "cameraZoom": 14.182413,
+      "type": "offered",
+      "isActive": true,
+      "meetingPointLat": 30.00651672339203,
+      "offeredTourId": "CBkSHllsRi",
+      "meetingPoint": "264J+JW3, Kom Ghorab, Old Cairo, Cairo Governorate 4244002, Egypt",
+      "isNotified": true,
+      "phone": "+2001121263793",
+      "maxGuest": "5",
+      "countryCode": "+20",
+      "name": "The Bells of the Old Churches",
+      "meetingPointLong": 31.232298910617832,
+      "tourTimes": [],
+      "isApproved": true,
+      "tourDuration": "2-3 hours",
+      "createdAt": "2023-07-01T09:39:16.219Z",
+      "updatedAt": "2025-08-03T05:37:20.452Z",
+      "galleryImageUrls": [],
+      "tourPackages": [],
+      "pickupPoints": [],
+      "guideName": "Taqwa Hendy "
+    },
+    {
+      "objectId": "qaxa5EnlUs",
+      "country": "Egypt",
+      "cost": "20",
+      "city": "Alexandria ",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/a02c1980e4c19b2f50442f3d8a360af6_Adventurous%20Food%20Tour.png",
+      "guideId": "D5K2UHkrBl",
+      "description": "You will never get hungry in Egypt. Why? Because you will find vendors, food carts, and more. They offer everything you can imagine. You want to taste all and discover what street food in Egypt is all about. We don’t blame you. The air is loaded with irresistible aroma and you want to partake in what locals eat every day. But what if you’re going out to explore only delicious street food to avoid any digestive problems and find out historical food trucks and worthy local small vendor, you need to be accompanied with a local. Please note: Price does not include food, drinks, tickets or transportation.",
+      "tourFeatures": [
+        "Know best and reputable food carts to taste local dishes(foul, kebda, and so)",
+        "Keep the travellers safe and protected from exploitation",
+        "Talk to the travellers and understand their preferences and suggest the right dish they can try.",
+        "Being able to explain the ingredients of dishes they will try"
+      ],
+      "cameraZoom": 14.751234,
+      "type": "offered",
+      "isActive": true,
+      "meetingPointLat": 31.228748550253393,
+      "offeredTourId": "oNtLdLVKQB",
+      "meetingPoint": "5 Syria, Mustafa Kamel WA Bolkli, El Raml 1, Alexandria Governorate 5434045, Egypt",
+      "isNotified": true,
+      "phone": "+201205236945",
+      "maxGuest": "4",
+      "countryCode": "+20",
+      "name": "Adventurous Food Tour: Only for Those Who Dare",
+      "meetingPointLong": 29.951023086905476,
+      "tourTimes": [],
+      "isApproved": true,
+      "tourDuration": "15-30 minutes",
+      "createdAt": "2023-08-23T05:48:21.048Z",
+      "updatedAt": "2025-08-03T05:37:24.127Z",
+      "galleryImageUrls": [],
+      "tourPackages": [],
+      "pickupPoints": [],
+      "guideName": "mostafa abdellah"
+    },
+    {
+      "objectId": "K9CKnRAEOL",
+      "country": "Egypt",
+      "cost": "2",
+      "city": "Cairo & Giza",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/50ce7140cba2a5809ea13ca1a3218d77_Juice%20in%20Egypt.png",
+      "guideId": "s29OXmUuG2",
+      "description": "You’re in Egypt but haven’t tasted the most popular drink in Egypt? How is that possible. You need to head to one of the local fruit shops to drink Aseer Asab (Sugarcane Juice)! The drink is prepared in front of your eyes, using one of the most traditional machine in Egypt, the Presser (Assara in Arabic). Your drink will be served in a class cup. So, you have to finish your cup in a few seconds and don’t ask why there is no other option. It’s a way to visit Egypt through the eyes of locals. Our guide will get you access to one of the oldest shops in Egypt. Please note: Price does not include food, tickets or transportation.",
+      "tourFeatures": [
+        "Know the best and nearby local fruit shop",
+        "Suggest other Egyptian drinks (such as fakfakina)",
+        "Being able to explain the the history of asser asab in Egypt",
+        "Make sure to keep travellers entertained and avoid any harassment"
+      ],
+      "cameraZoom": 15.778806,
+      "type": "offered",
+      "isActive": true,
+      "meetingPointLat": 30.009797495035656,
+      "offeredTourId": "p9cs4i0uvF",
+      "meetingPoint": "2654+XF7, Osama Ibn Zaid, Al Omraneyah Ash Sharqeyah, El Omraniya, Giza Governorate 3547133, Egypt",
+      "isNotified": true,
+      "phone": "+201014617921",
+      "maxGuest": "10",
+      "countryCode": "+20",
+      "name": "Taste the Most Popular Juice in Egypt (Aseer Asab)",
+      "meetingPointLong": 31.206235885620117,
+      "tourTimes": [],
+      "isApproved": true,
+      "tourDuration": "2-3 hours",
+      "createdAt": "2023-08-26T08:40:09.672Z",
+      "updatedAt": "2025-08-03T05:37:27.736Z",
+      "galleryImageUrls": [],
+      "tourPackages": [],
+      "pickupPoints": [],
+      "guideName": "Abdullrahman Mohamed Zaki"
+    },
+    {
+      "objectId": "lfuNxOozcT",
+      "country": "Egypt",
+      "cost": "20",
+      "city": "Cairo",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/2d0be05f12658f144740facd264e3475_Sunsetlit%20shisha.png",
+      "guideId": "LM8vuA3LHQ",
+      "description": "You do know that there is no better Shisha than in the Middle East. And the perk of course is that you can choose any flavor you want! Add to that an authentic cup of tea and you are in for a treat. But make no mistake, it’s the locals who know exactly where to go, they go to that specific place that gives every single detail its authentic touch for a truly marvelous experience! And the locals love their Shisha! Want to join on a beautiful evening? Please note: Price does not include food, drinks, tickets or transportation.",
+      "tourFeatures": [
+        "Knowing a great local shisha place, where you are also known yourself because you are a regular guest",
+        "Being a shisha lover yourself and being able to make recommendations to the guest",
+        "Being social as you will be conversing over the shisha"
+      ],
+      "cameraZoom": 15,
+      "type": "offered",
+      "isActive": true,
+      "meetingPointLat": 30.044419567021205,
+      "offeredTourId": "i8JDcadMUI",
+      "meetingPoint": "1 Mohammed Mahmoud, ميدان التحرير, Abdeen, Cairo Governorate 4272077, Egypt",
+      "isNotified": true,
+      "phone": "+201010943981",
+      "maxGuest": "3",
+      "countryCode": "+20",
+      "name": "Sunsetlit Shisha",
+      "meetingPointLong": 31.235711686313152,
+      "tourTimes": [],
+      "isApproved": true,
+      "tourDuration": "2-3 hours",
+      "createdAt": "2023-08-26T18:58:41.107Z",
+      "updatedAt": "2025-08-03T05:37:31.344Z",
+      "galleryImageUrls": [],
+      "tourPackages": [],
+      "pickupPoints": [],
+      "guideName": "Abdo Elmallah "
+    },
+    {
+      "objectId": "kpIlxtXqkw",
+      "country": "Egypt",
+      "cost": "20",
+      "city": "Cairo",
+      "coverImageUrl": "https://parsefiles.back4app.com/o3Uw3iXWYdbqKD46IFt3YggP9kSwYtUe8b7Gawei/a02c1980e4c19b2f50442f3d8a360af6_Adventurous%20Food%20Tour.png",
+      "guideId": "LM8vuA3LHQ",
+      "description": "You will never get hungry in Egypt. Why? Because you will find vendors, food carts, and more. They offer everything you can imagine. You want to taste all and discover what street food in Egypt is all about. We don’t blame you. The air is loaded with irresistible aroma and you want to partake in what locals eat every day. But what if you’re going out to explore only delicious street food to avoid any digestive problems and find out historical food trucks and worthy local small vendor, you need to be accompanied with a local. Please note: Price does not include food, drinks, tickets or transportation.",
+      "tourFeatures": [
+        "Know best and reputable food carts to taste local dishes(foul, kebda, and so)",
+        "Keep the travellers safe and protected from exploitation",
+        "Talk to the travellers and understand their preferences and suggest the right dish they can try.",
+        "Being able to explain the ingredients of dishes they will try"
+      ],
+      "cameraZoom": 15,
+      "type": "offered",
+      "isActive": true,
+      "meetingPointLat": 30.044419567021205,
+      "offeredTourId": "oNtLdLVKQB",
+      "meetingPoint": "1 Mohammed Mahmoud, ميدان التحرير, Abdeen, Cairo Governorate 4272077, Egypt",
+      "isNotified": true,
+      "phone": "+201010943981",
+      "maxGuest": "3",
+      "countryCode": "+20",
+      "name": "Adventurous Food Tour: Only for Those Who Dare",
+      "meetingPointLong": 31.235711686313152,
+      "tourTimes": [],
+      "isApproved": true,
+      "tourDuration": "15-30 minutes",
+      "createdAt": "2023-08-26T19:00:39.628Z",
+      "updatedAt": "2025-08-03T05:37:34.963Z",
+      "galleryImageUrls": [],
+      "tourPackages": [],
+      "pickupPoints": [],
+      "guideName": "Abdo Elmallah "
+    }
   ],
-  "country": "Turkey",
-  "city": "dhdh",
-  "difficultyLevel": "Basic",
-  "coverImageUrl": "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/34a29f0a0af0b083cc26cb75aefa6125_1752300721321.jpeg",
-  "galleryImageUrls": [
-    "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/8100f2359d79353d28630ce5735cda45_1752300722355.jpeg",
-    "https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/a0c16250ad137c24aaeedefa318ff5ea_1752300722358.jpeg"
-  ],
-  "galleryVideoUrls": [
-    "{\"name\":\"1752944846352_PXL_20250126_064713801.TS.mp4\",\"thumbnailUrl\":\"https://parsefiles.back4app.com/DtW8dCiu4c1HIx5OXodVVLOIvu5yYBHunv7WtzU9/17745877565756a75f27e26b7391afff_1752944853668.jpeg\"}"
-  ],
-  "guideId": "kifpSShKKb",
-  "description": "dbbd",
-  "exclusions": [
-    "hdhd"
-  ],
-  "itinerary": [
-    "{\"day\":\"Day 1\",\"description\":\"bdbdbbd\",\"title\":\"bdbd\"}"
-  ],
-  "tourFeatures": [
-    "Architecture"
-  ],
-  "cameraZoom": 15,
-  "type": "custom",
-  "whatToExpect": "nxnd",
-  "otherTourFeature": "",
-  "meetingPoint": "Kha 190 (3rd floor) Bir Uttom Rofiqul, Jahurul Islam Ave, ঢাকা 1212, Bangladesh",
-  "countryCode": "+90",
-  "meetingPointLong": 90.4352742433548,
-  "tourDuration": "1 hour",
-  "meetingPointLat": 23.764437246189587,
-  "phone": "+8801703464048",
-  "name": "custom ",
-  "tourTimes": [
-    "12:00 AM"
-  ],
-  "inclusions": [
-    "bdbd"
-  ],
-  "tourPackages": [
-    "{\"cost\":\"15\",\"fromPerson\":\"1\",\"toPerson\":\"3\"}",
-    "{\"cost\":\"10\",\"fromPerson\":\"4\",\"toPerson\":\"6\"}",
-    "{\"cost\":\"9\",\"fromPerson\":\"7\",\"toPerson\":\"9\"}"
-  ],
-  "isActive": false,
-  "isApproved": false,
-  "isNotified": false,
-  "createdAt": "2025-07-23T09:16:37.741Z",
-  "updatedAt": "2025-07-23T09:16:37.741Z"
+  "count": 210
 }

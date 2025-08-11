@@ -14,12 +14,13 @@ import { TourMenu } from "./components/tour-menu";
 import { useState } from "react";
 import ThingsToKnow from "./components/things-to-know";
 import { WhatsIncludedNot } from "./components/included-not";
-import { Itinerary } from "./components/itinerary";
+import { Itinerary, ItineraryItem } from "./components/itinerary";
 import { ChildPollicyRequirements } from "./components/pollicy-requirements";
 import { Packages } from "./components/packages";
 import WhereToMeet from "./components/meet";
 import DateAndTime from "./components/dateandtime";
 import { ExperienceDetailsSkeleton } from "./components/experience-details-skeleton";
+import { useMemo } from "react";
 
 import {
   AlertDialog,
@@ -92,6 +93,20 @@ const ExperienceDetailsPage = () => {
       setDialog({ isOpen: false, action: "" });
     }
   };
+
+  const parsedItinerary = useMemo(() => {
+    if (!tour?.itinerary) return [];
+    return tour.itinerary
+      .map((item) => {
+        try {
+          return typeof item === "string" ? JSON.parse(item) : item;
+        } catch {
+          toast.error("Failed to parse itinerary item");
+          return null;
+        }
+      })
+      .filter(Boolean) as ItineraryItem[];
+  }, [tour?.itinerary]);
 
   if (isLoading) {
     return <ExperienceDetailsSkeleton />;
@@ -428,7 +443,7 @@ const ExperienceDetailsPage = () => {
                         Edit
                       </Button>
                     </div>
-                    <Itinerary itinerary={tour.itinerary || []} />
+                    <Itinerary itinerary={parsedItinerary} />
                   </div>
                 </div>
               </div>

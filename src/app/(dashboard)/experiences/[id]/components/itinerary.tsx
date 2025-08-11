@@ -2,7 +2,7 @@
 import Image from "next/image";
 import InfoIcon from "../../../../../../public/experience/itenerary-icon.svg";
 
-interface ItineraryItem {
+export interface ItineraryItem {
   day: string;
   title: string;
   description: string;
@@ -19,10 +19,6 @@ export const Itinerary: React.FC<ItineraryProps> = ({ itinerary }) => {
 
   return (
     <div className="rounded-2xl p-6 bg-[#3D3D3D0D] space-y-6">
-      <h3 className="text-[24px] font-bold text-[#0D2E61] mb-6">
-        Our Detailed Itinerary
-      </h3>
-
       <div className="relative">
         {itinerary.map((item, index) => {
           const isLast = index === itinerary.length - 1;
